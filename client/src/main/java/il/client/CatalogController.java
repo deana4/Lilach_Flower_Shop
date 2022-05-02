@@ -59,6 +59,7 @@ public class CatalogController {
     private void createf() throws IOException, ClassNotFoundException, InterruptedException {
         SimpleClient.getClient().sendToServer("get catalog items");
         TimeUnit.SECONDS.sleep(3);//need to wait to the server, need to use lock
+        String cmd = "#updatePrice ID:1,new price:100000";
     }
 
     public static void setFlowerlist(List<Flower> flowerlist1) {

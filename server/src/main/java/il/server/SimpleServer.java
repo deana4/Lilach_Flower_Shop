@@ -37,6 +37,12 @@ public class SimpleServer extends AbstractServer {
                 System.out.println("send Flowers to catalog");
             }
 
+            if(msgString.startsWith("#updatePrice")){
+                int id = Integer.parseInt(msgString.substring(msgString.indexOf(':'), msgString.indexOf(',')));
+                int price = Integer.parseInt(msgString.substring(msgString.indexOf("new price:")));
+                testDB.setPrice(id, price);
+            }
+
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

@@ -1,6 +1,7 @@
 package il.server;
 
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,21 +35,20 @@ public class testDB {
 
 
     private static void generateItems()throws Exception{
-
         LinkedList<Flower> flowerlist = new LinkedList<>();
-        flowerlist.add(new Flower("ido", 20,"src/main/resources/com/client/images/whiteroses.jpeg",true,25));
-        flowerlist.add(new Flower("ido1", 23,"src/main/resources/com/client/images/sunflower.jpeg",true, 5));
-        flowerlist.add(new Flower("ido2", 20,"src/main/resources/com/client/images/pin.jpeg",false,0));
-        flowerlist.add(new Flower("ido3", 20,"src/main/resources/com/client/images/chinaFlower.jpeg",false,0));
-        flowerlist.add(new Flower("ido4", 20,"src/main/resources/com/client/images/pin.jpeg",false,0));
-        flowerlist.add(new Flower("ido5", 20,"src/main/resources/com/client/images/whiteroses.jpeg",true,50));
-        flowerlist.add(new Flower("ido6", 20,"src/main/resources/com/client/images/sunflower.jpeg",true,50));
-        flowerlist.add(new Flower("ido7", 20,"src/main/resources/com/client/images/whiteroses.jpeg",true,50));
-        flowerlist.add(new Flower("ido7", 20,"src/main/resources/com/client/images/sunflower.jpeg",true,50));
-        flowerlist.add(new Flower("ido7", 20,"src/main/resources/com/client/images/pin.jpeg",true,50));
-        flowerlist.add(new Flower("ido7", 20,"src/main/resources/com/client/images/whiteroses.jpeg",true,50));
-        flowerlist.add(new Flower("ido7", 20,"src/main/resources/com/client/images/sunflower.jpeg",true,50));
-        flowerlist.add(new Flower("ido7", 20,"src/main/resources/com/client/images/whiteroses.jpeg",true,50));
+        flowerlist.add(new Flower("ido", 20,"src/main/resources/il/client/images/whiteroses.jpeg",true,25));
+        flowerlist.add(new Flower("ido1", 23,"ssrc/main/resources/il/client/images/sunflower.jpeg",true, 5));
+        flowerlist.add(new Flower("ido2", 20,"src/main/resources/il/client/images/pin.jpeg",false,0));
+        flowerlist.add(new Flower("ido3", 20,"src/main/resources/il/client/images/chinaFlower.jpeg",false,0));
+        flowerlist.add(new Flower("ido4", 20,"src/main/resources/il/client/images/pin.jpeg",false,0));
+        flowerlist.add(new Flower("ido5", 20,"src/main/resources/il/client/images/whiteroses.jpeg",true,50));
+        flowerlist.add(new Flower("ido6", 20,"ssrc/main/resources/il/client/images/sunflower.jpeg",true,50));
+        flowerlist.add(new Flower("ido7", 20,"src/main/resources/il/client/images/whiteroses.jpeg",true,50));
+        flowerlist.add(new Flower("ido7", 20,"src/main/resources/il/client/images/sunflower.jpeg",true,50));
+        flowerlist.add(new Flower("ido7", 20,"src/main/resources/il/client/images/pin.jpeg",true,50));
+        flowerlist.add(new Flower("ido7", 20,"src/main/resources/il/client/images/whiteroses.jpeg",true,50));
+        flowerlist.add(new Flower("ido7", 20,"src/main/resources/il/client/images/sunflower.jpeg",true,50));
+        flowerlist.add(new Flower("ido7", 20,"src/main/resources/il/client/images/whiteroses.jpeg",true,50));
         for (Flower item : flowerlist) {
             session.save(item);
         }
@@ -82,6 +82,24 @@ public class testDB {
             exception.printStackTrace();
         }
     }
+
+    public static boolean setPrice(int id, int newPrice) throws IOException {
+        openSssion();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Flower> query = builder.createQuery(Flower.class);
+        query.from(Flower.class);
+        List<Flower> data = session.createQuery(query).getResultList();
+        for(Flower item : data){
+            if(item.getId()==id){
+                item.setPrice(newPrice);
+                session.save(item);
+                return true;
+            }
+        }
+        closeSession();
+        return false;
+    }
+
 
     public static void initMySQL(){
         try {

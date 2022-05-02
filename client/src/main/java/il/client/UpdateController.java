@@ -30,8 +30,10 @@ public class UpdateController {
         this.new_price = update_text.getText();
         product.setProduct_price(this.new_price);
         stage.close();
+        String command = "#updatePrice ID:"+Integer.toString(product.getId())+","+"new price:"+this.new_price;
         Flower flower=new Flower(product.getProduct_name(), product.getProduct_price(), product.getProduct_image(), product.isOn_discount(),product.getDiscound_precentage());
-        updateServerNewPrice(flower);
+
+        updateServerNewPrice(command);
 
     }
 
@@ -40,8 +42,8 @@ public class UpdateController {
         this.stage = stage;
     }
 
-    private void updateServerNewPrice(Flower flower) throws IOException, ClassNotFoundException, InterruptedException {
-        SimpleClient.getClient().sendToServer(flower);
+    private void updateServerNewPrice(String command) throws IOException, ClassNotFoundException, InterruptedException {
+        SimpleClient.getClient().sendToServer(command);
         TimeUnit.SECONDS.sleep(3);//need to wait to the server, need to use lock
     }
 

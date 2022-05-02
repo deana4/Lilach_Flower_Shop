@@ -1,1 +1,12 @@
-il/lilach/App.class
+il/server/SimpleServer.class
+il/server/ocsf/OriginatorMessage.class
+il/server/testDB.class
+il/server/ocsf/AbstractConnectionFactory.class
+il/server/ocsf/ObservableOriginatorServer.class
+il/server/ocsf/AbstractServer$1.class
+il/server/ocsf/ConnectionToClient.class
+il/server/ocsf/AdaptableServer.class
+module-info.class
+il/server/AppServer.class
+il/server/ocsf/AbstractServer.class
+il/server/ocsf/ObservableServer.class

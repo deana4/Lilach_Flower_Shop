@@ -1,0 +1,50 @@
+package il.server;
+
+import il.server.ocsf.ConnectionToClient;
+import il.server.ocsf.AbstractServer;
+
+
+import java.io.IOException;
+
+public class SimpleServer extends AbstractServer {
+
+    public SimpleServer(int port) throws Exception {
+        super(port);
+        System.out.println("Server listen on port:" + port);
+        testDB.initMySQL();
+    }
+
+    public void closeServer() throws IOException {
+        testDB.closeSession();
+        this.close();
+    }
+
+    @Override
+    protected void handleMessageFromClient(Object msg, ConnectionToClient client){
+        try{
+            System.out.print(client.getInetAddress()+":");
+            String msgString = msg.toString();
+            System.out.println("get message: "+msgString);
+            testDB.openSssion();
+            testDB.closeSession();
+            client.sendToClient("connected to mySQL!");
+
+//            if(msgString.toLowerCase().equals("get catalog items")){
+//                client.sendToClient("catalog to catalogController");
+//                LinkedList<Flower> flowerlist = getAllItems();
+//                client.sendToClient(flowerlist);
+//                System.out.println("send Flowers to catalog");
+////            }
+
+
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            System.out.println("handleMessageFromClient Error!"+ client.getInetAddress());
+        }
+
+
+
+    }
+
+}

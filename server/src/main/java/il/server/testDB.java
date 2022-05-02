@@ -2,6 +2,7 @@ package il.server;
 
 
 import java.util.LinkedList;
+import java.util.List;
 
 import il.entities.Flower;
 import org.hibernate.HibernateException;
@@ -10,6 +11,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 public class testDB {
 
@@ -49,6 +54,17 @@ public class testDB {
         }
         session.flush();
         session.getTransaction().commit(); // Save everything.
+    }
+
+    public static List<Flower> getAllItems(){
+        openSssion();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Flower> query = builder.createQuery(Flower.class);
+        query.from(Flower.class);
+        List<Flower> data = session.createQuery(query).getResultList();
+        LinkedList<Flower> listItems = new LinkedList<Flower>(data);
+        closeSession();
+        return listItems;
     }
 
 

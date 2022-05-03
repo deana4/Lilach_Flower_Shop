@@ -3,6 +3,8 @@ package il.server;
 import il.entities.Flower;
 import il.server.ocsf.ConnectionToClient;
 import il.server.ocsf.AbstractServer;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 import java.io.IOException;
@@ -27,9 +29,8 @@ public class SimpleServer extends AbstractServer {
             System.out.print(client.getInetAddress() + ":");
             String msgString = msg.toString();
             System.out.println("get message: " + msgString);
-            testDB.openSssion();
-            testDB.closeSession();
-            client.sendToClient("connected to mySQL!");
+
+            JSONObject cmd = new JSONObject(msgString);
 
             if (msgString.toLowerCase().equals("get catalog items")) {
                 List<Flower> flowerlist = testDB.getAllItems();
@@ -37,9 +38,9 @@ public class SimpleServer extends AbstractServer {
                 System.out.println("send Flowers to catalog");
             }
 
-            if(msgString.startsWith("#updatePrice")){
-                int id = Integer.parseInt(msgString.substring(msgString.indexOf(':'), msgString.indexOf(',')));
-                int price = Integer.parseInt(msgString.substring(msgString.indexOf("new price:")));
+            if(cmd.getString("command").equals("setPrice")){
+                int id = cmd.getInt("id");
+                int price = cmd.getInt("newPrice");
                 testDB.setPrice(id, price);
             }
 
@@ -47,6 +48,8 @@ public class SimpleServer extends AbstractServer {
         } catch (IOException e) {
             System.out.println(e.getMessage());
             System.out.println("handleMessageFromClient Error!" + client.getInetAddress());
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
 

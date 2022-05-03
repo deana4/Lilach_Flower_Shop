@@ -83,21 +83,13 @@ public class testDB {
         }
     }
 
-    public static boolean setPrice(int id, int newPrice) throws IOException {
+    public static void setPrice(int id, int newPrice) throws IOException {
         openSssion();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Flower> query = builder.createQuery(Flower.class);
-        query.from(Flower.class);
-        List<Flower> data = session.createQuery(query).getResultList();
-        for(Flower item : data){
-            if(item.getId()==id){
-                item.setPrice(newPrice);
-                session.save(item);
-                return true;
-            }
-        }
+        Flower a = session.get(Flower.class, id);
+        a.setPrice(newPrice);
+        session.flush();
+        session.getTransaction().commit(); // Save everything.
         closeSession();
-        return false;
     }
 
 

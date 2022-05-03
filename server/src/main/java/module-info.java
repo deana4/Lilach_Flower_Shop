@@ -3,4 +3,5 @@ module il.server {
     requires il.entities;
     requires org.hibernate.orm.core;
     requires java.naming;
+    requires json;
 }

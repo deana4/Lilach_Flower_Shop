@@ -22,6 +22,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CatalogController {
     private Image image;
@@ -56,10 +58,14 @@ public class CatalogController {
         return flowerlist;
     }
 
-    private void createf() throws IOException, ClassNotFoundException, InterruptedException {
+    private void createf() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
         SimpleClient.getClient().sendToServer("get catalog items");
         TimeUnit.SECONDS.sleep(3);//need to wait to the server, need to use lock
-        String cmd = "#updatePrice ID:1,new price:100000";
+        JSONObject cmd = new JSONObject();
+        cmd.put("command", "setPrice");
+        cmd.put("id", 1);
+        cmd.put("newPrice", 10000);
+        SimpleClient.getClient().sendToServer(cmd.toString());
     }
 
     public static void setFlowerlist(List<Flower> flowerlist1) {
@@ -67,7 +73,7 @@ public class CatalogController {
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() throws IOException, ClassNotFoundException, InterruptedException {
+    void initialize() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
         //get connection to the server
         this.SetLogo();
         createf();

@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -26,14 +28,15 @@ public class UpdateController {
     private Stage stage;
 
     @FXML
-    void Submit_Button_Clicked(MouseEvent event) throws IOException, ClassNotFoundException, InterruptedException {
+    void Submit_Button_Clicked(MouseEvent event) throws IOException, ClassNotFoundException, InterruptedException, JSONException {
         this.new_price = update_text.getText();
         product.setProduct_price(this.new_price);
         stage.close();
-        String command = "#updatePrice ID:"+Integer.toString(product.getId())+","+"new price:"+this.new_price;
-        Flower flower=new Flower(product.getProduct_name(), product.getProduct_price(), product.getProduct_image(), product.isOn_discount(),product.getDiscound_precentage());
-
-        updateServerNewPrice(command);
+        JSONObject cmd = new JSONObject();
+        cmd.put("command", "setPrice");
+        cmd.put("id", product.getId());
+        cmd.put("newPrice", product.getProduct_price());
+        updateServerNewPrice(cmd.toString());
 
     }
 

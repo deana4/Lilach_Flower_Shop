@@ -35,7 +35,7 @@
       </Label>
       <ImageView fx:id="discount_logo_poped" fitHeight="55.0" fitWidth="109.0" layoutX="143.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../../../../../../server/src/main/resources/images/DiscountPhoto/discount.jpg" />
+            <Image url="@../../../../../../client/src/main/resources/il/client/images/DiscountPhoto/discount.jpg" />
          </image>
       </ImageView>
    </children>

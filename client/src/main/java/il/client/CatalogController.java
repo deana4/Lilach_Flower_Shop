@@ -5,8 +5,10 @@ package il.client;
  */
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
@@ -63,7 +65,6 @@ public class CatalogController {
         cmd.put("command", "getCatalogItems");
         SimpleClient.getClient().sendToServer(cmd.toString());
         TimeUnit.SECONDS.sleep(3);//need to wait to the server, need to use lock
-        SimpleClient.getClient().sendToServer(cmd.toString());
     }
 
     public static void setFlowerlist(List<Flower> flowerlist1) {
@@ -107,7 +108,7 @@ public class CatalogController {
     }
 
     private void SetLogo(){ //loading the logo
-        File logoFile = new File("src/main/resources/com/client/images/logo.jpg");
+        File logoFile = new File("src/main/resources/il/client/images/logo.jpg");
         Image logoImg = new Image(logoFile.toURI().toString());
         logolilah.setImage(logoImg);
     }

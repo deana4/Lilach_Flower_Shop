@@ -115,6 +115,15 @@ public class testDB {
         closeSession();
     }
 
+    public static void setImage(int id, byte[] bFile){
+        openSssion();
+        Flower a = session.get(Flower.class, id);
+        a.setImage(bFile);
+        session.flush();
+        session.getTransaction().commit(); // Save everything.
+        closeSession();
+    }
+
 
     public static void initMySQL(){
         try {

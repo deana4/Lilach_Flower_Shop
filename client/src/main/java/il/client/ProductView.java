@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ByteArrayInputStream;
 
 public class ProductView {
 
@@ -47,30 +48,12 @@ public class ProductView {
 
     private int id_of_flower;
 
-    public Image byteToUrl(Flower flower) throws IOException {
-        FileOutputStream file = new FileOutputStream("output.jpg");
-        file.write(flower.getImage());
-        File imageFile = new File("/output.jpg");
-        Image image = new Image(imageFile.toURI().toString());
-
-        imageFile.delete();
-
-        //delete the new file
-
-
-        return image;
-    }
 
     public void setData(Flower a) throws IOException {
         product_price.setText(String.valueOf(a.getPrice()));
         product_name.setText(a.getName());
 
-//        File logoFile = new File(a.getUrl_image());
-//        Image image = new Image(logoFile.toURI().toString());
-////            Image image = new Image(getClass().getResourceAsStream(a.getUrl_image()));
-
-        Image image = byteToUrl(a);
-        System.out.println(image.getUrl());
+        Image image = new Image(new ByteArrayInputStream(a.getImage()));
         product_image.setImage(image);
 
         this.on_discount = a.isOn_discount();

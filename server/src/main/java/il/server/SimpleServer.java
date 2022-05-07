@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 public class SimpleServer extends AbstractServer {
@@ -43,6 +44,12 @@ public class SimpleServer extends AbstractServer {
                 int price = cmd.getInt("newPrice");
                 testDB.setPrice(id, price);
             }
+            if(cmd.getString("command").equals("setImages")){
+                int id = cmd.getInt("id");
+                String bytes64 = cmd.getString("newImage");
+                byte[] bFile = Base64.getDecoder().decode(bytes64);
+                testDB.setImage(id, bFile);
+            }
 
 
         } catch (IOException e) {
@@ -51,7 +58,6 @@ public class SimpleServer extends AbstractServer {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
     }
 }

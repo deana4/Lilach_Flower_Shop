@@ -40,7 +40,7 @@
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                   <ImageView fx:id="logolilah" fitHeight="166.0" fitWidth="238.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/logo.jpg" />
+                        <Image url="@../../../../../../server/src/main/resources/images/logo.jpg" />
                      </image>
                   </ImageView>
                   <VBox prefHeight="166.0" prefWidth="252.0">

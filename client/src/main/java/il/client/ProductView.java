@@ -18,6 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ProductView {
@@ -46,19 +47,32 @@ public class ProductView {
 
     private int id_of_flower;
 
-    public void setData(Flower a){
+    public Image byteToUrl(Flower flower) throws IOException {
+        FileOutputStream file = new FileOutputStream("output.jpg");
+        file.write(flower.getImage());
+        File imageFile = new File("/output.jpg");
+        Image image = new Image(imageFile.toURI().toString());
+
+        imageFile.delete();
+
+        //delete the new file
+
+
+        return image;
+    }
+
+    public void setData(Flower a) throws IOException {
         product_price.setText(String.valueOf(a.getPrice()));
         product_name.setText(a.getName());
-        if(a.getUrl_image()!=""){
-            File logoFile = new File(a.getUrl_image());
-            Image image = new Image(logoFile.toURI().toString());
-//            Image image = new Image(getClass().getResourceAsStream(a.getUrl_image()));
-            System.out.println(image.getUrl());
-            product_image.setImage(image);
-        }
-        else{
-            System.out.println(":(");
-        }
+
+//        File logoFile = new File(a.getUrl_image());
+//        Image image = new Image(logoFile.toURI().toString());
+////            Image image = new Image(getClass().getResourceAsStream(a.getUrl_image()));
+
+        Image image = byteToUrl(a);
+        System.out.println(image.getUrl());
+        product_image.setImage(image);
+
         this.on_discount = a.isOn_discount();
         this.discound_precentage = a.getDiscount_perc();
         if(this.on_discount){

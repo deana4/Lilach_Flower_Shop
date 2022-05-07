@@ -13,7 +13,7 @@
    <children>
       <ImageView fx:id="product_image" fitHeight="255.0" fitWidth="213.0" layoutX="-4.0" layoutY="-10.0" onMouseClicked="#ClickedImage" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/sunflower.jpeg" />
+            <Image url="@../../../../../../server/src/main/resources/images/sunflower.jpeg" />
          </image></ImageView>
       <Button fx:id="update_product_button" layoutX="11.0" layoutY="205.0" mnemonicParsing="false" onAction="#UpdateProduct" prefHeight="25.0" prefWidth="80.0" text="Update" />
       <Button fx:id="atc_product_button" layoutX="108.0" layoutY="205.0" mnemonicParsing="false" onAction="#AddProductToCart" text="Add To Cart" />
@@ -41,7 +41,7 @@
       </Label>
       <ImageView fx:id="discount_logo" fitHeight="37.0" fitWidth="108.0" layoutX="60.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@images/DiscountPhoto/discount.jpg" />
+            <Image url="@../../../../../../server/src/main/resources/images/DiscountPhoto/discount.jpg" />
          </image>
       </ImageView>
    </children>

@@ -59,12 +59,10 @@ public class CatalogController {
     }
 
     private void createf() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
-        SimpleClient.getClient().sendToServer("get catalog items");
-        TimeUnit.SECONDS.sleep(3);//need to wait to the server, need to use lock
         JSONObject cmd = new JSONObject();
-        cmd.put("command", "setPrice");
-        cmd.put("id", 1);
-        cmd.put("newPrice", 10000);
+        cmd.put("command", "getCatalogItems");
+        SimpleClient.getClient().sendToServer(cmd.toString());
+        TimeUnit.SECONDS.sleep(3);//need to wait to the server, need to use lock
         SimpleClient.getClient().sendToServer(cmd.toString());
     }
 

@@ -1,6 +1,8 @@
 package il.server;
 
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,24 +36,45 @@ public class testDB {
     }
 
 
-    private static void generateItems()throws Exception{
-        LinkedList<Flower> flowerlist = new LinkedList<>();
-        flowerlist.add(new Flower("ido", 20,"src/main/resources/il/client/images/whiteroses.jpeg",true,25));
-        flowerlist.add(new Flower("ido1", 23,"ssrc/main/resources/il/client/images/sunflower.jpeg",true, 5));
-        flowerlist.add(new Flower("ido2", 20,"src/main/resources/il/client/images/pin.jpeg",false,0));
-        flowerlist.add(new Flower("ido3", 20,"src/main/resources/il/client/images/chinaFlower.jpeg",false,0));
-        flowerlist.add(new Flower("ido4", 20,"src/main/resources/il/client/images/pin.jpeg",false,0));
-        flowerlist.add(new Flower("ido5", 20,"src/main/resources/il/client/images/whiteroses.jpeg",true,50));
-        flowerlist.add(new Flower("ido6", 20,"ssrc/main/resources/il/client/images/sunflower.jpeg",true,50));
-        flowerlist.add(new Flower("ido7", 20,"src/main/resources/il/client/images/whiteroses.jpeg",true,50));
-        flowerlist.add(new Flower("ido7", 20,"src/main/resources/il/client/images/sunflower.jpeg",true,50));
-        flowerlist.add(new Flower("ido7", 20,"src/main/resources/il/client/images/pin.jpeg",true,50));
-        flowerlist.add(new Flower("ido7", 20,"src/main/resources/il/client/images/whiteroses.jpeg",true,50));
-        flowerlist.add(new Flower("ido7", 20,"src/main/resources/il/client/images/sunflower.jpeg",true,50));
-        flowerlist.add(new Flower("ido7", 20,"src/main/resources/il/client/images/whiteroses.jpeg",true,50));
-        for (Flower item : flowerlist) {
-            session.save(item);
+    private static void saveNewFlower (Flower flower, String url){
+        File file;
+        file = new File(url);
+        byte[] bFile = new byte[(int) file.length()];
+        try{
+            FileInputStream fileInputStream = new FileInputStream(file);
+            fileInputStream.read(bFile);
+            fileInputStream.close();
+            flower.setImage(bFile);
+            session.save(flower);
+            session.flush();
         }
+        catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Error: load image to database.");
+        }
+    }
+
+    private static void generateItems()throws Exception{
+        Flower flower;
+
+        flower = new Flower("whiteroses", 20,true,25);
+        saveNewFlower(flower,"src/main/resources/images/whiteroses.jpeg" );
+
+        flower = new Flower("sunflower", 23,true, 5);
+        saveNewFlower(flower, "src/main/resources/images/sunflower.jpeg");
+
+        flower = new Flower("chinaFlower", 20,false, 0);
+        saveNewFlower(flower, "src/main/resources/images/chinaFlower.jpeg");
+
+        flower = new Flower("pin", 20,false, 0);
+        saveNewFlower(flower, "src/main/resources/images/pin.jpeg");
+
+        flower = new Flower("whiteroses", 20,true, 50);
+        saveNewFlower(flower, "src/main/resources/images/whiteroses.jpeg");
+
+        flower = new Flower("sunflower", 20,true, 50);
+        saveNewFlower(flower, "src/main/resources/images/sunflower.jpeg");
+
         session.flush();
         session.getTransaction().commit(); // Save everything.
     }

@@ -32,7 +32,7 @@ public class SimpleServer extends AbstractServer {
 
             JSONObject cmd = new JSONObject(msgString);
 
-            if (msgString.toLowerCase().equals("get catalog items")) {
+            if (cmd.getString("command").equals("getCatalogItems")) {
                 List<Flower> flowerlist = testDB.getAllItems();
                 client.sendToClient(flowerlist);
                 System.out.println("send Flowers to catalog");

@@ -12,29 +12,40 @@ public class Flower implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String url_image;
+    @Lob
+    @Column(name="Folwer_IMAGE", nullable=false, columnDefinition="mediumblob")
+    private byte[] image;
     private double price;
     private boolean sale;
     private double discount_perc;
 
-    public Flower(String name, double price, String url_image, boolean sale, double discount_perc){
+    public Flower(String name, double price, boolean sale, double discount_perc){
         this.name = name;
         this.price = price;
-        this.url_image = url_image;
         this.sale = sale;
         this.discount_perc = discount_perc;
+        this.image = null;
     }
 
     public Flower(String name, double price){
         this.name = name;
         this.price = price;
-        this.url_image = "";
         this.sale=false;
         this.discount_perc = 0;
+        this.image = null;
     }
 
     public Flower() {
 
+    }
+
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public double getDiscount_perc() {
@@ -77,13 +88,5 @@ public class Flower implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getUrl_image() {
-        return url_image;
-    }
-
-    public void setUrl_image(String url_image) {
-        this.url_image = url_image;
     }
 }

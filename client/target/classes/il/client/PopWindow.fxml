@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="poped_window" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PopWindow">
+   <children>
+      <CheckBox fx:id="product_on_stock" layoutX="143.0" layoutY="304.0" mnemonicParsing="false" onMouseClicked="#CheckBoxClicked" prefHeight="37.0" prefWidth="109.0" text="On Stock?">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </CheckBox>
+      <ImageView fx:id="product_zoomed_image" fitHeight="293.0" fitWidth="232.0" layoutX="80.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../server/src/main/resources/images/sunflower.jpeg" />
+         </image></ImageView>
+      <Label fx:id="id_txt" layoutX="49.0" layoutY="337.0" text="ID">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <Label fx:id="price_txt" layoutX="278.0" layoutY="337.0" text="Price">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <Label fx:id="name_txt" layoutX="143.0" layoutY="337.0" text="Name">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="discount_logo_poped" fitHeight="55.0" fitWidth="109.0" layoutX="143.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../../../../server/src/main/resources/images/DiscountPhoto/discount.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

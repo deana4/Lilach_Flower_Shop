@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ProductView">
+   <children>
+      <ImageView fx:id="product_image" fitHeight="255.0" fitWidth="213.0" layoutX="-4.0" layoutY="-10.0" onMouseClicked="#ClickedImage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../server/src/main/resources/images/sunflower.jpeg" />
+         </image></ImageView>
+      <Button fx:id="update_product_button" layoutX="11.0" layoutY="205.0" mnemonicParsing="false" onAction="#UpdateProduct" prefHeight="25.0" prefWidth="80.0" text="Update" />
+      <Button fx:id="atc_product_button" layoutX="108.0" layoutY="205.0" mnemonicParsing="false" onAction="#AddProductToCart" text="Add To Cart" />
+      <Label fx:id="product_name" layoutX="54.0" layoutY="104.0" text="NAME" textFill="WHITE">
+         <font>
+            <Font size="31.0" />
+         </font>
+         <effect>
+            <ColorAdjust />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Label>
+      <Label fx:id="product_price" layoutX="64.0" layoutY="150.0" text="Price" textFill="WHITE">
+         <font>
+            <Font size="31.0" />
+         </font>
+         <effect>
+            <ColorAdjust />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
+      </Label>
+      <ImageView fx:id="discount_logo" fitHeight="37.0" fitWidth="108.0" layoutX="60.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../../../../server/src/main/resources/images/DiscountPhoto/discount.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

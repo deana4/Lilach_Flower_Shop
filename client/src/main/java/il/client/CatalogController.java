@@ -42,8 +42,6 @@ public class CatalogController {
     @FXML // fx:id="logolilah"
     private ImageView logolilah; // Value injected by FXMLLoader
 
-
-
     @FXML
     private GridPane gridPane;
 
@@ -104,11 +102,11 @@ public class CatalogController {
 
             GridPane.setMargin(panel, new Insets(10));
         }
-
     }
 
     private void SetLogo(){ //loading the logo
-        File logoFile = new File("src/main/resources/il/client/images/logo.jpg");
+        File logoFile = new File("C:\\LilachProj\\client\\src\\main\\resources\\il\\client\\images\\logo.jpeg");
+        //"src/main/resources/il/client/images/logo.jpg"
         Image logoImg = new Image(logoFile.toURI().toString());
         logolilah.setImage(logoImg);
     }

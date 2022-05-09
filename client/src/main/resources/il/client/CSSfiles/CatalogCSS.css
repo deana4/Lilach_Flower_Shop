@@ -1,0 +1,10 @@
+
+.mybutton{
+    -fx-background-color: linear-gradient(to bottom right, pink, deeppink);
+    -fx-cursor: hand;
+}
+.mybutton:hover{
+    -fx-background-color: linear-gradient(to bottom right, yellow, lightgoldenrodyellow);
+    -fx-animated: true;
+}
+

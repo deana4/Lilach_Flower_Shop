@@ -9,15 +9,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ProductView">
+<AnchorPane prefHeight="282.0" prefWidth="214.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ProductView">
    <children>
-      <ImageView fx:id="product_image" fitHeight="255.0" fitWidth="213.0" layoutX="-4.0" layoutY="-10.0" onMouseClicked="#ClickedImage" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="product_image" fitHeight="300" fitWidth="188.0" layoutX="15.0" layoutY="7.0" onMouseClicked="#ClickedImage" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../client/src/main/resources/il/client/images/DiscountPhoto/discount.jpg" />
          </image></ImageView>
-      <Button fx:id="update_product_button" layoutX="11.0" layoutY="205.0" mnemonicParsing="false" onAction="#UpdateProduct" prefHeight="25.0" prefWidth="80.0" text="Update" />
-      <Button fx:id="atc_product_button" layoutX="108.0" layoutY="205.0" mnemonicParsing="false" onAction="#AddProductToCart" text="Add To Cart" />
-      <Label fx:id="product_name" layoutX="54.0" layoutY="104.0" text="NAME" textFill="WHITE">
+      <Button fx:id="update_product_button" layoutX="17.0" layoutY="233.0" mnemonicParsing="false" onAction="#UpdateProduct" prefHeight="25.0" prefWidth="80.0" text="Update" />
+      <Button fx:id="atc_product_button" layoutX="120.0" layoutY="233.0" mnemonicParsing="false" onAction="#AddProductToCart" text="Add To Cart" />
+      <Label fx:id="product_name" layoutX="57.0" layoutY="118.0" text="NAME" textFill="WHITE">
          <font>
             <Font size="31.0" />
          </font>
@@ -28,7 +28,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Label>
-      <Label fx:id="product_price" layoutX="64.0" layoutY="150.0" text="Price" textFill="WHITE">
+      <Label fx:id="product_price" layoutX="67.0" layoutY="172.0" text="Price" textFill="WHITE">
          <font>
             <Font size="31.0" />
          </font>
@@ -39,7 +39,7 @@
             <Cursor fx:constant="CROSSHAIR" />
          </cursor>
       </Label>
-      <ImageView fx:id="discount_logo" fitHeight="37.0" fitWidth="108.0" layoutX="60.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="discount_logo" fitHeight="37.0" fitWidth="163.0" layoutX="60.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../../../../../../client/src/main/resources/il/client/images/DiscountPhoto/discount.jpg" />
          </image>

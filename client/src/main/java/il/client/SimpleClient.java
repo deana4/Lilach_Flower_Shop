@@ -26,7 +26,7 @@ public class SimpleClient extends AbstractClient {
 		}
 		if(msg.getClass().equals(LinkedList.class)){
 			System.out.println("get Flower object!");
-			CatalogController.setFlowerlist((LinkedList<Flower>)msg);
+			HomeController.setFlowerlist((LinkedList<Flower>)msg);
 			lastMessage="";
 			return;
 		}

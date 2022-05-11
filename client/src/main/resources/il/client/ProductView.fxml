@@ -19,7 +19,7 @@
       <Button fx:id="atc_product_button" layoutX="120.0" layoutY="233.0" mnemonicParsing="false" onAction="#AddProductToCart" text="Add To Cart" />
       <Label fx:id="product_name" layoutX="57.0" layoutY="118.0" text="NAME" textFill="WHITE">
          <font>
-            <Font size="31.0" />
+            <Font size="36.0" />
          </font>
          <effect>
             <ColorAdjust />
@@ -30,7 +30,7 @@
       </Label>
       <Label fx:id="product_price" layoutX="67.0" layoutY="172.0" text="Price" textFill="WHITE">
          <font>
-            <Font size="31.0" />
+            <Font size="36.0" />
          </font>
          <effect>
             <ColorAdjust />

@@ -1,10 +1,58 @@
-
 .mybutton{
     -fx-background-color: linear-gradient(to bottom right, pink, deeppink);
     -fx-cursor: hand;
 }
+
 .mybutton:hover{
-    -fx-background-color: linear-gradient(to bottom right, yellow, lightgoldenrodyellow);
-    -fx-animated: true;
+    -fx-background-color: linear-gradient(to bottom right, lightpink, lightpink);
 }
 
+.mybutton-round{
+    -fx-border-radius: 60px;
+    -fx-background-radius: 5em;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-max-width: 40px;
+    -fx-max-height: 30px;
+}
+
+.background-color{
+    -fx-background-color: white;
+}
+
+.nav-buttons{
+    -fx-background-color: transparent;
+    -fx-border-radius: 60px;
+    -fx-background-radius: 5em;
+}
+.nav-buttons:hover{
+    -fx-background-color: linear-gradient(to bottom right, lightpink, lightblue);
+    -fx-text-fill: white;
+}
+.nav-buttons:focused {
+    /*-fx-color: -fx-focused-base;*/
+    -fx-background-color: linear-gradient(to bottom right, lightpink, lightblue);
+    -fx-background-insets: -1.4, 0, 1, 2;
+    -fx-background-radius:  8.5, 5, 4, 3;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/*.nav-buttons {*/
+/*    -fx-skin: "com.sun.javafx.scene.control.skin.ButtonSkin";*/
+/*    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;*/
+/*    -fx-background-insets: 0 0 -1 0, 0, 1, 2;*/
+/*    -fx-background-radius: 5, 5, 4, 3;*/
+/*}*/
+
+.scroll-pane{
+    -fx-background-color: transparent;
+    -fx-background-radius: 100em;
+    -fx-border-radius: 50%;
+}
+.sideViewer{
+    -fx-background-color: pink;
+    -fx-background-radius: 200em;
+    -fx-border-radius: 90%;
+}

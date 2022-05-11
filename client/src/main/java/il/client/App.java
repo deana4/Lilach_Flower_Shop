@@ -23,11 +23,10 @@ public class App extends Application {
             client = SimpleClient.getClient();
             client.openConnection();
 
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("catalog.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("catalog2.fxml"));
             Parent mainLayout = fxmlLoader.load();
-
             Scene scene = new Scene(mainLayout, 1280, 720);
-//            scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+            scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
             stage.setTitle("Catalog");
             stage.setScene(scene);
             stage.show();
@@ -35,11 +34,7 @@ public class App extends Application {
         catch (Exception e){
             client.closeConnection();
         }
-
     }
-
-
-
 
     public static void main(String[] args) {
         launch();

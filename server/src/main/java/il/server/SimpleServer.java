@@ -52,7 +52,6 @@ public class SimpleServer extends AbstractServer {
                 testDB.setImage(id, bFile);
             }
 
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
             System.out.println("handleMessageFromClient Error!" + client.getInetAddress());

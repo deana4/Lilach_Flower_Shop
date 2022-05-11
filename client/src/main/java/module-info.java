@@ -4,6 +4,7 @@ module il.client {
     requires il.entities;
     requires json;
     requires org.kordamp.bootstrapfx.core;
+    requires MaterialFX;
 
 
     opens il.client to javafx.fxml;

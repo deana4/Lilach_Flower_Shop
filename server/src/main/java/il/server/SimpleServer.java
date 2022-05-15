@@ -16,13 +16,14 @@ public class SimpleServer extends AbstractServer {
     public SimpleServer(int port) throws Exception {
         super(port);
         System.out.println("Server listen on port:" + port);
-        //testDB.initMySQL();
+//        testDB.initMySQL();
     }
 
     public void closeServer() throws IOException {
         testDB.closeSession();
         this.close();
     }
+
 
     @Override
     protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
@@ -50,7 +51,6 @@ public class SimpleServer extends AbstractServer {
                 byte[] bFile = Base64.getDecoder().decode(bytes64);
                 testDB.setImage(id, bFile);
             }
-
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

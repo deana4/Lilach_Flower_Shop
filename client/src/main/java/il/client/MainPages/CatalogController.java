@@ -1,63 +1,51 @@
-package il.client;
+package il.client.MainPages;
 
-/**
- * Sample Skeleton for 'catalog.fxml' Controller Class
- */
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Base64;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
-
+import il.client.ProductView;
+import il.client.SimpleClient;
 import il.entities.Flower;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 public class CatalogController {
-    private Image image;
-    @FXML // fx:id="cart"
-    private Button cart; // Value injected by FXMLLoader
+
+    @FXML
+    private AnchorPane side_pic_anchorpane;
+
+    @FXML
+    private GridPane gridPane;
 
     @FXML // fx:id="grid"
     private ScrollPane scrollPane; // Value injected by FXMLLoader
 
 
-    @FXML // fx:id="buttonEditcatalog"
-    private Button buttonEditcatalog; // Value injected by FXMLLoader
-
-    @FXML // fx:id="logolilah"
-    private ImageView logolilah; // Value injected by FXMLLoader
-
-
+    @FXML
+    private BorderPane mainBorder;
 
     @FXML
-    private GridPane gridPane;
-
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
-
+    private AnchorPane catalog_main_anchorpane;
 
     private static List<Flower> flowerlist=null;
 
     public static List<Flower> getFlowerlist() {
         return flowerlist;
+    }
+
+    public static void setFlowerlist(List<Flower> flowerlist1) {
+        flowerlist = flowerlist1;
     }
 
     private void createf() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
@@ -67,18 +55,13 @@ public class CatalogController {
         TimeUnit.SECONDS.sleep(3);//need to wait to the server, need to use lock
     }
 
-    public static void setFlowerlist(List<Flower> flowerlist1) {
-         flowerlist = flowerlist1;
-    }
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML  // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
         //get connection to the server
-        this.SetLogo();
         createf();
 
-        int col = 1;
-        int row = 1;
+        int col = 0;
+        int row = 0;
 
         for(int i=0; i<flowerlist.size();i++){
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -88,8 +71,8 @@ public class CatalogController {
             ProductView controller = fxmlLoader.getController();
             controller.setData(flowerlist.get(i));
 
-            if(col==5){
-                col=1;
+            if(col==3){
+                col=0;
                 row++;
             }
 
@@ -104,13 +87,14 @@ public class CatalogController {
 
             GridPane.setMargin(panel, new Insets(10));
         }
-
     }
 
-    private void SetLogo(){ //loading the logo
-        File logoFile = new File("src/main/resources/il/client/images/logo.jpg");
-        Image logoImg = new Image(logoFile.toURI().toString());
-        logolilah.setImage(logoImg);
+
+    public AnchorPane getSide_pic_anchorpane() {
+        return side_pic_anchorpane;
+    }
+
+    public AnchorPane getCatalog_main_anchorpane() {
+        return catalog_main_anchorpane;
     }
 }
-

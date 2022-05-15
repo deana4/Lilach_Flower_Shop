@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -77,19 +78,32 @@ public class ProductView {
 //        id_of_flower = id;
 //    }
 
+//    @FXML
+//    void ClickedImage(MouseEvent event) throws IOException {
+//        Stage stage = new Stage();
+//        stage.initModality(Modality.APPLICATION_MODAL);
+//        FXMLLoader fxmlLoader = new FXMLLoader();
+//        fxmlLoader.setLocation(getClass().getResource("PopWindow.fxml"));
+//        Parent root = fxmlLoader.load();    // need to load before using controller.
+//        PopWindow controller = fxmlLoader.getController();
+//        controller.FullSetter(this.getId(), this.product_name.getText(),this.product_price.getText(), this.on_discount, this.product_image.getImage());
+//        Scene scene = new Scene(root, 400, 400);
+//        stage.setTitle("Flower Inner");
+//        stage.setScene(scene);
+//        stage.show();
+//    }
+
     @FXML
     void ClickedImage(MouseEvent event) throws IOException {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader();
+        AnchorPane side;
         fxmlLoader.setLocation(getClass().getResource("PopWindow.fxml"));
-        Parent root = fxmlLoader.load();    // need to load before using controller.
+        side = fxmlLoader.load();    // need to load before using controller.
         PopWindow controller = fxmlLoader.getController();
         controller.FullSetter(this.getId(), this.product_name.getText(),this.product_price.getText(), this.on_discount, this.product_image.getImage());
-        Scene scene = new Scene(root, 400, 400);
-        stage.setTitle("Flower Inner");
-        stage.setScene(scene);
-        stage.show();
+//        CatalogController.setSideAnchorPane(side);
     }
 
     @FXML

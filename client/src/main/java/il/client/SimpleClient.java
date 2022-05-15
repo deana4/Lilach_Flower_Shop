@@ -2,6 +2,7 @@ package il.client;
 
 
 
+import il.client.MainPages.CatalogController;
 import il.client.ocsf.AbstractClient;
 import il.entities.Flower;
 
@@ -26,7 +27,7 @@ public class SimpleClient extends AbstractClient {
 		}
 		if(msg.getClass().equals(LinkedList.class)){
 			System.out.println("get Flower object!");
-			HomeController.setFlowerlist((LinkedList<Flower>)msg);
+			CatalogController.setFlowerlist((LinkedList<Flower>)msg);
 			lastMessage="";
 			return;
 		}

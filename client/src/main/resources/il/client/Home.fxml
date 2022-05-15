@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXCircleToggleNode?>
+<?import io.github.palexdev.materialfx.controls.MFXProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="646.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.MainPages.HomeController">
+   <children>
+      <MFXProgressBar layoutX="522.0" layoutY="318.0" prefHeight="11.0" prefWidth="175.0" />
+      <MFXCircleToggleNode layoutX="449.0" layoutY="309.0" />
+   </children>
+</AnchorPane>

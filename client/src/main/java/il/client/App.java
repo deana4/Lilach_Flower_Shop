@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import il.client.SimpleClient;
+import javafx.stage.StageStyle;
 import org.kordamp.bootstrapfx.BootstrapFX;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
 
@@ -23,12 +24,13 @@ public class App extends Application {
             client = SimpleClient.getClient();
             client.openConnection();
 
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("catalog2.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MainPage.fxml"));
             Parent mainLayout = fxmlLoader.load();
             Scene scene = new Scene(mainLayout, 1280, 720);
             scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
             stage.setTitle("Catalog");
             stage.setScene(scene);
+            stage.initStyle(StageStyle.DECORATED);
             stage.show();
         }
         catch (Exception e){

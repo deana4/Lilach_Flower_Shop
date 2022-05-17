@@ -67,7 +67,7 @@ public class MainPageController {
     }
 
     @FXML
-    void RegisterBTNClicked(ActionEvent event) throws IOException {
+    void RegisterBTNClicked(ActionEvent event) throws IOException, JSONException {
         LoadPage("Register.fxml");
     }
 

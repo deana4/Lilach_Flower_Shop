@@ -9,7 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,7 +50,7 @@ public class RegisterController extends MainPageController{
         this.plan_chooser.getItems().add("Yearly Member");
     }
     @FXML
-    void RegisterBTNClicked(ActionEvent event) {
+    void RegisterBTNClicked(ActionEvent event) throws JSONException, IOException {
         int counter_of_correctness = 6;
         String name = this.name_tf.getText();
         String username = this.username_tf.getText();
@@ -104,10 +107,27 @@ public class RegisterController extends MainPageController{
         if(counter_of_correctness == 6){
             //send register details to the server
             String[] registerDetails = {name, username, pass, id, credit_card, plan};
-            List<String> register_details = new ArrayList<String>(Arrays.asList(registerDetails));
-            System.out.println(register_details.toString());
-            System.out.println(counter_of_correctness);
+
+
+            JSONObject cmd = new JSONObject();
+            cmd.put("command", "register");
+            cmd.put("name", name);
+            cmd.put("username", username);
+            cmd.put("pass", pass);
+            cmd.put("id", id);
+            cmd.put("credit_card", credit_card);
+            cmd.put("plan", plan);
+
+            System.out.println("send register requests to server:" + cmd.toString());
+
+            SimpleClient.getClient().sendToServer(cmd.toString());
+
+            //need add wait and wakeup from handlemessage after register sucssesfuly
+
             System.out.println("you register sucssesfuly");
+
+
+
             this.errorWarning.setVisible(false);
             //move to the catalog page
         }

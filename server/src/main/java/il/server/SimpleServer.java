@@ -1,6 +1,7 @@
 package il.server;
 
 import il.entities.Flower;
+import il.entities.User;
 import il.server.ocsf.ConnectionToClient;
 import il.server.ocsf.AbstractServer;
 import org.json.JSONException;
@@ -50,6 +51,21 @@ public class SimpleServer extends AbstractServer {
                 String bytes64 = cmd.getString("newImage");
                 byte[] bFile = Base64.getDecoder().decode(bytes64);
                 testDB.setImage(id, bFile);
+            }
+            if(cmd.getString("command").equals("register")){
+                String username = cmd.getString("username");
+                String name = cmd.getString("name");
+                String pass = cmd.getString("pass");
+                String id = cmd.getString("id");
+                String credit_card = cmd.getString("credit_card");
+                String plan = cmd.getString("plan");
+
+                User user = new User(username, pass,credit_card, plan, name, id);
+
+
+                System.out.println("get register request:" + username);
+
+
             }
 
         } catch (IOException e) {

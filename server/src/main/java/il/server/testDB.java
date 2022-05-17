@@ -26,7 +26,7 @@ public class testDB {
     private static SessionFactory getSessionFactory() throws HibernateException {
         Configuration configuration = new Configuration();
         // Add ALL of your entities here. You can also try adding a whole package.
-        configuration.addAnnotatedClass(Flower.class);
+        configuration.addAnnotatedClass(Flower.class).addAnnotatedClass(User.class);
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties())
@@ -85,13 +85,13 @@ public class testDB {
             session.save(newUser);
             session.flush();
             session.getTransaction().commit();
-            closeSession();
+            System.out.println("user add to mySQL");
         }
         catch (Exception e){
             e.printStackTrace();
             System.out.println("Error: register");
         }
-
+        closeSession();
     }
 
     public static List<Flower> getAllItems(){

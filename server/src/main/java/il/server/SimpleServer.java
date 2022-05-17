@@ -60,7 +60,9 @@ public class SimpleServer extends AbstractServer {
                 String credit_card = cmd.getString("credit_card");
                 String plan = cmd.getString("plan");
 
-                User user = new User(username, pass,credit_card, plan, name, id);
+                User newUser = new User(username, pass,credit_card, plan, name, id);
+
+                testDB.register(newUser);
 
 
                 System.out.println("get register request:" + username);

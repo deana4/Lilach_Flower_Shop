@@ -1,4 +1,4 @@
-package il.client.MainPages;
+package il.client;
 
 import il.client.ProductView;
 import il.client.SimpleClient;

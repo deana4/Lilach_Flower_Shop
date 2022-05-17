@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="catalog_main_anchorpane" prefHeight="646.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.MainPages.CatalogController">
+<AnchorPane fx:id="catalog_main_anchorpane" prefHeight="646.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CatalogController">
    <children>
       <BorderPane fx:id="mainBorder" prefHeight="640.0" prefWidth="1195.0" styleClass="background-color" stylesheets="@CSSfiles/CatalogCSS.css">
          <left>

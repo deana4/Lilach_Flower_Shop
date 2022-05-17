@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="LoginPane" prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" stylesheets="@CSSfiles/CatalogCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.MainPages.LoginController">
+<AnchorPane fx:id="LoginPane" prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" stylesheets="@CSSfiles/CatalogCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.LoginController">
    <children>
       <AnchorPane prefHeight="646.0" prefWidth="1240.0" style="-fx-background-color: transparent;">
          <children>

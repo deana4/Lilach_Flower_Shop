@@ -1,4 +1,4 @@
-package il.client.MainPages;
+package il.client;
 
 import il.client.MainPageController;
 import io.github.palexdev.materialfx.controls.MFXButton;

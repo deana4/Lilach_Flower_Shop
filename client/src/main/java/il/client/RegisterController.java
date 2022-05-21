@@ -117,8 +117,8 @@ public class RegisterController extends MainPageController{
 
             RegisterControl.register(name, username, pass, id ,credit_card, plan);
 
-            while(currectRegister<0){
-            }
+//            while(currectRegister<0){
+//            }
 
             System.out.println("you register sucssesfuly");
 

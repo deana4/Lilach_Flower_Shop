@@ -31,12 +31,6 @@ public class SimpleServer extends AbstractServer {
     @Override
     protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
         try {
-//            System.out.print(client.getInetAddress() + ":");
-//            String msgString = msg.toString();
-//            System.out.println("get message: " + msgString);
-//
-//            JSONObject cmd = new JSONObject(msgString);
-
             Message message  = (Message) msg;
 
             Message sendMessage = new Message("");

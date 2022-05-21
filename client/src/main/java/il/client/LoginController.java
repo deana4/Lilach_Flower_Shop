@@ -62,41 +62,38 @@ public class LoginController {
 
         //runLater
 
-        Platform.runLater(()->{
-
-            System.out.println("");
-            if(correctLogin){
-                //goto var which represent the login option on the Main Controller and change it to 1.
-                //change Main Controller AnchorPane to Catalog -> "maybe return to the last page the client was inside"
-                MainPageController.LoginName = username;
-                MainPageController.isLogin = true;
-                try {
-                    this.main_page_holder.UpdateMainController();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                this.loginTries = 1;
-            }else {
-                password_field.clear();
-                username_field.setText("Username Or Password incorrect");
-                this.loginTries++;
-                if(this.loginTries == 6){
-                    System.out.println(this.loginTries);
-                    TranslateTransition transition = new TranslateTransition();
-                    transition.setDuration(Duration.millis(60000)); //1 minute
-                    transition.setNode(loginBTN);
-                    transition.setAutoReverse(false);
-                    loginBTN.setDisable(true);
-                    loginBTN.setText("Waiting 1 Minute");
-                    transition.setOnFinished(evt -> {
-                        loginBTN.setDisable(false);
-                        loginBTN.setText("Submit");
-                    }); //disable the submit button for 1 minute
-
-                    transition.play();
-                }
+        System.out.println("");
+        if(correctLogin){
+            //goto var which represent the login option on the Main Controller and change it to 1.
+            //change Main Controller AnchorPane to Catalog -> "maybe return to the last page the client was inside"
+            MainPageController.LoginName = username;
+            MainPageController.isLogin = true;
+            try {
+                this.main_page_holder.UpdateMainController();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        });
+            this.loginTries = 1;
+        }else {
+            password_field.clear();
+            username_field.setText("Username Or Password incorrect");
+            this.loginTries++;
+            if(this.loginTries == 6){
+                System.out.println(this.loginTries);
+                TranslateTransition transition = new TranslateTransition();
+                transition.setDuration(Duration.millis(60000)); //1 minute
+                transition.setNode(loginBTN);
+                transition.setAutoReverse(false);
+                loginBTN.setDisable(true);
+                loginBTN.setText("Waiting 1 Minute");
+                transition.setOnFinished(evt -> {
+                    loginBTN.setDisable(false);
+                    loginBTN.setText("Submit");
+                }); //disable the submit button for 1 minute
+
+                transition.play();
+            }
+        }
 
     }
 

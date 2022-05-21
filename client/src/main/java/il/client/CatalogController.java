@@ -48,9 +48,9 @@ public class CatalogController {
     void initialize() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
         CatalogControl.getItemsList();
 
-        while(flowerlist==null){//wait for the server to sent the items
-
-        }
+//        while(flowerlist==null){//wait for the server to sent the items
+//
+//        }
 
         int col = 0;
         int row = 0;

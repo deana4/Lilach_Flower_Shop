@@ -38,7 +38,7 @@ public class CatalogControl {
         }
     }
 
-    public static void setPrice(int idItemn, double newPrice) throws IOException, JSONException {
+    public static void setPrice(int idItemn, double newPrice) throws IOException {
         Message message = new Message("setPrice");
         message.setNewPrice(newPrice);
         message.setIdItem(idItemn);

@@ -41,7 +41,7 @@ public class CatalogControl {
         return listItems;
     }
 
-    public static void setPrice(int id, int newPrice) throws IOException {
+    public static void setPrice(int id, double newPrice) throws IOException {
         testDB.openSssion();
         Flower a = testDB.session.get(Flower.class, id);
         a.setPrice(newPrice);

@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.LinkedList;
 import java.util.List;
 
 public class SimpleServer extends AbstractServer {
@@ -30,72 +31,81 @@ public class SimpleServer extends AbstractServer {
     @Override
     protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
         try {
-            System.out.print(client.getInetAddress() + ":");
-            String msgString = msg.toString();
-            System.out.println("get message: " + msgString);
+//            System.out.print(client.getInetAddress() + ":");
+//            String msgString = msg.toString();
+//            System.out.println("get message: " + msgString);
+//
+//            JSONObject cmd = new JSONObject(msgString);
 
-            JSONObject cmd = new JSONObject(msgString);
-            Message message = new Message("");
-            if (cmd.getString("command").equals("getCatalogItems")) {
-                List<Flower> flowerlist = CatalogControl.getAllItems();
-                client.sendToClient(flowerlist);
-                System.out.println("send Flowers to catalog");
-            }
-            if(cmd.getString("command").equals("setPrice")){
-                int id = cmd.getInt("id");
-                int price = cmd.getInt("newPrice");
-                CatalogControl.setPrice(id, price);
-            }
-            if(cmd.getString("command").equals("setImages")){
-                int id = cmd.getInt("id");
-                String bytes64 = cmd.getString("newImage");
-                byte[] bFile = Base64.getDecoder().decode(bytes64);
-                CatalogControl.setImage(id, bFile);
-            }
+            Message message  = (Message) msg;
 
+            Message sendMessage = new Message("");
 
-            if(cmd.getString("command").equals("register")){
-                String username = cmd.getString("username");
-                String name = cmd.getString("name");
-                String pass = cmd.getString("pass");
-                String id = cmd.getString("id");
-                String credit_card = cmd.getString("credit_card");
-                String plan = cmd.getString("plan");
-
-                User newUser = new User(username, pass,credit_card, plan, name, id);
-
-                RegisterControl.register(newUser);
-
-
-                System.out.println("get register request:" + username);
-            }
-
-            if(cmd.getString("command").equals("login")){
-                String username = cmd.getString("username");
-                String pass = cmd.getString("pass");
-                boolean isWorker = cmd.getBoolean("isWorker");
+            if(message.getMessage().equals("login")){
+                String username = message.getUsername();
+                String pass = message.getPass();
+                boolean isWorker = message.isWorker();
 
                 User logInUser = LoginControl.tryLogIn(username, pass, isWorker);
 
                 if (logInUser!=null){
                     System.out.println("successfully! login: "+ username);
 
-                    message.setMessage("result login");
-                    message.setUser(logInUser);
-
-                    client.sendToClient(message);
+                    sendMessage.setMessage("result login");
+                    sendMessage.setUser(logInUser);
+                    client.sendToClient(sendMessage);
                 }
                 else{
                     System.out.println("faild! login: "+ username);
-                    client.sendToClient(false);
+                    sendMessage.setMessage("result login");
+                    sendMessage.setUser(null);
+                    client.sendToClient(sendMessage);
                 }
             }
+
+
+            if (message.getMessage().equals("getCatalogItems")) {
+                sendMessage.setMessage("item catalog list");
+                sendMessage.setListItem((LinkedList<Flower>) CatalogControl.getAllItems());
+                client.sendToClient(sendMessage);
+                System.out.println("send Flowers to catalog");
+            }
+            if(message.getMessage().equals("setPrice")){
+                int id = message.getIdItem();
+                double price = message.getNewPrice();
+                CatalogControl.setPrice(id, price);
+            }
+//            if(message.getMessage().equals("setImages")){
+//                int id = cmd.getInt("id");
+//                String bytes64 = cmd.getString("newImage");
+//                byte[] bFile = Base64.getDecoder().decode(bytes64);
+//                CatalogControl.setImage(id, bFile);
+//            }
+
+
+            if(message.getMessage().equals("register")){
+
+                String username = message.getUsername();
+                String name = message.getName();
+                String pass = message.getName();
+                String id = message.getId();
+                String credit_card = message.getCredit_card();
+                String plan = sendMessage.getPlan();
+
+                User newUser = new User(username, pass,credit_card, plan, name, id);
+                System.out.println("get register request:" + username);
+                boolean resultRegister = RegisterControl.register(newUser);
+
+                sendMessage.setMessage("result register");
+                sendMessage.setRegisterStatus(resultRegister);
+                client.sendToClient(sendMessage);
+            }
+
+
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
             System.out.println("handleMessageFromClient Error!" + client.getInetAddress());
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
 
     }

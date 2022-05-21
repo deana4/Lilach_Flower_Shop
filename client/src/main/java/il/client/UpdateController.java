@@ -39,7 +39,7 @@ public class UpdateController {
         product.setProduct_price(this.new_price);
         stage.close();
 
-        CatalogControl.setPrice(product.getId(), product.getProduct_price());
+        CatalogControl.setPrice(Integer.parseInt(product.getId()), product.getProduct_price());
     }
 
 

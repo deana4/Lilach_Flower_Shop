@@ -21,21 +21,16 @@ public class SimpleClient extends AbstractClient {
 	private String lastMessage;
 
 	@Override
-	protected void handleMessageFromServer(Object msg) throws JSONException {
-
-		if(msg.getClass().equals(String.class)){
-			System.out.println("get messeg from server: "+ msg.toString());
-			lastMessage=msg.toString();
-			return;
-		}
-		if(msg.getClass().equals(LinkedList.class)){
-			System.out.println("get Flower object!");
-			CatalogController.setFlowerlist((LinkedList<Flower>)msg);
-			lastMessage="";
-			return;
-		}
-
+	protected void handleMessageFromServer(Object msg){
 		Message message = (Message) msg;
+		System.out.println("get message from server: "+ message.getMessage());
+
+
+		if(message.getMessage().equals("item catalog list")){
+			System.out.println("get Flower object!");
+			CatalogController.setFlowerlist(message.getListItem());
+			return;
+		}
 
 		if(message.getMessage().equals("result login")){
 			if(message.getUser()!=null){
@@ -47,12 +42,18 @@ public class SimpleClient extends AbstractClient {
 			return;
 		}
 
+		if(message.getMessage().equals("result register")){
+			if(message.isRegisterStatus()==true)
+				RegisterController.setCurrectRegister(1);
+			else
+				RegisterController.setCurrectRegister(0);
+		}
+
 	}
 	
 	public static SimpleClient getClient() {
 		if (client == null) {
-			//client = new SimpleClient("192.168.1.94", 3009);
-			client = new SimpleClient("127.0.0.1", 3000);
+			client = new SimpleClient(App.ip, App.port);
 		}
 		return client;
 	}

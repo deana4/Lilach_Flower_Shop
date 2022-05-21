@@ -16,10 +16,78 @@ public class Message implements Serializable {
     User user=null;
 
 
-    //login
+
+
+    //login/register
+    String username;
     String id;
     String pass;
+    boolean isWorker;
+    String credit_card;
+    String plan;
+    String name;
+    boolean registerStatus;
 
+    //setPrice
+    int idItem;
+    double newPrice;
+
+
+    public boolean isRegisterStatus() {
+        return registerStatus;
+    }
+
+    public void setRegisterStatus(boolean registerStatus) {
+        this.registerStatus = registerStatus;
+    }
+
+    public String getCredit_card() {
+        return credit_card;
+    }
+
+    public void setCredit_card(String credit_card) {
+        this.credit_card = credit_card;
+    }
+
+    public String getPlan() {
+        return plan;
+    }
+
+    public void setPlan(String plan) {
+        this.plan = plan;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getIdItem() {
+        return idItem;
+    }
+
+    public void setIdItem(int idItem) {
+        this.idItem = idItem;
+    }
+
+    public double getNewPrice() {
+        return newPrice;
+    }
+
+    public void setNewPrice(double newPrice) {
+        this.newPrice = newPrice;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
     public String getMessage() {
         return message;
     }
@@ -75,7 +143,5 @@ public class Message implements Serializable {
     public void setWorker(boolean worker) {
         isWorker = worker;
     }
-
-    boolean isWorker;
 
 }

@@ -48,8 +48,10 @@ public class CatalogController {
     void initialize() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
         CatalogControl.getItemsList();
 
+        while(flowerlist==null){//wait for the server to sent the items
 
-        //runLater
+        }
+
         int col = 0;
         int row = 0;
 
@@ -77,6 +79,7 @@ public class CatalogController {
 
             GridPane.setMargin(panel, new Insets(10));
         }
+        flowerlist=null; //initilaze the flowerlist back to null
     }
 
 

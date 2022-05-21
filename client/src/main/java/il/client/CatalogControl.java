@@ -1,5 +1,6 @@
 package il.client;
 
+import il.entities.Message;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,11 +11,10 @@ import java.util.Base64;
 import java.util.concurrent.TimeUnit;
 
 public class CatalogControl {
-    public static void getItemsList() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
-        JSONObject cmd = new JSONObject();
-        cmd.put("command", "getCatalogItems");
-        SimpleClient.getClient().sendToServer(cmd.toString());
-        TimeUnit.SECONDS.sleep(3);//need to wait to the server, need to use lock
+    public static void getItemsList() throws IOException, ClassNotFoundException, InterruptedException {
+        Message message = new Message("getCatalogItems");
+        SimpleClient.getClient().sendToServer(message);
+        //TimeUnit.SECONDS.sleep(3);//need to wait to the server, need to use lock
     }
 
     public static void updateImage(String url, int id) throws IOException {
@@ -38,11 +38,10 @@ public class CatalogControl {
         }
     }
 
-    public static void setPrice(String idItemn, double newPrice) throws IOException, JSONException {
-        JSONObject cmd = new JSONObject();
-        cmd.put("command", "setPrice");
-        cmd.put("id", idItemn);
-        cmd.put("newPrice", newPrice);
-        SimpleClient.getClient().sendToServer(cmd);
+    public static void setPrice(int idItemn, double newPrice) throws IOException, JSONException {
+        Message message = new Message("setPrice");
+        message.setNewPrice(newPrice);
+        message.setIdItem(idItemn);
+        SimpleClient.getClient().sendToServer(message);
     }
 }

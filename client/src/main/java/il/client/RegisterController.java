@@ -19,6 +19,12 @@ import java.util.List;
 
 public class RegisterController extends MainPageController{
 
+    public static void setCurrectRegister(int currectRegister) {
+        RegisterController.currectRegister = currectRegister;
+    }
+
+    public static int currectRegister = -1;
+
     @FXML
     private MFXTextField credit_card_tf;
 
@@ -111,7 +117,8 @@ public class RegisterController extends MainPageController{
 
             RegisterControl.register(name, username, pass, id ,credit_card, plan);
 
-            //need add wait and wakeup from handlemessage after register sucssesfuly
+            while(currectRegister<0){
+            }
 
             System.out.println("you register sucssesfuly");
 
@@ -123,6 +130,7 @@ public class RegisterController extends MainPageController{
         else{
             this.errorWarning.setVisible(true);
         }
+        currectRegister=-1;
     }
 
     private boolean[] isEmpty(String[] settings){

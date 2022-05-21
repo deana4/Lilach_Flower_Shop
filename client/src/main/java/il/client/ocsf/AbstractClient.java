@@ -5,6 +5,8 @@
 package il.client.ocsf;
 
 
+import org.json.JSONException;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -357,7 +359,7 @@ public abstract class AbstractClient implements Runnable
    *
    * @param msg   the message sent.
    */
-  protected abstract void handleMessageFromServer(Object msg);
+  protected abstract void handleMessageFromServer(Object msg) throws JSONException;
 
 
 // METHODS TO BE USED FROM WITHIN THE FRAMEWORK ONLY ----------------

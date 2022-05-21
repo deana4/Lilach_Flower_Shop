@@ -1,6 +1,7 @@
 package il.server;
 
 import il.entities.Flower;
+import il.entities.Message;
 import il.entities.User;
 import il.server.ocsf.ConnectionToClient;
 import il.server.ocsf.AbstractServer;
@@ -34,7 +35,7 @@ public class SimpleServer extends AbstractServer {
             System.out.println("get message: " + msgString);
 
             JSONObject cmd = new JSONObject(msgString);
-
+            Message message = new Message("");
             if (cmd.getString("command").equals("getCatalogItems")) {
                 List<Flower> flowerlist = CatalogControl.getAllItems();
                 client.sendToClient(flowerlist);
@@ -78,7 +79,11 @@ public class SimpleServer extends AbstractServer {
 
                 if (logInUser!=null){
                     System.out.println("successfully! login: "+ username);
-                    client.sendToClient(true);
+
+                    message.setMessage("result login");
+                    message.setUser(logInUser);
+
+                    client.sendToClient(message);
                 }
                 else{
                     System.out.println("faild! login: "+ username);

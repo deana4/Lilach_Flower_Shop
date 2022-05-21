@@ -4,6 +4,9 @@ package il.client;
 
 import il.client.ocsf.AbstractClient;
 import il.entities.Flower;
+import il.entities.Message;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.*;
 
@@ -18,7 +21,8 @@ public class SimpleClient extends AbstractClient {
 	private String lastMessage;
 
 	@Override
-	protected void handleMessageFromServer(Object msg) {
+	protected void handleMessageFromServer(Object msg) throws JSONException {
+
 		if(msg.getClass().equals(String.class)){
 			System.out.println("get messeg from server: "+ msg.toString());
 			lastMessage=msg.toString();
@@ -30,7 +34,18 @@ public class SimpleClient extends AbstractClient {
 			lastMessage="";
 			return;
 		}
-		lastMessage="";
+
+		Message message = (Message) msg;
+
+		if(message.getMessage().equals("result login")){
+			if(message.getUser()!=null){
+				LoginController.setCorrectLogin(true);
+			}
+			else{
+				LoginController.setCorrectLogin(false);
+			}
+			return;
+		}
 
 	}
 	

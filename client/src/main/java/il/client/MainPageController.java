@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+import il.client.DiffClasses.Priority;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXSlider;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -17,7 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.json.JSONException;
 
-public class MainPageController {
+public class MainPageController extends ParentClass{
     @FXML
     private MFXButton myacc_btn;
 
@@ -43,10 +44,9 @@ public class MainPageController {
 
     public static String LoginName;
 
-
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
-
+        init_priority();
     }
 
     @FXML
@@ -67,6 +67,11 @@ public class MainPageController {
     }
 
     @FXML
+    void ChangeScreen(String screen){
+
+    }
+
+    @FXML
     void RegisterBTNClicked(ActionEvent event) throws IOException, JSONException {
         LoadPage("Register.fxml");
     }
@@ -80,31 +85,24 @@ public class MainPageController {
         Parent home_root = homeLoader.load();
         CatalogController home_controller = homeLoader.getController();
         this.main_first_load_pane.getChildren().addAll(home_root);
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        URL pop_var = getClass().getResource("PopWindow.fxml");
-        fxmlLoader.setLocation(pop_var);
-        Parent pop_root = fxmlLoader.load();
-        PopWindow controller = fxmlLoader.getController();
-        File logoFile = new File("C:\\LilachProj\\server\\src\\main\\resources\\images\\Lotus.png");
-        Image img = new Image(logoFile.toURI().toString());
-        controller.FullSetter(1,"Hey", "Price", true,img);
-
-        home_controller.getCatalog_main_anchorpane().getChildren().addAll(pop_root);
-        home_controller.getCatalog_main_anchorpane().setVisible(true);
     }
 
     @FXML
     void LogoutBTNClicked(ActionEvent event) throws IOException {
-        this.login_btn.setVisible(true);
-        this.register_btn.setVisible(true);
-        this.user_wellcome.setVisible(false);
-        this.user_wellcome.clear();
-        this.myacc_btn.setVisible(false);
-        this.mycart_btn.setVisible(false);
-        this.Logout_btn.setVisible(false);
-        this.setLogin(false);
-        this.setLoginName("Default");
+        {
+            this.login_btn.setVisible(true);
+            this.register_btn.setVisible(true);
+            this.user_wellcome.setVisible(false);
+            this.user_wellcome.clear();
+            this.myacc_btn.setVisible(false);
+            this.mycart_btn.setVisible(false);
+            this.Logout_btn.setVisible(false);
+            this.setLogin(false);
+            this.setLoginName("Default");
+        }
+
+        priority.setPriority_level(1);
+
         LoadPage("Home.fxml");
     }
 

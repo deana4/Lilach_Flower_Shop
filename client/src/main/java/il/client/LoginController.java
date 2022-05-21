@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class LoginController {
+public class LoginController extends ParentClass{
 
     @FXML
     private MFXToggleButton workerChecker;
@@ -58,6 +58,8 @@ public class LoginController {
         } else {
             if(username.equals("Dean") && password.equals("Wello")){
                 correctLogin = true;
+                priority.setPriority_level(2);
+                System.out.println("priority" + priority.getPriority_level());
             }
             //correctLogin = (send msg to server - to find (string = username-password)
             // for specific client id in the client table

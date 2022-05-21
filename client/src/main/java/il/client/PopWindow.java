@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class PopWindow {
+public class PopWindow extends ParentClass{
 
     @FXML
     private Label id_txt;

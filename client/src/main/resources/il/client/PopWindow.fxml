@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="poped_window" prefHeight="400.0" prefWidth="400.0" stylesheets="@CSSfiles/CatalogCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PopWindow">
+<AnchorPane fx:id="poped_window" prefHeight="400.0" prefWidth="400.0" stylesheets="@CSSfiles/Buttons.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PopWindow">
    <children>
-      <AnchorPane opacity="0.68" prefHeight="400.0" prefWidth="400.0" styleClass="sideViewer" stylesheets="@CSSfiles/CatalogCSS.css" />
+      <AnchorPane opacity="0.68" prefHeight="400.0" prefWidth="400.0" styleClass="sideViewer" stylesheets="@CSSfiles/Buttons.css" />
       <CheckBox fx:id="product_on_stock" layoutX="153.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#CheckBoxClicked" prefHeight="37.0" prefWidth="109.0" text="On Stock?">
          <font>
             <Font size="14.0" />

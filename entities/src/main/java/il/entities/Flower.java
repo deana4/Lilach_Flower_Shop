@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Flower implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
     private String name;
     @Lob
     @Column(name="Folwer_IMAGE", nullable=false, columnDefinition="mediumblob")
@@ -70,7 +70,7 @@ public class Flower implements Serializable {
         this.price = price;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -78,7 +78,7 @@ public class Flower implements Serializable {
         return sale;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

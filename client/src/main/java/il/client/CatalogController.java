@@ -1,24 +1,18 @@
 package il.client;
 
-import il.client.ProductView;
-import il.client.SimpleClient;
 import il.entities.Flower;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class CatalogController {
 
@@ -48,18 +42,14 @@ public class CatalogController {
         flowerlist = flowerlist1;
     }
 
-    private void createf() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
-        JSONObject cmd = new JSONObject();
-        cmd.put("command", "getCatalogItems");
-        SimpleClient.getClient().sendToServer(cmd.toString());
-        TimeUnit.SECONDS.sleep(3);//need to wait to the server, need to use lock
-    }
+
 
     @FXML  // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
-        //get connection to the server
-        createf();
+        CatalogControl.getItemsList();
 
+
+        //runLater
         int col = 0;
         int row = 0;
 

@@ -109,18 +109,7 @@ public class RegisterController extends MainPageController{
             String[] registerDetails = {name, username, pass, id, credit_card, plan};
 
 
-            JSONObject cmd = new JSONObject();
-            cmd.put("command", "register");
-            cmd.put("name", name);
-            cmd.put("username", username);
-            cmd.put("pass", pass);
-            cmd.put("id", id);
-            cmd.put("credit_card", credit_card);
-            cmd.put("plan", plan);
-
-            System.out.println("send register requests to server:" + cmd.toString());
-
-            SimpleClient.getClient().sendToServer(cmd.toString());
+            RegisterControl.register(name, username, pass, id ,credit_card, plan);
 
             //need add wait and wakeup from handlemessage after register sucssesfuly
 

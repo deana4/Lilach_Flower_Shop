@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.Timer;
@@ -38,7 +39,7 @@ public class LoginController {
 
 
     @FXML
-    void LoginSumbitted(ActionEvent event) throws IOException {
+    void LoginSumbitted(ActionEvent event) throws IOException, JSONException {
         String username = username_field.getText();
         String password = password_field.getText();
         boolean usernameFound,passwordFound;  //this vars will get '1' value if we found the correct values in the DB
@@ -50,20 +51,10 @@ public class LoginController {
         }else if(password.contains("-")){
 
         }
-        if(isWorker){
-            //correctLogin = (send msg to server - to find (string = username-password)
-            // for specific worker id in the worker table
-            //  return 'true' if username found and the password matches the username's id found
-            // don't return list of workers, just return true or false according to the result)
-        } else {
-            if(username.equals("Dean") && password.equals("Wello")){
-                correctLogin = true;
-            }
-            //correctLogin = (send msg to server - to find (string = username-password)
-            // for specific client id in the client table
-            //  return 'true' if username found and the password matches the username's id found
-            // don't return list of clients, just return true or false according to the result)
-        }
+        LogInControl.logIn(username, password, isWorker);
+
+
+        //runLater
         if(correctLogin){
             //goto var which represent the login option on the Main Controller and change it to 1.
             //change Main Controller AnchorPane to Catalog -> "maybe return to the last page the client was inside"

@@ -88,7 +88,7 @@ public class MainPageController {
         PopWindow controller = fxmlLoader.getController();
         File logoFile = new File("C:\\LilachProj\\server\\src\\main\\resources\\images\\Lotus.png");
         Image img = new Image(logoFile.toURI().toString());
-        controller.FullSetter(1,"Hey", "Price", true,img);
+        controller.FullSetter("1","Hey", "Price", true,img);
 
         home_controller.getCatalog_main_anchorpane().getChildren().addAll(pop_root);
         home_controller.getCatalog_main_anchorpane().setVisible(true);

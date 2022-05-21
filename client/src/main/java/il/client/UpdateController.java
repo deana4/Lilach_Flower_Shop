@@ -30,25 +30,7 @@ public class UpdateController {
 
     private Stage stage;
 
-    private void updateImage(String url, int id) throws IOException {
 
-        File file;
-        file = new File(url);
-        byte[] bFile = new byte[(int) file.length()];
-        try{
-            FileInputStream fileInputStream = new FileInputStream(file);
-            fileInputStream.read(bFile);
-            String base64String = Base64.getEncoder().encodeToString(bFile);
-            JSONObject cmd = new JSONObject();
-            cmd.put("command", "setImages");
-            cmd.put("id", product.getId());
-            SimpleClient.getClient().sendToServer(cmd.toString());
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            System.out.println("Error: load image in updateImage!");
-        }
-    }
 
 
     @FXML
@@ -56,11 +38,8 @@ public class UpdateController {
         this.new_price = update_text.getText();
         product.setProduct_price(this.new_price);
         stage.close();
-        JSONObject cmd = new JSONObject();
-        cmd.put("command", "setPrice");
-        cmd.put("id", product.getId());
-        cmd.put("newPrice", product.getProduct_price());
-        updateServerNewPrice(cmd.toString());
+
+        CatalogControl.setPrice(product.getId(), product.getProduct_price());
     }
 
 
@@ -68,11 +47,6 @@ public class UpdateController {
     public void getProductView(ProductView to_change, Stage stage){
         this.product = to_change;
         this.stage = stage;
-    }
-
-    private void updateServerNewPrice(String command) throws IOException, ClassNotFoundException, InterruptedException {
-        SimpleClient.getClient().sendToServer(command);
-        TimeUnit.SECONDS.sleep(3);//need to wait to the server, need to use lock
     }
 
 }

@@ -36,22 +36,23 @@ public class SimpleServer extends AbstractServer {
             JSONObject cmd = new JSONObject(msgString);
 
             if (cmd.getString("command").equals("getCatalogItems")) {
-                List<Flower> flowerlist = testDB.getAllItems();
+                List<Flower> flowerlist = CatalogControl.getAllItems();
                 client.sendToClient(flowerlist);
                 System.out.println("send Flowers to catalog");
             }
-
             if(cmd.getString("command").equals("setPrice")){
                 int id = cmd.getInt("id");
                 int price = cmd.getInt("newPrice");
-                testDB.setPrice(id, price);
+                CatalogControl.setPrice(id, price);
             }
             if(cmd.getString("command").equals("setImages")){
                 int id = cmd.getInt("id");
                 String bytes64 = cmd.getString("newImage");
                 byte[] bFile = Base64.getDecoder().decode(bytes64);
-                testDB.setImage(id, bFile);
+                CatalogControl.setImage(id, bFile);
             }
+
+
             if(cmd.getString("command").equals("register")){
                 String username = cmd.getString("username");
                 String name = cmd.getString("name");
@@ -62,12 +63,27 @@ public class SimpleServer extends AbstractServer {
 
                 User newUser = new User(username, pass,credit_card, plan, name, id);
 
-                testDB.register(newUser);
+                RegisterControl.register(newUser);
 
 
                 System.out.println("get register request:" + username);
+            }
 
+            if(cmd.getString("command").equals("login")){
+                String username = cmd.getString("username");
+                String pass = cmd.getString("pass");
+                boolean isWorker = cmd.getBoolean("isWorker");
 
+                User logInUser = LoginControl.tryLogIn(username, pass, isWorker);
+
+                if (logInUser!=null){
+                    System.out.println("successfully! login: "+ username);
+                    client.sendToClient(true);
+                }
+                else{
+                    System.out.println("faild! login: "+ username);
+                    client.sendToClient(false);
+                }
             }
 
         } catch (IOException e) {

@@ -20,7 +20,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
 public class testDB {
-
     public static Session session;
 
     private static SessionFactory getSessionFactory() throws HibernateException {
@@ -35,74 +34,29 @@ public class testDB {
         return configuration.buildSessionFactory(serviceRegistry);
     }
 
-    private static void saveNewFlower (Flower flower, String url){
-        File file;
-        file = new File(url);
-        byte[] bFile = new byte[(int) file.length()];
-        try{
-            FileInputStream fileInputStream = new FileInputStream(file);
-            fileInputStream.read(bFile);
-            fileInputStream.close();
-            flower.setImage(bFile);
-            session.save(flower);
-            session.flush();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            System.out.println("Error: load image to database.");
-        }
-    }
-
     private static void generateItems()throws Exception{
         Flower flower;
 
         flower = new Flower("whiteroses", 20,true,25);
-        saveNewFlower(flower,"src/main/resources/images/whiteroses.jpeg" );
+        CatalogControl.saveNewFlower(flower,"src/main/resources/images/whiteroses.jpeg" );
 
         flower = new Flower("sunflower", 23,true, 5);
-        saveNewFlower(flower, "src/main/resources/images/sunflower.jpeg");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/sunflower.jpeg");
 
         flower = new Flower("chinaFlower", 20,false, 0);
-        saveNewFlower(flower, "src/main/resources/images/chinaFlower.jpeg");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/chinaFlower.jpeg");
 
         flower = new Flower("pin", 20,false, 0);
-        saveNewFlower(flower, "src/main/resources/images/pin.jpeg");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/pin.jpeg");
 
         flower = new Flower("whiteroses", 20,true, 50);
-        saveNewFlower(flower, "src/main/resources/images/whiteroses.jpeg");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/whiteroses.jpeg");
 
         flower = new Flower("sunflower", 20,true, 50);
-        saveNewFlower(flower, "src/main/resources/images/sunflower.jpeg");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/sunflower.jpeg");
 
         session.flush();
         session.getTransaction().commit(); // Save everything.
-    }
-
-
-    public static void register(User newUser){
-        openSssion();
-        try {
-            session.save(newUser);
-            session.flush();
-            session.getTransaction().commit();
-            System.out.println("user add to mySQL");
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            System.out.println("Error: register");
-        }
-        closeSession();
-    }
-
-    public static List<Flower> getAllItems(){
-        openSssion();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Flower> query = builder.createQuery(Flower.class);
-        query.from(Flower.class);
-        List<Flower> data = session.createQuery(query).getResultList();
-        LinkedList<Flower> listItems = new LinkedList<Flower>(data);
-        closeSession();
-        return listItems;
     }
 
     public static void openSssion(){
@@ -120,27 +74,8 @@ public class testDB {
         }
     }
 
-    public static void setPrice(int id, int newPrice) throws IOException {
-        openSssion();
-        Flower a = session.get(Flower.class, id);
-        a.setPrice(newPrice);
-        session.flush();
-        session.getTransaction().commit(); // Save everything.
-        closeSession();
-    }
-
-    public static void setImage(int id, byte[] bFile){
-        openSssion();
-        Flower a = session.get(Flower.class, id);
-        a.setImage(bFile);
-        session.flush();
-        session.getTransaction().commit(); // Save everything.
-        closeSession();
-    }
-
     public static void initMySQL(){
         try {
-
             SessionFactory sessionFactory = getSessionFactory();
             session = sessionFactory.openSession();
             session.beginTransaction();

@@ -18,8 +18,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ByteArrayInputStream;
 
@@ -47,7 +45,7 @@ public class ProductView {
 
     private double discound_precentage;
 
-    private int id_of_flower;
+    private String id_of_flower;
 
 
     public void setData(Flower a) throws IOException {
@@ -148,7 +146,7 @@ public class ProductView {
         return product_image.getImage().getUrl();
     }
 
-    int getId(){
+    String getId(){
         return this.id_of_flower;
     }
 
@@ -189,11 +187,11 @@ public class ProductView {
         this.discound_precentage = discound_precentage;
     }
 
-    public int getId_of_flower() {
+    public String getId_of_flower() {
         return id_of_flower;
     }
 
-    public void setId_of_flower(int id_of_flower) {
+    public void setId_of_flower(String id_of_flower) {
         this.id_of_flower = id_of_flower;
     }
 

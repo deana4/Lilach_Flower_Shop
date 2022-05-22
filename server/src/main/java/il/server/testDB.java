@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import il.entities.Flower;
+import il.entities.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,7 +18,6 @@ import org.hibernate.service.ServiceRegistry;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 public class testDB {
 
@@ -26,7 +26,7 @@ public class testDB {
     private static SessionFactory getSessionFactory() throws HibernateException {
         Configuration configuration = new Configuration();
         // Add ALL of your entities here. You can also try adding a whole package.
-        configuration.addAnnotatedClass(Flower.class);
+        configuration.addAnnotatedClass(Flower.class).addAnnotatedClass(User.class);
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties())
@@ -34,7 +34,6 @@ public class testDB {
 
         return configuration.buildSessionFactory(serviceRegistry);
     }
-
 
     private static void saveNewFlower (Flower flower, String url){
         File file;
@@ -79,6 +78,22 @@ public class testDB {
         session.getTransaction().commit(); // Save everything.
     }
 
+
+    public static void register(User newUser){
+        openSssion();
+        try {
+            session.save(newUser);
+            session.flush();
+            session.getTransaction().commit();
+            System.out.println("user add to mySQL");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Error: register");
+        }
+        closeSession();
+    }
+
     public static List<Flower> getAllItems(){
         openSssion();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -89,7 +104,6 @@ public class testDB {
         closeSession();
         return listItems;
     }
-
 
     public static void openSssion(){
         try {
@@ -115,6 +129,14 @@ public class testDB {
         closeSession();
     }
 
+    public static void setImage(int id, byte[] bFile){
+        openSssion();
+        Flower a = session.get(Flower.class, id);
+        a.setImage(bFile);
+        session.flush();
+        session.getTransaction().commit(); // Save everything.
+        closeSession();
+    }
 
     public static void initMySQL(){
         try {

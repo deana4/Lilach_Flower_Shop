@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="646.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.RegisterController">
+   <children>
+      <AnchorPane prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">
+         <children>
+            <ImageView fitHeight="595.0" fitWidth="646.0" layoutX="323.0" layoutY="26.0" opacity="0.36" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+               <image>
+                  <Image url="@ClientImages/RegisterImage.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="454.0" layoutY="97.0" prefHeight="47.0" prefWidth="334.0" styleClass="Headers" stylesheets="@CSSfiles/Buttons.css" text="Lilach Registration" textFill="#979797">
+               <font>
+                  <Font name="Comic Sans MS" size="33.0" />
+               </font>
+            </Label>
+            <VBox alignment="TOP_CENTER" layoutX="495.0" layoutY="144.0" prefHeight="457.0" prefWidth="251.0" spacing="25.0">
+               <children>
+                  <MFXTextField fx:id="name_tf" floatMode="BORDER" floatingText="Full Name" floatingTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="29.0" prefWidth="257.0">
+                     <textFill>
+                        <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                     </textFill>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </MFXTextField>
+                  <MFXTextField fx:id="username_tf" floatMode="BORDER" floatingText="Username" floatingTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="29.0" prefWidth="178.0">
+                     <textFill>
+                        <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                     </textFill>
+                  </MFXTextField>
+                  <MFXTextField fx:id="pass_tf" floatMode="BORDER" floatingText="Password" floatingTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="20.0" prefWidth="225.0">
+                     <textFill>
+                        <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                     </textFill>
+                  </MFXTextField>
+                  <MFXTextField fx:id="id_tf" floatMode="BORDER" floatingText="ID" floatingTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="20.0" prefWidth="225.0">
+                     <textFill>
+                        <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                     </textFill>
+                  </MFXTextField>
+                  <MFXTextField fx:id="credit_card_tf" floatMode="BORDER" floatingText="Credit Card" floatingTextGap="0.0" graphicTextGap="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="20.0" prefWidth="225.0">
+                     <textFill>
+                        <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                     </textFill>
+                  </MFXTextField>
+                  <MFXComboBox fx:id="plan_chooser" borderGap="15.0" floatMode="BORDER" prefHeight="21.0" prefWidth="152.0" text="Choose Plan">
+                     <textFill>
+                        <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                     </textFill>
+                  </MFXComboBox>
+                  <MFXButton fx:id="reg_btn" buttonType="RAISED" onAction="#RegisterBTNClicked" rippleColor="#d0f6ff" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Register Me" textFill="#979797" />
+                  <Label fx:id="errorWarning" alignment="CENTER" prefHeight="31.0" prefWidth="343.0" text="Please check your errors" textFill="#e60a0a" visible="false">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

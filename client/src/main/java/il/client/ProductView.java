@@ -3,7 +3,9 @@ package il.client; /**
  */
 
 
+import il.client.DiffClasses.Priority;
 import il.entities.Flower;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,19 +16,22 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ByteArrayInputStream;
+import java.net.URL;
 
-public class ProductView {
+public class ProductView extends ParentClass{
 
-    @FXML // fx:id="atc_product_button"
+    @FXML
     private Button atc_product_button; // Value injected by FXMLLoader
 
-    @FXML // fx:id="product_image"
+    @FXML
     private ImageView product_image; // Value injected by FXMLLoader
 
     @FXML
@@ -35,11 +40,13 @@ public class ProductView {
     @FXML
     private Label product_price;
 
-    @FXML // fx:id="update_product_button"
-    private Button update_product_button; // Value injected by FXMLLoader
+    @FXML
+    private MFXButton update_product_button;
 
     @FXML
     private ImageView discount_logo;
+
+    private CatalogController cat_controller;
 
     private boolean on_discount;
 
@@ -47,30 +54,15 @@ public class ProductView {
 
     private int id_of_flower;
 
-    public Image byteToUrl(Flower flower) throws IOException {
-        FileOutputStream file = new FileOutputStream("output.jpg");
-        file.write(flower.getImage());
-        File imageFile = new File("/output.jpg");
-        Image image = new Image(imageFile.toURI().toString());
 
-        imageFile.delete();
+    URL root = getClass().getResource("PopWindow.fxml");
 
-        //delete the new file
-
-
-        return image;
-    }
 
     public void setData(Flower a) throws IOException {
         product_price.setText(String.valueOf(a.getPrice()));
         product_name.setText(a.getName());
 
-//        File logoFile = new File(a.getUrl_image());
-//        Image image = new Image(logoFile.toURI().toString());
-////            Image image = new Image(getClass().getResourceAsStream(a.getUrl_image()));
-
-        Image image = byteToUrl(a);
-        System.out.println(image.getUrl());
+        Image image = new Image(new ByteArrayInputStream(a.getImage()));
         product_image.setImage(image);
 
         this.on_discount = a.isOn_discount();
@@ -83,30 +75,35 @@ public class ProductView {
     }
 
     @FXML
-    void initialize(String string){
+    void initialize(){
+        switch(priority.getPriority_level()){
+            case 1: {
+                this.update_product_button.setDisable(true);
+                this.update_product_button.setVisible(false);
+            } break;
+            case 2: {
+                this.update_product_button.setVisible(true);
+                this.update_product_button.setDisable(false);
+            } break;
+            case 3: {
+
+            } break;
+            case 4: {
+
+            } break;
+
+        }
     }
 
 
-//    @FXML   ---------> not in use <---------
-//    void init(String name, String price, int id){
-//        product_name.setText(name);
-//        product_price.setText(price);
-//        id_of_flower = id;
-//    }
-
     @FXML
     void ClickedImage(MouseEvent event) throws IOException {
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("PopWindow.fxml"));
-        Parent root = fxmlLoader.load();    // need to load before using controller.
+        fxmlLoader.setLocation(this.root);
+        Parent pop_window = fxmlLoader.load();    // need to load before using controller.
         PopWindow controller = fxmlLoader.getController();
         controller.FullSetter(this.getId(), this.product_name.getText(),this.product_price.getText(), this.on_discount, this.product_image.getImage());
-        Scene scene = new Scene(root, 400, 400);
-        stage.setTitle("Flower Inner");
-        stage.setScene(scene);
-        stage.show();
+        cat_controller.setSide_pic_anchorpane(pop_window);
     }
 
     @FXML
@@ -141,6 +138,9 @@ public class ProductView {
         stage.show();
         controller.setStage(stage);
     }
+
+
+    /* Settes and Getters*/
 
     public void setProduct_price(String product_price) {
         this.product_price.setText(product_price);
@@ -200,4 +200,7 @@ public class ProductView {
         this.id_of_flower = id_of_flower;
     }
 
+    public void setCat_controller(CatalogController cat_controller) {
+        this.cat_controller = cat_controller;
+    }
 }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="LoginPane" prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.LoginController">
+   <children>
+      <AnchorPane prefHeight="646.0" prefWidth="1240.0" style="-fx-background-color: transparent;">
+         <children>
+            <ImageView fitHeight="637.0" fitWidth="660.0" layoutX="-76.0" layoutY="-47.0" opacity="0.4" pickOnBounds="true" preserveRatio="true" rotate="180.0" style="-fx-border-color: #979797;" x="370.0" y="50.0">
+               <image>
+                  <Image url="@ClientImages/LoginImage.png" />
+               </image>
+            </ImageView>
+            <Label alignment="TOP_CENTER" layoutX="403.0" layoutY="111.0" prefHeight="69.0" prefWidth="420.0" styleClass="Headers" stylesheets="@CSSfiles/Buttons.css" text="Lilach System Login" textFill="#979797">
+               <font>
+                  <Font name="Segoe Script Bold" size="37.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1.0" prefHeight="646.0" prefWidth="1240.0">
+         <children>
+            <VBox layoutX="467.0" layoutY="209.0" prefHeight="283.0" prefWidth="306.0" spacing="10.0">
+               <children>
+                  <Label text="Empty Space" visible="false" />
+                  <MFXTextField fx:id="username_field" floatingText="Username" floatingTextGap="0.0" prefHeight="70.0" prefWidth="300.0">
+                     <textFill>
+                        <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                     </textFill>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </MFXTextField>
+                  <Label text="Empty Space" visible="false" />
+                  <MFXPasswordField fx:id="password_field" floatingText="Password" floatingTextGap="0.0" graphicTextGap="5.0" prefHeight="70.0" prefWidth="300.0">
+                     <textFill>
+                        <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                     </textFill>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </MFXPasswordField>
+                  <Label text="Empty Space" visible="false" />
+                  <VBox alignment="TOP_CENTER" prefHeight="123.0" prefWidth="306.0" spacing="20.0">
+                     <children>
+                        <MFXButton fx:id="loginBTN" buttonType="RAISED" onAction="#LoginSumbitted" prefHeight="37.0" prefWidth="84.0" rippleAnimateShadow="true" rippleColor="#c9d9ff" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Login" textFill="#979797" />
+                        <MFXToggleButton fx:id="workerChecker" contentDisposition="TOP" onMouseClicked="#WorkerChecked" text="Are you work here?" textFill="#979797" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+   <stylesheets>
+      <URL value="@CSSfiles/Buttons.css" />
+      <URL value="@CSSfiles/Backgrounds.css" />
+   </stylesheets>
+</AnchorPane>

@@ -45,6 +45,8 @@ public class CatalogController extends ParentClass{
 
     private static List<Flower> flowerlist=null;
 
+    private MainPageController main_page_holder;
+
     public static List<Flower> getFlowerlist() {
         return flowerlist;
     }
@@ -116,5 +118,9 @@ public class CatalogController extends ParentClass{
 
     public AnchorPane getCatalog_main_anchorpane() {
         return catalog_main_anchorpane;
+    }
+
+    public void setMain_page_holder(MainPageController main_page_holder) {
+        this.main_page_holder = main_page_holder;
     }
 }

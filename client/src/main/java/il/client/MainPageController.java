@@ -67,15 +67,34 @@ public class MainPageController extends ParentClass{
     }
 
     @FXML
+    void MyCartBTNClicked(ActionEvent event) throws IOException {
+        this.main_first_load_pane.getChildren().clear();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        URL var = getClass().getResource("AddToCart.fxml");
+        fxmlLoader.setLocation(var);
+        Parent root = fxmlLoader.load();
+        AddToCartController controller = fxmlLoader.getController();
+        controller.setMain_page_holder(this);
+        this.main_first_load_pane.getChildren().addAll(root);
+    }
+
+    @FXML
     void ChangeScreen(String screen){
 
     }
 
     @FXML
     void RegisterBTNClicked(ActionEvent event) throws IOException, JSONException {
-        LoadPage("Register.fxml");
+//        LoadPage("Register.fxml");
+        this.main_first_load_pane.getChildren().clear();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        URL var = getClass().getResource("Register.fxml");
+        fxmlLoader.setLocation(var);
+        Parent root = fxmlLoader.load();
+        RegisterController controller = fxmlLoader.getController();
+        controller.setMain_controller(this);
+        this.main_first_load_pane.getChildren().addAll(root);
     }
-
     @FXML
     void CatalogBTNClicked(ActionEvent event) throws IOException {
         this.main_first_load_pane.getChildren().clear();
@@ -154,6 +173,61 @@ public class MainPageController extends ParentClass{
             return;
         }
         return;
+    }
+
+    public void LoadLoginPage() throws IOException {
+        this.main_first_load_pane.getChildren().clear();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        URL var = getClass().getResource("Login.fxml");
+        fxmlLoader.setLocation(var);
+        Parent root = fxmlLoader.load();
+        LoginController controller = fxmlLoader.getController();
+        controller.setMain_page_holder(this);
+        this.main_first_load_pane.getChildren().addAll(root);
+    }
+
+    public void LoadCartPage() throws IOException {
+        this.main_first_load_pane.getChildren().clear();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        URL var = getClass().getResource("AddToCart.fxml");
+        fxmlLoader.setLocation(var);
+        Parent root = fxmlLoader.load();
+        AddToCartController controller = fxmlLoader.getController();
+        controller.setMain_page_holder(this);
+        this.main_first_load_pane.getChildren().addAll(root);
+    }
+
+    public void LoadOrderPage() throws IOException {
+        this.main_first_load_pane.getChildren().clear();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        URL var = getClass().getResource("Order.fxml");
+        fxmlLoader.setLocation(var);
+        Parent root = fxmlLoader.load();
+        OrderController controller = fxmlLoader.getController();
+        controller.setMain_page_holder(this);
+        this.main_first_load_pane.getChildren().addAll(root);
+    }
+
+    public void LoadCatalogPage() throws IOException {
+        this.main_first_load_pane.getChildren().clear();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        URL var = getClass().getResource("Catalog.fxml");
+        fxmlLoader.setLocation(var);
+        Parent root = fxmlLoader.load();
+        CatalogController controller = fxmlLoader.getController();
+        controller.setMain_page_holder(this);
+        this.main_first_load_pane.getChildren().addAll(root);
+    }
+
+    public void LoadHomePage() throws IOException {
+        this.main_first_load_pane.getChildren().clear();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        URL var = getClass().getResource("Home.fxml");
+        fxmlLoader.setLocation(var);
+        Parent root = fxmlLoader.load();
+        HomeController controller = fxmlLoader.getController();
+        controller.setMain_page_holder(this);
+        this.main_first_load_pane.getChildren().addAll(root);
     }
     /* END */
 }

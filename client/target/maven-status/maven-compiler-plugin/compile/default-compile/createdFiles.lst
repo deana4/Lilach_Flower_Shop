@@ -1,3 +1,4 @@
+il\client\DiffClasses\Priority.class
 module-info.class
 il\client\ProductView.class
 il\client\SimpleClient.class
@@ -7,6 +8,8 @@ il\client\ocsf\AdaptableClient.class
 il\client\LoginController.class
 il\client\CatalogController.class
 il\client\HomeController.class
+il\client\OrderController.class
+il\client\ParentClass.class
 il\client\App.class
 il\client\ocsf\ObservableClient.class
 il\client\AddToCartController.class

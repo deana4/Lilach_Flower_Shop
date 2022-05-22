@@ -45,6 +45,8 @@ public class RegisterController extends ParentClass{
     @FXML
     private MFXTextField username_tf;
 
+    private MainPageController main_controller;
+
     @FXML
     void initialize(){
         { //initialize combobox
@@ -133,7 +135,9 @@ public class RegisterController extends ParentClass{
 
 
             this.errorWarning.setVisible(false);
-            //move to the catalog page
+            //move to the login page
+
+            this.main_controller.LoadLoginPage();
         }
         else{
             this.errorWarning.setVisible(true);
@@ -225,6 +229,10 @@ public class RegisterController extends ParentClass{
             }
         }
         return 1;
+    }
+
+    public void setMain_controller(MainPageController main_controller) {
+        this.main_controller = main_controller;
     }
 
 }

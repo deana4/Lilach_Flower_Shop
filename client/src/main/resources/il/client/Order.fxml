@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="order_first_pane" prefHeight="646.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.OrderController">
+    <children>
+        <AnchorPane fx:id="order_pane2" prefHeight="646.0" prefWidth="1240.0" />
+        <AnchorPane fx:id="order_pane3" prefHeight="646.0" prefWidth="1240.0">
+            <children>
+                <MFXToggleButton fx:id="bringDetailsChecker" layoutX="47.0" layoutY="45.0" onMouseClicked="#bringDetailsClicked" text="Please bring my details " textFill="#979797">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </MFXToggleButton>
+                <VBox layoutX="485.0" layoutY="96.0" prefHeight="60.0" prefWidth="195.0">
+                    <children>
+                        <Label text="Date Recive:" textFill="#979797">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <MFXDatePicker fx:id="date_picker">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                        </MFXDatePicker>
+                    </children>
+                </VBox>
+                <VBox layoutX="700.0" layoutY="96.0" prefHeight="60.0" prefWidth="123.0">
+                    <children>
+                        <Label text="Time Recive:" textFill="#979797">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <MFXComboBox fx:id="time_choose" borderGap="15.0" floatMode="BORDER" prefHeight="35.0" prefWidth="123.0">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                        </MFXComboBox>
+                    </children>
+                </VBox>
+                <VBox layoutX="485.0" layoutY="156.0" prefHeight="173.0" prefWidth="338.0">
+                    <children>
+                        <MFXToggleButton fx:id="greetingChecker" onMouseClicked="#greetingClicked" text="Greeting?" textFill="#979797" />
+                        <TextArea fx:id="greeting_field" prefHeight="200.0" prefWidth="200.0" visible="false" wrapText="true" />
+                    </children>
+                </VBox>
+                <VBox layoutX="485.0" layoutY="329.0" prefHeight="315.0" prefWidth="294.0" spacing="3.0">
+                    <children>
+                        <MFXToggleButton fx:id="deliveryChecker" onMouseClicked="#deliveryClicked" text="Delivery?" textFill="#979797" />
+                        <Label fx:id="street_label" text="Street:" textFill="#979797" visible="false">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <MFXTextField fx:id="street_field" floatMode="DISABLED" prefHeight="21.0" prefWidth="294.0" visible="false">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </MFXTextField>
+                        <Label fx:id="home_num_label" text="Home Number:" textFill="#979797" visible="false">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <MFXTextField fx:id="home_num_field" floatMode="DISABLED" prefHeight="27.0" prefWidth="80.0" visible="false">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </MFXTextField>
+                        <Label fx:id="floor_num_label" text="Floor:" textFill="#979797" visible="false">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <MFXTextField fx:id="floor_num_field" floatMode="DISABLED" prefHeight="32.0" prefWidth="90.0" visible="false">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </MFXTextField>
+                        <Label fx:id="apartment_num_label" text="Apartment Number:" textFill="#979797" visible="false">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <MFXTextField fx:id="apartment_num_field" floatMode="DISABLED" prefHeight="19.0" prefWidth="95.0" visible="false">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </MFXTextField>
+                    </children>
+                </VBox>
+                <VBox layoutX="47.0" layoutY="96.0" prefHeight="512.0" prefWidth="294.0" spacing="3.0">
+                    <children>
+                        <Label text="My Name:" textFill="#979797">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <MFXTextField fx:id="my_name_field" floatMode="DISABLED" prefHeight="26.0" prefWidth="293.0">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </MFXTextField>
+                        <Label text="My Credit Card:" textFill="#979797">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <MFXTextField fx:id="my_credit_card_field" floatMode="DISABLED" prefHeight="26.0" prefWidth="295.0">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </MFXTextField>
+                        <Label text="My Phone:" textFill="#979797">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <MFXComboBox fx:id="my_phone_choose" borderGap="15.0" floatMode="BORDER" prefHeight="19.0" prefWidth="101.0">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                        </MFXComboBox>
+                        <MFXTextField fx:id="my_phone_field" floatMode="DISABLED" prefHeight="21.0" prefWidth="296.0">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </MFXTextField>
+                        <Label text="My Mail:" textFill="#979797">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <MFXTextField fx:id="my_mail_field" floatMode="DISABLED" prefHeight="28.0" prefWidth="294.0">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </MFXTextField>
+                        <MFXToggleButton fx:id="elseOrderChecker" onMouseClicked="#elseOrderClicked" text="The Order is not for me" textFill="#979797" />
+                        <Label fx:id="reciver_name_label" text="Name Reciver:" textFill="#979797" visible="false">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <MFXTextField fx:id="reciver_name_field" floatMode="DISABLED" prefHeight="21.0" prefWidth="294.0" visible="false">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </MFXTextField>
+                        <Label fx:id="reciver_phone_label" text="Phone Reciver:" textFill="#979797" visible="false">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <MFXComboBox fx:id="reciver_phone_choose" borderGap="15.0" floatMode="BORDER" prefHeight="33.0" prefWidth="104.0" visible="false">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                        </MFXComboBox>
+                        <MFXTextField fx:id="reciver_phone_field" floatMode="DISABLED" prefHeight="16.0" prefWidth="295.0" visible="false">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </MFXTextField>
+                        <Label fx:id="reciver_mail_label" text="Mail Reciver:" textFill="#979797" visible="false">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <MFXTextField fx:id="reciver_mail_field" floatMode="DISABLED" prefHeight="27.0" prefWidth="294.0" visible="false">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </MFXTextField>
+                    </children>
+                </VBox>
+                <Label fx:id="city_label" layoutX="795.0" layoutY="375.0" text="City:" textFill="#979797" visible="false">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <MFXTextField fx:id="city_field" floatMode="DISABLED" layoutX="795.0" layoutY="396.0" prefHeight="21.0" prefWidth="168.0" visible="false">
+                    <textFill>
+                        <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                    </textFill>
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </MFXTextField>
+                <VBox alignment="CENTER" layoutX="1060.0" layoutY="397.0" prefHeight="200.0" prefWidth="147.0">
+                    <children>
+                        <Label fx:id="sum_label" alignment="CENTER" prefHeight="21.0" prefWidth="43.0" text="sum" />
+                        <MFXButton fx:id="payBTN" onMouseClicked="#PayBTNClicked" prefHeight="38.0" prefWidth="81.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Pay" textFill="#979797" />
+                        <MFXButton fx:id="updateCartBTN" onAction="#UpdateCartBTNClicked" prefHeight="35.0" prefWidth="182.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Update my Cart" textFill="#979797" />
+                        <MFXButton fx:id="cancelBTN" onMouseClicked="#CancelBTNClicked" prefHeight="35.0" prefWidth="123.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Cancel" textFill="#979797" />
+                    </children>
+                </VBox>
+                <Label fx:id="error_label" layoutX="933.0" layoutY="598.0" prefHeight="17.0" prefWidth="293.0" text="Please Check your Errors" textFill="#eb0a0a" visible="false">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="order_pane4" prefHeight="646.0" prefWidth="1240.0" visible="false">
+            <children>
+                <VBox alignment="CENTER" layoutX="303.0" layoutY="187.0" prefHeight="273.0" prefWidth="614.0" spacing="20.0">
+                    <children>
+                        <Label prefHeight="60.0" prefWidth="525.0" text="We Recive Your Order!!!" textFill="#08ae13">
+                            <font>
+                                <Font size="45.0" />
+                            </font>
+                        </Label>
+                        <Label prefHeight="20.0" prefWidth="107.0" text="Order Number:" textFill="#979797">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <MFXTextField fx:id="order_num_field" alignment="CENTER" editable="false" prefHeight="50.0" prefWidth="168.0">
+                            <textFill>
+                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                            </textFill>
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                        </MFXTextField>
+                        <MFXButton fx:id="thankYouBTN" onAction="#ThankYouBTNClicked" prefHeight="40.0" prefWidth="203.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Thank you!" textFill="#979797">
+                            <font>
+                                <Font size="29.0" />
+                            </font>
+                        </MFXButton>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

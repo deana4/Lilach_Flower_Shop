@@ -66,7 +66,7 @@ public class CatalogController extends ParentClass{
     void initialize() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
         //get connection to the server
 
-        createf();
+        CatalogControl.getItemsList();
 
         int col = 0;
         int row = 0;

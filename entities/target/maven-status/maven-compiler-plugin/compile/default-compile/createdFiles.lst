@@ -1,4 +1,4 @@
-module-info.class
 il/entities/Flower.class
 il/entities/User.class
 il/entities/Message.class
+module-info.class

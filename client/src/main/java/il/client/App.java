@@ -20,7 +20,7 @@ public class App extends Application {
     private SimpleClient client = null;
 
     public static String ip = "127.0.0.1";
-    public static int port = 3010;
+    public static int port = 3000;
 
     @Override
     public void start(Stage stage) throws IOException {

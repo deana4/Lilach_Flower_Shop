@@ -32,9 +32,14 @@ public class LoginController extends ParentClass{
 
     private MainPageController main_page_holder;
 
-    private boolean isWorker, correctLogin;
+    private boolean isWorker;
+    private static boolean correctLogin;
 
     private int loginTries = 1;
+
+    public static void setCorrectLogin(boolean b) {
+        correctLogin = b;
+    }
 
 
     @FXML
@@ -51,11 +56,13 @@ public class LoginController extends ParentClass{
 
         }
         if(isWorker){
+            LogInControl.logIn(username, password, isWorker);
             //correctLogin = (send msg to server - to find (string = username-password)
             // for specific worker id in the worker table
             //  return 'true' if username found and the password matches the username's id found
             // don't return list of workers, just return true or false according to the result)
         } else {
+            LogInControl.logIn(username, password, isWorker);
             if(username.equals("Dean") && password.equals("Wello")){
                 correctLogin = true;
                 priority.setPriority_level(2);

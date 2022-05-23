@@ -5,20 +5,18 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
-import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class LoginController {
+public class LoginController extends ParentClass{
 
     @FXML
     private MFXToggleButton workerChecker;
@@ -34,18 +32,13 @@ public class LoginController {
 
     private MainPageController main_page_holder;
 
-    private boolean isWorker;
-
-    private static boolean correctLogin;
+    private boolean isWorker, correctLogin;
 
     private int loginTries = 1;
 
-    public static void setCorrectLogin(boolean correctLogin_){
-        correctLogin = correctLogin_;
-    }
 
     @FXML
-    void LoginSumbitted(ActionEvent event) throws IOException, JSONException {
+    void LoginSumbitted(ActionEvent event) throws IOException {
         String username = username_field.getText();
         String password = password_field.getText();
         boolean usernameFound,passwordFound;  //this vars will get '1' value if we found the correct values in the DB
@@ -57,22 +50,28 @@ public class LoginController {
         }else if(password.contains("-")){
 
         }
-        LogInControl.logIn(username, password, isWorker);
-
-
-        //runLater
-
-        System.out.println("");
+        if(isWorker){
+            //correctLogin = (send msg to server - to find (string = username-password)
+            // for specific worker id in the worker table
+            //  return 'true' if username found and the password matches the username's id found
+            // don't return list of workers, just return true or false according to the result)
+        } else {
+            if(username.equals("Dean") && password.equals("Wello")){
+                correctLogin = true;
+                priority.setPriority_level(2);
+                System.out.println("priority" + priority.getPriority_level());
+            }
+            //correctLogin = (send msg to server - to find (string = username-password)
+            // for specific client id in the client table
+            //  return 'true' if username found and the password matches the username's id found
+            // don't return list of clients, just return true or false according to the result)
+        }
         if(correctLogin){
             //goto var which represent the login option on the Main Controller and change it to 1.
             //change Main Controller AnchorPane to Catalog -> "maybe return to the last page the client was inside"
             MainPageController.LoginName = username;
             MainPageController.isLogin = true;
-            try {
-                this.main_page_holder.UpdateMainController();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            this.main_page_holder.UpdateMainController();
             this.loginTries = 1;
         }else {
             password_field.clear();
@@ -94,7 +93,6 @@ public class LoginController {
                 transition.play();
             }
         }
-
     }
 
     public Button getLoginBTN() {

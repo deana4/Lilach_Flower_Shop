@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -15,7 +16,6 @@
          <image>
             <Image url="@../../../../../../client/src/main/resources/il/client/images/DiscountPhoto/discount.jpg" />
          </image></ImageView>
-      <Button fx:id="update_product_button" layoutX="17.0" layoutY="233.0" mnemonicParsing="false" onAction="#UpdateProduct" prefHeight="25.0" prefWidth="80.0" text="Update" />
       <Button fx:id="atc_product_button" layoutX="120.0" layoutY="233.0" mnemonicParsing="false" onAction="#AddProductToCart" text="Add To Cart" />
       <Label fx:id="product_name" layoutX="57.0" layoutY="118.0" text="NAME" textFill="WHITE">
          <font>
@@ -44,5 +44,6 @@
             <Image url="@../../../../../../client/src/main/resources/il/client/images/DiscountPhoto/discount.jpg" />
          </image>
       </ImageView>
+      <MFXButton fx:id="update_product_button" disable="true" layoutX="30.0" layoutY="233.0" onAction="#UpdateProduct" styleClass="mybutton" stylesheets="@CSSfiles/Buttons.css" text="Update" visible="false" />
    </children>
 </AnchorPane>

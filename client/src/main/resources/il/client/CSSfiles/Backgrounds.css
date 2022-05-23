@@ -1,0 +1,25 @@
+.imageAnchor{
+    -fx-background-color: pink;
+    -fx-background-radius: 100em;
+    -fx-border-radius: 50%;
+}
+.scroll-pane{
+    -fx-background-color: transparent;
+    -fx-background-radius: 100em;
+    -fx-border-radius: 50%;
+}
+.Headers{
+    -fx-text-fill: white;
+    -fx-background-color: #979797;
+    -fx-background-radius: 250em;
+    -fx-border-radius: 90%;
+    -fx-alignment: center;
+}
+.mainAnchor{
+    -fx-background-color: white;
+    -fx-background-radius: 5em;
+    -fx-border-color: #979797;
+}
+.background-color{
+    -fx-background-color: white;
+}

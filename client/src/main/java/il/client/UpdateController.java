@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.concurrent.TimeUnit;
 
-public class UpdateController {
+public class UpdateController extends ParentClass{
 
     @FXML
     private Button submit_button;

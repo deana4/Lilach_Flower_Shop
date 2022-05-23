@@ -16,10 +16,6 @@
     -fx-max-height: 30px;
 }
 
-.background-color{
-    -fx-background-color: white;
-}
-
 .nav-buttons{
     -fx-background-color: transparent;
     -fx-border-radius: 60px;
@@ -70,34 +66,7 @@
     -fx-background-color: linear-gradient(to bottom right, lightsalmon, coral);
     -fx-text-fill: white;
 }
-/* */
 
-/*.nav-buttons {*/
-/*    -fx-skin: "com.sun.javafx.scene.control.skin.ButtonSkin";*/
-/*    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;*/
-/*    -fx-background-insets: 0 0 -1 0, 0, 1, 2;*/
-/*    -fx-background-radius: 5, 5, 4, 3;*/
-/*}*/
 
-.scroll-pane{
-    -fx-background-color: transparent;
-    -fx-background-radius: 100em;
-    -fx-border-radius: 50%;
-}
-.Headers{
-    -fx-text-fill: white;
-    -fx-background-color: #979797;
-    -fx-background-radius: 250em;
-    -fx-border-radius: 90%;
-    -fx-alignment: center;
-}
-.mainAnchor{
-    -fx-background-color: white;
-    -fx-background-radius: 5em;
-    -fx-border-color: #979797;
-}
-.ImageAnchor{
-    -fx-background-color: white;
-    -fx-background-radius: 5em;
-}
+
 

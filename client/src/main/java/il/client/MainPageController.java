@@ -9,6 +9,7 @@ import il.client.DiffClasses.Priority;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXSlider;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,8 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.json.JSONException;
+
+
 
 public class MainPageController extends ParentClass{
     @FXML
@@ -95,15 +98,34 @@ public class MainPageController extends ParentClass{
         controller.setMain_controller(this);
         this.main_first_load_pane.getChildren().addAll(root);
     }
+
     @FXML
     void CatalogBTNClicked(ActionEvent event) throws IOException {
-        this.main_first_load_pane.getChildren().clear();
-        FXMLLoader homeLoader = new FXMLLoader();
-        URL home_var = getClass().getResource("Catalog.fxml");
-        homeLoader.setLocation(home_var);
-        Parent home_root = homeLoader.load();
-        CatalogController home_controller = homeLoader.getController();
-        this.main_first_load_pane.getChildren().addAll(home_root);
+//        this.main_first_load_pane.getChildren().clear();
+//        FXMLLoader homeLoader = new FXMLLoader();
+//        URL home_var = getClass().getResource("Catalog.fxml");
+//        homeLoader.setLocation(home_var);
+//        Parent home_root = homeLoader.load();
+//        CatalogController home_controller = homeLoader.getController();
+//        this.main_first_load_pane.getChildren().addAll(home_root);
+
+
+        Platform.runLater(()->{
+                    this.main_first_load_pane.getChildren().clear();
+                    FXMLLoader homeLoader = new FXMLLoader();
+                    URL home_var = getClass().getResource("Catalog.fxml");
+                    homeLoader.setLocation(home_var);
+                    Parent home_root = null;
+                    try {
+                        home_root = homeLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    CatalogController home_controller = homeLoader.getController();
+                    this.main_first_load_pane.getChildren().addAll(home_root);
+                }
+
+        );
     }
 
     @FXML

@@ -5,8 +5,7 @@ package il.client;
 import il.client.ocsf.AbstractClient;
 import il.entities.Flower;
 import il.entities.Message;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.*;
 
@@ -18,8 +17,6 @@ public class SimpleClient extends AbstractClient {
 		super(host, port);
 	}
 
-	private String lastMessage;
-
 	@Override
 	protected void handleMessageFromServer(Object msg){
 		Message message = (Message) msg;
@@ -28,8 +25,8 @@ public class SimpleClient extends AbstractClient {
 
 		if(message.getMessage().equals("item catalog list")){
 			System.out.println("get Flower object!");
-			CatalogController.setFlowerlist(message.getListItem());
-			return;
+			List<Flower> items = message.getListItem();
+			EventBus.getDefault().post(new CatalogItemsEvent(items));
 		}
 
 		if(message.getMessage().equals("result login")){

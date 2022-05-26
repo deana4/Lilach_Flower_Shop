@@ -27,6 +27,7 @@
                         <TableColumn fx:id="table_Column_id" editable="false" prefWidth="98.0" sortType="DESCENDING" text="ID" />
                         <TableColumn fx:id="table_Column_name" editable="false" prefWidth="95.0" sortable="false" text="Name" />
                         <TableColumn fx:id="table_Column_price" editable="false" prefWidth="100.0" sortable="false" text="Price" />
+                        <TableColumn fx:id="table_Column_amount" editable="false" prefWidth="98.0" sortType="DESCENDING" text="Amount" />
                      </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -127,7 +127,7 @@ public class ProductView extends ParentClass{
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("AddToCart.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("Cart.fxml"));
         Parent root = fxmlLoader.load();    // need to load before using controller.
         AddToCartController controller = fxmlLoader.getController();
         Scene scene = new Scene(root, 330, 31);

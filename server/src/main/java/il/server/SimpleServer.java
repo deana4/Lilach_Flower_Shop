@@ -67,7 +67,7 @@ public class SimpleServer extends AbstractServer {
                 System.out.println("send Flowers to catalog");
             }
 
-            if(message.getMessage().equals("setPrice")){
+            if(message.getMessage().equals("setPriceItem")){
                 int id = message.getIdItem();
                 double price = message.getNewPrice();
                 CatalogControl.setPrice(id, price);
@@ -78,13 +78,9 @@ public class SimpleServer extends AbstractServer {
                 LoginControl.setToDiactive(username);
             }
 
-//            if(message.getMessage().equals("setImages")){
-//                int id = cmd.getInt("id");
-//                String bytes64 = cmd.getString("newImage");
-//                byte[] bFile = Base64.getDecoder().decode(bytes64);
-//                CatalogControl.setImage(id, bFile);
-//            }
-
+            if(message.getMessage().equals("setImagesItem")){
+                CatalogControl.setImage(message.getIdProduct(), message.getbFile());
+            }
 
             if(message.getMessage().equals("register")){
                 String username = message.getUsername();
@@ -117,6 +113,18 @@ public class SimpleServer extends AbstractServer {
 
                 sendMessage.setMessage("result register");
                 client.sendToClient(sendMessage);
+            }
+
+            if(message.getMessage().equals("setNameItem")){
+                CatalogControl.setName(message.getIdProduct(), message.getNameProduct());
+            }
+
+            if(message.getMessage().equals("setSaleItem")){
+                CatalogControl.setSale(message.getIdProduct(), message.isSale(), message.getDiscountPer());
+            }
+
+            if(message.getMessage().equals("deleteItem")){
+                CatalogControl.deleteItem(message.getIdProduct());
             }
 
 

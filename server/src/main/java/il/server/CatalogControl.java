@@ -58,4 +58,33 @@ public class CatalogControl {
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
     }
+
+    public static void setName(int id, String newName) throws IOException {
+        testDB.openSssion();
+        Flower a = testDB.session.get(Flower.class, id);
+        a.setName(newName);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
+    public static void setSale(int id, boolean sale, double discountPer) throws IOException {
+        testDB.openSssion();
+        Flower a = testDB.session.get(Flower.class, id);
+        a.setSale(sale);
+        a.setDiscount_perc(discountPer);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
+    public static void deleteItem(int id) throws IOException {
+        testDB.openSssion();
+        Flower a = testDB.session.get(Flower.class, id);
+        testDB.session.delete(a);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
 }

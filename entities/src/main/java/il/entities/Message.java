@@ -39,7 +39,60 @@ public class Message implements Serializable {
     int idItem;
     double newPrice;
 
+    //setProduct
+    byte[] bFile;
+    double price;
+    String nameProduct;
+    int idProduct;
+    boolean sale;
+    double discountPer;
 
+    public boolean isSale() {
+        return sale;
+    }
+
+    public void setSale(boolean sale) {
+        this.sale = sale;
+    }
+
+    public double getDiscountPer() {
+        return discountPer;
+    }
+
+    public void setDiscountPer(double discountPer) {
+        this.discountPer = discountPer;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getNameProduct() {
+        return nameProduct;
+    }
+
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
+    }
+
+    public int getIdProduct() {
+        return idProduct;
+    }
+
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
+    }
+    public byte[] getbFile() {
+        return bFile;
+    }
+
+    public void setbFile(byte[] bFile) {
+        this.bFile = bFile;
+    }
 
     public boolean isLoginStatus() {
         return loginStatus;

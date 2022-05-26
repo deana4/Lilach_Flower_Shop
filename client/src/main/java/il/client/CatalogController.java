@@ -83,24 +83,22 @@ public class CatalogController extends ParentClass{
             controller.setCat_controller(this);
             controller.setData(flowerlist.get(i));
 
-            if(col==2){
+            if(col==3){
                 col=0;
                 row++;
             }
-//            scrollPane.setContent(node);
-            GridPane.setConstraints(node,row,col++);
-//            GridPane.setColumnIndex(node,i);
-//            GridPane.setRowIndex();
+
+            GridPane.setConstraints(node,col++,row);
             gridPane.getChildren().addAll(node);
 
-//            gridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-//            gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-//            gridPane.setMaxWidth(Region.USE_COMPUTED_SIZE);
-//            gridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-//            gridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
-//            gridPane.setMaxHeight(Region.USE_COMPUTED_SIZE);
+            gridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
+            gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+            gridPane.setMaxWidth(Region.USE_COMPUTED_SIZE);
+            gridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
+            gridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
+            gridPane.setMaxHeight(Region.USE_COMPUTED_SIZE);
 
-//            GridPane.setMargin(node, new Insets(10));
+            GridPane.setMargin(node, new Insets(10));
         }
         scrollPane.setContent(this.gridPane);
     }

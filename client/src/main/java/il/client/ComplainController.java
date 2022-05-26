@@ -1,0 +1,63 @@
+package il.client;
+
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
+
+public class ComplainController {
+
+    @FXML
+    private MFXButton cancelBTN;
+
+    @FXML
+    private MFXButton clearBTN;
+
+    @FXML
+    private MFXButton closeComplainBTN;
+
+    @FXML
+    private AnchorPane compain_ancorepane1;
+
+    @FXML
+    private AnchorPane complain_ancorpane2;
+
+    @FXML
+    private AnchorPane complain_ancorpane3;
+
+    @FXML
+    private TextArea complain_textarea;
+
+    @FXML
+    private MFXTextField order_number_field;
+
+    @FXML
+    private MFXComboBox<?> problem_chooser;
+
+    @FXML
+    private MFXButton sendBTN;
+
+    @FXML
+    void CancelBTNClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void ClearBTNClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void CloseComlainBTNClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void SendBTNClicked(ActionEvent event) {
+
+    }
+
+}

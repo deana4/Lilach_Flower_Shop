@@ -1,6 +1,7 @@
 package il.client;
 
 import il.entities.Flower;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -44,6 +45,7 @@ public class CatalogController extends ParentClass{
 
     @Subscribe
     public void setFlowerlist(CatalogItemsEvent event) throws IOException {
+        Platform.runLater(()->{
         flowerlist = event.getItems();
         int col = 0;
         int row = 0;
@@ -52,11 +54,20 @@ public class CatalogController extends ParentClass{
         for (Flower flower : flowerlist) {
             my_fxml_loader = new FXMLLoader();
             my_fxml_loader.setLocation(path);//change secondary.fxml to the fxml file from dean and liran
-            Node node = my_fxml_loader.load();
+            Node node = null;
+            try {
+                node = my_fxml_loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             ProductView controller = my_fxml_loader.getController();
             controller.setCat_controller(this);
-            controller.setData(flower);
+            try {
+                controller.setData(flower);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             if (col == 2) {
                 col = 0;
@@ -66,6 +77,7 @@ public class CatalogController extends ParentClass{
             gridPane.getChildren().addAll(node);
         }
         scrollPane.setContent(this.gridPane);
+        });
     }
 
     @FXML  // This method is called by the FXMLLoader when initialization is complete

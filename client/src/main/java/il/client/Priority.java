@@ -1,4 +1,4 @@
-package il.client.DiffClasses;
+package il.client;
 
 public class Priority {
     int priority_level; //1- guest, 2-worker, 3-manager, 4-Owner

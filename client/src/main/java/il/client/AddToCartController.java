@@ -18,6 +18,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class AddToCartController{
@@ -91,6 +92,7 @@ public class AddToCartController{
         table_Column_amount.setCellValueFactory(new PropertyValueFactory<CartItem,Integer>("item_amount"));
         table_Column_id.setCellValueFactory(new PropertyValueFactory<CartItem,Integer>("item_id"));
     }
+
     public void addItemToTable(String name, String price, int id, int amount){
         CartItem item = new CartItem(name,price,id,amount);
         this.items.addAll(item);
@@ -106,8 +108,6 @@ public class AddToCartController{
 //        Parent root = fxmlLoader.load();
 //        OrderController controller = fxmlLoader.getController();
 //        controller.setCart_controller(this);
-
-        this.sum_field.setText("555");
         this.main_page_holder.LoadOrderPage();
         // main_page_holder.getMain_first_load_pane().getChildren().addAll(root);
     }

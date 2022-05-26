@@ -3,7 +3,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -13,7 +12,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="726.0" prefWidth="1240.0" styleClass="background-color" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.MainPageController">
+<AnchorPane prefHeight="726.0" prefWidth="1240.0" styleClass="background-color" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.MainPageController">
    <children>
       <AnchorPane fx:id="main_first_load_pane" layoutY="80.0" prefHeight="646.0" prefWidth="1240.0">
          <children>
@@ -25,7 +24,7 @@
          </children></AnchorPane>
       <BorderPane fx:id="img_border" prefHeight="80.0" prefWidth="140.0" styleClass="background-color">
          <center>
-            <ImageView fx:id="logolilah" fitHeight="74.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="logolilah" fitHeight="74.0" fitWidth="127.0" onMouseClicked="#Refresh" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@images/logo.jpeg" />
                </image>
@@ -54,9 +53,6 @@
                </textFill>
             </MFXTextField>
          </children>
-         <padding>
-            <Insets left="100.0" />
-         </padding>
       </AnchorPane>
    </children>
    <stylesheets>

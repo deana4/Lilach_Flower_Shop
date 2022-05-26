@@ -14,7 +14,7 @@ public class CatalogControl {
     public static void getItemsList() throws IOException, ClassNotFoundException, InterruptedException {
         Message message = new Message("getCatalogItems");
         SimpleClient.getClient().sendToServer(message);
-        //TimeUnit.SECONDS.sleep(3);//need to wait to the server, need to use lock
+        TimeUnit.SECONDS.sleep(3);//need to wait to the server, need to use lock
     }
 
     public static void updateImage(String url, int id) throws IOException {

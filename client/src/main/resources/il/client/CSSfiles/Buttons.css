@@ -51,7 +51,7 @@
     -fx-background-color: linear-gradient(to bottom right, seashell, lightseagreen);
     -fx-background-insets: -1.4, 0, 1, 2;
     -fx-background-radius:  8.5, 5, 4, 3;
-    -fx-text-fill: white;
+    -fx-text-fill: Black;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
@@ -65,6 +65,13 @@
 .logout-btn:hover{
     -fx-background-color: linear-gradient(to bottom right, lightsalmon, coral);
     -fx-text-fill: white;
+}
+
+
+.refresh-btn{
+    -fx-background-color: linear-gradient(to bottom right, lightblue, lightseagreen);
+    -fx-border-radius: 100px;
+    -fx-background-radius: 5em;
 }
 
 

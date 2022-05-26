@@ -11,7 +11,6 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="compain_ancorepane1" prefHeight="646.0" prefWidth="1090.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ComplainController">
    <children>
       <AnchorPane fx:id="complain_ancorpane2" prefHeight="646.0" prefWidth="1090.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">

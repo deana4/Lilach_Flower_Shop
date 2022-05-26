@@ -124,7 +124,7 @@
                         <Font size="15.0" />
                      </font>
                   </MFXButton>
-                  <MFXButton fx:id="cancelBTN" onAction="#CncelBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Cancel" textFill="#979797">
+                  <MFXButton fx:id="cancelBTN" onAction="#CancelBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Cancel" textFill="#979797">
                      <font>
                         <Font size="15.0" />
                      </font>

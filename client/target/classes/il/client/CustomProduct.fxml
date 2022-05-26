@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import io.github.palexdev.materialfx.controls.MFXSlider?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="646.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CustomProductController">
+   <children>
+      <AnchorPane prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">
+         <children>
+            <AnchorPane fx:id="side_pick_ancorepane" layoutX="921.0" layoutY="120.0" opacity="0.75" prefHeight="407.0" prefWidth="412.0" styleClass="imageAnchor" stylesheets="@CSSfiles/Backgrounds.css" />
+            <MFXScrollPane fx:id="scroll_pane" layoutX="335.0" layoutY="24.0" prefHeight="615.0" prefWidth="578.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">
+               <content>
+                  <GridPane fx:id="grid_pane" alignment="CENTER" hgap="10.0" prefHeight="611.0" prefWidth="575.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" vgap="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="626.0" minWidth="10.0" prefWidth="379.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="626.0" minWidth="10.0" prefWidth="379.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="601.0" minHeight="10.0" prefHeight="601.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="501.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <Label fx:id="no_items_label" alignment="CENTER" prefHeight="56.0" prefWidth="452.0" text="No Items to show" textFill="#e12a05">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </content>
+            </MFXScrollPane>
+            <HBox alignment="CENTER" layoutX="49.0" layoutY="145.0" prefHeight="40.0" prefWidth="253.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="131.0" text="Min Price range:" textFill="#979797">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <MFXSlider fx:id="min_price_slider" max="1000.0" popupSide="OTHER_SIDE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="49.0" layoutY="206.0" prefHeight="40.0" prefWidth="253.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="131.0" text="Max Price range:" textFill="#979797">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <MFXSlider fx:id="max_price_slider" max="1000.0" popupSide="OTHER_SIDE" value="1000.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="49.0" layoutY="266.0" prefHeight="40.0" prefWidth="253.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="131.0" text="Type:" textFill="#979797">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <MFXComboBox fx:id="type_chooser" prefHeight="40.0" prefWidth="108.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="49.0" layoutY="335.0" prefHeight="40.0" prefWidth="253.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="131.0" text="Dominante Color:" textFill="#979797">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ColorPicker fx:id="dominante_color_chooser" />
+               </children>
+            </HBox>
+            <MFXToggleButton fx:id="active_color_chooser" layoutX="35.0" layoutY="375.0" onMouseClicked="#ActiveColorClicked" prefHeight="41.0" prefWidth="253.0" text="Active Dominante Color pick" textFill="#979797" />
+            <VBox alignment="TOP_CENTER" layoutX="124.0" layoutY="445.0" prefHeight="149.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <MFXButton fx:id="iAmDoneBTN" onAction="#IAmDoneBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="I am done" textFill="#979797">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </MFXButton>
+                  <Label text="Estimated cost:" textFill="#979797">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="sum_label" text="sum" />
+                  <MFXButton fx:id="addToCartBTN" onAction="#AddToCartBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Add to cart" textFill="#979797">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton fx:id="cancelBTN" onAction="#CancelBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Cancel" textFill="#979797">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </MFXButton>
+               </children>
+            </VBox>
+            <Label layoutX="49.0" layoutY="88.0" prefHeight="32.0" prefWidth="253.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Style your own product">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

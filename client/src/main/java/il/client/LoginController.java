@@ -1,6 +1,5 @@
 package il.client;
 
-import il.client.MainPageController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -13,8 +12,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class LoginController extends ParentClass{
 
@@ -57,16 +54,21 @@ public class LoginController extends ParentClass{
         }
         if(isWorker){
             LogInControl.logIn(username, password, isWorker);
+//            UserClient.getInstance().setUserByServer(UserClient.getInstance().getUserServer());
             //correctLogin = (send msg to server - to find (string = username-password)
             // for specific worker id in the worker table
             //  return 'true' if username found and the password matches the username's id found
             // don't return list of workers, just return true or false according to the result)
         } else {
             LogInControl.logIn(username, password, isWorker);
+//            UserClient.getInstance().setUserByServer(UserClient.getInstance().getUserServer());
             if(username.equals("Dean") && password.equals("Wello")){
                 correctLogin = true;
-                priority.setPriority_level(2);
-                System.out.println("priority" + priority.getPriority_level());
+                System.out.println("priority" + UserClient.getInstance().getPriority());
+                UserClient.getInstance().TestLoginFunction(1,"Dean","Wello", "4580458045804580", "Dean Amar", "Super Worker", 1000, "Deana1704@gmail.com");
+                if(UserClient.getInstance().getPosition().equals("Super Worker")){
+                    UserClient.getInstance().setPriority(2);
+                }
             }
             //correctLogin = (send msg to server - to find (string = username-password)
             // for specific client id in the client table
@@ -78,6 +80,7 @@ public class LoginController extends ParentClass{
             //change Main Controller AnchorPane to Catalog -> "maybe return to the last page the client was inside"
             MainPageController.LoginName = username;
             MainPageController.isLogin = true;
+            MainPageController.getInstance().CatalogRefresh(); //Catalog, MyAccount, Cart
             this.main_page_holder.UpdateMainController();
             this.loginTries = 1;
         }else {

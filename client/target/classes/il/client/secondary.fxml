@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-radius: 15; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PopWindow">
+   <children>
+      <VBox layoutX="63.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="48.0" prefWidth="100.0">
+               <children>
+                  <Label prefHeight="49.0" prefWidth="49.0" text="Name:" />
+                  <Label fx:id="name" prefHeight="51.0" prefWidth="51.0" text="Label" />
+               </children>
+            </HBox>
+            <HBox prefHeight="58.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="name1" prefHeight="49.0" prefWidth="49.0" text="Price:" />
+                  <Label fx:id="price" prefHeight="51.0" prefWidth="51.0" text="Label" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

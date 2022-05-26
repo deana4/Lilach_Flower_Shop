@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
+
 public class ComplainController {
 
     @FXML
@@ -55,9 +57,8 @@ public class ComplainController {
     }
 
     @FXML
-    void ClearBTNClicked(ActionEvent event) {
+    void ClearBTNClicked(ActionEvent event) throws IOException {
         this.complain_textarea.setText("");
-
     }
 
     @FXML

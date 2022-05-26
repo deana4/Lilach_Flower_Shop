@@ -2,8 +2,7 @@ package il.client; /**
  * Sample Skeleton for 'ProductView.fxml' Controller Class
  */
 
-
-import il.client.DiffClasses.Priority;
+import il.client.UserClient;
 import il.entities.Flower;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
@@ -16,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -74,14 +72,15 @@ public class ProductView extends ParentClass{
 
     @FXML
     void initialize(){
-        switch(priority.getPriority_level()){
+        System.out.println(UserClient.getInstance().getPriority());
+        switch(UserClient.getInstance().getPriority()){
             case 1: {
                 this.update_product_button.setDisable(true);
                 this.update_product_button.setVisible(false);
             } break;
             case 2: {
-                this.update_product_button.setVisible(true);
                 this.update_product_button.setDisable(false);
+                this.update_product_button.setVisible(true);
             } break;
             case 3: {
 

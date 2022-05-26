@@ -171,6 +171,9 @@ public class OrderController {
     private Label error_label;
 
     @FXML
+    private MFXComboBox<String> store_chooser;
+
+    @FXML
     void initialize() throws IOException {
         for(int i=10; i<=20; i++){
             this.time_choose.getItems().add(Integer.toString(i) + ":00");
@@ -184,6 +187,16 @@ public class OrderController {
         this.reciver_phone_choose.getItems().add("052");
         this.reciver_phone_choose.getItems().add("053");
         this.reciver_phone_choose.getItems().add("054");
+        this.store_chooser.getItems().add("Store 1");
+        this.store_chooser.getItems().add("Store 2");
+        this.store_chooser.getItems().add("Store 3");
+        this.store_chooser.getItems().add("Store 4");
+
+        //if the user registered to spesific store he can only order from this store!!!!!!!!!!!!!!!!!
+//        if(user.getplan()=="Store"){
+//            this.store_chooser.setValue(user.getStore());
+//            this.store_chooser.setDisable(true);
+//        }
 
         this.greeting_field.setWrapText(true);
         this.sum_label.setText("0.00"); //change acoording to the cart
@@ -204,12 +217,14 @@ public class OrderController {
     void PayBTNClicked(MouseEvent event) throws JSONException {
 
         //check correctness
+        int counter = 0;
         int counter_general = checkGeneralOrder();
         if(elseReciver){
             int counter_reciver = checkReciver();
             if(counter_reciver!=4){
                 this.error_label.setVisible(true);
-                return;
+                counter--;
+               // return;
             }
 //            else {
 //                System.out.println("because of else we accept");
@@ -220,7 +235,8 @@ public class OrderController {
             int counter_greeting = checkGreeting();
             if(counter_greeting!=1){
                 this.error_label.setVisible(true);
-                return;
+                counter--;
+                //return;
             }
 //            else {
 //                System.out.println("because of greeting we accept");
@@ -231,14 +247,15 @@ public class OrderController {
             int counter_delivery = checkDelivery();
             if(counter_delivery!=5){
                 this.error_label.setVisible(true);
-                return;
+                counter--;
+                //return;
             }
 //            else {
 //                System.out.println("because of delivery we accept");
 //                correctOrder();
 //            }
         }
-        if(counter_general!=7){
+        if(counter_general!=8 || counter!=0){
             this.error_label.setVisible(true);
             return;
         }
@@ -403,6 +420,7 @@ public class OrderController {
         toServer.put("order_date",date_time[0]);
         toServer.put("order_time", date_time[1]);
         toServer.put("sum",this.sum_label.getText());
+        toServer.put("store", this.store_chooser.getSelectedItem());
 
         if(elseReciver){
             toServer.put("else_reciver", true);
@@ -463,22 +481,26 @@ public class OrderController {
         //check space in the name (which means that full name entered to te text field) and that the private anf family names are at least with 2 chars
         //name can contain only A-z
         if(name.equals("Please enter your full name") || name.equals("Incorrect name") || name.equals("Name can contain A-z")){
-            field_to_check.setText("");
+            field_to_check.clear();
+            field_to_check.setPromptText("");
             return 0;
         }
         if(!name.contains(" ")){
-            field_to_check.setText("Please enter your full name");
+            field_to_check.clear();
+            field_to_check.setPromptText("Please enter your full name");
             return 0;
         }
         int space_index = name.indexOf(" ");
         if(space_index<=1 || space_index>=(name.length()-2)){
-            field_to_check.setText("Incorrect name");
+            field_to_check.clear();
+            field_to_check.setPromptText("Incorrect name");
             return 0;
         }
         char[] name_char = name.toCharArray();
         for(int i=0; i<name.length(); i++){
             if((name_char[i]<'A' || name_char[i]>'Z') && (name_char[i]<'a' || name_char[i]>'z') && (name_char[i] != ' ')){
-                field_to_check.setText("Name can contain A-z");
+                field_to_check.clear();
+                field_to_check.setPromptText("Name can contain A-z");
                 return 0;
             }
         }
@@ -488,13 +510,15 @@ public class OrderController {
     private int creditCardCheck (String creditCard){
         //checks the length (need to be 16 exactly) and chars (need to contain only digits)
         if(creditCard.length()!=16){
-            this.my_credit_card_field.setText("Incorrect Credit Card");
+            this.my_credit_card_field.clear();
+            this.my_credit_card_field.setPromptText("Incorrect Credit Card");
             return 0;
         }
         char[] credit_card = creditCard.toCharArray();
         for(int i=0; i<creditCard.length(); i++){
             if(credit_card[i]<'0' || credit_card[i]>'9'){
-                this.my_credit_card_field.setText("Incorrect Credit Card");
+                this.my_credit_card_field.clear();
+                this.my_credit_card_field.setPromptText("Incorrect Credit Card");
                 return 0;
             }
         }
@@ -510,13 +534,15 @@ public class OrderController {
             num_error++;
         }
         if (phone.length() != 7) {
-            field_to_check.setText("Incorrect phone number");
+            field_to_check.clear();
+            field_to_check.setPromptText("Incorrect phone number");
             num_error++;
         } else {
             char[] phone_number = phone.toCharArray();
             for (int i = 0; i < phone.length(); i++) {
                 if (phone_number[i] < '0' || phone_number[i] > '9') {
-                    field_to_check.setText("Incorrect phone number");
+                    field_to_check.clear();
+                    field_to_check.setPromptText("Incorrect phone number");
                     num_error++;
                 }
             }
@@ -530,35 +556,41 @@ public class OrderController {
         //check that there is a dot after the @
         //mail can contain only A-z/digits
         if(!mail.contains("@") || !mail.contains(".")){
-            field_to_check.setText("Please enter your full mail");
+            field_to_check.clear();
+            field_to_check.setPromptText("Please enter your full mail");
             return 0;
         }
         int at_index = mail.indexOf("@");
         if(at_index<=1 || at_index>=(mail.length()-2)){
-            field_to_check.setText("Incorrect mail");
+            field_to_check.clear();
+            field_to_check.setPromptText("Incorrect mail");
             return 0;
         }
         int dot_index = mail.indexOf(".");
         if(dot_index - at_index < 2){
-            field_to_check.setText("Incorrect mail");
+            field_to_check.clear();
+            field_to_check.setPromptText("Incorrect mail");
             return 0;
         }
         if(dot_index>=(mail.length()-2)){
-            field_to_check.setText("Incorrect mail");
+            field_to_check.clear();
+            field_to_check.setPromptText("Incorrect mail");
             return 0;
         }
         char[] mail_char = mail.toCharArray();
         //before the @
         for(int i=0; i<at_index; i++){
             if((mail_char[i]<'A' || mail_char[i]>'Z') && (mail_char[i]<'a' || mail_char[i]>'z') && (mail_char[i] < '0' || mail_char[i] > '9')){
-                field_to_check.setText("Mail can contain only A-z or digits");
+                field_to_check.clear();
+                field_to_check.setPromptText("Mail can contain only A-z or digits");
                 return 0;
             }
         }
         //after the @
         for(int i=at_index+1; i<mail_char.length; i++){
             if((mail_char[i]<'A' || mail_char[i]>'Z') && (mail_char[i]<'a' || mail_char[i]>'z') && (mail_char[i] != '.')){
-                field_to_check.setText("Incorrect mail");
+                field_to_check.clear();
+                field_to_check.setPromptText("Incorrect mail");
                 return 0;
             }
         }
@@ -583,10 +615,19 @@ public class OrderController {
         return 1;
     }
 
+    private int storeCheck(){
+        if(this.store_chooser.getValue()==null || this.store_chooser.getValue()=="No Store"){
+            this.store_chooser.setValue("No Store");
+            return 0;
+        }
+        return 1;
+    }
+
     private int greetingCheck(){
         System.out.println("greeting text "+this.greeting_field.getText());
         if(this.greeting_field.getText()==null || this.greeting_field.getText().equals("No greeting entered")||this.greeting_field.getText().equals("")){
-            this.greeting_field.setText("No greeting entered");
+            this.greeting_field.clear();
+            this.greeting_field.setPromptText("No greeting entered");
             return 0;
         }
         return 1;
@@ -596,35 +637,41 @@ public class OrderController {
         //length of street need to be at least 2. if there is a space it need to be at lest 2 chars before and at least 2 chars after
         //name can contain only A-z
         if(address.equals("")){
-            field_to_check.setText("Incorrect "+streetOrCity);
+            field_to_check.clear();
+            field_to_check.setPromptText("Incorrect "+streetOrCity);
             return 0;
         }
         if (address.contains("Please enter your ") || address.contains("Incorrect ") || address.contains(" can contain A-z")) {
-            field_to_check.setText("");
+            field_to_check.clear();
+            field_to_check.setPromptText("");
             return 0;
         }
         char[] address_char = address.toCharArray();
         if(!address.contains(" ")){
             if(address.length()<2){
-                field_to_check.setText("Incorrect "+streetOrCity);
+                field_to_check.clear();
+                field_to_check.setPromptText("Incorrect "+streetOrCity);
                 return 0;
             }
         }
         if (address.contains(" ")) {
             int space_index = address.indexOf(" ");
             if (space_index <= 1 || space_index >= (address.length() - 2)) {
-                field_to_check.setText("Incorrect "+streetOrCity);
+                field_to_check.clear();
+                field_to_check.setPromptText("Incorrect "+streetOrCity);
                 return 0;
             }
             if(address_char[space_index+1]==' '){
-                field_to_check.setText("Incorrect "+streetOrCity);
+                field_to_check.clear();
+                field_to_check.setPromptText("Incorrect "+streetOrCity);
                 return 0;
             }
 
         }
         for(int i=0; i<address.length(); i++){
             if((address_char[i]<'A' || address_char[i]>'Z') && (address_char[i]<'a' || address_char[i]>'z') && (address_char[i] != ' ')){
-                field_to_check.setText(streetOrCity+" can contain A-z");
+                field_to_check.clear();
+                field_to_check.setPromptText(streetOrCity+" can contain A-z");
                 return 0;
             }
         }
@@ -634,18 +681,21 @@ public class OrderController {
     private int homeCheck (String home, MFXTextField field_to_check) {
         //only digits and letters. digits befor letters
         if (field_to_check.getText() == null || home.equals("")) {
-            field_to_check.setText("Please enter your home number");
+            field_to_check.clear();
+            field_to_check.setPromptText("Please enter your home number");
             return 0;
         }
         if (home.equals("Please enter your home number") || home.equals("Incorrect home number") || home.equals("Home number can contain only A-z or digits")) {
-            field_to_check.setText("");
+            field_to_check.clear();
+            field_to_check.setPromptText("");
             return 0;
         }
 
         char[] home_char = home.toCharArray();
         for (int i = 0; i < home_char.length - 1; i++) {
             if ((home_char[i] < '0' || home_char[i] > '9')) {
-                field_to_check.setText("Incorrect home number");
+                field_to_check.clear();
+                field_to_check.setPromptText("Incorrect home number");
                 return 0;
             }
         }
@@ -654,12 +704,14 @@ public class OrderController {
             if ((home_char[last_char] < 'A' || home_char[last_char] > 'Z')
                     && (home_char[last_char] < 'a' || home_char[last_char] > 'z')
                     && (home_char[last_char] < '0' || home_char[last_char] > '9')) {
-                field_to_check.setText("Home number can contain only A-z or digits");
+                field_to_check.clear();
+                field_to_check.setPromptText("Home number can contain only A-z or digits");
                 return 0;
             }
         } else {
             if ((home_char[0] < '0' || home_char[0] > '9')) {
-                field_to_check.setText("Incorrect home number");
+                field_to_check.clear();
+                field_to_check.setPromptText("Incorrect home number");
                 return 0;
             }
         }
@@ -669,13 +721,15 @@ public class OrderController {
     private int apartmentFloorCheck (String number, MFXTextField field_to_check, String apartmentOrFloor){
         //checks the chars (need to contain only digits)
         if(field_to_check.getText()==null || field_to_check.getText().equals("")||field_to_check.getText().contains("Incorrect ")){
-            field_to_check.setText("Incorrect "+apartmentOrFloor);
+            field_to_check.clear();
+            field_to_check.setPromptText("Incorrect "+apartmentOrFloor);
             return 0;
         }
         char[] number_char = number.toCharArray();
         for(int i=0; i<number.length(); i++){
             if(number_char[i]<'0' || number_char[i]>'9'){
-                field_to_check.setText("Incorrect "+apartmentOrFloor);
+                field_to_check.clear();
+                field_to_check.setPromptText("Incorrect "+apartmentOrFloor);
                 return 0;
             }
         }
@@ -696,6 +750,8 @@ public class OrderController {
         System.out.println("because of date "+correct);
         correct += timeCheck();
         System.out.println("because of time "+correct);
+        correct += storeCheck();
+        System.out.println("because of store "+correct);
         System.out.println("total "+correct);
         return correct;
     }

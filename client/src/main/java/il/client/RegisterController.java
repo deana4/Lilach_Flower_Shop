@@ -68,6 +68,20 @@ public class RegisterController extends ParentClass{
             this.store_choose.getItems().add("Store 4");
         }
     }
+
+    @FXML
+    void PlanChooserClicked(MouseEvent event) {
+        if(this.plan_chooser.getValue()=="Store Wide Member" || this.plan_chooser.getValue()=="Yearly Member"){
+            this.store_choose.setValue("All Stores");
+            this.store_choose.setDisable(true);
+        }
+        else{
+            this.store_choose.setValue("Choose Store");
+            this.store_choose.setDisable(false);
+        }
+
+    }
+
     @FXML
     void RegisterBTNClicked(ActionEvent event) throws JSONException, IOException {
         int counter_of_correctness = 6;
@@ -78,7 +92,7 @@ public class RegisterController extends ParentClass{
         String credit_card = this.credit_card_tf.getText();
         String plan;
         if(this.plan_chooser.getValue()==null){
-            plan_chooser.setValue("Plan is not chosen");
+            plan_chooser.setValue("No plan");
             plan="";
             counter_of_correctness--;
         }
@@ -125,11 +139,17 @@ public class RegisterController extends ParentClass{
             counter_of_correctness--;
         }
 
-        if(counter_of_correctness == 6){
+        int store_check = storeCheck(this.plan_chooser.getValue());
+        if(store_check == 0){
+            counter_of_correctness--;
+        }
+
+        if(counter_of_correctness == 7){
             //send register details to the server
-            String[] registerDetails = {name, username, pass, id, credit_card, plan};
+            String store = this.store_choose.getValue();
+            String[] registerDetails = {name, username, pass, id, credit_card, plan,store};
 
-
+            //need to add store here
             RegisterControl.register(name, username, pass, id ,credit_card, plan);
 
 //            while(currectRegister<0){
@@ -150,7 +170,7 @@ public class RegisterController extends ParentClass{
         currectRegister=-1;
     }
 
-    /*change checkers*/
+    /*checkers*/
 
     private boolean[] isEmpty(String[] settings){
         boolean result[] = new boolean[5];
@@ -239,85 +259,18 @@ public class RegisterController extends ParentClass{
         return 1;
     }
 
-    /*end old checker*/
+    private int storeCheck(String plan) {
+        if (plan == "Specific Store Member") {
+            if (this.store_choose.getValue() == null || this.store_choose.getValue() == "No Store" || this.store_choose.getValue() == "All Stores" || this.store_choose.getValue() == "Choose Store") {
+                this.store_choose.setDisable(false);
+                this.store_choose.setValue("No Store");
+                return 0;
+            }
 
-//    private int nameCheck (String name, MFXTextField field_to_check){
-//        //check space in the name (which means that full name entered to te text field) and that the private anf family names are at least with 2 chars
-//        //name can contain only A-z
-//        if(name.equals("Please enter your full name") || name.equals("Incorrect name") || name.equals("Name can contain A-z")){
-//            field_to_check.setText("");
-//            return 0;
-//        }
-//        if(!name.contains(" ")){
-//            field_to_check.setText("Please enter your full name");
-//            return 0;
-//        }
-//        int space_index = name.indexOf(" ");
-//        if(space_index<=1 || space_index>=(name.length()-2)){
-//            field_to_check.setText("Incorrect name");
-//            return 0;
-//        }
-//        char[] name_char = name.toCharArray();
-//        for(int i=0; i<name.length(); i++){
-//            if((name_char[i]<'A' || name_char[i]>'Z') && (name_char[i]<'a' || name_char[i]>'z') && (name_char[i] != ' ')){
-//                field_to_check.setText("Name can contain A-z");
-//                return 0;
-//            }
-//        }
-//        return 1;
-//    }
-//
-//    private int idCheck (String id, MFXTextField field_to_check){
-//        //checks the length of the id (needs to be 9 exactly) and chars (need to contain only digits)
-//        if(id.length()!=9){
-//            this.name_tf.clear();
-//            this.id_tf.setPromptText("Incorrect ID");
-//            return 0;
-//        }
-//        char[] id_char = id.toCharArray();
-//        for(int i=0; i<id.length(); i++){
-//            if(id_char[i]<'0' || id_char[i]>'9'){
-//               this.name_tf.clear();
-//               this.id_tf.setPromptText("Incorrect ID");
-//               return 0;
-//           }
-//       }
-//        return 1;
-//    }
-//
-//    private int creditCardCheck (String creditCard){
-//        //checks the length (need to be 16 exactly) and chars (need to contain only digits)
-//        if(creditCard.length()!=16){
-//            this.credit_card_tf.setText("Incorrect Credit Card");
-//            return 0;
-//        }
-//        char[] credit_card = creditCard.toCharArray();
-//        for(int i=0; i<creditCard.length(); i++){
-//            if(credit_card[i]<'0' || credit_card[i]>'9'){
-//                this.credit_card_tf.setText("Incorrect Credit Card");
-//                return 0;
-//            }
-//        }
-//        return 1;
-//    }
-//
-//    private int checkRegister(){
-//        int correct = 0;
-//        correct += nameCheck(this.name_tf.getText(), this.name_tf);
-//        System.out.println("because of name "+correct);
-//        correct += creditCardCheck(this.credit_card_tf.getText());
-//        System.out.println("because of credit card "+correct);
-//        correct += idCheck(this.id_tf.getText());
-//        System.out.println("because of phone "+correct);
-//        correct += mailCheck(this.my_mail_field.getText(), this.my_mail_field);
-//        System.out.println("because of mail "+correct);
-//        correct += dateCheck();
-//        System.out.println("because of date "+correct);
-//        correct += timeCheck();
-//        System.out.println("because of time "+correct);
-//        System.out.println("total "+correct);
-//        return correct;
-//    }
+        }
+        return 1;
+    }
+
 
     public void setMain_controller(MainPageController main_controller) {
         this.main_controller = main_controller;

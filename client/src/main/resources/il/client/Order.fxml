@@ -43,7 +43,7 @@
                                 <Font size="15.0" />
                             </font>
                         </Label>
-                        <MFXComboBox fx:id="time_choose" borderGap="15.0" floatMode="BORDER" prefHeight="35.0" prefWidth="123.0">
+                        <MFXComboBox fx:id="time_choose" borderGap="15.0" floatMode="BORDER" prefHeight="40.0" prefWidth="123.0">
                             <textFill>
                                 <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                             </textFill>
@@ -245,6 +245,25 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
+            <Label layoutX="522.0" layoutY="20.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Order at Lilach">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Label>
+            <VBox layoutX="836.0" layoutY="96.0" prefHeight="60.0" prefWidth="118.0">
+               <children>
+                  <Label text="Which Store?" textFill="#979797">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <MFXComboBox fx:id="store_chooser" borderGap="15.0" floatMode="BORDER" prefHeight="40.0" prefWidth="123.0">
+                     <textFill>
+                        <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                     </textFill>
+                  </MFXComboBox>
+               </children>
+            </VBox>
             </children>
         </AnchorPane>
         <AnchorPane fx:id="order_pane4" prefHeight="646.0" prefWidth="1240.0" visible="false">

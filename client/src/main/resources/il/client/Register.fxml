@@ -59,7 +59,7 @@
                   </MFXTextField>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="3.0">
                      <children>
-                        <MFXComboBox fx:id="plan_chooser" borderGap="15.0" floatMode="BORDER" prefHeight="34.0" prefWidth="138.0" text="Choose Plan">
+                        <MFXComboBox fx:id="plan_chooser" borderGap="15.0" floatMode="BORDER" onScrollFinished="#PlanChooserClicked" prefHeight="34.0" prefWidth="138.0" text="Choose Plan">
                            <textFill>
                               <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                            </textFill>

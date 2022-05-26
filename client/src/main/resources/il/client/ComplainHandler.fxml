@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:id="complain_handler_ancorpane1" prefHeight="646.0" prefWidth="1090.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ComplainHandlerController">
+   <children>
+      <AnchorPane fx:id="complain_handler_ancorpane2" prefHeight="646.0" prefWidth="1090.0" />
+   </children>
+</AnchorPane>

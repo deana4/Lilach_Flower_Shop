@@ -40,6 +40,15 @@ public class ComplainController {
     @FXML
     private MFXButton sendBTN;
 
+    private MainPageController main_page_holder;
+
+    @FXML
+    void initialize(){
+        { //initialize combobox
+            this.complain_textarea.setPromptText("You can add more words here");
+        }
+    }
+
     @FXML
     void CancelBTNClicked(ActionEvent event) {
 
@@ -47,11 +56,12 @@ public class ComplainController {
 
     @FXML
     void ClearBTNClicked(ActionEvent event) {
+        this.complain_textarea.setText("");
 
     }
 
     @FXML
-    void CloseComlainBTNClicked(ActionEvent event) {
+    void CloseComplainBTNClicked(ActionEvent event) {
 
     }
 
@@ -60,4 +70,11 @@ public class ComplainController {
 
     }
 
+    /*set ang get*/
+
+    public void setMain_page_holder(MainPageController main_page_holder) {
+        this.main_page_holder = main_page_holder;
+    }
+
+    /* end set and get */
 }

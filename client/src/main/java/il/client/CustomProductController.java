@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
+import java.awt.event.MouseEvent;
+
 public class CustomProductController {
 
     @FXML
@@ -65,6 +67,11 @@ public class CustomProductController {
 
     @FXML
     void IAmDoneBTNClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void ActiveColorClicked(MouseEvent event) {
 
     }
 

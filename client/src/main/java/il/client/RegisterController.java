@@ -71,6 +71,9 @@ public class RegisterController extends ParentClass{
 
     @FXML
     void PlanChooserClicked(MouseEvent event) {
+        if(this.plan_chooser.getValue()==null){
+
+        }
         if(this.plan_chooser.getValue()=="Store Wide Member" || this.plan_chooser.getValue()=="Yearly Member"){
             this.store_choose.setValue("All Stores");
             this.store_choose.setDisable(true);

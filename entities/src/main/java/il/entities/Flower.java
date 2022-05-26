@@ -18,12 +18,16 @@ public class Flower implements Serializable {
     private double price;
     private boolean sale;
     private double discount_perc;
+    private String type;
+    private String color;
 
-    public Flower(String name, double price, boolean sale, double discount_perc){
+    public Flower(String name, double price, boolean sale, double discount_perc, String type, String color){
         this.name = name;
         this.price = price;
         this.sale = sale;
         this.discount_perc = discount_perc;
+        this.type = type;
+        this.color = color;
         this.image = null;
     }
 

@@ -86,7 +86,7 @@
                   <ColorPicker fx:id="dominante_color_chooser" />
                </children>
             </HBox>
-            <MFXToggleButton fx:id="active_color_chooser" layoutX="35.0" layoutY="375.0" prefHeight="41.0" prefWidth="253.0" text="Active Dominante Color pick" textFill="#979797" />
+            <MFXToggleButton fx:id="active_color_chooser" layoutX="35.0" layoutY="375.0" onMouseClicked="#ActiveColorClicked" prefHeight="41.0" prefWidth="253.0" text="Active Dominante Color pick" textFill="#979797" />
             <VBox alignment="TOP_CENTER" layoutX="124.0" layoutY="445.0" prefHeight="149.0" prefWidth="100.0" spacing="10.0">
                <children>
                   <MFXButton fx:id="iAmDoneBTN" onAction="#IAmDoneBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="I am done" textFill="#979797">

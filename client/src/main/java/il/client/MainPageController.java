@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import il.client.DiffClasses.Priority;
+import il.entities.Message;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXSlider;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -88,7 +89,6 @@ public class MainPageController extends ParentClass{
 
     @FXML
     void RegisterBTNClicked(ActionEvent event) throws IOException, JSONException {
-//        LoadPage("Register.fxml");
         this.main_first_load_pane.getChildren().clear();
         FXMLLoader fxmlLoader = new FXMLLoader();
         URL var = getClass().getResource("Register.fxml");
@@ -108,29 +108,15 @@ public class MainPageController extends ParentClass{
         Parent home_root = homeLoader.load();
         CatalogController home_controller = homeLoader.getController();
         this.main_first_load_pane.getChildren().addAll(home_root);
-
-//
-//        Platform.runLater(()->{
-//                    this.main_first_load_pane.getChildren().clear();
-//                    FXMLLoader homeLoader = new FXMLLoader();
-//                    URL home_var = getClass().getResource("Catalog.fxml");
-//                    homeLoader.setLocation(home_var);
-//                    Parent home_root = null;
-//                    try {
-//                        home_root = homeLoader.load();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    CatalogController home_controller = homeLoader.getController();
-//                    this.main_first_load_pane.getChildren().addAll(home_root);
-//                }
-//
-//        );
     }
+
+
+
 
     @FXML
     void LogoutBTNClicked(ActionEvent event) throws IOException {
         {
+            LogInControl.logout(LoginName);
             this.login_btn.setVisible(true);
             this.register_btn.setVisible(true);
             this.user_wellcome.setVisible(false);

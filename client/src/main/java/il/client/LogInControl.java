@@ -19,4 +19,12 @@ public class LogInControl{
 
         SimpleClient.getClient().sendToServer(message);
     }
+
+
+    public static void logout(String username) throws IOException {
+        Message message = new Message("logout");
+        message.setUsername(username);
+
+        SimpleClient.getClient().sendToServer(message);
+    }
 }

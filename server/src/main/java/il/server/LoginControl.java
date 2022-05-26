@@ -38,4 +38,14 @@ public class LoginControl {
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
     }
+
+    public static void setToDiactive(String username){
+        testDB.openSssion();
+        User user = testDB.session.get(User.class, username);
+        user.setLogin(false);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
 }

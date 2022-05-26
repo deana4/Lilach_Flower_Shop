@@ -47,6 +47,7 @@ public class SimpleServer extends AbstractServer {
 
                     sendMessage.setMessage("result login");
                     sendMessage.setLoginStatus(true);
+                    sendMessage.setUsername(username);
                     sendMessage.setLoginResult("login was successful");
                     client.sendToClient(sendMessage);
                 }
@@ -59,18 +60,24 @@ public class SimpleServer extends AbstractServer {
                 }
             }
 
-
             if (message.getMessage().equals("getCatalogItems")) {
                 sendMessage.setMessage("item catalog list");
                 sendMessage.setListItem((LinkedList<Flower>) CatalogControl.getAllItems());
                 client.sendToClient(sendMessage);
                 System.out.println("send Flowers to catalog");
             }
+
             if(message.getMessage().equals("setPrice")){
                 int id = message.getIdItem();
                 double price = message.getNewPrice();
                 CatalogControl.setPrice(id, price);
             }
+
+            if(message.getMessage().equals("logout")){
+                String username = message.getUsername();
+                LoginControl.setToDiactive(username);
+            }
+
 //            if(message.getMessage().equals("setImages")){
 //                int id = cmd.getInt("id");
 //                String bytes64 = cmd.getString("newImage");

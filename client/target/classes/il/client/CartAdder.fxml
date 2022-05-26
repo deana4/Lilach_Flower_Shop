@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXRectangleToggleNode?>
+<?import io.github.palexdev.materialfx.controls.MFXSlider?>
+<?import io.github.palexdev.materialfx.dialogs.MFXGenericDialog?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<MFXGenericDialog maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="211.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CartAdderController">
+   <center>
+      <AnchorPane prefHeight="168.0" prefWidth="321.0" BorderPane.alignment="CENTER">
+         <children>
+            <MFXRectangleToggleNode fx:id="add_to_cart_toggle" layoutX="110.0" layoutY="34.0" onAction="#ToggleActivated" prefHeight="31.0" prefWidth="36.0" text="Add To Cart" textFill="#9e9e9e" />
+            <MFXSlider fx:id="amount_chooser" layoutX="67.0" layoutY="97.0" max="50.0" prefHeight="35.0" prefWidth="174.0" showMajorTicks="true" showMinorTicks="true" value="1.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</MFXGenericDialog>

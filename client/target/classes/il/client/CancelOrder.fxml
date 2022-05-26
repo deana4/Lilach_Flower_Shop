@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="cancel_order_anchorpane1" prefHeight="646.0" prefWidth="1090.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CancelOrderController">
+   <children>
+      <AnchorPane fx:id="cancel_order_anchorpane2" prefHeight="646.0" prefWidth="1090.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">
+         <children>
+            <Label layoutX="380.0" layoutY="141.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Canceling Order Number">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <VBox alignment="TOP_CENTER" layoutX="379.0" layoutY="216.0" prefHeight="200.0" prefWidth="325.0" spacing="30.0">
+               <children>
+                  <MFXTextField fx:id="order_num_filed" editable="false" text="order num">
+                     <textFill>
+                        <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                     </textFill>
+                  </MFXTextField>
+                  <Label text="Are you sure?" textFill="#979797">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="refund_status_label" text="refund status" textFill="#da0c0c">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="52.0" prefWidth="206.0" spacing="10.0">
+                     <children>
+                        <MFXButton fx:id="yesBTN" onAction="#YesBTNClicked" prefHeight="52.0" prefWidth="168.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Yes" textFill="#979797">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton fx:id="noBTN" onAction="#NoBTNClicked" prefHeight="52.0" prefWidth="168.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="No" textFill="#979797">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

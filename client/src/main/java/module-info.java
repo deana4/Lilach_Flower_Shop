@@ -9,4 +9,6 @@ module il.client {
 
     opens il.client to javafx.fxml;
     exports il.client;
+    exports il.client.events;
+    opens il.client.events to javafx.fxml;
 }

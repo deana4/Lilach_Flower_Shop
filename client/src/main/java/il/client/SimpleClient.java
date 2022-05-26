@@ -2,6 +2,8 @@ package il.client;
 
 
 
+import il.client.events.CatalogItemsEvent;
+import il.client.events.RegisterEvent;
 import il.client.ocsf.AbstractClient;
 import il.entities.Flower;
 import il.entities.Message;
@@ -40,10 +42,7 @@ public class SimpleClient extends AbstractClient {
 		}
 
 		if(message.getMessage().equals("result register")){
-			if(message.isRegisterStatus()==true)
-				RegisterController.setCurrectRegister(1);
-			else
-				RegisterController.setCurrectRegister(0);
+			EventBus.getDefault().post(new RegisterEvent(message.isRegisterStatus(), message.getRegisterResult()));
 		}
 
 	}

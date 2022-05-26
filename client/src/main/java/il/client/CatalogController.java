@@ -1,5 +1,6 @@
 package il.client;
 
+import il.client.events.CatalogItemsEvent;
 import il.entities.Flower;
 import javafx.application.Platform;
 import javafx.fxml.FXML;

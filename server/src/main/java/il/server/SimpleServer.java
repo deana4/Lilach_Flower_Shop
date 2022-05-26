@@ -90,8 +90,11 @@ public class SimpleServer extends AbstractServer {
                 System.out.println("get register request:" + username);
                 boolean resultRegister = RegisterControl.register(newUser);
 
+
+
                 sendMessage.setMessage("result register");
                 sendMessage.setRegisterStatus(resultRegister);
+                sendMessage.setRegisterResult("add result");
                 client.sendToClient(sendMessage);
             }
 

@@ -18,7 +18,7 @@ public class Message implements Serializable {
 
 
 
-    //login/register
+    //login
     String username;
     String id;
     String pass;
@@ -26,11 +26,27 @@ public class Message implements Serializable {
     String credit_card;
     String plan;
     String name;
+
+
+    //register
     boolean registerStatus;
+
+
+    String registerResult;
 
     //setPrice
     int idItem;
     double newPrice;
+
+
+    public String getRegisterResult() {
+        return registerResult;
+    }
+
+    public void setRegisterResult(String registerResult) {
+        this.registerResult = registerResult;
+    }
+
 
 
     public boolean isRegisterStatus() {

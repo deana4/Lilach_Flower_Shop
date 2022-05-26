@@ -1,9 +1,11 @@
 package il.client;
 
+import il.client.events.RegisterEvent;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.enums.FloatMode;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +13,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -61,8 +65,35 @@ public class RegisterController extends ParentClass{
             this.plan_chooser.getItems().add("Yearly Member");
         }
     }
+
+    @Subscribe
+    public void registerComplite(RegisterEvent event){
+        Platform.runLater(()->{
+            if(event.isStatusRegister()){
+                System.out.println("you register sucssesfuly");
+                this.errorWarning.setVisible(false);
+                //move to the login page
+
+                try {
+                    this.main_controller.LoadLoginPage();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            else{
+                String warning = event.getResult();//this string has the warning to show to the client
+                System.out.println(warning);
+            }
+        });
+
+
+
+    }
+
+
     @FXML
     void RegisterBTNClicked(ActionEvent event) throws JSONException, IOException {
+        EventBus.getDefault().register(this);
         int counter_of_correctness = 6;
         String name = this.name_tf.getText();
         String username = this.username_tf.getText();
@@ -118,22 +149,7 @@ public class RegisterController extends ParentClass{
 
         if(counter_of_correctness == 6){
             //send register details to the server
-            String[] registerDetails = {name, username, pass, id, credit_card, plan};
-
-
             RegisterControl.register(name, username, pass, id ,credit_card, plan);
-
-//            while(currectRegister<0){
-//            }
-
-            System.out.println("you register sucssesfuly");
-
-
-
-            this.errorWarning.setVisible(false);
-            //move to the login page
-
-            this.main_controller.LoadLoginPage();
         }
         else{
             this.errorWarning.setVisible(true);

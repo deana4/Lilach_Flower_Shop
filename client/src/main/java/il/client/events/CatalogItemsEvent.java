@@ -1,4 +1,4 @@
-package il.client;
+package il.client.events;
 
 import il.entities.Flower;
 

@@ -42,8 +42,8 @@
                         <MFXComboBox fx:id="problem_chooser" />
                      </children>
                   </HBox>
-                  <TextArea fx:id="complain_textarea" prefHeight="224.0" prefWidth="256.0" visible="false" wrapText="true" />
-                  <MFXButton fx:id="clearBTN" onAction="#ClearBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="clear" textFill="#979797" visible="false">
+                  <TextArea fx:id="complain_textarea" prefHeight="224.0" prefWidth="256.0" wrapText="true" />
+                  <MFXButton fx:id="clearBTN" onAction="#ClearBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="clear" textFill="#979797">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -83,7 +83,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <MFXButton fx:id="closeComplainBTN" layoutX="497.0" layoutY="323.0" onAction="#CloseComlainBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Close" textFill="#979797">
+            <MFXButton fx:id="closeComplainBTN" layoutX="497.0" layoutY="323.0" onAction="#CloseComplainBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Close" textFill="#979797">
                <font>
                   <Font size="15.0" />
                </font>

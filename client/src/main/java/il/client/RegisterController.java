@@ -51,6 +51,9 @@ public class RegisterController extends ParentClass{
     @FXML
     private MFXTextField username_tf;
 
+    @FXML
+    private MFXComboBox<String> store_choose;
+
     private MainPageController main_controller;
 
     @FXML
@@ -59,6 +62,10 @@ public class RegisterController extends ParentClass{
             this.plan_chooser.getItems().add("Specific Store Member");
             this.plan_chooser.getItems().add("Store Wide Member");
             this.plan_chooser.getItems().add("Yearly Member");
+            this.store_choose.getItems().add("Store 1");
+            this.store_choose.getItems().add("Store 2");
+            this.store_choose.getItems().add("Store 3");
+            this.store_choose.getItems().add("Store 4");
         }
     }
     @FXML
@@ -99,6 +106,8 @@ public class RegisterController extends ParentClass{
         int name_check = nameCheck(name);
         if(name_check == 0){
             counter_of_correctness--;
+        }else{
+            this.name_tf.setText(name);
         }
 
         int pass_check = passwordCheck(pass);
@@ -141,6 +150,8 @@ public class RegisterController extends ParentClass{
         currectRegister=-1;
     }
 
+    /*change checkers*/
+
     private boolean[] isEmpty(String[] settings){
         boolean result[] = new boolean[5];
         for(int i=0; i<settings.length; i++){
@@ -152,14 +163,14 @@ public class RegisterController extends ParentClass{
     private int passwordCheck(String password){
         //needs to check length (bigger then 8), chars (A-z0-9),
         if(password.length()<8){
-            this.name_tf.clear();
+            this.pass_tf.clear();
             this.pass_tf.setPromptText("|Password| should be at least 8");
             return 0;
         }
         char[] pass = password.toCharArray();
         for (int i=0; i<password.length(); i++){
             if((pass[i]<'A' || pass[i]>'Z') && (pass[i]<'a' || pass[i]>'z') && (pass[i]<'0' || pass[i]>'9')){
-                this.name_tf.clear();
+                this.pass_tf.clear();
                 this.pass_tf.setPromptText("A-z and 0-9 symbols only");
                 return 0;
             }
@@ -170,14 +181,14 @@ public class RegisterController extends ParentClass{
     private int creditCardCheck (String creditCard){
         //checks the length (need to be 16 exactly) and chars (need to contain only digits)
         if(creditCard.length()!=16){
-            this.name_tf.clear();
+            this.credit_card_tf.clear();
             this.credit_card_tf.setPromptText("Incorrect Credit Card");
             return 0;
         }
         char[] credit_card = creditCard.toCharArray();
         for(int i=0; i<creditCard.length(); i++){
             if(credit_card[i]<'0' || credit_card[i]>'9'){
-                this.name_tf.clear();
+                this.credit_card_tf.clear();
                 this.credit_card_tf.setPromptText("Incorrect Credit Card");
                 return 0;
             }
@@ -188,14 +199,14 @@ public class RegisterController extends ParentClass{
     private int idCheck (String id){
         //checks the length of the id (needs to be 9 exactly) and chars (need to contain only digits)
         if(id.length()!=9){
-            this.name_tf.clear();
+            this.id_tf.clear();
             this.id_tf.setPromptText("Incorrect ID");
             return 0;
         }
         char[] id_char = id.toCharArray();
         for(int i=0; i<id.length(); i++){
             if(id_char[i]<'0' || id_char[i]>'9'){
-                this.name_tf.clear();
+                this.id_tf.clear();
                 this.id_tf.setPromptText("Incorrect ID");
                 return 0;
             }
@@ -227,6 +238,86 @@ public class RegisterController extends ParentClass{
         }
         return 1;
     }
+
+    /*end old checker*/
+
+//    private int nameCheck (String name, MFXTextField field_to_check){
+//        //check space in the name (which means that full name entered to te text field) and that the private anf family names are at least with 2 chars
+//        //name can contain only A-z
+//        if(name.equals("Please enter your full name") || name.equals("Incorrect name") || name.equals("Name can contain A-z")){
+//            field_to_check.setText("");
+//            return 0;
+//        }
+//        if(!name.contains(" ")){
+//            field_to_check.setText("Please enter your full name");
+//            return 0;
+//        }
+//        int space_index = name.indexOf(" ");
+//        if(space_index<=1 || space_index>=(name.length()-2)){
+//            field_to_check.setText("Incorrect name");
+//            return 0;
+//        }
+//        char[] name_char = name.toCharArray();
+//        for(int i=0; i<name.length(); i++){
+//            if((name_char[i]<'A' || name_char[i]>'Z') && (name_char[i]<'a' || name_char[i]>'z') && (name_char[i] != ' ')){
+//                field_to_check.setText("Name can contain A-z");
+//                return 0;
+//            }
+//        }
+//        return 1;
+//    }
+//
+//    private int idCheck (String id, MFXTextField field_to_check){
+//        //checks the length of the id (needs to be 9 exactly) and chars (need to contain only digits)
+//        if(id.length()!=9){
+//            this.name_tf.clear();
+//            this.id_tf.setPromptText("Incorrect ID");
+//            return 0;
+//        }
+//        char[] id_char = id.toCharArray();
+//        for(int i=0; i<id.length(); i++){
+//            if(id_char[i]<'0' || id_char[i]>'9'){
+//               this.name_tf.clear();
+//               this.id_tf.setPromptText("Incorrect ID");
+//               return 0;
+//           }
+//       }
+//        return 1;
+//    }
+//
+//    private int creditCardCheck (String creditCard){
+//        //checks the length (need to be 16 exactly) and chars (need to contain only digits)
+//        if(creditCard.length()!=16){
+//            this.credit_card_tf.setText("Incorrect Credit Card");
+//            return 0;
+//        }
+//        char[] credit_card = creditCard.toCharArray();
+//        for(int i=0; i<creditCard.length(); i++){
+//            if(credit_card[i]<'0' || credit_card[i]>'9'){
+//                this.credit_card_tf.setText("Incorrect Credit Card");
+//                return 0;
+//            }
+//        }
+//        return 1;
+//    }
+//
+//    private int checkRegister(){
+//        int correct = 0;
+//        correct += nameCheck(this.name_tf.getText(), this.name_tf);
+//        System.out.println("because of name "+correct);
+//        correct += creditCardCheck(this.credit_card_tf.getText());
+//        System.out.println("because of credit card "+correct);
+//        correct += idCheck(this.id_tf.getText());
+//        System.out.println("because of phone "+correct);
+//        correct += mailCheck(this.my_mail_field.getText(), this.my_mail_field);
+//        System.out.println("because of mail "+correct);
+//        correct += dateCheck();
+//        System.out.println("because of date "+correct);
+//        correct += timeCheck();
+//        System.out.println("because of time "+correct);
+//        System.out.println("total "+correct);
+//        return correct;
+//    }
 
     public void setMain_controller(MainPageController main_controller) {
         this.main_controller = main_controller;

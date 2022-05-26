@@ -107,6 +107,18 @@ public class MainPageController extends ParentClass{
     }
 
     @FXML
+    void MyAccBTNClicked(ActionEvent event) throws IOException {
+        this.main_first_load_pane.getChildren().clear();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        URL var = getClass().getResource("Complain.fxml");
+        fxmlLoader.setLocation(var);
+        Parent root = fxmlLoader.load();
+        ComplainController controller = fxmlLoader.getController();
+        controller.setMain_page_holder(this);
+        this.main_first_load_pane.getChildren().addAll(root);
+    }
+
+    @FXML
     void LogoutBTNClicked(ActionEvent event) throws IOException {
         {
             this.login_btn.setVisible(true);

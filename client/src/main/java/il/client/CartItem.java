@@ -14,6 +14,14 @@ public class CartItem {
         this.item_amount = amount;
     }
 
+    public int getItem_amount() {
+        return item_amount;
+    }
+
+    public void setItem_amount(int item_amount) {
+        this.item_amount = item_amount;
+    }
+
     public String getItem_name() {
         return item_name;
     }

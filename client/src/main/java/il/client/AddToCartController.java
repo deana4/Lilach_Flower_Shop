@@ -45,6 +45,9 @@ public class AddToCartController{
     @FXML
     private TableColumn<CartItem, String> table_Column_price;
 
+    @FXML
+    private TableColumn<CartItem, Integer> table_Column_amount;
+
     private int total_sum = 0;
 
     ObservableList<CartItem> items = FXCollections.observableArrayList();
@@ -85,7 +88,7 @@ public class AddToCartController{
     public void TableInitializeFields(){
         table_Column_name.setCellValueFactory(new PropertyValueFactory<CartItem,String>("item_name"));
         table_Column_price.setCellValueFactory(new PropertyValueFactory<CartItem,String>("item_price"));
-        table_Column_price.setCellValueFactory(new PropertyValueFactory<CartItem,String>("item_amount"));
+        table_Column_amount.setCellValueFactory(new PropertyValueFactory<CartItem,Integer>("item_amount"));
         table_Column_id.setCellValueFactory(new PropertyValueFactory<CartItem,Integer>("item_id"));
     }
     public void addItemToTable(String name, String price, int id, int amount){

@@ -122,19 +122,18 @@ public class ProductView extends ParentClass{
     void setNewPrice(String price){
         this.product_price.setText(price);
     }
+
     @FXML
     void AddProductToCart(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("Cart.fxml"));
-        Parent root = fxmlLoader.load();    // need to load before using controller.
-        AddToCartController controller = fxmlLoader.getController();
-        Scene scene = new Scene(root, 330, 31);
+        fxmlLoader.setLocation(getClass().getResource("CartAdder.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 330, 330);
+        CartAdderController CartController = fxmlLoader.getController();
         stage.setTitle("Add To Cart Section");
         stage.setScene(scene);
         stage.show();
-        controller.setStage(stage);
     }
 
 

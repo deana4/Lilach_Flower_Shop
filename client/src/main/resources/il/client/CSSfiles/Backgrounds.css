@@ -15,6 +15,13 @@
     -fx-border-radius: 90%;
     -fx-alignment: center;
 }
+.CatalogItem{
+    -fx-text-fill: white;
+    -fx-background-color: white;
+    -fx-background-radius: 4em;
+    -fx-border-radius: 10%;
+    -fx-alignment: center;
+}
 .mainAnchor{
     -fx-background-color: white;
     -fx-background-radius: 5em;

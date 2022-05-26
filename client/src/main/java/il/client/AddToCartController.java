@@ -9,10 +9,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,6 +45,8 @@ public class AddToCartController{
     @FXML
     private TableColumn<CartItem, String> table_Column_price;
 
+    private int total_sum = 0;
+
     ObservableList<CartItem> items = FXCollections.observableArrayList();
 
     @FXML
@@ -57,27 +61,38 @@ public class AddToCartController{
     void initialize(){
         this.TableInitializeFields();
         {
-            this.addItemToTable("Dean", "50$", 1);
-            this.addItemToTable("Liran", "100$", 3);
-            this.addItemToTable("Ann", "150$", 2);
-            this.addItemToTable("Ido", "10$", 10);
-            this.addItemToTable("Dean", "50$", 5);
-            this.addItemToTable("Dean", "50$", 8);
-            this.addItemToTable("Dean", "50$", 7);
+            this.addItemToTable("Dean", "50$", 1,1);
+            total_sum += 50;
+            this.addItemToTable("Liran", "100$",1, 3);
+            total_sum += 100;
+            this.addItemToTable("Ann", "150$", 2,2);
+            total_sum += 150;
+            this.addItemToTable("Ido", "10$", 3,10);
+            total_sum += 10;
+            this.addItemToTable("Dean", "50$", 1,5);
+            total_sum += 50;
+            this.addItemToTable("Dean", "50$",1, 8);
+            total_sum += 50;
+            this.addItemToTable("Dean", "50$", 19,7);
+            total_sum += 50;
         }
 
         cart_table.setItems(items);
+
+        sum_field.setText(String.valueOf(total_sum));
     }
 
     public void TableInitializeFields(){
         table_Column_name.setCellValueFactory(new PropertyValueFactory<CartItem,String>("item_name"));
         table_Column_price.setCellValueFactory(new PropertyValueFactory<CartItem,String>("item_price"));
+        table_Column_price.setCellValueFactory(new PropertyValueFactory<CartItem,String>("item_amount"));
         table_Column_id.setCellValueFactory(new PropertyValueFactory<CartItem,Integer>("item_id"));
     }
-    public void addItemToTable(String name, String price, int id){
-        CartItem item = new CartItem(name,price,id);
+    public void addItemToTable(String name, String price, int id, int amount){
+        CartItem item = new CartItem(name,price,id,amount);
         this.items.addAll(item);
     }
+
 
     @FXML
     void OrderBTNClicked(MouseEvent event) throws IOException {

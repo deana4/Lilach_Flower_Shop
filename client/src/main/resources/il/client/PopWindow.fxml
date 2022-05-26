@@ -1,41 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.CheckBox?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyListView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="poped_window" prefHeight="400.0" prefWidth="400.0" stylesheets="@CSSfiles/Buttons.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PopWindow">
+<AnchorPane fx:id="poped_window" prefHeight="467.0" prefWidth="335.0" stylesheets="@CSSfiles/Buttons.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PopWindow">
    <children>
-      <AnchorPane opacity="0.68" prefHeight="400.0" prefWidth="400.0" styleClass="sideViewer" stylesheets="@CSSfiles/Buttons.css" />
-      <CheckBox fx:id="product_on_stock" layoutX="153.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#CheckBoxClicked" prefHeight="37.0" prefWidth="109.0" text="On Stock?">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </CheckBox>
-      <ImageView fx:id="product_zoomed_image" fitHeight="293.0" fitWidth="232.0" layoutX="81.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+      <MFXLegacyListView depthLevel="LEVEL4" layoutX="18.0" layoutY="12.0" prefHeight="444.0" prefWidth="300.0" styleClass="CatalogItem" stylesheets="@CSSfiles/Backgrounds.css" thumbColor="#979797" thumbHoverColor="#5500ff" trackColor="#da1c1c" />
+      <ImageView fx:id="product_zoomed_image" fitHeight="343.0" fitWidth="282.0" layoutX="31.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../server/src/main/resources/images/sunflower.jpeg" />
          </image>
       </ImageView>
-      <Label fx:id="id_txt" layoutX="24.0" layoutY="24.0" text="ID">
-         <font>
-            <Font size="33.0" />
-         </font>
-      </Label>
-      <Label fx:id="price_txt" layoutX="162.0" layoutY="281.0" text="Price" textFill="WHITE">
-         <font>
-            <Font size="33.0" />
-         </font>
-      </Label>
-      <Label fx:id="name_txt" layoutX="153.0" layoutY="64.0" text="Name" textFill="WHITE">
-         <font>
-            <Font size="33.0" />
-         </font>
-      </Label>
-      <ImageView fx:id="discount_logo_poped" fitHeight="55.0" fitWidth="109.0" layoutX="153.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <VBox alignment="CENTER" layoutX="43.0" layoutY="112.0" prefHeight="244.0" prefWidth="251.0" spacing="100.0">
+         <children>
+            <Label fx:id="name_txt" text="Name" textFill="WHITE">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+            <Label fx:id="price_txt" text="Price" textFill="WHITE">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutX="69.0" layoutY="394.0" prefHeight="53.0" prefWidth="200.0" spacing="100.0">
+         <children>
+            <Label fx:id="id_txt" text="ID" textFill="#8d8d8d">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+            <MFXCheckbox fx:id="product_on_stock" alignment="TOP_LEFT" contentDisplay="BOTTOM" contentDisposition="BOTTOM" gap="5.0" graphicTextGap="20.0" onMouseClicked="#CheckBoxClicked" text="On Stock?" textAlignment="CENTER">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </MFXCheckbox>
+         </children>
+      </HBox>
+      <ImageView fx:id="discount_logo_poped" fitHeight="55.0" fitWidth="109.0" layoutX="113.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../client/src/main/resources/il/client/images/DiscountPhoto/discount.jpg" />
          </image>

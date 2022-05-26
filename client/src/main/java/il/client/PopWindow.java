@@ -4,6 +4,7 @@
 
 package il.client;
 
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -26,8 +27,8 @@ public class PopWindow extends ParentClass{
     @FXML
     private Label price_txt;
 
-    @FXML // fx:id="product_on_stock"
-    private CheckBox product_on_stock; // Value injected by FXMLLoader
+    @FXML
+    private MFXCheckbox product_on_stock;
 
     @FXML // fx:id="product_zoomed_image"
     private ImageView product_zoomed_image; // Value injected by FXMLLoader

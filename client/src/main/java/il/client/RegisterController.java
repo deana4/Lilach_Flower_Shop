@@ -60,6 +60,7 @@ public class RegisterController extends ParentClass{
     @FXML
     void initialize(){
         { //initialize combobox
+            EventBus.getDefault().register(this);
             this.plan_chooser.getItems().add("Specific Store Member");
             this.plan_chooser.getItems().add("Store Wide Member");
             this.plan_chooser.getItems().add("Yearly Member");
@@ -85,15 +86,11 @@ public class RegisterController extends ParentClass{
                 System.out.println(warning);
             }
         });
-
-
-
     }
 
 
     @FXML
-    void RegisterBTNClicked(ActionEvent event) throws JSONException, IOException {
-        EventBus.getDefault().register(this);
+    void RegisterBTNClicked(ActionEvent event) throws IOException {
         int counter_of_correctness = 6;
         String name = this.name_tf.getText();
         String username = this.username_tf.getText();

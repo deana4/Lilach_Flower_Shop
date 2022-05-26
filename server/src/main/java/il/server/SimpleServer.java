@@ -40,19 +40,21 @@ public class SimpleServer extends AbstractServer {
                 String pass = message.getPass();
                 boolean isWorker = message.isWorker();
 
-                User logInUser = LoginControl.tryLogIn(username, pass, isWorker);
+                String result = LoginControl.checkLogin(username, pass, isWorker);
 
-                if (logInUser!=null){
+                if (result.equals("")){
                     System.out.println("successfully! login: "+ username);
 
                     sendMessage.setMessage("result login");
-                    sendMessage.setUser(logInUser);
+                    sendMessage.setLoginStatus(true);
+                    sendMessage.setLoginResult("login was successful");
                     client.sendToClient(sendMessage);
                 }
                 else{
                     System.out.println("faild! login: "+ username);
                     sendMessage.setMessage("result login");
-                    sendMessage.setUser(null);
+                    sendMessage.setLoginStatus(false);
+                    sendMessage.setLoginResult(result);
                     client.sendToClient(sendMessage);
                 }
             }
@@ -78,7 +80,6 @@ public class SimpleServer extends AbstractServer {
 
 
             if(message.getMessage().equals("register")){
-
                 String username = message.getUsername();
                 String name = message.getName();
                 String pass = message.getPass();
@@ -88,13 +89,26 @@ public class SimpleServer extends AbstractServer {
 
                 User newUser = new User(username, pass,credit_card, plan, name, id);
                 System.out.println("get register request:" + username);
-                boolean resultRegister = RegisterControl.register(newUser);
+
+                String result = RegisterControl.checknewUser(newUser);
 
 
+                if(result.equals("")){
+                    if(RegisterControl.register(newUser)){
+                        sendMessage.setRegisterStatus(true);
+                        sendMessage.setRegisterResult("user as been register!");
+                    }
+                    else{
+                        sendMessage.setRegisterStatus(false);
+                        sendMessage.setRegisterResult("Error: somethings wrong with the database.");
+                    }
+                }
+                else{
+                    sendMessage.setRegisterStatus(false);
+                    sendMessage.setRegisterResult(result);
+                }
 
                 sendMessage.setMessage("result register");
-                sendMessage.setRegisterStatus(resultRegister);
-                sendMessage.setRegisterResult("add result");
                 client.sendToClient(sendMessage);
             }
 

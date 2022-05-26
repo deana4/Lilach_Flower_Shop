@@ -9,6 +9,8 @@ import java.io.IOException;
 
 public class LogInControl{
 
+
+
     public static void logIn(String username, String pass, boolean isWorker) throws IOException {
         Message message = new Message("login");
         message.setWorker(isWorker);

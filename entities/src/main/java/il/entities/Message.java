@@ -18,7 +18,7 @@ public class Message implements Serializable {
 
 
 
-    //login
+    //login/register
     String username;
     String id;
     String pass;
@@ -27,17 +27,35 @@ public class Message implements Serializable {
     String plan;
     String name;
 
+    //recive login
+    boolean loginStatus;
+    String loginResult;
 
-    //register
+    //recive register
     boolean registerStatus;
-
-
     String registerResult;
 
     //setPrice
     int idItem;
     double newPrice;
 
+
+
+    public boolean isLoginStatus() {
+        return loginStatus;
+    }
+
+    public void setLoginStatus(boolean loginStatus) {
+        this.loginStatus = loginStatus;
+    }
+
+    public String getLoginResult() {
+        return loginResult;
+    }
+
+    public void setLoginResult(String loginResult) {
+        this.loginResult = loginResult;
+    }
 
     public String getRegisterResult() {
         return registerResult;

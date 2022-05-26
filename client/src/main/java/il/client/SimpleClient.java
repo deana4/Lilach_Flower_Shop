@@ -2,8 +2,8 @@ package il.client;
 
 
 
-import il.client.events.CatalogItemsEvent;
-import il.client.events.RegisterEvent;
+
+import il.client.events.*;
 import il.client.ocsf.AbstractClient;
 import il.entities.Flower;
 import il.entities.Message;
@@ -32,13 +32,7 @@ public class SimpleClient extends AbstractClient {
 		}
 
 		if(message.getMessage().equals("result login")){
-			if(message.getUser()!=null){
-				LoginController.setCorrectLogin(true);
-			}
-			else{
-				LoginController.setCorrectLogin(false);
-			}
-			return;
+			EventBus.getDefault().post(new LoginEvent(message.isLoginStatus(), message.getLoginResult(), message.getUsername()));
 		}
 
 		if(message.getMessage().equals("result register")){

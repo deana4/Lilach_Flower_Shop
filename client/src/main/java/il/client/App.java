@@ -11,8 +11,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import il.client.SimpleClient;
 import javafx.stage.StageStyle;
-import org.kordamp.bootstrapfx.BootstrapFX;
-import org.kordamp.bootstrapfx.scene.layout.Panel;
+//import org.kordamp.bootstrapfx.BootstrapFX;
+//import org.kordamp.bootstrapfx.scene.layout.Panel;
 
 import java.io.IOException;
 
@@ -32,8 +32,8 @@ public class App extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MainPage.fxml"));
             Parent mainLayout = fxmlLoader.load();
             Scene scene = new Scene(mainLayout, 1280, 720);
-            scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
-            stage.setTitle("Catalog");
+         //   scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+            stage.setTitle("Lilach");
             stage.setScene(scene);
             stage.initStyle(StageStyle.DECORATED);
             stage.show();

@@ -50,6 +50,7 @@ public class ProductView extends ParentClass{
 
     private String id_of_flower;
 
+    private int clicks_image=0;
 
     URL root = getClass().getResource("PopWindow.fxml");
 
@@ -94,13 +95,24 @@ public class ProductView extends ParentClass{
 
 
     @FXML
-    void ClickedImage(MouseEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(this.root);
-        Parent pop_window = fxmlLoader.load();    // need to load before using controller.
-        PopWindow controller = fxmlLoader.getController();
-        controller.FullSetter(this.getId(), this.product_name.getText(),this.product_price.getText(), this.on_discount, this.product_image.getImage());
-        cat_controller.setSide_pic_anchorpane(pop_window);
+    void ClickedImage(MouseEvent event) throws IOException, ClassNotFoundException, InterruptedException {
+        clicks_image++;
+        if(clicks_image%2==1) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(this.root);
+            Parent pop_window = fxmlLoader.load();    // need to load before using controller.
+            PopWindow controller = fxmlLoader.getController();
+            controller.FullSetter(this.getId(), this.product_name.getText(), this.product_price.getText(), this.on_discount, this.product_image.getImage());
+            cat_controller.setAnchorpang2Visibale();
+            cat_controller.setProductsAnchorpane2();
+            cat_controller.setSide_pic_anchorpane2(pop_window);
+            clicks_image=1;
+        }
+        else{
+            cat_controller.setAnchorpang2NotVisibale();
+        }
+
+
     }
 
     @FXML

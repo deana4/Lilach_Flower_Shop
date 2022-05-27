@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import il.client.SimpleClient;
 import javafx.stage.StageStyle;
@@ -32,10 +33,12 @@ public class App extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MainPage.fxml"));
             Parent mainLayout = fxmlLoader.load();
             Scene scene = new Scene(mainLayout, 1280, 720);
-         //   scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
             stage.setTitle("Lilach");
+            MainPageController.getInstance().setStage(stage);
+            scene.setFill(Color.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);
-            stage.initStyle(StageStyle.DECORATED);
+//            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
         }
         catch (Exception e){

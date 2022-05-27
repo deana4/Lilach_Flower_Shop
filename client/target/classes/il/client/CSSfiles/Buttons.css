@@ -43,15 +43,16 @@
     -fx-background-radius: 5em;
 }
 .simple-btn:hover{
-    -fx-background-color: linear-gradient(to bottom right, seashell, lightseagreen);
+    -fx-background-color: linear-gradient(to bottom left, lightpink,lightgoldenrodyellow);
     -fx-text-fill: white;
+    -fx-font-weight: bold;
 }
 .simple-btn:focused {
     /*-fx-color: -fx-focused-base;*/
-    -fx-background-color: linear-gradient(to bottom right, seashell, lightseagreen);
+    -fx-background-color: linear-gradient(to bottom left, lightpink,lightgoldenrodyellow);
     -fx-background-insets: -1.4, 0, 1, 2;
     -fx-background-radius:  8.5, 5, 4, 3;
-    -fx-text-fill: Black;
+    -fx-text-fill: #979797;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
@@ -74,6 +75,35 @@
     -fx-background-radius: 5em;
 }
 
+.close-icon {
+    -mfx-color: #da3312;
+    -fx-opacity: 0.5;
+}
 
+.close-icon:hover {
+    -fx-opacity: 1.0;
+}
+
+.minimize-icon {
+    -mfx-color: #ffbf37;
+    -fx-opacity: 0.5;
+}
+
+.minimize-icon:hover {
+    -fx-opacity: 1.0;
+}
+
+.always-on-top-icon {
+    -mfx-color: #c37ecd;
+    -fx-opacity: 0.5;
+}
+
+.always-on-top-icon:hover {
+    -fx-opacity: 1.0;
+}
+
+.always-on-top-icon:filled {
+    -fx-opacity: 1.0;
+}
 
 

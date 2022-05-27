@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="LoginPane" prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.LoginController">
+<AnchorPane fx:id="LoginPane" prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.LoginController">
    <children>
       <AnchorPane prefHeight="646.0" prefWidth="1240.0" style="-fx-background-color: transparent;">
          <children>
@@ -35,7 +35,7 @@
             <VBox layoutX="467.0" layoutY="209.0" prefHeight="283.0" prefWidth="306.0" spacing="10.0">
                <children>
                   <Label text="Empty Space" visible="false" />
-                  <MFXTextField fx:id="username_field" floatingText="Username" floatingTextGap="0.0" prefHeight="70.0" prefWidth="300.0">
+                  <MFXTextField id="customField" fx:id="username_field" floatingText="Username" floatingTextGap="0.0" prefHeight="70.0" prefWidth="300.0" stylesheets="@CSSfiles/css/TextFields.css">
                      <textFill>
                         <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                      </textFill>
@@ -47,7 +47,7 @@
                      </VBox.margin>
                   </MFXTextField>
                   <Label text="Empty Space" visible="false" />
-                  <MFXPasswordField fx:id="password_field" floatingText="Password" floatingTextGap="0.0" graphicTextGap="5.0" prefHeight="70.0" prefWidth="300.0">
+                  <MFXPasswordField id="customField" fx:id="password_field" floatingText="Password" floatingTextGap="0.0" graphicTextGap="5.0" prefHeight="70.0" prefWidth="300.0" stylesheets="@CSSfiles/css/TextFields.css">
                      <textFill>
                         <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                      </textFill>
@@ -59,7 +59,7 @@
                   <VBox alignment="TOP_CENTER" prefHeight="123.0" prefWidth="306.0" spacing="20.0">
                      <children>
                         <MFXButton fx:id="loginBTN" buttonType="RAISED" onAction="#LoginSumbitted" prefHeight="37.0" prefWidth="84.0" rippleAnimateShadow="true" rippleColor="#c9d9ff" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Login" textFill="#979797" />
-                        <MFXToggleButton fx:id="workerChecker" contentDisposition="TOP" onMouseClicked="#WorkerChecked" text="Are you work here?" textFill="#979797" />
+                        <MFXToggleButton id="customToggleButton" fx:id="workerChecker" contentDisposition="TOP" onMouseClicked="#WorkerChecked" stylesheets="@CSSfiles/css/ChecksRadiosToggles.css" text="Are you work here?" textFill="#979797" />
                      </children>
                   </VBox>
                </children>

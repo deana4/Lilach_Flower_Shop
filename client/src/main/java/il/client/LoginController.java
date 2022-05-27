@@ -48,7 +48,9 @@ public class LoginController extends ParentClass{
 
         if(username == "" || password == ""){ // taking care of null strings
             password_field.clear();
-            username_field.setText("Username Or Password Empty");
+            username_field.clear();
+            username_field.setPromptText("Username Or Password Empty");
+            username_field.setStyle("-border-color:-mfx-red");
         }else if(password.contains("-")){
 
         }
@@ -85,7 +87,8 @@ public class LoginController extends ParentClass{
             this.loginTries = 1;
         }else {
             password_field.clear();
-            username_field.setText("Username Or Password incorrect");
+            username_field.clear();
+            username_field.setPromptText("Username Or Password incorrect");
             this.loginTries++;
             if(this.loginTries == 6){
                 System.out.println(this.loginTries);

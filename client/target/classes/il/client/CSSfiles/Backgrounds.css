@@ -30,3 +30,17 @@
 .background-color{
     -fx-background-color: white;
 }
+
+.MainBorder{
+    -fx-background-color: white;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    -fx-alignment: center;
+    -fx-border-color: #979797;
+}
+
+.AnchorStyle{
+    -fx-background-color: white;
+    /*-fx-background-radius: 2em;*/
+    -fx-border-radius: 1%;
+}

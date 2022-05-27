@@ -5,18 +5,51 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 
+import io.github.palexdev.materialfx.font.MFXFontIcon;
+import io.github.palexdev.materialfx.utils.ScrollUtils;
+import javafx.application.Platform;
+import javafx.collections.ObservableList;
+import javafx.css.PseudoClass;
+import javafx.scene.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import il.client.UserClient;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import org.json.JSONException;
 
 public class MainPageController extends ParentClass {     //This is a singleton Class which provides the system abilities of changing screens, refresh the system etc.
+
+
+    public class MyThread extends Thread{
+
+
+        public void run(){
+            System.out.println("running in thread");
+            try {
+                initButtons();
+                initFunction();
+                MainPageController.getInstance().login_btn.setDisable(false);
+                MainPageController.getInstance().register_btn.setDisable(false);
+                MainPageController.getInstance().home_button.setDisable(false);
+                MainPageController.getInstance().catalog_button.setDisable(false);
+//                HomeController controller = ((HomeController)MainPageController.getInstance().controller_map.get("Home"));
+//                HomeController.getInstance().setDeterminateSpinnerDisable();
+                System.out.println("finish thread");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
     @FXML
     private MFXButton myacc_btn;
 
@@ -38,9 +71,35 @@ public class MainPageController extends ParentClass {     //This is a singleton 
     @FXML
     private MFXTextField user_wellcome;
 
+    @FXML
+    private MFXButton catalog_button;
+
+    @FXML
+    private MFXButton home_button;
+
     public static boolean isLogin; //this bool var indicates that the user logged in
 
     public static String LoginName;
+
+    private double xOffset;
+    private double yOffset;
+
+    private Stage stage;
+
+    @FXML
+    private AnchorPane rootPane;
+
+    @FXML
+    private HBox windowHeader;
+
+    @FXML
+    private MFXFontIcon closeIcon;
+
+    @FXML
+    private MFXFontIcon minimizeIcon;
+
+    @FXML
+    private MFXFontIcon alwaysOnTopIcon;
 
     private HashMap<String, Parent> root_map = new HashMap<String, Parent>();  //Hashmap of roots by names
 
@@ -61,8 +120,38 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         user = UserClient.getInstance();
     }
 
+
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
+//        initFunction();
+        MyThread thread = new MyThread();
+        thread.start();
+        LoadFirstPage();
+        System.out.println("This code is outside of the thread");
+    }
+
+
+    private void initButtons(){
+        closeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> Platform.exit());
+        minimizeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> ((Stage) this.main_first_load_pane.getScene().getWindow()).setIconified(true));
+        alwaysOnTopIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            boolean newVal = !stage.isAlwaysOnTop();
+            alwaysOnTopIcon.pseudoClassStateChanged(PseudoClass.getPseudoClass("always-on-top"), newVal);
+            stage.setAlwaysOnTop(newVal);
+        });
+
+        windowHeader.setOnMousePressed(event -> {
+            xOffset = stage.getX() - event.getScreenX();
+            yOffset = stage.getY() - event.getScreenY();
+        });
+        windowHeader.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() + xOffset);
+            stage.setY(event.getScreenY() + yOffset);
+        });
+
+    }
+
+    private void initFunction() throws IOException {
         instance = this;
         SetUser();
         Parent root;
@@ -124,13 +213,14 @@ public class MainPageController extends ParentClass {     //This is a singleton 
             fxmlLoader.setLocation(var);
             root = fxmlLoader.load();
             HomeController controller = fxmlLoader.getController();
+            root_map.remove("Home");
+            controller_map.remove("Home");
             root_map.put("Home",root);
             controller_map.put("Home",controller);
             ((HomeController)controller_map.get("Home")).setMain_page_holder(this);
         }
 
     }
-
 
 /*-------------------------------------- Response Functions-------------------------------------- */
     @FXML
@@ -209,6 +299,38 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         LoginName = loginName;
     }
 
+    public AnchorPane getMain_first_load_pane() {
+        return main_first_load_pane;
+    }
+
+    public void setMain_first_load_pane(AnchorPane main_first_load_pane) {
+        this.main_first_load_pane = main_first_load_pane;
+    }
+
+    public HashMap<String, Parent> getRoot_map() {
+        return root_map;
+    }
+
+    public void setRoot_map(HashMap<String, Parent> root_map) {
+        this.root_map = root_map;
+    }
+
+    public HashMap<String, Object> getController_map() {
+        return controller_map;
+    }
+
+    public void setController_map(HashMap<String, Object> controller_map) {
+        this.controller_map = controller_map;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     /*-------------------------------------- Special Functions --------------------------------------*/
     public void UpdateMainController() throws IOException { //check permissions
         if(this.isLogin()){
@@ -255,7 +377,6 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         controller_map.put("Login",controller);
         ((LoginController)controller_map.get("Login")).setMain_page_holder(this);
     }
-
     public void AddToCartRefresh() throws IOException {
         Parent root;
         URL var;
@@ -351,6 +472,26 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         this.main_first_load_pane.getChildren().clear();
         ((HomeController)controller_map.get("Home")).setMain_page_holder(this);
         this.main_first_load_pane.getChildren().addAll(root_map.get("Home"));
+    }
+
+    public void LoadFirstPage() throws IOException {
+        Parent root;
+        URL var;
+        FXMLLoader fxmlLoader;
+        fxmlLoader = new FXMLLoader();
+        this.main_first_load_pane.getChildren().clear();
+        var = getClass().getResource("Home.fxml");
+        fxmlLoader.setLocation(var);
+        root = fxmlLoader.load();
+        HomeController controller = fxmlLoader.getController();
+        this.login_btn.setDisable(true);
+        this.register_btn.setDisable(true);
+        this.home_button.setDisable(true);
+        this.catalog_button.setDisable(true);
+        root_map.put("Home",root);
+        controller_map.put("Home",controller);
+        this.main_first_load_pane.getChildren().addAll(root);
+
     }
     /* --------------------------------------- END --------------------------------------- */
 }

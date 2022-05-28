@@ -1,10 +1,10 @@
 package il.client;
 
-import java.util.LinkedList;
-
 import il.client.DiffClasses.Complaint;
-import il.client.DiffClasses.Order;
 import il.entities.User;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class UserClient {
     Priority priority = null;
@@ -23,8 +23,8 @@ public class UserClient {
 
     private boolean isLogin = false;
 
-    private LinkedList<Complaint> complaintList  = null;
-    private LinkedList<Order> orderList = null;
+    private ObservableList<Complaint> complaintList  = FXCollections.observableArrayList();
+    private ObservableList<Order> orderList = FXCollections.observableArrayList();
 
     private User UserServer = null;
 
@@ -34,6 +34,16 @@ public class UserClient {
         priority = new Priority();
         priority.setPriority_level(1);
         user = this;
+        {
+            ObservableList<CartItem> cart = FXCollections.observableArrayList();
+            cart.add(new CartItem("sunflower", "150", 2, 2));
+            cart.add(new CartItem("rose", "10", 2, 2));
+//            MFXButton complaint_btn = new MFXButton();
+//            complaint_btn.setText("Add Complaint");
+            //for trying examples
+            for(int i=0; i<20; i++)
+            orderList.add(new Order( "Sunday"+i, "12:0"+i, "13:0"+i, "Sunday"+i, "thankyou"+i, "Dean"+i, "1"+i, "bla"+i, cart ));
+        }
     }
 
     public User getUserServer(){
@@ -86,5 +96,13 @@ public class UserClient {
 
     public String getPosition() {
         return position;
+    }
+
+    public ObservableList<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(ObservableList<Order> orderList) {
+        this.orderList = orderList;
     }
 }

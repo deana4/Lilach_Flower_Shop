@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) 2022 Parisi Alessandro
+  ~ This file is part of MaterialFX (https://github.com/palexdev/MaterialFX).
+  ~
+  ~ MaterialFX is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Lesser General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ MaterialFX is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Lesser General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Lesser General Public License
+  ~ along with MaterialFX.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import io.github.palexdev.materialfx.font.MFXFontIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="646.0" prefWidth="1240.0" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.MyAccountController">
+    <VBox layoutY="1.0" prefHeight="646.0" prefWidth="251.0" styleClass="sideBar" stylesheets="@CSSfiles/Backgrounds.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="1.0">
+        <padding>
+            <Insets bottom="10.0" left="10.0" top="60.0" />
+        </padding>
+        <Label graphicTextGap="15.0" prefWidth="204.0" styleClass="HeadersNoBackground" stylesheets="@CSSfiles/Backgrounds.css" text="My Account">
+            <graphic>
+                <MFXFontIcon description="mfx-user" size="52.0">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color></MFXFontIcon>
+            </graphic>
+         <font>
+            <Font name="Calibri" size="29.0" />
+         </font>
+        </Label>
+        <Label styleClass="menu-label" text="Components">
+            <VBox.margin>
+                <Insets left="5.0" top="40.0" />
+            </VBox.margin>
+        </Label>
+        <MFXScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="440.0" prefWidth="236.0" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets bottom="10.0" left="5.0" top="15.0" />
+            </VBox.margin>
+            <padding>
+                <Insets right="10.0" />
+            </padding>
+            <VBox fx:id="navBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" styleClass="navbar" />
+        </MFXScrollPane>
+    </VBox>
+   <StackPane fx:id="contentPane" layoutX="262.0" layoutY="2.0" prefHeight="646.0" prefWidth="976.0" />
+</AnchorPane>

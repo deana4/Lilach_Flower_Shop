@@ -9,19 +9,18 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="cancel_order_anchorpane1" prefHeight="646.0" prefWidth="1090.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CancelOrderController">
+<AnchorPane fx:id="cancel_order_anchorpane1" prefHeight="646.0" prefWidth="976.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CancelOrderController">
    <children>
-      <AnchorPane fx:id="cancel_order_anchorpane2" prefHeight="646.0" prefWidth="1090.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">
+      <AnchorPane fx:id="cancel_order_anchorpane2" prefHeight="646.0" prefWidth="976.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
-            <Label layoutX="380.0" layoutY="141.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Canceling Order Number">
+            <Label layoutX="322.0" layoutY="141.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Canceling Order Number">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <VBox alignment="TOP_CENTER" layoutX="379.0" layoutY="216.0" prefHeight="200.0" prefWidth="325.0" spacing="30.0">
+            <VBox alignment="TOP_CENTER" layoutX="326.0" layoutY="220.0" prefHeight="200.0" prefWidth="325.0" spacing="30.0">
                <children>
-                  <MFXTextField fx:id="order_num_filed" editable="false" text="order num">
+                  <MFXTextField fx:id="order_num_filed" alignment="CENTER" editable="false" text="order num">
                      <textFill>
                         <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                      </textFill>
@@ -52,6 +51,16 @@
                   </HBox>
                </children>
             </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="cancel_order_anchorpane3" prefHeight="646.0" prefWidth="976.0" visible="false">
+         <children>
+            <Label layoutX="251.0" layoutY="265.0" text="We recive your cancelation" textFill="#4e9e1c">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <MFXButton fx:id="closeBTN" layoutX="465.0" layoutY="409.0" onAction="#CloseBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Close" />
          </children>
       </AnchorPane>
    </children>

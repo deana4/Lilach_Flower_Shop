@@ -1,5 +1,7 @@
 package il.client.DiffClasses;
 
+import il.client.Order;
+
 public class Complaint {
     private static int id = 0;
     private int this_id;

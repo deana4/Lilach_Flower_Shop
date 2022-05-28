@@ -401,6 +401,7 @@ public class OrderController {
 
     @FXML
     void ThankYouBTNClicked(ActionEvent event) throws IOException {
+        MainPageController.getInstance().OrderRefresh();
         this.main_page_holder.LoadHomePage();
     }
 

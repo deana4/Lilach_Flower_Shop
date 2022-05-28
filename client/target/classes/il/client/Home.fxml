@@ -2,9 +2,13 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXProgressSpinner?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 
 <AnchorPane prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.HomeController">
    <children>
-      <MFXProgressSpinner id="determinateSpinner" fx:id="determinateSpinner" layoutX="595.0" layoutY="298.0" progress="0.0" radius="24.0" stylesheets="@CSSfiles/css/Progress.css" />
+      <MFXProgressSpinner id="determinateSpinner" fx:id="determinateSpinner" layoutX="595.0" layoutY="298.0" progress="0.0" radius="24.0" stylesheets="@CSSfiles/css/Progress.css">
+         <color2>
+            <Color red="0.7880299687385559" green="0.26059940457344055" blue="0.8157894611358643" />
+         </color2></MFXProgressSpinner>
    </children>
 </AnchorPane>

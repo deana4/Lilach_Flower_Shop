@@ -1,5 +1,6 @@
 .mybutton{
-    -fx-background-color: linear-gradient(to bottom right, pink, deeppink);
+    -fx-background-color: linear-gradient(to bottom right, lightsalmon, coral);
+    -fx-text-fill: white;
     -fx-cursor: hand;
 }
 

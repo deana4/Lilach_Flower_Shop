@@ -250,12 +250,13 @@ public class MainPageController extends ParentClass {     //This is a singleton 
 
     @FXML
     void MyAccBTNClicked(ActionEvent event) throws IOException { //Need to be changed
+
         this.main_first_load_pane.getChildren().clear();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        URL var = getClass().getResource("Complain.fxml");
+        URL var = getClass().getResource("MyAccount.fxml");
         fxmlLoader.setLocation(var);
         Parent root = fxmlLoader.load();
-        ComplainController controller = fxmlLoader.getController();
+        MyAccountController controller = fxmlLoader.getController();
         controller.setMain_page_holder(this);
         this.main_first_load_pane.getChildren().addAll(root);
     }

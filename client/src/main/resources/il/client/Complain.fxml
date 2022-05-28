@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,9 +11,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="compain_ancorepane1" prefHeight="646.0" prefWidth="1090.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ComplainController">
+<AnchorPane fx:id="compain_ancorepane1" prefHeight="646.0" prefWidth="976.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ComplainController">
    <children>
-      <AnchorPane fx:id="complain_ancorpane2" prefHeight="646.0" prefWidth="1090.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">
+      <AnchorPane fx:id="complain_ancorpane2" prefHeight="646.0" prefWidth="976.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
             <VBox alignment="TOP_CENTER" layoutX="317.0" layoutY="109.0" prefHeight="429.0" prefWidth="414.0" spacing="15.0">
                <children>
@@ -33,15 +33,17 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="256.0" spacing="10.0">
                      <children>
-                        <Label prefHeight="21.0" prefWidth="142.0" text="What went wrong?" textFill="#979797">
+                        <Label prefHeight="21.0" prefWidth="168.0" text="How we can help you?" textFill="#979797">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <MFXComboBox fx:id="problem_chooser" />
                      </children>
                   </HBox>
-                  <TextArea fx:id="complain_textarea" prefHeight="224.0" prefWidth="256.0" wrapText="true" />
+                  <TextArea fx:id="complain_textarea" prefHeight="224.0" prefWidth="256.0" wrapText="true">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor></TextArea>
                   <MFXButton fx:id="clearBTN" onAction="#ClearBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="clear" textFill="#979797">
                      <font>
                         <Font size="15.0" />
@@ -70,7 +72,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="complain_ancorpane3" prefHeight="646.0" prefWidth="1090.0" visible="false">
+      <AnchorPane fx:id="complain_ancorpane3" prefHeight="646.0" prefWidth="976.0" visible="false">
          <children>
             <Label layoutX="245.0" layoutY="108.0" prefHeight="17.0" prefWidth="615.0" text="We are sorry!!" textFill="#46c913">
                <font>

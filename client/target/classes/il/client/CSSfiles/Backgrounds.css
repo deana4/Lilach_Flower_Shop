@@ -35,7 +35,7 @@
     -fx-background-color: white;
     -fx-background-radius: 1em;
     -fx-border-radius: 1em;
-    -fx-alignment: center;
+    /*-fx-alignment: center;*/
     -fx-border-color: #979797;
 }
 
@@ -43,4 +43,20 @@
     -fx-background-color: white;
     /*-fx-background-radius: 2em;*/
     -fx-border-radius: 1%;
+}
+
+.sideBar{
+    -fx-background-color: linear-gradient(to bottom right, lightblue, lightseagreen);
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    /*-fx-alignment: center;*/
+    -fx-border-color: linear-gradient(to bottom right, lightseagreen, lightblue);
+}
+
+.HeadersNoBackground{
+    -fx-text-fill: white;
+    /*-fx-background-color: #979797;*/
+    /*-fx-background-radius: 250em;*/
+    -fx-border-radius: 90%;
+    -fx-alignment: center;
 }

@@ -94,7 +94,8 @@
 }
 
 #determinateSpinner:range2 .arc {
-	-fx-fill: #00BCFF;
+	/*-fx-fill: #00BCFF;*/
+	-fx-fill: #eede4d;
 }
 
 #determinateSpinner:range3 .arc {

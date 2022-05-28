@@ -35,7 +35,7 @@
     -fx-background-color: white;
     -fx-background-radius: 1em;
     -fx-border-radius: 1em;
-    -fx-alignment: center;
+    /*-fx-alignment: center;*/
     -fx-border-color: #979797;
 }
 

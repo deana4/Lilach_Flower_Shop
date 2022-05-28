@@ -78,7 +78,7 @@ public class CatalogController extends ParentClass{
         JSONObject cmd = new JSONObject();
         cmd.put("command", "getCatalogItems");
         SimpleClient.getClient().sendToServer(cmd.toString());
-      //  TimeUnit.MILLISECONDS.sleep(200);//need to wait to the server, need to use lock
+        TimeUnit.MILLISECONDS.sleep(200);//need to wait to the server, need to use lock
     }
 
     @FXML  // This method is called by the FXMLLoader when initialization is complete

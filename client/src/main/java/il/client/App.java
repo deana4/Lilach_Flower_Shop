@@ -32,7 +32,7 @@ public class App extends Application {
 
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MainPage.fxml"));
             Parent mainLayout = fxmlLoader.load();
-            Scene scene = new Scene(mainLayout, 1280, 720);
+            Scene scene = new Scene(mainLayout, 1300, 800);
             stage.setTitle("Lilach");
             MainPageController.getInstance().setStage(stage);
             scene.setFill(Color.TRANSPARENT);

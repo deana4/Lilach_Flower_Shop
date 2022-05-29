@@ -57,6 +57,10 @@ public class testDB {
         flower = new Flower("sunflower", 20,true, 50, "flower", "yellow");
         CatalogControl.saveNewFlower(flower, "src/main/resources/images/sunflower.jpeg");
 
+        flower = new Flower("Lotus", 100, true, 10,"flower","pink");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/Lotus.png");
+
+
         session.flush();
         session.getTransaction().commit(); // Save everything.
     }

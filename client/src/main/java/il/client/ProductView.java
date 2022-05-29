@@ -76,23 +76,36 @@ public class ProductView extends ParentClass{
         System.out.println(UserClient.getInstance().getPriority());
         switch(UserClient.getInstance().getPriority()){
             case 1: {
-                this.update_product_button.setDisable(true);
-                this.update_product_button.setVisible(false);
+                setPriorityBtnLowerThan2();
+                this.atc_product_button.setDisable(true);
+                this.atc_product_button.setVisible(false);
             } break;
             case 2: {
-                this.update_product_button.setDisable(false);
-                this.update_product_button.setVisible(true);
+                setPriorityBtnLowerThan2();
+                this.atc_product_button.setDisable(false);
+                this.atc_product_button.setVisible(true);
             } break;
             case 3: {
-
+                int i;
+                setPriorityBtnHigherThan2();
+                /*maybe do more*/
             } break;
             case 4: {
-
+                setPriorityBtnHigherThan2();
             } break;
 
         }
     }
 
+    public void setPriorityBtnHigherThan2(){
+        this.update_product_button.setDisable(false);
+        this.update_product_button.setVisible(true);
+        this.atc_product_button.setDisable(true);
+    }
+    public void setPriorityBtnLowerThan2(){
+        this.update_product_button.setDisable(true);
+        this.update_product_button.setVisible(false);
+    }
 
     @FXML
     void ClickedImage(MouseEvent event) throws IOException, ClassNotFoundException, InterruptedException {

@@ -1,14 +1,11 @@
 package il.client;
 
-import il.client.CartItem;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
-import java.util.LinkedList;
 
 public class Order {
     private static int id = 0;
@@ -21,6 +18,7 @@ public class Order {
     private String nameReceiver;
     private String phoneReceiver;
     private String Address;
+    private String storeChoosen;
 
     @FXML
     private MFXButton complaint;
@@ -30,7 +28,7 @@ public class Order {
 
     private ObservableList<CartItem> order_items = FXCollections.observableArrayList();
 
-    public Order(String orderDate, String orderTime, String orderReceiveTime, String orderReceiveDate, String greeting, String nameReceiver, String phoneReceiver, String address, ObservableList<CartItem> order_items) {
+    public Order(String orderDate, String orderTime, String orderReceiveTime, String orderReceiveDate, String greeting, String nameReceiver, String phoneReceiver, String address, String store, ObservableList<CartItem> order_items) {
         this.this_id = id++;
         this.orderDate = orderDate;
         this.orderTime = orderTime;
@@ -39,14 +37,27 @@ public class Order {
         this.greeting = greeting;
         this.nameReceiver = nameReceiver;
         this.phoneReceiver = phoneReceiver;
-        Address = address;
+        this.Address = address;
         this.order_items = order_items;
-        complaint = new MFXButton("Add Complaint");
-        cancel = new MFXButton("Cancel Order");
+        this.complaint = new MFXButton("Add Complaint");
+        this.cancel = new MFXButton("Cancel Order");
+        this.storeChoosen = store;
+        buttonsInitilize();
+    }
+
+    public void buttonsInitilize(){
+        complaint.setStyle("-fx-background-color: transparent;" +
+                "    -fx-border-color: -mfx-purple;" +
+                "    -fx-border-radius: 3;" +
+                "    -fx-text-fill: -mfx-purple;");
+        cancel.setStyle("-fx-background-color: transparent;" +
+                "    -fx-border-color: -mfx-purple;" +
+                "    -fx-border-radius: 3;" +
+                "    -fx-text-fill: -mfx-purple;");
+
 
         complaint.setOnAction(event -> {
             try {
-                MyAccountController.getInstance().ComplainRefresh();
                 MyAccountController.getInstance().LoadComplaintPage();
                 ComplainController.getInstance().setOrder_number_field(Integer.toString(this_id));
             } catch (IOException e) {
@@ -56,7 +67,6 @@ public class Order {
 
         cancel.setOnAction(event -> {
             try {
-                MyAccountController.getInstance().CancelOrderRefresh();
                 MyAccountController.getInstance().LoadCancelOrderPage();
                 CancelOrderController.getInstance().setOrder_num_filed(Integer.toString(this_id));
             } catch (IOException e) {
@@ -64,7 +74,6 @@ public class Order {
             }
         });
     }
-
     /* gets and sets*/
 
     public static int getId() {
@@ -171,6 +180,13 @@ public class Order {
         this.cancel = cancel;
     }
 
+    public String getStoreChoosen() {
+        return storeChoosen;
+    }
+
+    public void setStoreChoosen(String storeChoosen) {
+        this.storeChoosen = storeChoosen;
+    }
     /* end gets and sets*/
 
     @Override

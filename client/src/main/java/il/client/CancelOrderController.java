@@ -58,7 +58,7 @@ public class CancelOrderController {
     }
 
     @FXML
-    void YesBTNClicked(ActionEvent event) {
+    void YesBTNClicked(ActionEvent event) throws IOException {
         //sent to server that the user want to cancel this order!!!!!!
         this.cancel_order_anchorpane2.setVisible(false);
         this.cancel_order_anchorpane3.setVisible(true);
@@ -67,6 +67,7 @@ public class CancelOrderController {
 
     @FXML
     void CloseBTNClicked(ActionEvent event) throws IOException {
+        MyAccountController.getInstance().CancelOrderRefresh();
         MyAccountController.getInstance().LoadOrdersHistoryPage();
     }
 

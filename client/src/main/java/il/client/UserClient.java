@@ -36,13 +36,15 @@ public class UserClient {
         user = this;
         {
             ObservableList<CartItem> cart = FXCollections.observableArrayList();
-            cart.add(new CartItem("sunflower", "150", 2, 2));
-            cart.add(new CartItem("rose", "10", 2, 2));
-//            MFXButton complaint_btn = new MFXButton();
-//            complaint_btn.setText("Add Complaint");
+            cart.add(new CartItem("sunflower", 159.90, 2, 1));
+            cart.add(new CartItem("rose", 299.99, 2, 2));
+            cart.add(new CartItem("rose", 299.99, 2, 2));
+            cart.add(new CartItem("rose", 299.99, 2, 2));
+            cart.add(new CartItem("rose", 299.99, 2, 2));
+
             //for trying examples
             for(int i=0; i<20; i++)
-            orderList.add(new Order( "Sunday"+i, "12:0"+i, "13:0"+i, "Sunday"+i, "thankyou"+i, "Dean"+i, "1"+i, "bla"+i, cart ));
+            orderList.add(new Order( "Sunday"+i, "12:0"+i, "13:0"+i, "Sunday"+i, "thankyou"+i, "Dean"+i, "1"+i, "bla"+i,"Store 1", cart ));
         }
     }
 
@@ -104,5 +106,16 @@ public class UserClient {
 
     public void setOrderList(ObservableList<Order> orderList) {
         this.orderList = orderList;
+    }
+
+    public Order getOrderById(int id){
+        Order order;
+        for(int i=0; i< orderList.size(); i++){
+            order = orderList.get(i);
+            if(order.getThis_id() == id){
+                return order;
+            }
+        }
+        return null;
     }
 }

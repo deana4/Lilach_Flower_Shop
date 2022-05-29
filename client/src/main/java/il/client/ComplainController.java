@@ -62,7 +62,7 @@ public class ComplainController {
 
     @FXML
     void CancelBTNClicked(ActionEvent event) throws IOException {
-//        MyAccountController.getInstance().ComplainRefresh();
+        MyAccountController.getInstance().ComplainRefresh();
         MyAccountController.getInstance().LoadOrdersHistoryPage();
 
     }
@@ -74,6 +74,7 @@ public class ComplainController {
 
     @FXML
     void CloseComplainBTNClicked(ActionEvent event) throws IOException {
+        MyAccountController.getInstance().ComplainRefresh();
         MyAccountController.getInstance().LoadOrdersHistoryPage();
 
     }

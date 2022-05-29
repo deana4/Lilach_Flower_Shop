@@ -35,6 +35,7 @@ public class App extends Application {
             Scene scene = new Scene(mainLayout, 1300, 800);
             stage.setTitle("Lilach");
             MainPageController.getInstance().setStage(stage);
+
             scene.setFill(Color.TRANSPARENT);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);

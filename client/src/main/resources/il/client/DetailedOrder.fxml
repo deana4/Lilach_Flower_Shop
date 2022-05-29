@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.font.MFXFontIcon?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+
+<AnchorPane prefHeight="285.0" prefWidth="625.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.DetailedOrderController">
+   <children>
+      <AnchorPane layoutX="26.0" layoutY="17.0" prefHeight="251.0" prefWidth="573.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css">
+         <children>
+            <VBox alignment="CENTER" layoutX="35.0" layoutY="21.0" prefHeight="210.0" prefWidth="503.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <MFXTextField id="customPassword" fx:id="sumText" allowEdit="false" floatMode="BORDER" floatingText="Sum Of Order" promptText="Sum" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField id="customPassword" fx:id="amountText" allowEdit="false" floatMode="BORDER" floatingText="Amount Of Items" promptText="Amount" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField id="customPassword" fx:id="storeText" allowEdit="false" floatMode="BORDER" floatingText="Store Choosen" promptText="Store" stylesheets="@CSSfiles/css/TextFields.css" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <MFXTextField id="customPassword" fx:id="timeReceiverText" allowEdit="false" floatMode="BORDER" floatingText="Time Receive" prefHeight="38.0" prefWidth="181.0" promptText="Time Receive" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField id="customPassword" fx:id="dateReceiverText" allowEdit="false" floatMode="BORDER" floatingText="Date Receive" prefHeight="38.0" prefWidth="189.0" promptText="Date Receive" stylesheets="@CSSfiles/css/TextFields.css" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <MFXTextField id="customPassword" fx:id="addressText" allowEdit="false" floatMode="BORDER" floatingText="Address" prefHeight="38.0" prefWidth="489.0" promptText="Address" stylesheets="@CSSfiles/css/TextFields.css" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <MFXButton alignment="TOP_LEFT" contentDisplay="CENTER" depthLevel="LEVEL0" ellipsisString="" layoutX="528.0" layoutY="9.0" onAction="#closeWindow" prefHeight="21.0" prefWidth="10.0" rippleAnimateBackground="false" rippleColor="RED" text=" " textAlignment="CENTER">
+               <graphic>
+                  <MFXFontIcon fx:id="closeIcon" description="mfx-x-circle" size="15.0" styleClass="close-icon">
+                     <color>
+                        <Color red="1.0" />
+                     </color>
+                  </MFXFontIcon>
+               </graphic>
+            </MFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

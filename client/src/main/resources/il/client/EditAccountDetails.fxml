@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="646.0" prefWidth="976.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.EditAccountDetailsController">
+   <children>
+      <AnchorPane prefHeight="646.0" prefWidth="976.0">
+         <children>
+            <ImageView fitHeight="646.0" fitWidth="674.0" layoutX="165.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ClientImages/AccountPrefIMG.png" />
+               </image>
+            </ImageView>
+            <VBox layoutX="185.0" layoutY="118.0" prefHeight="398.0" prefWidth="606.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                     <children>
+                        <MFXTextField id="customField" alignment="CENTER" allowEdit="false" floatMode="BORDER" floatingText="Change Username" prefHeight="18.0" prefWidth="241.0" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXButton fx:id="usernameBtn" alignment="CENTER" buttonType="RAISED" depthLevel="LEVEL1" onMouseClicked="#changeUsername" rippleColor="#ffd3d3" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />
+                     </children>
+                  </HBox>
+                  <HBox id="customField" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                     <children>
+                        <MFXTextField id="customField" alignment="CENTER" allowEdit="false" floatMode="BORDER" floatingText="Change Password" prefHeight="17.0" prefWidth="241.0" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXButton fx:id="passwordBtn" alignment="CENTER" buttonType="RAISED" depthLevel="LEVEL1" onMouseClicked="#passwordChange" rippleColor="#ffd3d3" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                     <children>
+                        <MFXTextField id="customField" alignment="CENTER" allowEdit="false" floatMode="BORDER" floatingText="Change Credit Card" prefHeight="9.0" prefWidth="241.0" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXButton fx:id="creditcardBtn" alignment="CENTER" buttonType="RAISED" depthLevel="LEVEL1" onMouseClicked="#changeCredit" rippleColor="#ffd3d3" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                     <children>
+                        <MFXTextField id="customField" fx:id="phoneBtn" alignment="CENTER" allowEdit="false" floatMode="BORDER" floatingText="Change Phone" onMouseClicked="#changePhone" prefHeight="3.0" prefWidth="241.0" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXButton alignment="CENTER" buttonType="RAISED" depthLevel="LEVEL1" rippleColor="#ffd3d3" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                     <children>
+                        <MFXTextField id="customField" fx:id="addressBtn" alignment="CENTER" allowEdit="false" floatMode="BORDER" floatingText="Change Address" onMouseClicked="#changeAddress" prefHeight="0.0" prefWidth="241.0" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXButton alignment="CENTER" buttonType="RAISED" depthLevel="LEVEL1" rippleColor="#ffd3d3" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                     <children>
+                        <MFXTextField id="customField" alignment="CENTER" allowEdit="false" floatMode="BORDER" floatingText="Change Mail" onAction="#mailBtn" onMouseClicked="#changeMail" prefHeight="0.0" prefWidth="241.0" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXButton alignment="CENTER" buttonType="RAISED" depthLevel="LEVEL1" rippleColor="#ffd3d3" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Label layoutX="412.0" layoutY="516.0" text="Check Your Errors!" textFill="RED" visible="false" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="164.0" layoutY="55.0" prefHeight="52.0" prefWidth="648.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Account Preferences">
+         <font>
+            <Font name="Segoe Print Bold" size="23.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

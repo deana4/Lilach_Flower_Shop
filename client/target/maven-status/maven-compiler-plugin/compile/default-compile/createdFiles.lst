@@ -26,8 +26,8 @@ il\client\ocsf\ObservableClient.class
 il\client\EditAccountDetailsController.class
 il\client\RegisterController.class
 il\client\RegisterControl.class
-il\client\ComplaintsController.class
 il\client\SimpleClient.class
+il\client\ComplaintTabController.class
 il\client\UpdateController.class
 il\client\LoginController.class
 il\client\HomeController.class

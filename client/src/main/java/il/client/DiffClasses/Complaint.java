@@ -1,6 +1,11 @@
 package il.client.DiffClasses;
 
+import il.client.MyAccountController;
 import il.client.Order;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.fxml.FXML;
+
+import java.io.IOException;
 
 public class Complaint {
     private static int id = 0;
@@ -14,11 +19,16 @@ public class Complaint {
     private String Answer;
     private double refund;
 
-    Complaint(Order order, String complaint, String complaintDate, String complaintTime){
+
+    public Complaint(Order order, String complaint, String complaintDate, String complaintTime){
         this_id = id++;
         this.order = order;
         this.complaint = complaint;
+        this.ComplaintTime = complaintTime;
+        this.complaintDate = complaintDate;
+
     }
+
 
     public Order getOrder() {
         return order;
@@ -87,4 +97,13 @@ public class Complaint {
     public void setRefund(double refund) {
         this.refund = refund;
     }
+
+    public void setThis_id(int this_id) {
+        this.this_id = this_id;
+    }
+
+    public boolean isHandled() {
+        return isHandled;
+    }
+
 }

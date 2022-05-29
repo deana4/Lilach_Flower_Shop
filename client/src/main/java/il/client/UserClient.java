@@ -2,7 +2,6 @@ package il.client;
 
 import il.client.DiffClasses.Complaint;
 import il.entities.User;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -45,6 +44,13 @@ public class UserClient {
             //for trying examples
             for(int i=0; i<20; i++)
             orderList.add(new Order( "Sunday"+i, "12:0"+i, "13:0"+i, "Sunday"+i, "thankyou"+i, "Dean"+i, "1"+i, "bla"+i,"Store 1", cart ));
+        }
+        {
+            complaintList.add(new Complaint(orderList.get(0), "bad flowers","29/05/2022", "12:00"));
+            complaintList.add(new Complaint(orderList.get(1), "bad flowers","29/05/2022", "13:00"));
+            complaintList.add(new Complaint(orderList.get(2), "bad flowers","29/05/2022", "13:30"));
+            complaintList.add(new Complaint(orderList.get(3), "bad flowers","29/05/2022", "15:00"));
+            complaintList.add(new Complaint(orderList.get(4), "bad flowers","29/05/2022", "17:30"));
         }
     }
 
@@ -108,6 +114,14 @@ public class UserClient {
         this.orderList = orderList;
     }
 
+    public ObservableList<Complaint> getComplaintList() {
+        return complaintList;
+    }
+
+    public void setComplaintList(ObservableList<Complaint> complaintList) {
+        this.complaintList = complaintList;
+    }
+
     public Order getOrderById(int id){
         Order order;
         for(int i=0; i< orderList.size(); i++){
@@ -117,5 +131,24 @@ public class UserClient {
             }
         }
         return null;
+    }
+
+    public Complaint getComplaintById(int id){
+        Complaint complaint;
+        for(int i=0; i< complaintList.size(); i++){
+            complaint = complaintList.get(i);
+            if(complaint.getThis_id() == id){
+                return complaint;
+            }
+        }
+        return null;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

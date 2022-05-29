@@ -10,4 +10,5 @@ module il.client {
     opens il.client.DiffClasses to javafx.fxml;
     opens il.client to javafx.fxml;
     exports il.client;
+    exports il.client.DiffClasses;
 }

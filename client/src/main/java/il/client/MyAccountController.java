@@ -1,35 +1,25 @@
 package il.client;
 
+import il.client.DiffClasses.Complaint;
 import io.github.palexdev.materialfx.controls.MFXIconWrapper;
 import io.github.palexdev.materialfx.controls.MFXRectangleToggleNode;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
-import io.github.palexdev.materialfx.font.MFXFontIcon;
-import io.github.palexdev.materialfx.utils.ScrollUtils;
-import io.github.palexdev.materialfx.utils.ToggleButtonsUtil;
 import io.github.palexdev.materialfx.utils.others.loader.MFXLoader;
 import io.github.palexdev.materialfx.utils.others.loader.MFXLoaderBean;
-import javafx.application.Platform;
-import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class MyAccountController{
 
@@ -78,6 +68,7 @@ public class MyAccountController{
         MFXLoader loader = new MFXLoader();
         loader.addView(MFXLoaderBean.of("MyAccount", loadURL("EditAccountDetails.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-variant7-mark", "Account Preferences")).setDefaultRoot(true).get());
         loader.addView(MFXLoaderBean.of("Orders", loadURL("OrdersHistory.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-list-dropdown", "Orders")).get());
+        loader.addView(MFXLoaderBean.of("Complaints", loadURL("ComplaintsTab.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-message", "Complaints")).get());
         loader.setOnLoadedAction(beans -> {
             List<ToggleButton> nodes = beans.stream()
                     .map(bean -> {
@@ -155,6 +146,19 @@ public class MyAccountController{
             controller_map.put("AccountPref", controller);
             ((EditAccountDetailsController) controller_map.get("AccountPref")).setAccountController(this);
         }
+        {
+            fxmlLoader = new FXMLLoader();
+            var = getClass().getResource("ComplaintsTab.fxml");
+            fxmlLoader.setLocation(var);
+            root = fxmlLoader.load();
+            ComplaintTabController controller = fxmlLoader.getController();
+            root_map.put("ComplaintsTab", root);
+            controller_map.put("ComplaintsTab", controller);
+            ((ComplaintTabController) controller_map.get("ComplaintsTab")).setMy_account_page_holder(this);
+        }
+
+
+
 
 
     }
@@ -183,6 +187,12 @@ public class MyAccountController{
         this.contentPane.getChildren().addAll(root_map.get("AccountPref"));
     }
 
+    public void LoadComplaintsTab() {
+        this.contentPane.getChildren().clear();
+        ((ComplaintTabController)controller_map.get("ComplaintsTab")).setMy_account_page_holder(this);
+        this.contentPane.getChildren().addAll(root_map.get("ComplaintsTab"));
+    }
+
     public void ComplainRefresh() throws IOException {
         Parent root;
         URL var;
@@ -197,6 +207,22 @@ public class MyAccountController{
         root_map.put("Complaint",root);
         controller_map.put("Complaint",controller);
         ((ComplainController)controller_map.get("Complaint")).setMy_account_page_holder(this);
+    }
+
+    public void ComplaintsTabRefresh() throws IOException {
+        Parent root;
+        URL var;
+        FXMLLoader fxmlLoader;
+        fxmlLoader = new FXMLLoader();
+        var = getClass().getResource("ComplaintsTab.fxml");
+        fxmlLoader.setLocation(var);
+        root = fxmlLoader.load();
+        ComplaintTabController controller = fxmlLoader.getController();
+        root_map.remove("ComplaintsTab");
+        controller_map.remove("ComplaintsTab");
+        root_map.put("ComplaintsTab",root);
+        controller_map.put("ComplaintsTab",controller);
+        ((ComplaintTabController)controller_map.get("ComplaintsTab")).setMy_account_page_holder(this);
     }
 
     public void CancelOrderRefresh() throws IOException {

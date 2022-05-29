@@ -3,11 +3,11 @@ package il.client;
 
 public class CartItem {
     private String item_name;
-    private String item_price;
+    private double item_price;
     private int item_id;
     private int item_amount;
 
-    public CartItem(String item_name, String item_price, int amount, int item_id) {
+    public CartItem(String item_name, double item_price, int amount, int item_id) {
         this.item_name = item_name;
         this.item_price = item_price;
         this.item_id = item_id;
@@ -30,11 +30,11 @@ public class CartItem {
         this.item_name = item_name;
     }
 
-    public String getItem_price() {
+    public double getItem_price() {
         return item_price;
     }
 
-    public void setItem_price(String item_price) {
+    public void setItem_price(double item_price) {
         this.item_price = item_price;
     }
 
@@ -45,6 +45,7 @@ public class CartItem {
     public void setItem_id(int item_id) {
         this.item_id = item_id;
     }
+
 
 
     @Override

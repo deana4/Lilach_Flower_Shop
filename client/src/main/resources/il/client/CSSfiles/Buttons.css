@@ -53,7 +53,7 @@
     -fx-background-color: linear-gradient(to bottom left, lightpink,lightgoldenrodyellow);
     -fx-background-insets: -1.4, 0, 1, 2;
     -fx-background-radius:  8.5, 5, 4, 3;
-    -fx-text-fill: #979797;
+    -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
@@ -106,5 +106,4 @@
 .always-on-top-icon:filled {
     -fx-opacity: 1.0;
 }
-
 

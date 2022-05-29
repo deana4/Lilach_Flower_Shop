@@ -9,7 +9,7 @@ public class Complaint {
     private String complaint;
     private String complaintDate;
     private String ComplaintTime;
-    private boolean isCared;
+    private boolean isHandled;
     private boolean isRefund;
     private String Answer;
     private double refund;
@@ -56,12 +56,12 @@ public class Complaint {
         ComplaintTime = complaintTime;
     }
 
-    public boolean isCared() {
-        return isCared;
+    public boolean getHandled() {
+        return isHandled;
     }
 
-    public void setCared(boolean cared) {
-        isCared = cared;
+    public void setHandled(boolean cared) {
+        isHandled = cared;
     }
 
     public boolean isRefund() {

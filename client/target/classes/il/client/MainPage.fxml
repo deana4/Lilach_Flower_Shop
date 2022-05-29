@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="800.0" prefWidth="1300.0" styleClass="MainBorder" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.MainPageController">
+<AnchorPane fx:id="rootPane" prefHeight="800.0" prefWidth="1300.0" styleClass="MainBorder" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.MainPageController">
    <children>
       <MFXTextField fx:id="user_wellcome" allowEdit="false" floatMode="BORDER" layoutX="220.0" layoutY="29.0" prefHeight="15.0" prefWidth="172.0" selectable="false" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
          <textFill>
@@ -53,7 +53,7 @@
                <children>
                   <MFXButton fx:id="home_button" buttonType="RAISED" contentDisplay="CENTER" onMouseClicked="#HomeBTNClicked" prefHeight="30.0" prefWidth="80.0" rippleAnimateShadow="true" rippleColor="#ffdcdc" rippleRadius="60.0" rippleRadiusMultiplier="60.0" styleClass="nav-buttons" stylesheets="@CSSfiles/Buttons.css" text="Home" textFill="#808080" />
                   <MFXButton fx:id="catalog_button" buttonType="RAISED" contentDisplay="CENTER" onAction="#CatalogBTNClicked" prefHeight="30.0" prefWidth="80.0" rippleAnimateShadow="true" rippleColor="#ffdcdc" rippleRadius="60.0" rippleRadiusMultiplier="60.0" styleClass="nav-buttons" stylesheets="@CSSfiles/Buttons.css" text="Catalog" textFill="#808080" />
-                  <MFXButton fx:id="myacc_btn" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL3" onAction="#MyAccBTNClicked" prefHeight="30.0" prefWidth="80.0" rippleAnimateShadow="true" rippleColor="#ffdcdc" rippleRadius="60.0" rippleRadiusMultiplier="60.0" styleClass="nav-buttons" stylesheets="@CSSfiles/Buttons.css" text="MyACC" textFill="#808080" visible="false" />
+                  <MFXButton fx:id="myacc_btn" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL3" onAction="#MyAccBTNClicked" prefHeight="30.0" prefWidth="80.0" rippleAnimateShadow="true" rippleColor="#ffdcdc" rippleRadius="60.0" rippleRadiusMultiplier="60.0" styleClass="nav-buttons" stylesheets="@CSSfiles/Buttons.css" text="MyACC" textFill="#808080" />
                   <MFXButton fx:id="mycart_btn" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL3" onAction="#MyCartBTNClicked" prefHeight="30.0" prefWidth="80.0" rippleAnimateShadow="true" rippleColor="#ffdcdc" rippleRadius="60.0" rippleRadiusMultiplier="60.0" styleClass="nav-buttons" stylesheets="@CSSfiles/Buttons.css" text="Cart" textFill="#808080" visible="false" />
                </children>
             </HBox>

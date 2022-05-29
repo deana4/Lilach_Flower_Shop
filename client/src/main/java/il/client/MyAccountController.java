@@ -76,8 +76,8 @@ public class MyAccountController{
 
     private void initializeLoader() {
         MFXLoader loader = new MFXLoader();
-     //   loader.addView(MFXLoaderBean.of("Complains", loadURL("Complain.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-circle-dot", "Complaints")).setDefaultRoot(true).get());
-        loader.addView(MFXLoaderBean.of("Orders", loadURL("OrdersHistory.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-list-dropdown", "Orders")).setDefaultRoot(true).get());
+        loader.addView(MFXLoaderBean.of("MyAccount", loadURL("EditAccountDetails.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-variant7-mark", "Account Preferences")).setDefaultRoot(true).get());
+        loader.addView(MFXLoaderBean.of("Orders", loadURL("OrdersHistory.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-list-dropdown", "Orders")).get());
         loader.setOnLoadedAction(beans -> {
             List<ToggleButton> nodes = beans.stream()
                     .map(bean -> {
@@ -145,6 +145,18 @@ public class MyAccountController{
             controller_map.put("CancelOrder", controller);
             ((CancelOrderController) controller_map.get("CancelOrder")).setMy_account_page_holder(this);
         }
+        {
+            fxmlLoader = new FXMLLoader();
+            var = getClass().getResource("EditAccountDetails.fxml");
+            fxmlLoader.setLocation(var);
+            root = fxmlLoader.load();
+            EditAccountDetailsController controller = fxmlLoader.getController();
+            root_map.put("AccountPref", root);
+            controller_map.put("AccountPref", controller);
+            ((EditAccountDetailsController) controller_map.get("AccountPref")).setAccountController(this);
+        }
+
+
     }
 
     public void LoadComplaintPage() throws IOException {
@@ -165,6 +177,12 @@ public class MyAccountController{
         this.contentPane.getChildren().addAll(root_map.get("CancelOrder"));
     }
 
+    public void LoadAccountPref() throws IOException {
+        this.contentPane.getChildren().clear();
+        ((EditAccountDetailsController)controller_map.get("AccountPref")).setAccountController(this);
+        this.contentPane.getChildren().addAll(root_map.get("AccountPref"));
+    }
+
     public void ComplainRefresh() throws IOException {
         Parent root;
         URL var;
@@ -174,6 +192,8 @@ public class MyAccountController{
         fxmlLoader.setLocation(var);
         root = fxmlLoader.load();
         ComplainController controller = fxmlLoader.getController();
+        root_map.remove("Complaint");
+        controller_map.remove("Complaint");
         root_map.put("Complaint",root);
         controller_map.put("Complaint",controller);
         ((ComplainController)controller_map.get("Complaint")).setMy_account_page_holder(this);
@@ -188,9 +208,27 @@ public class MyAccountController{
         fxmlLoader.setLocation(var);
         root = fxmlLoader.load();
         CancelOrderController controller = fxmlLoader.getController();
+        root_map.remove("CancelOrder");
+        controller_map.remove("CancelOrder");
         root_map.put("CancelOrder",root);
         controller_map.put("CancelOrder",controller);
         ((CancelOrderController)controller_map.get("CancelOrder")).setMy_account_page_holder(this);
+    }
+
+    public void AccountPrefRefresh() throws IOException {
+        Parent root;
+        URL var;
+        FXMLLoader fxmlLoader;
+        fxmlLoader = new FXMLLoader();
+        var = getClass().getResource("EditAccountDetails.fxml");
+        fxmlLoader.setLocation(var);
+        root = fxmlLoader.load();
+        EditAccountDetailsController controller = fxmlLoader.getController();
+        root_map.remove("AccountPref");
+        controller_map.remove("AccountPref");
+        root_map.put("AccountPref",root);
+        controller_map.put("AccountPref",controller);
+        ((EditAccountDetailsController)controller_map.get("AccountPref")).setAccountController(this);
     }
 
     /*gets and sets*/

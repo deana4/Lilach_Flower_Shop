@@ -11,6 +11,7 @@ il\client\Order.class
 module-info.class
 il\client\ocsf\AdaptableClient.class
 il\client\CatalogController.class
+il\client\DetailedOrderController.class
 il\client\LogInControl.class
 il\client\MainPageController.class
 il\client\DiffClasses\Complaint.class
@@ -22,8 +23,10 @@ il\client\CartItem.class
 il\client\OrderController.class
 il\client\ComplainHandlerController.class
 il\client\ocsf\ObservableClient.class
+il\client\EditAccountDetailsController.class
 il\client\RegisterController.class
 il\client\RegisterControl.class
+il\client\ComplaintsController.class
 il\client\SimpleClient.class
 il\client\UpdateController.class
 il\client\LoginController.class
@@ -32,3 +35,4 @@ il\client\CatalogControl.class
 il\client\Priority.class
 il\client\CustomProductController.class
 il\client\MyAccountController.class
+il\client\ExecptionGarage.class

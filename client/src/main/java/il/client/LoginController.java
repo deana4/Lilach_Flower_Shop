@@ -56,6 +56,15 @@ public class LoginController extends ParentClass{
         }
         if(isWorker){
             LogInControl.logIn(username, password, isWorker);
+
+            if(username.equals("Liran") && password.equals("Li")){
+                correctLogin = true;
+                System.out.println("priority" + UserClient.getInstance().getPriority());
+                UserClient.getInstance().TestLoginFunction(2,"Liran","Li", "4581458045804580", "Liran Eliav", "Super Duper Worker", 10000, "liran.eliav73@gmail.com");
+                if(UserClient.getInstance().getPosition().equals("Super Duper Worker")){
+                    UserClient.getInstance().setPriority(3);
+                }
+            }
 //            UserClient.getInstance().setUserByServer(UserClient.getInstance().getUserServer());
             //correctLogin = (send msg to server - to find (string = username-password)
             // for specific worker id in the worker table

@@ -65,19 +65,19 @@ public class AddToCartController{
     void initialize(){
         this.TableInitializeFields();
         {
-            this.addItemToTable("Dean", "50$", 1,1);
+            this.addItemToTable("Dean", 50, 1,1);
             total_sum += 50;
-            this.addItemToTable("Liran", "100$",1, 3);
+            this.addItemToTable("Liran", 100,1, 3);
             total_sum += 100;
-            this.addItemToTable("Ann", "150$", 2,2);
+            this.addItemToTable("Ann", 100, 2,2);
             total_sum += 150;
-            this.addItemToTable("Ido", "10$", 3,10);
+            this.addItemToTable("Ido", 100, 3,10);
             total_sum += 10;
-            this.addItemToTable("Dean", "50$", 1,5);
+            this.addItemToTable("Dean", 100, 1,5);
             total_sum += 50;
-            this.addItemToTable("Dean", "50$",1, 8);
+            this.addItemToTable("Dean", 100,1, 8);
             total_sum += 50;
-            this.addItemToTable("Dean", "50$", 19,7);
+            this.addItemToTable("Dean", 100, 19,7);
             total_sum += 50;
         }
 
@@ -93,7 +93,7 @@ public class AddToCartController{
         table_Column_id.setCellValueFactory(new PropertyValueFactory<CartItem,Integer>("item_id"));
     }
 
-    public void addItemToTable(String name, String price, int id, int amount){
+    public void addItemToTable(String name, double price, int id, int amount){
         CartItem item = new CartItem(name,price,id,amount);
         this.items.addAll(item);
     }

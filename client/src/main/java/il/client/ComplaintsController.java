@@ -18,7 +18,11 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class OrdersHistoryController {
+public class ComplaintsController {
+
+    @FXML
+    private TableColumn<Order, String> address_col;
+
     @FXML
     private TableColumn<Order, String> date_col;
 
@@ -57,7 +61,7 @@ public class OrdersHistoryController {
         }
         orders_table.setItems(UserClient.getInstance().getOrderList());
     }
-//
+    //
     public void TableInitializeFields() {
         orders_table.setFixedCellSize(40);
         id_col.setCellValueFactory(new PropertyValueFactory<Order, Integer>("this_id"));
@@ -65,6 +69,7 @@ public class OrdersHistoryController {
         time_col.setCellValueFactory(new PropertyValueFactory<Order, String>("orderTime"));
         phone_receiver_col.setCellValueFactory(new PropertyValueFactory<Order, String>("phoneReceiver"));
         name_receiver_col.setCellValueFactory(new PropertyValueFactory<Order, String>("nameReceiver"));
+        address_col.setCellValueFactory(new PropertyValueFactory<Order, String>("Address"));
         complaint_col.setCellValueFactory(new PropertyValueFactory<Order, MFXButton>("complaint"));
         cancel_col.setCellValueFactory(new PropertyValueFactory<Order, MFXButton>("cancel"));
 

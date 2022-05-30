@@ -2,6 +2,7 @@ package il.client;
 
 import il.client.ProductView;
 import il.client.SimpleClient;
+import il.client.events.CatalogItemsEvent;
 import il.entities.Flower;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import javafx.fxml.FXML;
@@ -15,6 +16,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -74,20 +77,8 @@ public class CatalogController extends ParentClass{
         flowerlist = flowerlist1;
     }
 
-    private void createf() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
-        JSONObject cmd = new JSONObject();
-        cmd.put("command", "getCatalogItems");
-        SimpleClient.getClient().sendToServer(cmd.toString());
-        TimeUnit.MILLISECONDS.sleep(200);//need to wait to the server, need to use lock
-    }
-
-    @FXML  // This method is called by the FXMLLoader when initialization is complete
-    void initialize() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
-        //get connection to the server
-        flowersFXML = new LinkedList<Node>();
-
-        CatalogControl.getItemsList();
-
+    @Subscribe
+    public void setFlowerlist(CatalogItemsEvent event) throws IOException {
         int col = 0;
         int row = 0;
 
@@ -98,7 +89,7 @@ public class CatalogController extends ParentClass{
             my_fxml_loader = new FXMLLoader();
             my_fxml_loader.setLocation(path);//change secondary.fxml to the fxml file from dean and liran
             Node node = my_fxml_loader.load();
-       //     flowersFXML.add(node);
+            //     flowersFXML.add(node);
             ProductView controller = my_fxml_loader.getController();
             controller.setCat_controller(this);
             controller.setData(flowerlist.get(i));
@@ -121,6 +112,13 @@ public class CatalogController extends ParentClass{
             GridPane.setMargin(node, new Insets(10));
         }
         scrollPane.setContent(this.gridPane);
+    }
+
+
+    @FXML  // This method is called by the FXMLLoader when initialization is complete
+    void initialize() throws IOException, ClassNotFoundException, InterruptedException {
+        EventBus.getDefault().register(this);
+        CatalogControl.getItemsList();
     }
 
     public void setAnchorpang2Visibale(){

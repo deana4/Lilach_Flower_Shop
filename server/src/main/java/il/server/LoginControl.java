@@ -1,39 +1,62 @@
 package il.server;
 
+import il.entities.Flower;
 import il.entities.User;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.LinkedList;
 import java.util.List;
 
 public class LoginControl {
+    public static String checkLogin(String userName, String pass, boolean isWorker){
+        List<User> lUsers = RegisterControl.getAllUsers();
 
-    public static User tryLogIn(String userName, String pass, boolean isWorker){
-        testDB.openSssion();
-        try{
-            if(isWorker==false){
-                CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
-                CriteriaQuery<User> query = builder.createQuery(User.class);
-                query.from(User.class);
-                List<User> data = testDB.session.createQuery(query).getResultList();
-                for(User user : data){
-                    if(user.getUserName().equals(userName) && user.getPassword().equals(pass))
-                        return user;
+        for (User user: lUsers){
+            if (user.getUserName().equals(userName)){
+                if(user.getPassword().equals(pass)){
+                    if(user.isLogin()){
+                        return "this user already sighing from another device!";
+                    }
+                    setToActive(user.getId());
+                    return "";
                 }
-                return null;
+                else{
+                    return "incorrect password!";
+                }
             }
-//            if(isWorker){
-//                CriteriaBuilder builder = session.getCriteriaBuilder();
-//                CriteriaQuery<Flower> query = builder.createQuery(Flower.class);
-//                query.from(Flower.class);
-//                List<Flower> data = session.createQuery(query).getResultList();
-//            }
-
         }
-        catch (Exception e){
-            e.printStackTrace();
-            System.out.println("Error: tryLogIn");
-        }
-        return null;
+        return "username does not exist!";
     }
+
+    private static void setToActive(int idUser){
+        testDB.openSssion();
+        User user = testDB.session.get(User.class, idUser);
+        user.setLogin(true);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
+    public static void setToDiactive(String username){
+        testDB.openSssion();
+        CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root<User> root = query.from(User.class);
+        query.orderBy(builder.asc(root.get("userName")));
+        List<User> data = testDB.session.createQuery(query.orderBy()).getResultList();
+        LinkedList<User> listItems = new LinkedList<>(data);
+
+        for (User user : listItems){
+            if(user.getUserName().equals(username)){
+                user.setLogin(false);
+            }
+        }
+
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
 }

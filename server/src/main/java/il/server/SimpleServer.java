@@ -40,23 +40,25 @@ public class SimpleServer extends AbstractServer {
                 String pass = message.getPass();
                 boolean isWorker = message.isWorker();
 
-                User logInUser = LoginControl.tryLogIn(username, pass, isWorker);
+                String result = LoginControl.checkLogin(username, pass, isWorker);
 
-                if (logInUser!=null){
+                if (result.equals("")){
                     System.out.println("successfully! login: "+ username);
 
                     sendMessage.setMessage("result login");
-                    sendMessage.setUser(logInUser);
+                    sendMessage.setLoginStatus(true);
+                    sendMessage.setUsername(username);
+                    sendMessage.setLoginResult("login was successful");
                     client.sendToClient(sendMessage);
                 }
                 else{
                     System.out.println("faild! login: "+ username);
                     sendMessage.setMessage("result login");
-                    sendMessage.setUser(null);
+                    sendMessage.setLoginStatus(false);
+                    sendMessage.setLoginResult(result);
                     client.sendToClient(sendMessage);
                 }
             }
-
 
             if (message.getMessage().equals("getCatalogItems")) {
                 sendMessage.setMessage("item catalog list");
@@ -64,21 +66,23 @@ public class SimpleServer extends AbstractServer {
                 client.sendToClient(sendMessage);
                 System.out.println("send Flowers to catalog");
             }
-            if(message.getMessage().equals("setPrice")){
+
+            if(message.getMessage().equals("setPriceItem")){
                 int id = message.getIdItem();
                 double price = message.getNewPrice();
                 CatalogControl.setPrice(id, price);
             }
-//            if(message.getMessage().equals("setImages")){
-//                int id = cmd.getInt("id");
-//                String bytes64 = cmd.getString("newImage");
-//                byte[] bFile = Base64.getDecoder().decode(bytes64);
-//                CatalogControl.setImage(id, bFile);
-//            }
 
+            if(message.getMessage().equals("logout")){
+                String username = message.getUsername();
+                LoginControl.setToDiactive(username);
+            }
+
+            if(message.getMessage().equals("setImagesItem")){
+                CatalogControl.setImage(message.getIdProduct(), message.getbFile());
+            }
 
             if(message.getMessage().equals("register")){
-
                 String username = message.getUsername();
                 String name = message.getName();
                 String pass = message.getPass();
@@ -88,11 +92,39 @@ public class SimpleServer extends AbstractServer {
 
                 User newUser = new User(username, pass,credit_card, plan, name, id);
                 System.out.println("get register request:" + username);
-                boolean resultRegister = RegisterControl.register(newUser);
+
+                String result = RegisterControl.checknewUser(newUser);
+
+
+                if(result.equals("")){
+                    if(RegisterControl.register(newUser)){
+                        sendMessage.setRegisterStatus(true);
+                        sendMessage.setRegisterResult("user as been register!");
+                    }
+                    else{
+                        sendMessage.setRegisterStatus(false);
+                        sendMessage.setRegisterResult("Error: somethings wrong with the database.");
+                    }
+                }
+                else{
+                    sendMessage.setRegisterStatus(false);
+                    sendMessage.setRegisterResult(result);
+                }
 
                 sendMessage.setMessage("result register");
-                sendMessage.setRegisterStatus(resultRegister);
                 client.sendToClient(sendMessage);
+            }
+
+            if(message.getMessage().equals("setNameItem")){
+                CatalogControl.setName(message.getIdProduct(), message.getNameProduct());
+            }
+
+            if(message.getMessage().equals("setSaleItem")){
+                CatalogControl.setSale(message.getIdProduct(), message.isSale(), message.getDiscountPer());
+            }
+
+            if(message.getMessage().equals("deleteItem")){
+                CatalogControl.deleteItem(message.getIdProduct());
             }
 
 

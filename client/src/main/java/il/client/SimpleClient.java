@@ -2,11 +2,12 @@ package il.client;
 
 
 
+
+import il.client.events.*;
 import il.client.ocsf.AbstractClient;
 import il.entities.Flower;
 import il.entities.Message;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.*;
 
@@ -18,8 +19,6 @@ public class SimpleClient extends AbstractClient {
 		super(host, port);
 	}
 
-	private String lastMessage;
-
 	@Override
 	protected void handleMessageFromServer(Object msg){
 		Message message = (Message) msg;
@@ -28,25 +27,16 @@ public class SimpleClient extends AbstractClient {
 
 		if(message.getMessage().equals("item catalog list")){
 			System.out.println("get Flower object!");
-			CatalogController.setFlowerlist(message.getListItem());
-			return;
+			List<Flower> items = message.getListItem();
+			EventBus.getDefault().post(new CatalogItemsEvent(items));
 		}
 
 		if(message.getMessage().equals("result login")){
-			if(message.getUser()!=null){
-				LoginController.setCorrectLogin(true);
-			}
-			else{
-				LoginController.setCorrectLogin(false);
-			}
-			return;
+			EventBus.getDefault().post(new LoginEvent(message.isLoginStatus(), message.getLoginResult(), message.getUsername()));
 		}
 
 		if(message.getMessage().equals("result register")){
-			if(message.isRegisterStatus()==true)
-				RegisterController.setCurrectRegister(1);
-			else
-				RegisterController.setCurrectRegister(0);
+			EventBus.getDefault().post(new RegisterEvent(message.isRegisterStatus(), message.getRegisterResult()));
 		}
 
 	}

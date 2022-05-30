@@ -23,6 +23,8 @@ public class User implements Serializable {
     private String expiryDate;
     private String identifyNumbers;
     private double discount;
+    private int accountStatus;
+    private boolean login;
 
 
 //    @ManyToMany
@@ -32,6 +34,23 @@ public class User implements Serializable {
 //    private List<Complain_Obj> listComplains;
 
 
+
+
+    public int getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(int accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
+    public boolean isLogin() {
+        return login;
+    }
+
+    public void setLogin(boolean login) {
+        this.login = login;
+    }
 
     public int getId() {
         return id;
@@ -44,6 +63,8 @@ public class User implements Serializable {
         this.position = position;
         this.name = name;
         this.identifyNumbers = identifyNumbers;
+        this.accountStatus=1;
+        this.login=false;
 //        this.phone = phone;
 //        this.mail = mail;
 //        this.expiryDate = expiryDate;

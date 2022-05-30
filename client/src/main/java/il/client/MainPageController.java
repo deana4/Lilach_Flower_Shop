@@ -245,7 +245,8 @@ public class MainPageController extends ParentClass {     //This is a singleton 
 
     @FXML
     void CatalogBTNClicked(ActionEvent event) throws IOException {
-        LoadCatalogPage();
+      //  LoadCatalogPage();
+        LoadCatalogFromZero();
     }
 
     @FXML
@@ -357,7 +358,7 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         LoginRefresh();
         AddToCartRefresh();
         RegisterRefresh();
-        CatalogRefresh();
+        //CatalogRefresh();
         OrderRefresh();
         HomeRefresh();
         System.out.println("REFRESHING SYSTEM FINISHED");
@@ -494,6 +495,24 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         this.main_first_load_pane.getChildren().addAll(root);
 
     }
+
+   public void LoadCatalogFromZero() throws IOException {
+        FXMLLoader fxmlLoader;
+        URL var;
+        Parent root;
+       fxmlLoader = new FXMLLoader();
+       var = getClass().getResource("Catalog.fxml");
+       fxmlLoader.setLocation(var);
+       root = fxmlLoader.load();
+       CatalogController controller = fxmlLoader.getController();
+       root_map.remove("Catalog");
+       controller_map.remove("Catalog");
+       root_map.put("Catalog",root);
+       controller_map.put("Catalog",controller);
+       this.main_first_load_pane.getChildren().clear();
+       ((CatalogController)controller_map.get("Catalog")).setMain_page_holder(this);
+       this.main_first_load_pane.getChildren().addAll(root_map.get("Catalog"));
+   }
     /* --------------------------------------- END --------------------------------------- */
 }
 

@@ -16,6 +16,7 @@ public class CatalogControl {
         SimpleClient.getClient().sendToServer(message);
     }
 
+    //url if the image in our computer
     public static void updateImage(String url, int idItem) throws IOException {
         File file;
         file = new File(url);
@@ -56,4 +57,5 @@ public class CatalogControl {
         message.setIdItem(idItem);
         SimpleClient.getClient().sendToServer(message);
     }
+
 }

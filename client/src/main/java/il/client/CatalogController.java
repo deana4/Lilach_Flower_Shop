@@ -5,6 +5,7 @@ import il.client.SimpleClient;
 import il.client.events.CatalogItemsEvent;
 import il.entities.Flower;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -79,39 +80,53 @@ public class CatalogController extends ParentClass{
 
     @Subscribe
     public void setFlowerlist(CatalogItemsEvent event) throws IOException {
-        int col = 0;
-        int row = 0;
+        Platform.runLater(()->{
+                    flowerlist = event.getItems();
+                    int col = 0;
+                    int row = 0;
 
-        URL path = getClass().getResource("ProductView.fxml");
+                    URL path = getClass().getResource("ProductView.fxml");
 
 
-        for(int i=0; i<flowerlist.size();i++){
-            my_fxml_loader = new FXMLLoader();
-            my_fxml_loader.setLocation(path);//change secondary.fxml to the fxml file from dean and liran
-            Node node = my_fxml_loader.load();
-            //     flowersFXML.add(node);
-            ProductView controller = my_fxml_loader.getController();
-            controller.setCat_controller(this);
-            controller.setData(flowerlist.get(i));
+                    for(int i=0; i<flowerlist.size();i++){
+                        my_fxml_loader = new FXMLLoader();
+                        my_fxml_loader.setLocation(path);//change secondary.fxml to the fxml file from dean and liran
+                        Node node = null;
+                        try {
+                            node = my_fxml_loader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        //     flowersFXML.add(node);
+                        ProductView controller = my_fxml_loader.getController();
+                        controller.setCat_controller(this);
+                        try {
+                            controller.setData(flowerlist.get(i));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
-            if(col==3){
-                col=0;
-                row++;
-            }
+                        if(col==3){
+                            col=0;
+                            row++;
+                        }
 
-            GridPane.setConstraints(node,col++,row);
-            gridPane.getChildren().addAll(node);
+                        GridPane.setConstraints(node,col++,row);
+                        gridPane.getChildren().addAll(node);
 
-            gridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-            gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-            gridPane.setMaxWidth(Region.USE_COMPUTED_SIZE);
-            gridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-            gridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
-            gridPane.setMaxHeight(Region.USE_COMPUTED_SIZE);
+                        gridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
+                        gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                        gridPane.setMaxWidth(Region.USE_COMPUTED_SIZE);
+                        gridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
+                        gridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                        gridPane.setMaxHeight(Region.USE_COMPUTED_SIZE);
 
-            GridPane.setMargin(node, new Insets(10));
-        }
-        scrollPane.setContent(this.gridPane);
+                        GridPane.setMargin(node, new Insets(10));
+                    }
+                    scrollPane.setContent(this.gridPane);
+                }
+                );
+
     }
 
 

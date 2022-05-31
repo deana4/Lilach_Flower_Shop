@@ -46,8 +46,8 @@ public class PopWindow extends ParentClass{
 
 
     @FXML
-    void FullSetter(String id, String name, String price, boolean on_discount, Image image){
-        this.id_txt.setText(id);
+    void FullSetter(int id, String name, String price, boolean on_discount, Image image){
+        this.id_txt.setText(Integer.toString(id));
         this.price_txt.setText(price);
         this.name_txt.setText(name);
         this.on_discount = on_discount;

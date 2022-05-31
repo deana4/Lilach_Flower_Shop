@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.io.ByteArrayInputStream;
@@ -42,13 +43,19 @@ public class ProductView extends ParentClass{
     @FXML
     private ImageView discount_logo;
 
+    @FXML
+    private MFXButton removeFlowerBtn;
+
+    @FXML
+    private MFXButton editFlower;
+
     private CatalogController cat_controller;
 
     private boolean on_discount;
 
     private double discound_precentage;
 
-    private String id_of_flower;
+    private int id_of_flower;
 
     private int clicks_image=0;
 
@@ -124,8 +131,6 @@ public class ProductView extends ParentClass{
         else{
             cat_controller.setAnchorpang2NotVisibale();
         }
-
-
     }
 
     @FXML
@@ -160,6 +165,56 @@ public class ProductView extends ParentClass{
         stage.show();
     }
 
+    @FXML
+    void editFlowerClicked(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("EditProductOnCatalog.fxml"));
+        stage.initStyle(StageStyle.TRANSPARENT);
+        Scene scene = new Scene(fxmlLoader.load(), 625, 285);
+        EditProductOnCatalogController controller = fxmlLoader.getController();
+        controller.initialize(this);
+        controller.setStage(stage);
+        stage.setTitle("Edit Flower");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void removeFlowerClicked(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("RemoveFlowerWindow.fxml"));
+        stage.initStyle(StageStyle.TRANSPARENT);
+        Scene scene = new Scene(fxmlLoader.load(), 625, 285);
+        RemoveFlowerWindowController controller = fxmlLoader.getController();
+        stage.setTitle("Flower Remove");
+        controller.setStage(stage);
+        controller.setFlowerController(this);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void changeProductName(String name) throws IOException {
+        CatalogControl.setName(name,this.getId());
+    }
+    public void changeProductPrice(double price) throws IOException {
+        CatalogControl.setPrice(this.getId(), price);
+    }
+
+    //    public void changeProductPrice(String price){
+    //
+    //    }
+
+    public void changeProductImage(String url) throws IOException {
+        CatalogControl.updateImage(url,this.getId());
+    }
+    public void RemoveFlowerFromCatalog(int id) throws IOException {
+        CatalogControl.delteItem(id);
+        MainPageController.getInstance().CatalogRefresh();
+    }
 
     /* Settes and Getters*/
 
@@ -172,7 +227,11 @@ public class ProductView extends ParentClass{
         return product_image.getImage().getUrl();
     }
 
-    String getId(){
+    public Image getProductImageNotURL(){
+        return this.product_image.getImage();
+    }
+
+    public int getId(){
         return this.id_of_flower;
     }
 
@@ -189,8 +248,12 @@ public class ProductView extends ParentClass{
         this.product_name = product_name;
     }
 
-    public int getProduct_price() {
-        return Integer.parseInt(product_price.getText());
+    public double getProduct_price() {
+        return Double.parseDouble(product_price.getText());
+    }
+
+    public String getProduct_priceString(){
+        return product_price.getText();
     }
 
     public void setProduct_price(Label product_price) {
@@ -213,12 +276,12 @@ public class ProductView extends ParentClass{
         this.discound_precentage = discound_precentage;
     }
 
-    public String getId_of_flower() {
-        return id_of_flower;
+    public void setId_of_flower(int id_of_flower) {
+        this.id_of_flower = id_of_flower;
     }
 
-    public void setId_of_flower(String id_of_flower) {
-        this.id_of_flower = id_of_flower;
+    public int getId_of_flower() {
+        return id_of_flower;
     }
 
     public void setCat_controller(CatalogController cat_controller) {

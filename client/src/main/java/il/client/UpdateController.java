@@ -39,7 +39,7 @@ public class UpdateController extends ParentClass{
         product.setProduct_price(this.new_price);
         stage.close();
 
-        CatalogControl.setPrice(Integer.parseInt(product.getId()), product.getProduct_price());
+        CatalogControl.setPrice(product.getId(), product.getProduct_price());
     }
 
 

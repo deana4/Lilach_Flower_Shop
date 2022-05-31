@@ -1,4 +1,5 @@
 il\client\CancelOrderController.class
+il\client\RemoveFlowerWindowController.class
 il\client\ProductView.class
 il\client\PopWindow.class
 il\client\MainPageController$MyThread.class
@@ -8,6 +9,7 @@ il\client\AddToCartController.class
 il\client\ComplainController.class
 il\client\CartAdderController.class
 il\client\Order.class
+il\client\EditProductOnCatalogController.class
 module-info.class
 il\client\ocsf\AdaptableClient.class
 il\client\CatalogController.class
@@ -27,6 +29,7 @@ il\client\ocsf\ObservableClient.class
 il\client\EditAccountDetailsController.class
 il\client\RegisterController.class
 il\client\RegisterControl.class
+il\client\SystemManagerController.class
 il\client\SimpleClient.class
 il\client\ComplaintTabController.class
 il\client\UpdateController.class

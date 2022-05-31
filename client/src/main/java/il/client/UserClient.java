@@ -19,6 +19,7 @@ public class UserClient {
     private String expiryDate = "Default";
     private String identifyNumbers = "Default";
     private double discount = 0;
+    private boolean isFrozen = false;
 
     private boolean isLogin = false;
 
@@ -142,6 +143,10 @@ public class UserClient {
             }
         }
         return null;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public String getName() {

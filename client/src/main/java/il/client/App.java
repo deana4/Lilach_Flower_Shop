@@ -20,7 +20,7 @@ import java.io.IOException;
 public class App extends Application {
     private SimpleClient client = null;
 
-    public static String ip = "132.74.210.7";
+    public static String ip = "127.0.0.1";
     public static int port = 3000;
 
     @Override

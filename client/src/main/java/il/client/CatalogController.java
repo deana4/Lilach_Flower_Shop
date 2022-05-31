@@ -68,7 +68,7 @@ public class CatalogController extends ParentClass{
 
     private MainPageController main_page_holder;
 
-    private LinkedList<Node> flowersFXML;
+    private LinkedList<ProductView> flowersFXML;
 
     public static List<Flower> getFlowerlist() {
         return flowerlist;
@@ -208,6 +208,16 @@ public class CatalogController extends ParentClass{
         this.main_page_holder = main_page_holder;
     }
 
+    public LinkedList<ProductView> getFlowersFXML() {
+        return flowersFXML;
+    }
 
+//    public void setFlowersFXML(LinkedList<ProductView> flowersFXML) {
+//        this.flowersFXML = flowersFXML;
+//    }
 
+    public void AddFlowerToCatalog(Flower flower) throws IOException {
+        CatalogControl.addItem(flower); // need to implement on Control
+        MainPageController.getInstance().CatalogRefresh();
+    }
 }

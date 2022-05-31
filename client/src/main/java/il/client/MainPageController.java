@@ -245,8 +245,7 @@ public class MainPageController extends ParentClass {     //This is a singleton 
 
     @FXML
     void CatalogBTNClicked(ActionEvent event) throws IOException {
-      //  LoadCatalogPage();
-        LoadCatalogFromZero();
+       LoadCatalogPage();
     }
 
     @FXML
@@ -277,7 +276,7 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         }
         UserClient.getInstance().setPriority(1);
         MainPageController.getInstance().Refresh();
-
+        LogInControl.logout(UserClient.getInstance().getUserName());
         LoadHomePage();
     }
 

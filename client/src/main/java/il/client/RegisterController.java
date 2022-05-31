@@ -90,7 +90,7 @@ public class RegisterController extends ParentClass{
 
     @FXML
     void RegisterBTNClicked(ActionEvent event) throws JSONException, IOException {
-        int counter_of_correctness = 6;
+        int counter_of_correctness = 7;
         String name = this.name_tf.getText();
         String username = this.username_tf.getText();
         String pass = this.pass_tf.getText();
@@ -150,6 +150,7 @@ public class RegisterController extends ParentClass{
             counter_of_correctness--;
         }
 
+        System.out.println(counter_of_correctness);
         if(counter_of_correctness == 7){
             //send register details to the server
             String store = this.store_choose.getValue();

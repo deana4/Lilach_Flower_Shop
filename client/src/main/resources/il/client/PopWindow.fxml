@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="poped_window" prefHeight="467.0" prefWidth="335.0" stylesheets="@CSSfiles/Buttons.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PopWindow">
+<AnchorPane fx:id="poped_window" prefHeight="467.0" prefWidth="335.0" stylesheets="@CSSfiles/Buttons.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PopWindow">
    <children>
       <MFXLegacyListView depthLevel="LEVEL4" layoutX="18.0" layoutY="12.0" prefHeight="444.0" prefWidth="300.0" styleClass="CatalogItem" stylesheets="@CSSfiles/Backgrounds.css" thumbColor="#979797" thumbHoverColor="#5500ff" trackColor="#da1c1c" />
       <ImageView fx:id="product_zoomed_image" fitHeight="343.0" fitWidth="282.0" layoutX="31.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
@@ -18,14 +18,14 @@
             <Image url="@../../../../../../server/src/main/resources/images/sunflower.jpeg" />
          </image>
       </ImageView>
-      <VBox alignment="CENTER" layoutX="43.0" layoutY="112.0" prefHeight="244.0" prefWidth="251.0" spacing="100.0">
+      <VBox alignment="CENTER" layoutX="42.0" layoutY="92.0" prefHeight="244.0" prefWidth="251.0" spacing="100.0">
          <children>
-            <Label fx:id="name_txt" text="Name" textFill="WHITE">
+            <Label fx:id="name_txt" text="Name">
                <font>
                   <Font size="33.0" />
                </font>
             </Label>
-            <Label fx:id="price_txt" text="Price" textFill="WHITE">
+            <Label fx:id="price_txt" text="Price">
                <font>
                   <Font size="33.0" />
                </font>

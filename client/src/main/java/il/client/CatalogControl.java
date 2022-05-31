@@ -1,5 +1,6 @@
 package il.client;
 
+import il.entities.Flower;
 import il.entities.Message;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,10 +53,14 @@ public class CatalogControl {
         SimpleClient.getClient().sendToServer(message);
     }
 
-    public static void delteItem(int idItem) throws IOException {
+    public static void delteItem(int idItem) throws IOException { //Function doesn't work;
         Message message = new Message("deleteItem");
         message.setIdItem(idItem);
         SimpleClient.getClient().sendToServer(message);
     }
 
+    //Need to add a method of adding item into the catalog list
+    public static void addItem(Flower flower) throws IOException {
+
+    }
 }

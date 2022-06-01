@@ -1,5 +1,6 @@
 package il.server;
 
+import il.entities.Employee;
 import il.entities.User;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -10,23 +11,46 @@ import java.util.List;
 
 public class LoginControl {
     public static String checkLogin(String userName, String pass, boolean isWorker){
-        List<User> lUsers = RegisterControl.getAllUsers();
-
-        for (User user: lUsers){
-            if (user.getUserName().equals(userName)){
-                if(user.getPassword().equals(pass)){
-                    if(user.isLogin()){
-                        return "this user already sighing from another device!";
+        String result = "";
+        if (isWorker){
+            List<Employee> lEmp =RegisterControl.getAllItems(Employee.class);
+            for (Employee employee : lEmp) {
+                if (employee.getUsername().equals(userName)) {
+                    if (employee.getPassword().equals(pass)) {
+                        if (employee.isLogin()) {
+                            result = "this user already sighing from another device!";
+                            return result;
+                        }
+                        setToActive(employee.getId());
+                        return result;
+                    } else {
+                        result = "incorrect password!";
+                        return result;
                     }
-                    setToActive(user.getId());
-                    return "";
-                }
-                else{
-                    return "incorrect password!";
                 }
             }
+            result = "username does not exist!";
         }
-        return "username does not exist!";
+        else {
+            List<User> lUsers = RegisterControl.getAllItems(User.class);
+            for (User user : lUsers) {
+                if (user.getUserName().equals(userName)) {
+                    if (user.getPassword().equals(pass)) {
+                        if (user.isLogin()) {
+                            result = "this user already sighing from another device!";
+                            return result;
+                        }
+                        setToActive(user.getId());
+                        return result;
+                    } else {
+                        result = "incorrect password!";
+                        return result;
+                    }
+                }
+            }
+            result = "username does not exist!";
+        }
+        return result;
     }
 
     private static void setToActive(int idUser){

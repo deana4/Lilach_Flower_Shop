@@ -1,6 +1,6 @@
 package il.server;
 
-import il.entities.Flower;
+import il.entities.Product;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class CatalogControl {
 
-    public static void saveNewFlower (Flower flower, String url){
+    public static void saveNewFlower (Product product, String url){
         File file;
         file = new File(url);
         byte[] bFile = new byte[(int) file.length()];
@@ -20,8 +20,8 @@ public class CatalogControl {
             FileInputStream fileInputStream = new FileInputStream(file);
             fileInputStream.read(bFile);
             fileInputStream.close();
-            flower.setImage(bFile);
-            testDB.session.save(flower);
+            product.setImage(bFile);
+            testDB.session.save(product);
             testDB.session.flush();
         }
         catch (Exception e){
@@ -30,20 +30,20 @@ public class CatalogControl {
         }
     }
 
-    public static List<Flower> getAllItems(){
+    public static List<Product> getAllItems(){
         testDB.openSssion();
         CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
-        CriteriaQuery<Flower> query = builder.createQuery(Flower.class);
-        query.from(Flower.class);
-        List<Flower> data = testDB.session.createQuery(query).getResultList();
-        LinkedList<Flower> listItems = new LinkedList<Flower>(data);
+        CriteriaQuery<Product> query = builder.createQuery(Product.class);
+        query.from(Product.class);
+        List<Product> data = testDB.session.createQuery(query).getResultList();
+        LinkedList<Product> listItems = new LinkedList<Product>(data);
         testDB.closeSession();
         return listItems;
     }
 
     public static void setPrice(int id, double newPrice) throws IOException {
         testDB.openSssion();
-        Flower a = testDB.session.get(Flower.class, id);
+        Product a = testDB.session.get(Product.class, id);
         a.setPrice(newPrice);
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
@@ -52,7 +52,7 @@ public class CatalogControl {
 
     public static void setImage(int id, byte[] bFile){
         testDB.openSssion();
-        Flower a = testDB.session.get(Flower.class, id);
+        Product a = testDB.session.get(Product.class, id);
         a.setImage(bFile);
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
@@ -61,7 +61,7 @@ public class CatalogControl {
 
     public static void setName(int id, String newName) throws IOException {
         testDB.openSssion();
-        Flower a = testDB.session.get(Flower.class, id);
+        Product a = testDB.session.get(Product.class, id);
         a.setName(newName);
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
@@ -70,7 +70,7 @@ public class CatalogControl {
 
     public static void setSale(int id, boolean sale, double discountPer) throws IOException {
         testDB.openSssion();
-        Flower a = testDB.session.get(Flower.class, id);
+        Product a = testDB.session.get(Product.class, id);
         a.setSale(sale);
         a.setDiscount_perc(discountPer);
         testDB.session.flush();
@@ -80,7 +80,7 @@ public class CatalogControl {
 
     public static void deleteItem(int id) throws IOException {
         testDB.openSssion();
-        Flower a = testDB.session.get(Flower.class, id);
+        Product a = testDB.session.get(Product.class, id);
         testDB.session.delete(a);
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.

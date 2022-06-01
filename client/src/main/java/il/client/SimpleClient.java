@@ -5,7 +5,7 @@ package il.client;
 
 import il.client.events.*;
 import il.client.ocsf.AbstractClient;
-import il.entities.Flower;
+import il.entities.Product;
 import il.entities.Message;
 import org.greenrobot.eventbus.EventBus;
 
@@ -27,7 +27,7 @@ public class SimpleClient extends AbstractClient {
 
 		if(message.getMessage().equals("item catalog list")){
 			System.out.println("get Flower object!");
-			List<Flower> items = message.getListItem();
+			List<Product> items = message.getListItem();
 			EventBus.getDefault().post(new CatalogItemsEvent(items));
 		}
 

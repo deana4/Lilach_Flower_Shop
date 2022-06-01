@@ -1,6 +1,5 @@
 package il.server;
 
-import il.entities.Flower;
 import il.entities.User;
 
 import javax.persistence.criteria.CriteriaBuilder;

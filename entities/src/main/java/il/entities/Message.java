@@ -2,6 +2,7 @@ package il.entities;
 
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Message implements Serializable {
     String message;
@@ -10,8 +11,8 @@ public class Message implements Serializable {
         this.message = message;
     }
 
-    LinkedList<Flower> listItem=null;
-    Flower item=null;
+    LinkedList<Product> listItem=null;
+    Product item=null;
 
     User user=null;
 
@@ -24,8 +25,11 @@ public class Message implements Serializable {
     String pass;
     boolean isWorker;
     String credit_card;
-    String plan;
+    static String plan;
     String name;
+
+
+    static List<Store> stores=null;
 
     //recive login
     boolean loginStatus;
@@ -136,7 +140,7 @@ public class Message implements Serializable {
         this.credit_card = credit_card;
     }
 
-    public String getPlan() {
+    public static String getPlan() {
         return plan;
     }
 
@@ -183,19 +187,19 @@ public class Message implements Serializable {
         this.message = message;
     }
 
-    public LinkedList<Flower> getListItem() {
+    public LinkedList<Product> getListItem() {
         return listItem;
     }
 
-    public void setListItem(LinkedList<Flower> listItem) {
+    public void setListItem(LinkedList<Product> listItem) {
         this.listItem = listItem;
     }
 
-    public Flower getItem() {
+    public Product getItem() {
         return item;
     }
 
-    public void setItem(Flower item) {
+    public void setItem(Product item) {
         this.item = item;
     }
 
@@ -229,6 +233,15 @@ public class Message implements Serializable {
 
     public void setWorker(boolean worker) {
         isWorker = worker;
+    }
+
+
+    public static List<Store> getStores() {
+        return stores;
+    }
+
+    public void setStores(List<Store> stores) {
+        this.stores = stores;
     }
 
 }

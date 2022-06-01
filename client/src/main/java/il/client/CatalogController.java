@@ -1,9 +1,7 @@
 package il.client;
 
-import il.client.ProductView;
-import il.client.SimpleClient;
 import il.client.events.CatalogItemsEvent;
-import il.entities.Flower;
+import il.entities.Product;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -12,22 +10,17 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class CatalogController extends ParentClass{
 
@@ -64,17 +57,17 @@ public class CatalogController extends ParentClass{
 
     private FXMLLoader my_fxml_loader;
 
-    private static List<Flower> flowerlist=null;
+    private static List<Product> flowerlist=null;
 
     private MainPageController main_page_holder;
 
     private LinkedList<ProductView> flowersFXML;
 
-    public static List<Flower> getFlowerlist() {
+    public static List<Product> getFlowerlist() {
         return flowerlist;
     }
 
-    public static void setFlowerlist(List<Flower> flowerlist1) {
+    public static void setFlowerlist(List<Product> flowerlist1) {
         flowerlist = flowerlist1;
     }
 
@@ -216,8 +209,8 @@ public class CatalogController extends ParentClass{
 //        this.flowersFXML = flowersFXML;
 //    }
 
-    public void AddFlowerToCatalog(Flower flower) throws IOException {
-        CatalogControl.addItem(flower); // need to implement on Control
+    public void AddFlowerToCatalog(Product product) throws IOException {
+        CatalogControl.addItem(product); // need to implement on Control
         MainPageController.getInstance().CatalogRefresh();
     }
 }

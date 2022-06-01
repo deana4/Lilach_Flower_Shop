@@ -1,13 +1,11 @@
 package il.entities;
 
-import java.io.*;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "items")
-public class Flower implements Serializable {
+@Table(name = "products")
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -21,7 +19,7 @@ public class Flower implements Serializable {
     private String type;
     private String color;
 
-    public Flower(String name, double price, boolean sale, double discount_perc, String type, String color){
+    public Product(String name, double price, boolean sale, double discount_perc, String type, String color){
         this.name = name;
         this.price = price;
         this.sale = sale;
@@ -31,7 +29,7 @@ public class Flower implements Serializable {
         this.image = null;
     }
 
-    public Flower(String name, double price){
+    public Product(String name, double price){
         this.name = name;
         this.price = price;
         this.sale=false;
@@ -39,9 +37,10 @@ public class Flower implements Serializable {
         this.image = null;
     }
 
-    public Flower() {
+    public Product() {
 
     }
+
 
 
     public byte[] getImage() {
@@ -82,9 +81,9 @@ public class Flower implements Serializable {
         return sale;
     }
 
-//    public void setId(int id) {
-//        this.id = id;
-//    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -92,5 +91,26 @@ public class Flower implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    public boolean isSale() {
+        return sale;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

@@ -1,20 +1,14 @@
 package il.client;
 
 
-import il.entities.Flower;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Base64;
-import java.util.concurrent.TimeUnit;
 
 public class UpdateController extends ParentClass{
 

@@ -1,20 +1,20 @@
 package il.client.events;
 
-import il.entities.Flower;
+import il.entities.Product;
 
 import java.util.List;
 
 public class CatalogItemsEvent {
-    public List<Flower> getItems() {
+    public List<Product> getItems() {
         return items;
     }
 
-    public void setItems(List<Flower> items) {
+    public void setItems(List<Product> items) {
         this.items = items;
     }
 
-    private List<Flower> items;
-    public CatalogItemsEvent(List<Flower> items){
+    private List<Product> items;
+    public CatalogItemsEvent(List<Product> items){
         this.items = items;
     }
 }

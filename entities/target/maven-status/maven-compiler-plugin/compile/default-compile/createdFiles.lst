@@ -1,5 +1,13 @@
-il\entities\Employee.class
-il\entities\User.class
+il/entities/CustomerService.class
+il/entities/Product.class
+il/entities/StoreEmployee.class
+il/entities/Employee.class
+il/entities/Message.class
+il/entities/Complain.class
 module-info.class
-il\entities\Flower.class
-il\entities\Message.class
+il/entities/Order.class
+il/entities/SystemAdmin.class
+il/entities/NetworkManger.class
+il/entities/User.class
+il/entities/BranchManager.class
+il/entities/Store.class

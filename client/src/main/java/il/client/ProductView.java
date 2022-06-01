@@ -2,8 +2,7 @@ package il.client; /**
  * Sample Skeleton for 'ProductView.fxml' Controller Class
  */
 
-import il.client.UserClient;
-import il.entities.Flower;
+import il.entities.Product;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,7 +61,7 @@ public class ProductView extends ParentClass{
     URL root = getClass().getResource("PopWindow.fxml");
 
 
-    public void setData(Flower a) throws IOException {
+    public void setData(Product a) throws IOException {
         product_price.setText(String.valueOf(a.getPrice()));
         product_name.setText(a.getName());
 

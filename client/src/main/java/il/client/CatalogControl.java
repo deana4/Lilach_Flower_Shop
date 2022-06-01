@@ -1,15 +1,10 @@
 package il.client;
 
-import il.entities.Flower;
+import il.entities.Product;
 import il.entities.Message;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Base64;
-import java.util.concurrent.TimeUnit;
 
 public class CatalogControl {
     public static void getItemsList() throws IOException, ClassNotFoundException, InterruptedException {
@@ -60,7 +55,7 @@ public class CatalogControl {
     }
 
     //Need to add a method of adding item into the catalog list
-    public static void addItem(Flower flower) throws IOException {
+    public static void addItem(Product product) throws IOException {
 
     }
 }

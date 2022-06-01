@@ -67,7 +67,7 @@ public class SimpleServer extends AbstractServer {
 
             if (message.getMessage().equals("getStore")) {
                 sendMessage.setMessage("item store list");
-                sendMessage.setStores((LinkedList<Store>) RegisterControl.getAllItems());
+                sendMessage.setStores(RegisterControl.getAllItems(Store.class));
                 client.sendToClient(sendMessage);
                 System.out.println("send stores to client");
             }

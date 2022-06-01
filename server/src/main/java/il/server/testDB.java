@@ -9,19 +9,20 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class testDB {
     public static Session session;
 
     private static SessionFactory getSessionFactory() throws HibernateException {
         Configuration configuration = new Configuration();
         // Add ALL of your entities here. You can also try adding a whole package.
-        configuration.addAnnotatedClass(Product.class).addAnnotatedClass(User.class)
+        configuration.addAnnotatedClass(Product.class).addAnnotatedClass(User.class).addAnnotatedClass(Complain.class).addAnnotatedClass(Order.class)
                 .addAnnotatedClass(Employee.class).addAnnotatedClass(Store.class).addAnnotatedClass(SystemAdmin.class)
                 .addAnnotatedClass(StoreEmployee.class).addAnnotatedClass(NetworkManger.class).addAnnotatedClass(CustomerService.class)
-                .addAnnotatedClass(BranchManager.class).addAnnotatedClass(Complain.class).addAnnotatedClass(Order.class)
+                .addAnnotatedClass(BranchManager.class)
         ;
-        //configuration.addAnnotatedClass(Employee.class); //added this!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties())
                 .build();
@@ -30,35 +31,121 @@ public class testDB {
     }
 
     private static void generateItems()throws Exception{
-        Product product;
+        Product flower;
 
-        product = new Product("whiteroses", 20,true,25,"flower", "white");
-        CatalogControl.saveNewFlower(product,"src/main/resources/images/whiteroses.jpeg" );
+        flower = new Product("whiteroses", 20,true,25,"flower", "white");
+        CatalogControl.saveNewFlower(flower,"src/main/resources/images/whiteroses.jpeg" );
 
-        product = new Product("sunflower", 23,true, 5, "flower", "yellow");
-        CatalogControl.saveNewFlower(product, "src/main/resources/images/sunflower.jpeg");
+        flower = new Product("sunflower", 23,true, 5, "flower", "yellow");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/sunflower.jpeg");
 
-        product = new Product("chinaFlower", 20,false, 0, "flower", "red");
-        CatalogControl.saveNewFlower(product, "src/main/resources/images/chinaFlower.jpeg");
+        flower = new Product("chinaFlower", 20,false, 0, "flower", "red");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/chinaFlower.jpeg");
 
-        product = new Product("pin", 20,false, 0,"flower", "pink");
-        CatalogControl.saveNewFlower(product, "src/main/resources/images/pin.jpeg");
+        flower = new Product("pin", 20,false, 0,"flower", "pink");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/pin.jpeg");
 
-        product = new Product("whiteroses", 20,true, 50, "flower", "white");
-        CatalogControl.saveNewFlower(product, "src/main/resources/images/whiteroses.jpeg");
+        flower = new Product("whiteroses", 20,true, 50, "flower", "white");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/whiteroses.jpeg");
 
-        product = new Product("sunflower", 20,true, 50, "flower", "yellow");
-        CatalogControl.saveNewFlower(product, "src/main/resources/images/sunflower.jpeg");
+        flower = new Product("sunflower", 20,true, 50, "flower", "yellow");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/sunflower.jpeg");
 
-        product = new Product("Lotus", 100, true, 10,"flower","pink");
-        CatalogControl.saveNewFlower(product, "src/main/resources/images/Lotus.png");
+        flower = new Product("Lotus", 100, true, 10,"flower","pink");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/Lotus.png");
 
 
         session.flush();
-
     }
 
-//    //added this!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    private static void generateStores(){
+        SystemAdmin a = new SystemAdmin("admin admin", "admin", "adminadmin");
+        testDB.session.save(a);
+        Store store = new Store("Haifa");
+        testDB.session.save(store);
+        BranchManager b = new BranchManager("Malki Grossman", "malki123456" , "123456789", store);
+        session.save(b);
+        session.flush();
+
+        StoreEmployee e = new StoreEmployee("Shir Snea", "shir123456" , "123456789");
+        session.save(e);
+        store.addEmployee(e);
+        session.flush();
+
+        e = new StoreEmployee("Liran Eliav", "liran123456" , "123456789");
+        session.save(e);
+        store.addEmployee(e);
+        session.flush();
+
+        Store store2 = new Store("Tel Aviv");
+        testDB.session.save(store2);
+        b = new BranchManager("Dean Amar", "dean123456" , "123456789", store2);
+        session.save(b);
+
+        e = new StoreEmployee("Ido Shitrit", "ido123456" , "123456789");
+        session.save(e);
+        store2.addEmployee(e);
+        e = new StoreEmployee("Roie Shahar", "roie123456" , "123456789");
+        session.save(e);
+        store2.addEmployee(e);
+        session.flush();
+
+        Store store3 = new Store("Jerusalem");
+        testDB.session.save(store3);
+        b = new BranchManager("Itai Zeitony", "itai123456" , "123456789", store3);
+        session.save(b);
+        e = new StoreEmployee("Shira Tzadok", "shira123456" , "123456789");
+        session.save(e);
+        store3.addEmployee(e);
+        e = new StoreEmployee("Shahar Tavor", "shahar123456" , "123456789");
+        session.save(e);
+        store3.addEmployee(e);
+
+
+        User u1 = new User("ido7746", "123456789", "1234567812345678", "1", "ido", "123456789");
+        User u2 = new User("haziza8", "123456789", "1234567812345678", "1", "dolev", "123456789");
+        User u3 = new User("cr7", "123456789", "1234567812345678", "1", "cristiano", "123456789");
+        User u4 = new User("robocolos", "123456789", "1234567812345678", "1", "ori shahr", "123456789");
+        User u5 = new User("goat", "123456789", "1234567812345678", "1", "leo messi", "123456789");
+        User u6 = new User("boom", "123456789", "1234567812345678", "1", "maldini", "123456789");
+
+        testDB.session.save(u1);
+        testDB.session.save(u2);
+        testDB.session.save(u3);
+        testDB.session.save(u4);
+        testDB.session.save(u5);
+        testDB.session.save(u6);
+
+        List<Store> s =new ArrayList<>();
+        s.add(store);
+        s.add(store2);
+        s.add(store3);
+
+        u1.addStore2(s);
+        u2.addStore2(s);
+        u3.addStore2(s);
+        s.remove(store);
+        u4.addStore2(s);
+        s.remove(store2);
+        u5.addStore2(s);
+        u6.addStore2(s);
+//        store.addUser(u1);
+//        store.addUser(u2);
+//        store.addUser(u3);
+//
+//        store2.addUser(u1);
+//        store2.addUser(u4);
+//        store2.addUser(u5);
+//        store2.addUser(u3);
+//        store2.addUser(u2);
+//
+//        store3.addUser(u6);
+//        store3.addUser(u2);
+//        store3.addUser(u3);
+
+        session.flush();
+    }
+
 //    private static void generateEmployee()throws Exception {
 //
 //        Employee employee;
@@ -114,13 +201,15 @@ public class testDB {
 
     public static void initMySQL(){
         try {
-            SessionFactory sessionFactory = getSessionFactory();
-            session = sessionFactory.openSession();
-            session.beginTransaction();
+//            SessionFactory sessionFactory = getSessionFactory();
+//            session = sessionFactory.openSession();
+//            session.beginTransaction();
             System.out.println("open session to mySQL");
+            openSssion();
             generateItems();
+            generateStores();
             session.getTransaction().commit(); // Save everything.
-           // generateEmployee(); //added this!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            closeSession();
 
         } catch (Exception exception) {
             if (session != null) {

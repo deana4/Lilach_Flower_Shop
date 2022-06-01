@@ -4,6 +4,7 @@ import il.entities.Product;
 import il.entities.Store;
 import il.entities.User;
 
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -14,25 +15,15 @@ import java.util.List;
 public class RegisterControl {
 
 
-    public static List<Store> getAllItems(){
-        testDB.openSssion();
-        CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
-        CriteriaQuery<Store> query = builder.createQuery(Store.class);
-        query.from(Store.class);
-        List<Store> data = testDB.session.createQuery(query).getResultList();
-        LinkedList<Store> storeslist = new LinkedList<Store>(data);
-        testDB.closeSession();
-        return storeslist;
-    }
 
-    public static List<User> getAllUsers(){
+
+    public static<T> List<T> getAllItems(Class<T> object){
         testDB.openSssion();
         CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
-        CriteriaQuery<User> query = builder.createQuery(User.class);
-        Root<User> root = query.from(User.class);
-        query.orderBy(builder.asc(root.get("userName")));
-        List<User> data = testDB.session.createQuery(query.orderBy()).getResultList();
-        LinkedList<User> listItems = new LinkedList<>(data);
+        CriteriaQuery<T> query = builder.createQuery(object);
+        Root<T> root = query.from(object);
+        List<T> data = testDB.session.createQuery(query.orderBy()).getResultList();
+        LinkedList<T> listItems = new LinkedList<>(data);
         testDB.closeSession();
         return listItems;
     }
@@ -40,7 +31,7 @@ public class RegisterControl {
 
 
     public static String checknewUser(User newUser){
-        List<User> lUsers = getAllUsers();
+        List<User> lUsers = getAllItems(User.class);
 //        compare_name c = new compare_name();
 //        int result = Collections.binarySearch(lUsers,newUser, c.comparename());
         for (User user: lUsers){

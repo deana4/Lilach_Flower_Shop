@@ -19,6 +19,7 @@ public abstract class Employee implements Serializable{
     protected int permission;
     protected String username;
     protected String identifyNumbers;
+    boolean login;
 
 
     public Employee(){}
@@ -27,12 +28,20 @@ public abstract class Employee implements Serializable{
         this.name = name;
         this.username =username;
         this.password =pass;
+        this.login=false;
+
 //        this.permission = permission; // 1:= system admin, 2:= store wide manager 3:= shop manager, 4:= service employee, 5: shop employee
     }
 
     /* gets and sets*/
 
+    public boolean isLogin() {
+        return login;
+    }
 
+    public void setLogin(boolean login) {
+        this.login = login;
+    }
     public void setId(int id) {
         this.id = id;
     }

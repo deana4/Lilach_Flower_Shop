@@ -20,8 +20,8 @@ import java.io.IOException;
 public class App extends Application {
     private SimpleClient client = null;
 
-    public static String ip = "192.168.35.162";
-    public static int port = 3000;
+    public static String ip = "172.20.10.7";
+    public static int port = 3011;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -40,6 +40,7 @@ public class App extends Application {
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);
 //            stage.initStyle(StageStyle.UNDECORATED);
+//            test erea
             stage.show();
         }
         catch (Exception e){

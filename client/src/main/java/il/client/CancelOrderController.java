@@ -59,6 +59,7 @@ public class CancelOrderController {
 
     @FXML
     void YesBTNClicked(ActionEvent event) throws IOException {
+//        orderControl.cancelOrder(orderID);
         //sent to server that the user want to cancel this order!!!!!!
         this.cancel_order_anchorpane2.setVisible(false);
         this.cancel_order_anchorpane3.setVisible(true);

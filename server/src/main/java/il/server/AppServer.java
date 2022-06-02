@@ -15,7 +15,7 @@ public class AppServer
 
     public static void main( String[] args ) throws IOException {
         try {
-            server = new SimpleServer(3011);
+            server = new SimpleServer(3000);
             server.listen();
         }
         catch (Exception e){

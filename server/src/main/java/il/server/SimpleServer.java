@@ -14,7 +14,8 @@ public class SimpleServer extends AbstractServer {
     public SimpleServer(int port) throws Exception {
         super(port);
         System.out.println("Server listen on port:" + port);
-       //testDB.initMySQL();
+        testDB.openSssion();
+//       testDB.initMySQL();
     }
 
     public void closeServer() throws IOException {
@@ -25,27 +26,27 @@ public class SimpleServer extends AbstractServer {
 
     @Override
     protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
-        try {
-            Message message  = (Message) msg;
+        synchronized (testDB.session) {
+            try {
+            Message message = (Message) msg;
             Message sendMessage = new Message("");
-            if(message.getMessage().equals("login")){
+            if (message.getMessage().equals("login")) {
                 String username = message.getUsername();
                 String pass = message.getPass();
                 boolean isWorker = message.isWorker();
 
                 String result = LoginControl.checkLogin(username, pass, isWorker);
 
-                if (result.equals("")){
-                    System.out.println("successfully! login: "+ username);
+                if (result.equals("")) {
+                    System.out.println("successfully! login: " + username);
 
                     sendMessage.setMessage("result login");
                     sendMessage.setLoginStatus(true);
                     sendMessage.setUsername(username);
                     sendMessage.setLoginResult("login was successful");
                     client.sendToClient(sendMessage);
-                }
-                else{
-                    System.out.println("faild! login: "+ username);
+                } else {
+                    System.out.println("faild! login: " + username);
                     sendMessage.setMessage("result login");
                     sendMessage.setLoginStatus(false);
                     sendMessage.setLoginResult(result);
@@ -68,21 +69,21 @@ public class SimpleServer extends AbstractServer {
             }
 
 
-            if(message.getMessage().equals("logout")){
+            if (message.getMessage().equals("logout")) {
                 int id = message.getIddatabase();
                 boolean isworker = message.isWorker();
-                if(isworker)
+                if (isworker)
                     LoginControl.setToDiactiveEmp(id);
                 else
                     LoginControl.setToDiactiveU(id);
             }
 
 
-            if(message.getMessage().equals("setImagesItem")){
+            if (message.getMessage().equals("setImageItem")) {
                 CatalogControl.setImage(message.getIdItem(), message.getbFile());
             }
 
-            if(message.getMessage().equals("register")){
+            if (message.getMessage().equals("register")) {
                 String username = message.getUsername();
                 String name = message.getName();
                 String pass = message.getPass();
@@ -91,24 +92,22 @@ public class SimpleServer extends AbstractServer {
                 String plan = Message.getPlan();
                 List<Store> stores = Message.getStores();
 
-                User newUser = new User(username, pass,credit_card, plan, name, id);
+                User newUser = new User(username, pass, credit_card, plan, name, id);
                 System.out.println("get register request:" + username);
 
                 String result = RegisterControl.checknewUser(newUser);
 
 
-                if(result.equals("")){
-                    if(RegisterControl.register(newUser)){
+                if (result.equals("")) {
+                    if (RegisterControl.register(newUser)) {
                         sendMessage.setRegisterStatus(true);
                         sendMessage.setRegisterResult("user as been register!");
                         newUser.addStore2(stores);
-                    }
-                    else{
+                    } else {
                         sendMessage.setRegisterStatus(false);
                         sendMessage.setRegisterResult("Error: somethings wrong with the database.");
                     }
-                }
-                else{
+                } else {
                     sendMessage.setRegisterStatus(false);
                     sendMessage.setRegisterResult(result);
                 }
@@ -117,27 +116,28 @@ public class SimpleServer extends AbstractServer {
                 client.sendToClient(sendMessage);
             }
 
-            if(message.getMessage().equals("setNameItem")){
+            if (message.getMessage().equals("setNameItem")) {
                 CatalogControl.setName(message.getIdItem(), message.getNameProduct());
             }
-
-            if(message.getMessage().equals("setSaleItem")){
+            if (message.getMessage().equals("setSaleItem")) {
                 CatalogControl.setSale(message.getIdItem(), message.isSale(), message.getDiscountPer());
             }
-
-            if(message.getMessage().equals("deleteItem")){
+            if (message.getMessage().equals("setPriceItem")) {
+                CatalogControl.setPrice(message.getIdItem(), message.getNewPrice());
+            }
+            if (message.getMessage().equals("deleteItem")) {
                 CatalogControl.deleteItem(message.getIdItem());
             }
-            if(message.getMessage().equals("cancelOrder")){
+            if (message.getMessage().equals("cancelOrder")) {
                 OrderControl.cancelOrder(message.getOrderID());
             }
 
 
-
-        } catch (IOException e) {
+        } catch(IOException e){
             System.out.println(e.getMessage());
             System.out.println("handleMessageFromClient Error!" + client.getInetAddress());
         }
 
+    }
     }
 }

@@ -4,6 +4,7 @@ import il.entities.Product;
 import il.entities.Message;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class CatalogControl {
@@ -16,7 +17,11 @@ public class CatalogControl {
     public static void updateImage(String url, int idItem) throws IOException {
         File file;
         file = new File(url);
+        FileInputStream fileInputStream = new FileInputStream(file);
+
         byte[] bFile = new byte[(int) file.length()];
+        fileInputStream.read(bFile);
+        fileInputStream.close();
         Message message = new Message("setImageItem");
         message.setIdItem(idItem);
         message.setbFile(bFile);

@@ -15,17 +15,23 @@ public class CatalogControl {
 
     //url if the image in our computer
     public static void updateImage(String url, int idItem) throws IOException {
-        File file;
-        file = new File(url);
-        FileInputStream fileInputStream = new FileInputStream(file);
+        try {
+            File file;
+            file = new File(url);
+            FileInputStream fileInputStream = new FileInputStream(file);
 
-        byte[] bFile = new byte[(int) file.length()];
-        fileInputStream.read(bFile);
-        fileInputStream.close();
-        Message message = new Message("setImageItem");
-        message.setIdItem(idItem);
-        message.setbFile(bFile);
-        SimpleClient.getClient().sendToServer(message);
+            byte[] bFile = new byte[(int) file.length()];
+            fileInputStream.read(bFile);
+            fileInputStream.close();
+            Message message = new Message("setImageItem");
+            message.setIdItem(idItem);
+            message.setbFile(bFile);
+            SimpleClient.getClient().sendToServer(message);
+        }
+        catch (Exception e){
+            if(!url.equals(""))
+                System.out.println(e.getMessage());
+        }
     }
 
     public static void setPrice(int idItem, double newPrice) throws IOException {

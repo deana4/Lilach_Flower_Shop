@@ -1,4 +1,5 @@
 il\entities\User.class
+il\entities\CartProduct.class
 il\entities\Product.class
 il\entities\Complain.class
 il\entities\SystemAdmin.class

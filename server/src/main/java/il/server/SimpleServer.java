@@ -14,8 +14,7 @@ public class SimpleServer extends AbstractServer {
     public SimpleServer(int port) throws Exception {
         super(port);
         System.out.println("Server listen on port:" + port);
-        testDB.openSssion();
-//       testDB.initMySQL();
+        //testDB.initMySQL();
     }
 
     public void closeServer() throws IOException {
@@ -26,7 +25,6 @@ public class SimpleServer extends AbstractServer {
 
     @Override
     protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
-        synchronized (testDB.session) {
             try {
             Message message = (Message) msg;
             Message sendMessage = new Message("");
@@ -137,7 +135,5 @@ public class SimpleServer extends AbstractServer {
             System.out.println(e.getMessage());
             System.out.println("handleMessageFromClient Error!" + client.getInetAddress());
         }
-
-    }
     }
 }

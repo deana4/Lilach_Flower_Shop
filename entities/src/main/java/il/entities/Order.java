@@ -3,7 +3,9 @@ package il.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Table(name="orders")
@@ -18,21 +20,12 @@ public class Order implements Serializable {
     @ManyToOne
     private Store store;
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
-//    private List<CartProduct> products;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    private List<CartProduct> products;
 
-
-//
-//    @ElementCollection
-//    @CollectionTable(name = "order_item_mapping",
-//            joinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "id")})
-//    @MapKeyColumn(name = "item_name")
-//    @Column(name = "price")
-//    HashMap<Integer, Integer> orderD;
 
     @OneToOne
     private Complain complain;
-
 
     private String dateReceive;
     private String timeReceive;
@@ -44,7 +37,7 @@ public class Order implements Serializable {
     private String phoneReceives;
     private String address;
 
-    public Order(User user,Store store, String dateReceive, String timeReceive, String dateOrder, String timeOrder, double sum, String greeting, String nameReceives, String phoneReceives, String address) {
+    public Order(User user, Store store, String dateReceive, String timeReceive, String dateOrder, String timeOrder, double sum, String greeting, String nameReceives, String phoneReceives, String address) {
         this.user = user;
         this.store = store;
         this.dateReceive = dateReceive;
@@ -56,30 +49,39 @@ public class Order implements Serializable {
         this.nameReceives = nameReceives;
         this.phoneReceives = phoneReceives;
         this.address = address;
-//        this.orderD = new HashMap<Integer, Integer>();
+        this.products = new ArrayList<CartProduct>();
+//        this.orderD = new HashMap<>();
     }
 
     public Order() {
 
     }
-//
-//    public Order() {}
-//
-//    public void addProduct(CartProduct product){
-//        this.products.add(product);
-//        product.setOrder(this);
-//    }
-//
-//    public void removeProduct(CartProduct product){
-//        this.products.remove(product);
-//    }
+
+    public List<CartProduct> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<CartProduct> products) {
+        this.products = products;
+    }
+
+    public void addProduct(CartProduct product){
+        this.products.add(product);
+        product.setOrder(this);
+        this.sum+=product.getTotalPrice();
+    }
+
+    public void removeProduct(CartProduct product){
+        this.products.remove(product);
+        this.sum-=product.getTotalPrice();
+    }
 
 
-//    public HashMap<Integer, Integer> getOrderD() {
+//    public HashMap<Product, Integer> getOrderD() {
 //        return orderD;
 //    }
 //
-//    public void setOrderD(HashMap<Integer, Integer> orderD) {
+//    public void setOrderD(HashMap<Product, Integer> orderD) {
 //        this.orderD = orderD;
 //    }
 

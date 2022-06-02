@@ -17,8 +17,6 @@ public class Message implements Serializable {
     User user=null;
 
 
-
-
     //login/register
     String username;
     String id;
@@ -30,6 +28,12 @@ public class Message implements Serializable {
 
     //order
     int orderID;
+    Order order;
+    int storeID;
+
+
+
+    int userID;
 
     int iddatabase;
 
@@ -53,7 +57,29 @@ public class Message implements Serializable {
     int idItem;
     double newPrice;
 
+    public Order getOrder() {
+        return order;
+    }
 
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public int getStoreID() {
+        return storeID;
+    }
+
+    public void setStoreID(int storeID) {
+        this.storeID = storeID;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
     public int getOrderID() {
         return orderID;
     }

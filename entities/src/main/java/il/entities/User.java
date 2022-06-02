@@ -39,11 +39,35 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "complain_user")
     private List<Complain> listComplains;
 
+
+
     @ManyToMany
     private List<Store> liststore;
 
 
+    public int getPriority() {
+        return priority;
+    }
 
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public void setListOrders(List<Order> listOrders) {
+        this.listOrders = listOrders;
+    }
+
+    public void setListComplains(List<Complain> listComplains) {
+        this.listComplains = listComplains;
+    }
+
+    public List<Store> getListstore() {
+        return liststore;
+    }
+
+    public void setListstore(List<Store> liststore) {
+        this.liststore = liststore;
+    }
     public int getAccountStatus() {
         return accountStatus;
     }

@@ -129,6 +129,9 @@ public class SimpleServer extends AbstractServer {
             if (message.getMessage().equals("cancelOrder")) {
                 OrderControl.cancelOrder(message.getOrderID());
             }
+            if (message.getMessage().equals("newOrder")) {
+                OrderControl.newOrder(message.getOrder(), message.getStoreID(), message.getUserID());
+            }
 
 
         } catch(IOException e){

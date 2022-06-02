@@ -62,7 +62,7 @@ public class ComplainHandlerController {
     @FXML
     private MFXButton submitBTN;
 
-    private Order order;
+    private OrderClient order;
 
     private Complaint complaint;
 
@@ -240,11 +240,11 @@ public class ComplainHandlerController {
         this.submitBTN = submitBTN;
     }
 
-    public Order getOrder() {
+    public OrderClient getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(OrderClient order) {
         this.order = order;
     }
 

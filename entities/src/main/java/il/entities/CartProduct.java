@@ -2,10 +2,11 @@ package il.entities;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "ArabicCarkproducts")
-public class CartProduct {
+@Table(name = "Carkproducts")
+public class CartProduct implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

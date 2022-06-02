@@ -3,14 +3,10 @@ package il.client;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.dialogs.MFXGenericDialog;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
-
-import java.awt.event.MouseEvent;
 
 public class DetailedOrderController {
     @FXML
@@ -39,7 +35,7 @@ public class DetailedOrderController {
 
     private Stage stage;
 
-    private Order orderToLook = null;
+    private OrderClient orderToLook = null;
 
 
 
@@ -48,7 +44,7 @@ public class DetailedOrderController {
 
 
     @FXML
-    void initialize(Order order, Stage stage){
+    void initialize(OrderClient order, Stage stage){
         this.stage = stage;
         double sum = 0;
         int amount = 0;
@@ -70,11 +66,11 @@ public class DetailedOrderController {
         timeReceiverText.setText(orderToLook.getOrderReceiveDate());
     }
 
-    public Order getOrderToLook() {
+    public OrderClient getOrderToLook() {
         return orderToLook;
     }
 
-    public void setOrderToLook(Order orderToLook) {
+    public void setOrderToLook(OrderClient orderToLook) {
         this.orderToLook = orderToLook;
     }
 

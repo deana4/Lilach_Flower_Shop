@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class Order {
+public class OrderClient {
     private static int id = 0;
     private int this_id;
     private String orderDate;
@@ -28,7 +28,7 @@ public class Order {
 
     private ObservableList<CartItem> order_items = FXCollections.observableArrayList();
 
-    public Order(String orderDate, String orderTime, String orderReceiveTime, String orderReceiveDate, String greeting, String nameReceiver, String phoneReceiver, String address, String store, ObservableList<CartItem> order_items) {
+    public OrderClient(String orderDate, String orderTime, String orderReceiveTime, String orderReceiveDate, String greeting, String nameReceiver, String phoneReceiver, String address, String store, ObservableList<CartItem> order_items) {
         this.this_id = id++;
         this.orderDate = orderDate;
         this.orderTime = orderTime;
@@ -81,7 +81,7 @@ public class Order {
     }
 
     public static void setId(int id) {
-        Order.id = id;
+        OrderClient.id = id;
     }
 
     public int getThis_id() {

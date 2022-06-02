@@ -20,11 +20,11 @@ public class Order implements Serializable {
     @ManyToOne
     private Store store;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", orphanRemoval = true)
     private List<CartProduct> products;
 
 
-    @OneToOne
+    @OneToOne(orphanRemoval = true)
     private Complain complain;
 
     private String dateReceive;

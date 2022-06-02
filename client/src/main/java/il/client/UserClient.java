@@ -24,7 +24,7 @@ public class UserClient {
     private boolean isLogin = false;
 
     private ObservableList<Complaint> complaintList  = FXCollections.observableArrayList();
-    private ObservableList<Order> orderList = FXCollections.observableArrayList();
+    private ObservableList<OrderClient> orderList = FXCollections.observableArrayList();
 
     private User UserServer = null;
 
@@ -44,7 +44,7 @@ public class UserClient {
 
             //for trying examples
             for(int i=0; i<20; i++)
-            orderList.add(new Order( "Sunday"+i, "12:0"+i, "13:0"+i, "Sunday"+i, "thankyou"+i, "Dean"+i, "1"+i, "bla"+i,"Store 1", cart ));
+            orderList.add(new OrderClient( "Sunday"+i, "12:0"+i, "13:0"+i, "Sunday"+i, "thankyou"+i, "Dean"+i, "1"+i, "bla"+i,"Store 1", cart ));
         }
         {
             complaintList.add(new Complaint(orderList.get(0), "bad flowers","29/05/2022", "12:00"));
@@ -107,11 +107,11 @@ public class UserClient {
         return position;
     }
 
-    public ObservableList<Order> getOrderList() {
+    public ObservableList<OrderClient> getOrderList() {
         return orderList;
     }
 
-    public void setOrderList(ObservableList<Order> orderList) {
+    public void setOrderList(ObservableList<OrderClient> orderList) {
         this.orderList = orderList;
     }
 
@@ -123,8 +123,8 @@ public class UserClient {
         this.complaintList = complaintList;
     }
 
-    public Order getOrderById(int id){
-        Order order;
+    public OrderClient getOrderById(int id){
+        OrderClient order;
         for(int i=0; i< orderList.size(); i++){
             order = orderList.get(i);
             if(order.getThis_id() == id){

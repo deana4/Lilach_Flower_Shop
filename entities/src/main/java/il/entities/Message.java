@@ -26,6 +26,14 @@ public class Message implements Serializable {
     static String plan;
     String name;
 
+
+
+    String phone;
+
+
+
+    String mail;
+
     //order
     int orderID;
     Order order;
@@ -39,6 +47,20 @@ public class Message implements Serializable {
 
     static List<Store> stores=null;
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
     //recive login
     boolean loginStatus;
     String loginResult;

@@ -42,3 +42,4 @@ il/client/DetailedOrderController.class
 il/client/CatalogControl.class
 il/client/RegisterControl.class
 il/client/EditProductOnCatalogController.class
+il/client/CancelOrder.class

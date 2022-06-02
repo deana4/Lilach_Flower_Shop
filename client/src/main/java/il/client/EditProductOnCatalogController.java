@@ -5,14 +5,13 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.security.cert.Extension;
 import java.util.ArrayList;
 
@@ -77,6 +76,20 @@ public class EditProductOnCatalogController {
 
         if(f != null){
             this.ImageURL.setText(f.getAbsolutePath());
+        }
+
+        File file;
+        file = new File(this.ImageURL.getText());
+        byte[] bFile = new byte[(int) file.length()];
+        try{
+            FileInputStream fileInputStream = new FileInputStream(file);
+            fileInputStream.read(bFile);
+            fileInputStream.close();
+            Image img = new Image(new ByteArrayInputStream(bFile));
+            productImage.setImage(img);
+        }
+        catch (Exception e){
+            e.printStackTrace();
         }
 
 //        this.productImage.setImage(this.ImageURL);

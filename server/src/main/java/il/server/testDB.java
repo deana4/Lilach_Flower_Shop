@@ -116,32 +116,24 @@ public class testDB {
         testDB.session.save(u5);
         testDB.session.save(u6);
 
-        List<Store> s =new ArrayList<>();
-        s.add(store);
-        s.add(store2);
-        s.add(store3);
+        store.addUser(u1);
+        store.addUser(u2);
+        store.addUser(u3);
 
-        u1.addStore2(s);
-        u2.addStore2(s);
-        u3.addStore2(s);
-        s.remove(store);
-        u4.addStore2(s);
-        s.remove(store2);
-        u5.addStore2(s);
-        u6.addStore2(s);
-//        store.addUser(u1);
-//        store.addUser(u2);
-//        store.addUser(u3);
+        store2.addUser(u1);
+        store2.addUser(u4);
+        store2.addUser(u5);
+        store2.addUser(u3);
+        store2.addUser(u2);
+
+        store3.addUser(u6);
+        store3.addUser(u2);
+        store3.addUser(u3);
+
+//        Order o = new Order(u1, store, "datarecive", "asas","asas","1212", 100.0,"121212", "21212","", "");
 //
-//        store2.addUser(u1);
-//        store2.addUser(u4);
-//        store2.addUser(u5);
-//        store2.addUser(u3);
-//        store2.addUser(u2);
 //
-//        store3.addUser(u6);
-//        store3.addUser(u2);
-//        store3.addUser(u3);
+//        session.save(o);
 
         session.flush();
     }

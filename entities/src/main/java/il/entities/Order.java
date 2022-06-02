@@ -22,13 +22,13 @@ public class Order implements Serializable {
 //    private List<CartProduct> products;
 
 
-
-    @ElementCollection
-    @CollectionTable(name = "order_item_mapping",
-            joinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "id")})
-    @MapKeyColumn(name = "item_name")
-    @Column(name = "price")
-    HashMap<Integer, Integer> orderD;
+//
+//    @ElementCollection
+//    @CollectionTable(name = "order_item_mapping",
+//            joinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "id")})
+//    @MapKeyColumn(name = "item_name")
+//    @Column(name = "price")
+//    HashMap<Integer, Integer> orderD;
 
     @OneToOne
     private Complain complain;
@@ -46,7 +46,7 @@ public class Order implements Serializable {
 
     public Order(User user,Store store, String dateReceive, String timeReceive, String dateOrder, String timeOrder, double sum, String greeting, String nameReceives, String phoneReceives, String address) {
         this.user = user;
-        this.store =store;
+        this.store = store;
         this.dateReceive = dateReceive;
         this.timeReceive = timeReceive;
         this.dateOrder = dateOrder;
@@ -75,13 +75,13 @@ public class Order implements Serializable {
 //    }
 
 
-    public HashMap<Integer, Integer> getOrderD() {
-        return orderD;
-    }
-
-    public void setOrderD(HashMap<Integer, Integer> orderD) {
-        this.orderD = orderD;
-    }
+//    public HashMap<Integer, Integer> getOrderD() {
+//        return orderD;
+//    }
+//
+//    public void setOrderD(HashMap<Integer, Integer> orderD) {
+//        this.orderD = orderD;
+//    }
 
     public int getId() {
         return id;

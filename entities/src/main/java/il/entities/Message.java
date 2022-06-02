@@ -28,7 +28,8 @@ public class Message implements Serializable {
     static String plan;
     String name;
 
-
+    //order
+    int orderID;
 
     int iddatabase;
 
@@ -55,7 +56,13 @@ public class Message implements Serializable {
     double discountPer;
 
 
+    public int getOrderID() {
+        return orderID;
+    }
 
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
 
     public int getIddatabase() {
         return iddatabase;

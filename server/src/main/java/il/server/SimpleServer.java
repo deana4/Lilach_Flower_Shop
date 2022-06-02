@@ -1,9 +1,6 @@
 package il.server;
 
-import il.entities.Product;
-import il.entities.Message;
-import il.entities.Store;
-import il.entities.User;
+import il.entities.*;
 import il.server.ocsf.ConnectionToClient;
 import il.server.ocsf.AbstractServer;
 
@@ -17,7 +14,7 @@ public class SimpleServer extends AbstractServer {
     public SimpleServer(int port) throws Exception {
         super(port);
         System.out.println("Server listen on port:" + port);
-//       testDB.initMySQL();
+       //testDB.initMySQL();
     }
 
     public void closeServer() throws IOException {
@@ -137,6 +134,9 @@ public class SimpleServer extends AbstractServer {
 
             if(message.getMessage().equals("deleteItem")){
                 CatalogControl.deleteItem(message.getIdProduct());
+            }
+            if(message.getMessage().equals("cancelOrder")){
+                OrderControl.cancelOrder(message.getOrderID());
             }
 
 

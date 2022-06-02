@@ -130,10 +130,10 @@ public class testDB {
         store3.addUser(u2);
         store3.addUser(u3);
 
-//        Order o = new Order(u1, store, "datarecive", "asas","asas","1212", 100.0,"121212", "21212","", "");
-//
-//
-//        session.save(o);
+        Order o = new Order(u1, store, "datarecive", "asas","asas","1212", 100.0,"121212", "21212","", "");
+
+
+        session.save(o);
 
         session.flush();
     }

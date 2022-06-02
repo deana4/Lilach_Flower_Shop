@@ -69,11 +69,6 @@ public class SimpleServer extends AbstractServer {
                 System.out.println("send stores to client");
             }
 
-            if(message.getMessage().equals("setPriceItem")){
-                int id = message.getIdItem();
-                double price = message.getNewPrice();
-                CatalogControl.setPrice(id, price);
-            }
 
             if(message.getMessage().equals("logout")){
                 int id = message.getIddatabase();
@@ -86,7 +81,7 @@ public class SimpleServer extends AbstractServer {
 
 
             if(message.getMessage().equals("setImagesItem")){
-                CatalogControl.setImage(message.getIdProduct(), message.getbFile());
+                CatalogControl.setImage(message.getIdItem(), message.getbFile());
             }
 
             if(message.getMessage().equals("register")){
@@ -125,15 +120,15 @@ public class SimpleServer extends AbstractServer {
             }
 
             if(message.getMessage().equals("setNameItem")){
-                CatalogControl.setName(message.getIdProduct(), message.getNameProduct());
+                CatalogControl.setName(message.getIdItem(), message.getNameProduct());
             }
 
             if(message.getMessage().equals("setSaleItem")){
-                CatalogControl.setSale(message.getIdProduct(), message.isSale(), message.getDiscountPer());
+                CatalogControl.setSale(message.getIdItem(), message.isSale(), message.getDiscountPer());
             }
 
             if(message.getMessage().equals("deleteItem")){
-                CatalogControl.deleteItem(message.getIdProduct());
+                CatalogControl.deleteItem(message.getIdItem());
             }
             if(message.getMessage().equals("cancelOrder")){
                 OrderControl.cancelOrder(message.getOrderID());

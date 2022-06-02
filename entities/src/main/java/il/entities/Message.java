@@ -43,10 +43,6 @@ public class Message implements Serializable {
     boolean registerStatus;
     String registerResult;
 
-    //setPrice
-    int idItem;
-    double newPrice;
-
     //setProduct
     byte[] bFile;
     double price;
@@ -54,6 +50,8 @@ public class Message implements Serializable {
     int idProduct;
     boolean sale;
     double discountPer;
+    int idItem;
+    double newPrice;
 
 
     public int getOrderID() {

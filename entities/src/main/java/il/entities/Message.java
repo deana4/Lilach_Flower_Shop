@@ -17,6 +17,8 @@ public class Message implements Serializable {
     User user=null;
 
 
+    //order
+    int orderID;
 
 
     //login/register
@@ -56,6 +58,13 @@ public class Message implements Serializable {
 
 
 
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
 
     public int getIddatabase() {
         return iddatabase;

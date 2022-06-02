@@ -30,9 +30,7 @@ public class SimpleServer extends AbstractServer {
     protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
         try {
             Message message  = (Message) msg;
-
             Message sendMessage = new Message("");
-
             if(message.getMessage().equals("login")){
                 String username = message.getUsername();
                 String pass = message.getPass();

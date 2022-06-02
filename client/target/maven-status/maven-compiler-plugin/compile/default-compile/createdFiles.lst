@@ -29,6 +29,7 @@ il/client/CartItem.class
 il/client/UpdateController.class
 il/client/ocsf/AdaptableClient.class
 il/client/events/LoginEvent.class
+il/client/orderControl.class
 il/client/MainPageController$MyThread.class
 il/client/LogInControl.class
 il/client/DiffClasses/Complaint.class
@@ -42,4 +43,3 @@ il/client/DetailedOrderController.class
 il/client/CatalogControl.class
 il/client/RegisterControl.class
 il/client/EditProductOnCatalogController.class
-il/client/CancelOrder.class

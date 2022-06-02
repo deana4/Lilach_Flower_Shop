@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.font.MFXFontIcon?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="285.0" prefWidth="625.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.EditProductOnCatalogController">
+   <children>
+      <AnchorPane layoutX="26.0" layoutY="17.0" prefHeight="251.0" prefWidth="573.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css">
+         <children>
+            <Label layoutX="188.0" layoutY="14.0" prefHeight="62.0" prefWidth="255.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Edit Product">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER" layoutX="14.0" layoutY="90.0" prefHeight="141.0" prefWidth="396.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <MFXTextField id="customPassword" fx:id="nameText" floatMode="BORDER" floatingText="Name" promptText="Change Name" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField id="customPassword" fx:id="PriceText" floatMode="BORDER" floatingText="Price" promptText="Set New Price" stylesheets="@CSSfiles/css/TextFields.css" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <MFXTextField id="customPassword" fx:id="ImageURL" allowEdit="false" floatMode="BORDER" floatingText="Image URL" prefHeight="38.0" prefWidth="272.0" promptText="Image URL" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXButton fx:id="fileBtn" onAction="#getFile" text="Bring File" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <MFXButton alignment="TOP_LEFT" contentDisplay="CENTER" depthLevel="LEVEL0" ellipsisString="" layoutX="528.0" layoutY="9.0" onAction="#closeWindow" prefHeight="21.0" prefWidth="10.0" rippleAnimateBackground="false" rippleColor="RED" text=" " textAlignment="CENTER">
+               <graphic>
+                  <MFXFontIcon fx:id="closeIcon" description="mfx-x-circle" size="15.0" styleClass="close-icon">
+                     <color>
+                        <Color red="1.0" />
+                     </color>
+                  </MFXFontIcon>
+               </graphic>
+            </MFXButton>
+            <MFXButton fx:id="setChanges" layoutX="267.0" layoutY="221.0" onAction="#ChangesApplied" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />
+            <ImageView fx:id="productImage" fitHeight="113.0" fitWidth="115.0" layoutX="400.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

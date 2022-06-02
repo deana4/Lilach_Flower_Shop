@@ -201,9 +201,6 @@ public class testDB {
 
     public static void initMySQL(){
         try {
-//            SessionFactory sessionFactory = getSessionFactory();
-//            session = sessionFactory.openSession();
-//            session.beginTransaction();
             System.out.println("open session to mySQL");
             openSssion();
             generateItems();

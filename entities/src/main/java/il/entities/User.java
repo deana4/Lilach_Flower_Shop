@@ -30,6 +30,7 @@ public class User implements Serializable {
     private double discount;
     private int accountStatus;
     private boolean login;
+    private int priority;
 
 
     @OneToMany (mappedBy = "user")
@@ -75,6 +76,7 @@ public class User implements Serializable {
         this.listOrders = new ArrayList<Order>();
         this.listComplains = new ArrayList<Complain>();
         this.liststore = new ArrayList<Store>();
+//        this.priority =  priority;
 
 
 //        this.phone = phone;

@@ -1,13 +1,12 @@
 package il.client;
 
-import il.client.ocsf.AbstractClient;
 import il.entities.Message;
-import org.json.JSONException;
-import org.json.JSONObject;
+
 
 import java.io.IOException;
 
 public class LogInControl{
+
 
 
 
@@ -16,6 +15,7 @@ public class LogInControl{
         message.setWorker(isWorker);
         message.setUsername(username);
         message.setPass(pass);
+        System.out.println("test -login");
 
         SimpleClient.getClient().sendToServer(message);
     }

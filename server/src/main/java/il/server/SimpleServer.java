@@ -79,9 +79,14 @@ public class SimpleServer extends AbstractServer {
             }
 
             if(message.getMessage().equals("logout")){
-                String username = message.getUsername();
-                LoginControl.setToDiactive(username);
+                int id = message.getIddatabase();
+                boolean isworker = message.isWorker();
+                if(isworker)
+                    LoginControl.setToDiactiveEmp(id);
+                else
+                    LoginControl.setToDiactiveU(id);
             }
+
 
             if(message.getMessage().equals("setImagesItem")){
                 CatalogControl.setImage(message.getIdProduct(), message.getbFile());

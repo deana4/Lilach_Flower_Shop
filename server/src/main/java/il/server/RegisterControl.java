@@ -14,9 +14,6 @@ import java.util.List;
 
 public class RegisterControl {
 
-
-
-
     public static<T> List<T> getAllItems(Class<T> object){
         testDB.openSssion();
         CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
@@ -35,7 +32,8 @@ public class RegisterControl {
 //        compare_name c = new compare_name();
 //        int result = Collections.binarySearch(lUsers,newUser, c.comparename());
         for (User user: lUsers){
-            if (user.getUserName().equals(newUser.getUserName()) || user.getIdentifyNumbers().equals(newUser.getIdentifyNumbers()) || user.getCreditCard().equals(newUser.getCreditCard()))
+            if (user.getUserName().equals(newUser.getUserName()) || user.getIdentifyNumbers().equals(newUser.getIdentifyNumbers()) ||
+                    user.getCreditCard().equals(newUser.getCreditCard()))
                 if (user.getUserName().equals(newUser.getUserName()))
                     return "Error: User has been used";
             if (user.getIdentifyNumbers().equals(newUser.getIdentifyNumbers()))

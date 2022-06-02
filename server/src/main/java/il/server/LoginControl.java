@@ -1,6 +1,7 @@
 package il.server;
 
 import il.entities.Employee;
+import il.entities.Product;
 import il.entities.User;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -9,11 +10,14 @@ import javax.persistence.criteria.Root;
 import java.util.LinkedList;
 import java.util.List;
 
+
+
 public class LoginControl {
-    public static String checkLogin(String userName, String pass, boolean isWorker){
+
+    public static String checkLogin(String userName, String pass, boolean isWorker) {
         String result = "";
-        if (isWorker){
-            List<Employee> lEmp =RegisterControl.getAllItems(Employee.class);
+        if (isWorker) {
+            List<Employee> lEmp = RegisterControl.getAllItems(Employee.class);
             for (Employee employee : lEmp) {
                 if (employee.getUsername().equals(userName)) {
                     if (employee.getPassword().equals(pass)) {
@@ -21,15 +25,13 @@ public class LoginControl {
                             result = "this user already sighing from another device!";
                             return result;
                         }
-                        setToActive(employee.getId());
-                        return result;
+                        setToActiveEmp(employee.getId());
                     } else {
                         result = "incorrect password!";
-                        return result;
                     }
+                    return result;
                 }
             }
-            result = "username does not exist!";
         }
         else {
             List<User> lUsers = RegisterControl.getAllItems(User.class);
@@ -40,12 +42,11 @@ public class LoginControl {
                             result = "this user already sighing from another device!";
                             return result;
                         }
-                        setToActive(user.getId());
-                        return result;
+                        setToActiveUser(user.getId());
                     } else {
                         result = "incorrect password!";
-                        return result;
                     }
+                    return result;
                 }
             }
             result = "username does not exist!";
@@ -53,7 +54,10 @@ public class LoginControl {
         return result;
     }
 
-    private static void setToActive(int idUser){
+
+
+
+    private static void setToActiveUser(int idUser){
         testDB.openSssion();
         User user = testDB.session.get(User.class, idUser);
         user.setLogin(true);
@@ -61,25 +65,52 @@ public class LoginControl {
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
     }
-
-    public static void setToDiactive(String username){
+    private static void setToActiveEmp(int idUser){
         testDB.openSssion();
-        CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
-        CriteriaQuery<User> query = builder.createQuery(User.class);
-        Root<User> root = query.from(User.class);
-        query.orderBy(builder.asc(root.get("userName")));
-        List<User> data = testDB.session.createQuery(query.orderBy()).getResultList();
-        LinkedList<User> listItems = new LinkedList<>(data);
-
-        for (User user : listItems){
-            if(user.getUserName().equals(username)){
-                user.setLogin(false);
-            }
-        }
-
+        Employee e = testDB.session.get(Employee.class, idUser);
+        e.setLogin(true);
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
     }
+
+    public static void setToDiactiveU(int id){
+        testDB.openSssion();
+        User a = testDB.session.get(User.class, id);
+        a.setLogin(false);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
+    public static void setToDiactiveEmp(int id){
+        testDB.openSssion();
+        Employee a = testDB.session.get(Employee.class, id);
+        a.setLogin(false);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
+
+//
+//        testDB.openSssion();
+////        CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
+////        CriteriaQuery<User> query = builder.createQuery(User.class);
+////        Root<User> root = query.from(User.class);
+////        query.orderBy(builder.asc(root.get("userName")));
+////        List<User> data = testDB.session.createQuery(query.orderBy()).getResultList();
+////        LinkedList<User> listItems = new LinkedList<>(data);
+////
+////        for (User user : listItems){
+////            if(user.getUserName().equals(username)){
+////                user.setLogin(false);
+////            }
+////        }
+//
+//        testDB.session.flush();
+//        testDB.session.getTransaction().commit(); // Save everything.
+//        testDB.closeSession();
+//    }
 
 }

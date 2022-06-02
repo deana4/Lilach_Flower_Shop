@@ -29,6 +29,9 @@ public class Message implements Serializable {
     String name;
 
 
+
+    int iddatabase;
+
     static List<Store> stores=null;
 
     //recive login
@@ -50,6 +53,17 @@ public class Message implements Serializable {
     int idProduct;
     boolean sale;
     double discountPer;
+
+
+
+
+    public int getIddatabase() {
+        return iddatabase;
+    }
+
+    public void setIddatabase(int iddatabase) {
+        this.iddatabase = iddatabase;
+    }
 
     public boolean isSale() {
         return sale;

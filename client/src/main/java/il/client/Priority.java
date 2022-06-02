@@ -1,7 +1,7 @@
 package il.client;
 
 public class Priority {
-    int priority_level; //1- guest, 2-user, 3-worker, 4-Manager+
+    int priority_level; //5- guest, 4-  , 3- , 2-
     int inner_priority_level;
 
     public Priority(){

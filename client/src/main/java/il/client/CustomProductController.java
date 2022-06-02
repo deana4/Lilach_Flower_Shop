@@ -26,9 +26,6 @@ public class CustomProductController {
     private MFXButton cancelBTN;
 
     @FXML
-    private ColorPicker dominante_color_chooser;
-
-    @FXML
     private GridPane grid_pane;
 
     @FXML
@@ -70,9 +67,5 @@ public class CustomProductController {
 
     }
 
-    @FXML
-    void ActiveColorClicked(MouseEvent event) {
-
-    }
 
 }

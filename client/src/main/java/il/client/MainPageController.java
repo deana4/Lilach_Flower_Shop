@@ -475,6 +475,7 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         this.main_first_load_pane.getChildren().addAll(root_map.get("Home"));
     }
 
+
     public void LoadFirstPage() throws IOException {
         Parent root;
         URL var;
@@ -512,6 +513,18 @@ public class MainPageController extends ParentClass {     //This is a singleton 
        ((CatalogController)controller_map.get("Catalog")).setMain_page_holder(this);
        this.main_first_load_pane.getChildren().addAll(root_map.get("Catalog"));
    }
+
+    public void AddCustomProductPage() throws IOException {
+        FXMLLoader fxmlLoader;
+        URL var;
+        Parent root;
+        fxmlLoader = new FXMLLoader();
+        var = getClass().getResource("CustomProduct.fxml");
+        fxmlLoader.setLocation(var);
+        root = fxmlLoader.load();
+        this.main_first_load_pane.getChildren().clear();
+        this.main_first_load_pane.getChildren().addAll(root);
+    }
     /* --------------------------------------- END --------------------------------------- */
 }
 

@@ -11,7 +11,7 @@
 .Headers{
     -fx-text-fill: white;
     -fx-font-family: "Segoe Script";
-    -fx-background-color: #979797;
+    -fx-background-color: #FFA8A8;
     -fx-background-radius: 250em;
     -fx-border-radius: 90%;
     -fx-alignment: center;
@@ -47,11 +47,11 @@
 }
 
 .sideBar{
-    -fx-background-color: linear-gradient(to bottom right, lightblue, lightseagreen);
+    -fx-background-color: linear-gradient(to bottom right, #FFA8A8, #F190B7);
     -fx-background-radius: 1em;
     -fx-border-radius: 1em;
     /*-fx-alignment: center;*/
-    -fx-border-color: linear-gradient(to bottom right, lightseagreen, lightblue);
+    -fx-border-color: linear-gradient(to bottom right, #F190B7, #FFA8A8,#F190B7,#FFA8A8 );
 }
 
 .HeadersNoBackground{
@@ -68,5 +68,5 @@
     -fx-border-radius: 1em;
     /*-fx-alignment: center;*/
     -fx-border-color: #979797;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 12, 0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 30, 0, 0, 0);
 }

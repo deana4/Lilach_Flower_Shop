@@ -6,7 +6,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXSlider?>
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -16,13 +15,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="646.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CustomProductController">
    <children>
       <AnchorPane prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
-            <AnchorPane fx:id="side_pick_ancorepane" layoutX="921.0" layoutY="120.0" opacity="0.75" prefHeight="407.0" prefWidth="412.0" styleClass="imageAnchor" stylesheets="@CSSfiles/Backgrounds.css" />
-            <MFXScrollPane fx:id="scroll_pane" layoutX="335.0" layoutY="24.0" prefHeight="615.0" prefWidth="578.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">
+            <AnchorPane fx:id="side_pick_ancorepane" layoutX="818.0" layoutY="120.0" opacity="0.75" prefHeight="407.0" prefWidth="412.0" styleClass="imageAnchor" stylesheets="@CSSfiles/Backgrounds.css" />
+            <MFXScrollPane fx:id="scroll_pane" layoutX="335.0" layoutY="24.0" prefHeight="615.0" prefWidth="474.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">
                <content>
                   <GridPane fx:id="grid_pane" alignment="CENTER" hgap="10.0" prefHeight="611.0" prefWidth="575.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" vgap="10.0">
                      <columnConstraints>
@@ -83,10 +81,9 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ColorPicker fx:id="dominante_color_chooser" />
                </children>
             </HBox>
-            <MFXToggleButton fx:id="active_color_chooser" layoutX="35.0" layoutY="375.0" onMouseClicked="#ActiveColorClicked" prefHeight="41.0" prefWidth="253.0" text="Active Dominante Color pick" textFill="#979797" />
+            <MFXToggleButton fx:id="active_color_chooser" layoutX="35.0" layoutY="375.0" prefHeight="41.0" prefWidth="253.0" text="Active Dominante Color pick" textFill="#979797" />
             <VBox alignment="TOP_CENTER" layoutX="124.0" layoutY="445.0" prefHeight="149.0" prefWidth="100.0" spacing="10.0">
                <children>
                   <MFXButton fx:id="iAmDoneBTN" onAction="#IAmDoneBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="I am done" textFill="#979797">

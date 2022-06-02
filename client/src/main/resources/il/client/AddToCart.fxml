@@ -20,10 +20,12 @@
                   <Image url="@ClientImages/CartImage2.png" />
                </image>
             </ImageView>
-            <VBox alignment="CENTER" focusTraversable="true" layoutX="374.0" layoutY="101.0" prefHeight="465.0" prefWidth="468.0">
+            <VBox alignment="CENTER" focusTraversable="true" layoutX="261.0" layoutY="91.0" prefHeight="465.0" prefWidth="719.0">
                <children>
                   <MFXLegacyTableView fx:id="cart_table" fixedCellSize="20.0" prefHeight="400.0" prefWidth="468.0" stylesheets="@CSSfiles/Backgrounds.css" tableMenuButtonVisible="true" viewOrder="20.0">
                      <columns>
+                        <TableColumn fx:id="remove_btn_col" editable="false" prefWidth="98.0" sortType="DESCENDING" text="Remove" />
+                        <TableColumn fx:id="amount_change_btn_col" editable="false" prefWidth="98.0" sortType="DESCENDING" text="Change Amount" />
                         <TableColumn fx:id="table_Column_id" editable="false" prefWidth="98.0" sortType="DESCENDING" text="ID" />
                         <TableColumn fx:id="table_Column_name" editable="false" prefWidth="95.0" sortable="false" text="Name" />
                         <TableColumn fx:id="table_Column_price" editable="false" prefWidth="100.0" sortable="false" text="Price" />

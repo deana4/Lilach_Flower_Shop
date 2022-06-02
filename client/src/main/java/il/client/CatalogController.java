@@ -19,8 +19,10 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class CatalogController extends ParentClass{
 
@@ -61,10 +63,20 @@ public class CatalogController extends ParentClass{
 
     private MainPageController main_page_holder;
 
-    private LinkedList<ProductView> flowersFXML;
+//    private LinkedList<ProductView> flowersFXML;
+    private HashMap<Integer,ProductView> productsControllers;
 
     public static List<Product> getFlowerlist() {
         return flowerlist;
+    }
+
+    private static CatalogController catalogInstance = null;
+
+    public static CatalogController getInstance(){
+        if(catalogInstance == null) {
+            catalogInstance = new CatalogController();
+        }
+        return catalogInstance;
     }
 
     public static void setFlowerlist(List<Product> flowerlist1) {
@@ -80,7 +92,6 @@ public class CatalogController extends ParentClass{
 
                     URL path = getClass().getResource("ProductView.fxml");
 
-
                     for(int i=0; i<flowerlist.size();i++){
                         my_fxml_loader = new FXMLLoader();
                         my_fxml_loader.setLocation(path);//change secondary.fxml to the fxml file from dean and liran
@@ -92,6 +103,7 @@ public class CatalogController extends ParentClass{
                         }
                         //     flowersFXML.add(node);
                         ProductView controller = my_fxml_loader.getController();
+                        productsControllers.put(flowerlist.get(i).getId(),controller);
                         controller.setCat_controller(this);
                         try {
                             controller.setData(flowerlist.get(i));
@@ -116,6 +128,25 @@ public class CatalogController extends ParentClass{
 
                         GridPane.setMargin(node, new Insets(10));
                     }
+
+                    if(col==3){
+                        col=0;
+                        row++;
+                    }
+
+                    try {
+                        Parent root_add_product = LoadAddProduct();
+                        GridPane.setConstraints(root_add_product,0,row);
+                        gridPane.getChildren().addAll(root_add_product);
+                        GridPane.setMargin(root_add_product , new Insets(10));
+
+                        Parent custom_add_product = LoadCustomProduct();
+                        GridPane.setConstraints(custom_add_product,1,row);
+                        gridPane.getChildren().addAll(custom_add_product);
+                        GridPane.setMargin(custom_add_product , new Insets(10));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     scrollPane.setContent(this.gridPane);
                 }
                 );
@@ -125,9 +156,13 @@ public class CatalogController extends ParentClass{
 
     @FXML  // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException, ClassNotFoundException, InterruptedException {
+        catalogInstance = this;
         EventBus.getDefault().register(this);
         CatalogControl.getItemsList();
+        this.productsControllers = new HashMap<>();
     }
+
+
 
     public void setAnchorpang2Visibale(){
         this.catalog_anchorpane2.setVisible(true);
@@ -201,8 +236,12 @@ public class CatalogController extends ParentClass{
         this.main_page_holder = main_page_holder;
     }
 
-    public LinkedList<ProductView> getFlowersFXML() {
-        return flowersFXML;
+    public HashMap<Integer, ProductView> getProductsControllers() {
+        return productsControllers;
+    }
+
+    public void setProductsControllers(HashMap<Integer, ProductView> productsControllers) {
+        this.productsControllers = productsControllers;
     }
 
 //    public void setFlowersFXML(LinkedList<ProductView> flowersFXML) {
@@ -212,5 +251,27 @@ public class CatalogController extends ParentClass{
     public void AddFlowerToCatalog(Product product) throws IOException {
         CatalogControl.addItem(product); // need to implement on Control
         MainPageController.getInstance().CatalogRefresh();
+    }
+
+    public Parent LoadAddProduct() throws IOException {
+        Parent root;
+        URL var;
+        FXMLLoader fxmlLoader;
+        fxmlLoader = new FXMLLoader();
+        var = getClass().getResource("AddProductToCatalog.fxml");
+        fxmlLoader.setLocation(var);
+        root = fxmlLoader.load();
+        return root;
+    }
+
+    public Parent LoadCustomProduct() throws IOException {
+        Parent root;
+        URL var;
+        FXMLLoader fxmlLoader;
+        fxmlLoader = new FXMLLoader();
+        var = getClass().getResource("AddCutomProductToCatalog.fxml");
+        fxmlLoader.setLocation(var);
+        root = fxmlLoader.load();
+        return root;
     }
 }

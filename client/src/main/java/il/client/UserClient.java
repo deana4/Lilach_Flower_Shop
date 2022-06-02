@@ -30,6 +30,7 @@ public class UserClient {
 
     private static UserClient user = null;
 
+
     private UserClient() {
         priority = new Priority();
         priority.setPriority_level(1);

@@ -1,5 +1,6 @@
 package il.client;
 
+import il.entities.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView;
@@ -49,9 +50,24 @@ public class AddToCartController{
     @FXML
     private TableColumn<CartItem, Integer> table_Column_amount;
 
+    @FXML
+    private TableColumn<CartItem, MFXButton> amount_change_btn_col;
+
+    @FXML
+    private TableColumn<CartItem, MFXButton> remove_btn_col;
+
     private int total_sum = 0;
 
     ObservableList<CartItem> items = FXCollections.observableArrayList();
+
+    private static AddToCartController CartInstance = null;
+
+    public static AddToCartController getInstance(){
+        if(CartInstance == null) {
+            CartInstance = new AddToCartController();
+        }
+        return CartInstance;
+    }
 
     @FXML
     void CloseATCWin(MouseEvent event) {
@@ -63,39 +79,56 @@ public class AddToCartController{
 
     @FXML
     void initialize(){
+        CartInstance = this;
         this.TableInitializeFields();
-        {
-            this.addItemToTable("Dean", 50, 1,1);
-            total_sum += 50;
-            this.addItemToTable("Liran", 100,1, 3);
-            total_sum += 100;
-            this.addItemToTable("Ann", 100, 2,2);
-            total_sum += 150;
-            this.addItemToTable("Ido", 100, 3,10);
-            total_sum += 10;
-            this.addItemToTable("Dean", 100, 1,5);
-            total_sum += 50;
-            this.addItemToTable("Dean", 100,1, 8);
-            total_sum += 50;
-            this.addItemToTable("Dean", 100, 19,7);
-            total_sum += 50;
-        }
-
         cart_table.setItems(items);
-
         sum_field.setText(String.valueOf(total_sum));
     }
 
     public void TableInitializeFields(){
+        cart_table.setFixedCellSize(40);
         table_Column_name.setCellValueFactory(new PropertyValueFactory<CartItem,String>("item_name"));
         table_Column_price.setCellValueFactory(new PropertyValueFactory<CartItem,String>("item_price"));
         table_Column_amount.setCellValueFactory(new PropertyValueFactory<CartItem,Integer>("item_amount"));
         table_Column_id.setCellValueFactory(new PropertyValueFactory<CartItem,Integer>("item_id"));
+        amount_change_btn_col.setCellValueFactory(new PropertyValueFactory<CartItem,MFXButton>("amountChangeBtn"));
+        remove_btn_col.setCellValueFactory(new PropertyValueFactory<CartItem,MFXButton>("removeBtn"));
     }
 
+    public void setChanges(){
+        cart_table.setItems(items);
+    }
     public void addItemToTable(String name, double price, int id, int amount){
-        CartItem item = new CartItem(name,price,id,amount);
+        CartItem item = new CartItem(name,price,amount,id);
         this.items.addAll(item);
+    }
+    public void addItemToTable(CartItem item, int amount){
+        CartItem item_to_add = new CartItem(item.getItem_name(), item.getItem_price() ,amount,item.getItem_id());
+        this.items.addAll(item_to_add);
+    }
+    public void setItemAmount(CartItem itemToChange, int amount){
+        for(CartItem item:items){
+            if(item.getItem_id() == itemToChange.getItem_id()){
+                item.setItem_amount(amount);
+            }
+        }
+    }
+
+    public void removeItemFromTable(int id){
+        for(CartItem item: items){
+            if(item.getItem_id() == id){
+                this.items.remove(item);
+                System.out.println("Removed Item:" + item.getItem_name());
+            }
+        }
+    }
+
+    public void setAmountByID(int id, int amount){
+        for(CartItem item : items){
+            if(item.getItem_id() == id){
+                item.setItem_amount(amount);
+            }
+        }
     }
 
 
@@ -134,5 +167,10 @@ public class AddToCartController{
     public String getSum_filed() {
         return sum_field.getText();
     }
+
+    public ObservableList<CartItem> getItemsList() {
+        return items;
+    }
+
 
 }

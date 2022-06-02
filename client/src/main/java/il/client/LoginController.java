@@ -46,6 +46,7 @@ public class LoginController extends ParentClass{
         Platform.runLater(()->{
             correctLogin = event.getStatus();
             if(correctLogin){
+                UserClient.getInstance().setPriority(2); //get this data from the server by sending the User Entity to this function
                 //goto var which represent the login option on the Main Controller and change it to 1.
                 //change Main Controller AnchorPane to Catalog -> "maybe return to the last page the client was inside"
                 MainPageController.LoginName = event.getUsername();

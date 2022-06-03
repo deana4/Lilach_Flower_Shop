@@ -36,6 +36,8 @@ public class Order implements Serializable {
     private String nameReceives;
     private String phoneReceives;
     private String address;
+    private int status; //1- cancel ,2-delivered, 3-pending
+
 
     public Order(User user, Store store, String dateReceive, String timeReceive, String dateOrder, String timeOrder, double sum, String greeting, String nameReceives, String phoneReceives, String address) {
         this.user = user;
@@ -49,12 +51,28 @@ public class Order implements Serializable {
         this.nameReceives = nameReceives;
         this.phoneReceives = phoneReceives;
         this.address = address;
+        this.status=3;
         this.products = new ArrayList<CartProduct>();
-//        this.orderD = new HashMap<>();
     }
 
     public Order() {
 
+    }
+
+    public String getPhoneReceives() {
+        return phoneReceives;
+    }
+
+    public void setPhoneReceives(String phoneReceives) {
+        this.phoneReceives = phoneReceives;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public List<CartProduct> getProducts() {
@@ -187,6 +205,7 @@ public class Order implements Serializable {
 
     public void setComplain(Complain complain) {
         this.complain = complain;
+        complain.setOrder(this);
     }
 
 }

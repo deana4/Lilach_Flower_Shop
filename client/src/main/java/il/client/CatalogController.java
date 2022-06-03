@@ -119,12 +119,6 @@ public class CatalogController extends ParentClass{
                         GridPane.setMargin(node, new Insets(10));
                     }
                     scrollPane.setContent(this.gridPane);
-                    try {
-                        OrderControl.testNewOrder();
-                        OrderControl.testCancelOrder();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                 }
 
                 );

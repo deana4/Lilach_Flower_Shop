@@ -1,5 +1,7 @@
-package il.client;
+package il.client.controls;
 
+import il.client.CatalogController;
+import il.client.SimpleClient;
 import il.entities.CartProduct;
 import il.entities.Message;
 import il.entities.Order;

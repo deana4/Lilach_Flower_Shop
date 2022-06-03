@@ -1,5 +1,7 @@
 package il.client;
 
+import il.client.controls.CatalogControl;
+import il.client.controls.OrderControl;
 import il.client.events.CatalogItemsEvent;
 import il.entities.Product;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;

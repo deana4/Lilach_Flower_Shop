@@ -1,4 +1,4 @@
-package il.client;
+package il.client.controls;
 
 import il.entities.Message;
 

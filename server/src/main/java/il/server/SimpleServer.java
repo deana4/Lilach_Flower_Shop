@@ -16,7 +16,8 @@ public class SimpleServer extends AbstractServer {
         System.out.println("Server listen on port:" + port);
         if(initServer)
             testDB.initMySQL();
-        TestControl.testUserControl();
+        //TestControl.testUserControl();
+        UserControl.logOutAllusers();
     }
 
     public void closeServer() throws IOException {

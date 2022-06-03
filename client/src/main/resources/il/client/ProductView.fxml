@@ -32,7 +32,7 @@
             <MFXButton fx:id="update_product_button" disable="true" onAction="#UpdateProduct" rippleColor="#ffacf7" styleClass="mybutton" stylesheets="@CSSfiles/Buttons.css" text="Update" visible="false" />
          </children>
       </HBox>
-      <VBox layoutX="33.0" layoutY="30.0" prefHeight="204.0" prefWidth="170.0">
+      <VBox layoutX="33.0" layoutY="30.0" prefHeight="106.0" prefWidth="148.0">
          <children>
             <Label fx:id="product_name" text="Name">
                <font>
@@ -58,7 +58,7 @@
             </Label>
          </children>
       </VBox>
-      <MFXButton fx:id="atc_product_button" layoutX="117.0" layoutY="202.0" onAction="#AddProductToCart" prefHeight="25.0" prefWidth="96.0" styleClass="mybutton" stylesheets="@CSSfiles/Buttons.css" text="Add To Cart" visible="false">
+      <MFXButton fx:id="atc_product_button" layoutX="117.0" layoutY="202.0" onAction="#AddProductToCart" prefHeight="25.0" prefWidth="96.0" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Add To Cart" visible="false">
          <rippleColor>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -76,10 +76,10 @@
             </LinearGradient>
          </rippleColor>
       </MFXButton>
-      <VBox alignment="CENTER" layoutX="190.0" layoutY="30.0" prefHeight="177.0" prefWidth="126.0" spacing="8.0">
+      <VBox alignment="CENTER" layoutX="33.0" layoutY="143.0" prefHeight="72.0" prefWidth="108.0" spacing="8.0">
          <children>
-            <MFXButton fx:id="removeFlowerBtn" onAction="#removeFlowerClicked" prefHeight="30.0" prefWidth="204.0" text="Remove Flower" />
-            <MFXButton fx:id="editFlower" onAction="#editFlowerClicked" prefHeight="30.0" prefWidth="135.0" text="Edit Flower" />
+            <MFXButton fx:id="removeFlowerBtn" onAction="#removeFlowerClicked" prefHeight="30.0" prefWidth="204.0" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Remove Flower" />
+            <MFXButton fx:id="editFlower" onAction="#editFlowerClicked" prefHeight="30.0" prefWidth="135.0" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Edit Flower" />
          </children>
       </VBox>
    </children>

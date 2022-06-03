@@ -48,11 +48,11 @@ public class UserClient {
             orderList.add(new Order( "Sunday"+i, "12:0"+i, "13:0"+i, "Sunday"+i, "thankyou"+i, "Dean"+i, "1"+i, "bla"+i,"Store 1", cart ));
         }
         {
-            complaintList.add(new Complaint(orderList.get(0), "bad flowers","29/05/2022", "12:00"));
-            complaintList.add(new Complaint(orderList.get(1), "bad flowers","29/05/2022", "13:00"));
-            complaintList.add(new Complaint(orderList.get(2), "bad flowers","29/05/2022", "13:30"));
-            complaintList.add(new Complaint(orderList.get(3), "bad flowers","29/05/2022", "15:00"));
-            complaintList.add(new Complaint(orderList.get(4), "bad flowers","29/05/2022", "17:30"));
+            complaintList.add(new Complaint(orderList.get(0), "bad flowers","02/06/2022", "12:00"));
+            complaintList.add(new Complaint(orderList.get(1), "bad flowers","02/06/2022", "13:00"));
+            complaintList.add(new Complaint(orderList.get(2), "bad flowers","02/06/2022", "13:30"));
+            complaintList.add(new Complaint(orderList.get(3), "bad flowers","03/06/2022", "18:00"));
+            complaintList.add(new Complaint(orderList.get(4), "bad flowers","03/06/2022", "17:30"));
         }
     }
 

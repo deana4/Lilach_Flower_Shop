@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 public class ComplaintTabController {
 
@@ -60,7 +61,7 @@ public class ComplaintTabController {
                         System.out.println(row.getItem());
                         try {
                             HandelComplaintScreen(row);
-                        } catch (IOException e) {
+                        } catch (IOException | ParseException e) {
                             e.printStackTrace();
                         }
                     }
@@ -69,7 +70,7 @@ public class ComplaintTabController {
         });
     }
 
-    public void HandelComplaintScreen(TableRow<Complaint> row) throws IOException {
+    public void HandelComplaintScreen(TableRow<Complaint> row) throws IOException, ParseException {
         Complaint complaint = UserClient.getInstance().getComplaintById(row.getItem().getThis_id());
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);

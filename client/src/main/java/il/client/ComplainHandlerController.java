@@ -12,8 +12,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class ComplainHandlerController {
 
@@ -73,26 +76,48 @@ public class ComplainHandlerController {
     private int clicks_refund = 0;
 
     @FXML
-    void initialize(Complaint complaint, Stage stage){
+    void initialize(Complaint complaint, Stage stage) throws ParseException {
         this.stage = stage;
         this.setComplaint(complaint);
         this.compalin_id_textarea.setText(Integer.toString(complaint.getThis_id()));
         this.customer_name_textarea.setText(UserClient.getInstance().getName());
-        System.out.println("compalint "+this.complaint.getComplaint());
+        System.out.println("complaint " + this.complaint.getComplaint());
         this.customer_complain_textarea.setText(this.complaint.getComplaint());
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         String time = this.complaint.getComplaintTime();
-        String[] split_time = time.split(":");
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        LocalDateTime now = LocalDateTime.now();
-        String[] date_time = dtf.format(now).split(" ");
-        System.out.println(date_time[0] +" "+date_time[1]);
-        System.out.println("complaint hour "+ split_time[0]);
-        System.out.println("complaint minutes "+split_time[1]);
-        int hours = 24 - Integer.valueOf(split_time[0]);
-        this.hours_field.setText(Integer.toString(hours));
-        int minutes = 60 - Integer.valueOf(split_time[1]);
-        this.minutes_field.setText(Integer.toString(minutes));
+        String date = this.complaint.getComplaintDate();
+        String dateAndTimeComplaint = date + " " + time;
+        Date dtComplaint = sdf.parse(dateAndTimeComplaint);
+
+        Date handleComplaint = new Date();
+
+        long difference_In_Time = handleComplaint.getTime() - dtComplaint.getTime();
+        long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
+        long difference_In_Hours = (difference_In_Time / (1000 * 60 * 60)) % 24;
+        long difference_In_Days = (difference_In_Time / (1000 * 60 * 60 * 24)) % 365;
+
+        System.out.println("difference in minutes "+difference_In_Minutes);
+        System.out.println("difference in hours " + difference_In_Hours);
+        System.out.println("difference in days "+ difference_In_Days);
+        System.out.println("difference in millisec " + difference_In_Time);
+
+        if(difference_In_Days==0 && difference_In_Hours <= 24){
+            this.hours_field.setText(Long.toString(24-difference_In_Hours));
+            this.minutes_field.setText(Long.toString(60-difference_In_Minutes));
+        }
+        else{
+            this.hours_field.setText("-");
+            this.minutes_field.setText("-");
+            this.answe_textarea.setText("Time to handle this complaint is up!");
+            this.answe_textarea.setDisable(true);
+            this.submitBTN.setDisable(true);
+            this.refund_filed.setDisable(true);
+            this.refund_chooser.setDisable(true);
+        }
     }
+
 
     @FXML
     void CloseBTNClicked(ActionEvent event) {
@@ -119,6 +144,7 @@ public class ComplainHandlerController {
     void SubmitBTNClicked(ActionEvent event) {
         this.complain_handler_ancorpane3.setVisible(true);
         this.complain_handler_ancorpane2.setVisible(false);
+        //send complaint handle to server
     }
 
     @FXML

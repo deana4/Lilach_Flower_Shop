@@ -1,5 +1,6 @@
 il\server\CatalogControl.class
 il\server\RegisterControl.class
+il\server\TestControl.class
 il\server\ocsf\ConnectionToClient.class
 module-info.class
 il\server\SimpleServer.class
@@ -12,5 +13,6 @@ il\server\ocsf\ObservableOriginatorServer.class
 il\server\ocsf\AbstractServer.class
 il\server\ocsf\OriginatorMessage.class
 il\server\LoginControl.class
+il\server\UserControl.class
 il\server\AppServer.class
 il\server\ocsf\AdaptableServer.class

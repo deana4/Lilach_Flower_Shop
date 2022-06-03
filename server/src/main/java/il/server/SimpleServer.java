@@ -11,10 +11,12 @@ import java.util.List;
 
 public class SimpleServer extends AbstractServer {
 
-    public SimpleServer(int port) throws Exception {
+    public SimpleServer(int port, boolean initServer) throws Exception {
         super(port);
         System.out.println("Server listen on port:" + port);
-        //testDB.initMySQL();
+        if(initServer)
+            testDB.initMySQL();
+        TestControl.testUserControl();
     }
 
     public void closeServer() throws IOException {

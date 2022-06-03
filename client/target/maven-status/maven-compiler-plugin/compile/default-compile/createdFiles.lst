@@ -39,6 +39,7 @@ il\client\HomeController.class
 il\client\CatalogControl.class
 il\client\Priority.class
 il\client\CustomProductController.class
+il\client\UserControl.class
 il\client\MyAccountController.class
 il\client\events\RegisterEvent.class
 il\client\events\CatalogItemsEvent.class

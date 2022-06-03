@@ -13,9 +13,13 @@ public class AppServer
 {
     private static SimpleServer server;
 
+
+    private static int port = 3000;
+    private static boolean initServer = false;
+
     public static void main( String[] args ) throws IOException {
         try {
-            server = new SimpleServer(3000);
+            server = new SimpleServer(port, initServer);
             server.listen();
         }
         catch (Exception e){

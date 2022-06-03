@@ -27,6 +27,7 @@ public class User implements Serializable {
     private String mail;
     private String expiryDate;
     private String identifyNumbers;
+    private String address;
     private double discount;
     private int accountStatus;
     private boolean login;
@@ -44,7 +45,13 @@ public class User implements Serializable {
     @ManyToMany
     private List<Store> liststore;
 
+    public String getAddress() {
+        return address;
+    }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
     public int getPriority() {
         return priority;
     }
@@ -100,11 +107,12 @@ public class User implements Serializable {
         this.listOrders = new ArrayList<Order>();
         this.listComplains = new ArrayList<Complain>();
         this.liststore = new ArrayList<Store>();
+        this.address = "";
 //        this.priority =  priority;
 
 
-//        this.phone = phone;
-//        this.mail = mail;
+        this.phone = "";
+        this.mail = "";
 //        this.expiryDate = expiryDate;
 //        this.discount=discount;
     }

@@ -4,12 +4,11 @@ import il.entities.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import java.util.LinkedList;
 import java.util.List;
 
 public class UserControl {
     public static void setName(int userID, String newUserName, boolean isWorker){
-        testDB.openSssion();
+        testDB.openSession();
         User user = null;
         Employee employee=null;
 
@@ -29,7 +28,7 @@ public class UserControl {
         testDB.closeSession();
     }
     public static void setPassword(int userID, String newPass, boolean isWorker){
-        testDB.openSssion();
+        testDB.openSession();
         User user = null;
         Employee employee=null;
 
@@ -51,7 +50,7 @@ public class UserControl {
     public static void setCreditCard(int userID, String cc, boolean isWorker) {
         if (isWorker)
             return;
-        testDB.openSssion();
+        testDB.openSession();
         User user = null;
         user = testDB.session.get(User.class, userID);
         if (user != null) {
@@ -64,7 +63,7 @@ public class UserControl {
     public static void setPhone(int userID, String phone, boolean isWorker){
         if (isWorker)
             return;
-        testDB.openSssion();
+        testDB.openSession();
         User user = null;
         user = testDB.session.get(User.class, userID);
         if (user != null) {
@@ -77,7 +76,7 @@ public class UserControl {
     public static void setAddress(int userID, String address, boolean isWorker){
         if (isWorker)
             return;
-        testDB.openSssion();
+        testDB.openSession();
         User user = null;
         user = testDB.session.get(User.class, userID);
         if (user != null) {
@@ -90,7 +89,7 @@ public class UserControl {
     public static void setMail(int userID, String mail, boolean isWorker){
         if (isWorker)
             return;
-        testDB.openSssion();
+        testDB.openSession();
         User user = null;
         user = testDB.session.get(User.class, userID);
         if (user != null) {
@@ -102,7 +101,7 @@ public class UserControl {
     }
 
     public static void logOutAllusers(){
-        testDB.openSssion();
+        testDB.openSession();
         CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         query.from(User.class);
@@ -111,7 +110,7 @@ public class UserControl {
             user.setLogin(false);
 
 
-        testDB.openSssion();
+        testDB.openSession();
         CriteriaBuilder builder2 = testDB.session.getCriteriaBuilder();
         CriteriaQuery<Employee> query2 = builder2.createQuery(Employee.class);
         query2.from(Employee.class);

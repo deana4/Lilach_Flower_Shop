@@ -3,6 +3,7 @@ C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\App.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\EditProductOnCatalogController.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\ocsf\AbstractClient.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\DetailedOrderController.java
+C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\controls\CatalogControl.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\CustomProductController.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\AddToCartController.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\events\LoginEvent.java
@@ -12,12 +13,10 @@ C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\RegisterController.ja
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\ComplainController.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\ocsf\ObservableSWRClient.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\RegisterControl.java
-C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\CatalogControl.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\HomeController.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\UserClient.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\CartAdderController.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\OrderClient.java
-C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\OrderControl.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\DiffClasses\Complaint.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\RemoveFlowerWindowController.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\SimpleClient.java
@@ -33,11 +32,12 @@ C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\ExecptionGarage.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\ParentClass.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\PopWindow.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\CartItem.java
+C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\controls\LogInControl.java
+C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\controls\OrderControl.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\module-info.java
-C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\UserControl.java
-C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\LogInControl.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\ocsf\AdaptableClient.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\MyAccountController.java
+C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\controls\UserControl.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\UpdateController.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\LoginController.java
 C:\Users\IDO\Desktop\lilach\client\src\main\java\il\client\EditAccountDetailsController.java

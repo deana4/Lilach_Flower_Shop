@@ -1,21 +1,17 @@
 package il.server;
 
-import il.entities.Product;
-import il.entities.Store;
 import il.entities.User;
 
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
 public class RegisterControl {
 
     public static<T> List<T> getAllItems(Class<T> object){
-        testDB.openSssion();
+        testDB.openSession();
         CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery(object);
         Root<T> root = query.from(object);
@@ -49,7 +45,7 @@ public class RegisterControl {
 
 
     public static boolean register(User newUser){
-        testDB.openSssion();
+        testDB.openSession();
         try {
             testDB.session.save(newUser);
             testDB.session.flush();

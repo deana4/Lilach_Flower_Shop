@@ -200,7 +200,7 @@ public class testDB {
 //        session.getTransaction().commit(); // Save everything.
 //    }
 
-    public static void openSssion(){
+    public static void openSession(){
         try {
             System.out.println("open session to mySQL");
             SessionFactory sessionFactory = getSessionFactory();
@@ -217,12 +217,12 @@ public class testDB {
 
     public static void initMySQL(){
         try {
-            openSssion();
+            openSession();
             generateItems();
             session.getTransaction().commit(); // Save everything.
             closeSession();
             List<Product> products = CatalogControl.getAllItems();
-            openSssion();
+            openSession();
             generateStores(products);
             session.getTransaction().commit(); // Save everything.
             closeSession();

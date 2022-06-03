@@ -31,7 +31,7 @@ public class CatalogControl {
     }
 
     public static List<Product> getAllItems(){
-        testDB.openSssion();
+        testDB.openSession();
         CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
         CriteriaQuery<Product> query = builder.createQuery(Product.class);
         query.from(Product.class);
@@ -42,7 +42,7 @@ public class CatalogControl {
     }
 
     public static void setPrice(int id, double newPrice) throws IOException {
-        testDB.openSssion();
+        testDB.openSession();
         Product a = testDB.session.get(Product.class, id);
         a.setPrice(newPrice);
         testDB.session.flush();
@@ -51,7 +51,7 @@ public class CatalogControl {
     }
 
     public static void setImage(int id, byte[] bFile){
-        testDB.openSssion();
+        testDB.openSession();
         Product a = testDB.session.get(Product.class, id);
         a.setImage(bFile);
         testDB.session.flush();
@@ -60,7 +60,7 @@ public class CatalogControl {
     }
 
     public static void setName(int id, String newName) throws IOException {
-        testDB.openSssion();
+        testDB.openSession();
         Product a = testDB.session.get(Product.class, id);
         a.setName(newName);
         testDB.session.flush();
@@ -69,7 +69,7 @@ public class CatalogControl {
     }
 
     public static void setSale(int id, boolean sale, double discountPer) throws IOException {
-        testDB.openSssion();
+        testDB.openSession();
         Product a = testDB.session.get(Product.class, id);
         a.setSale(sale);
         a.setDiscount_perc(discountPer);
@@ -79,7 +79,7 @@ public class CatalogControl {
     }
 
     public static void deleteItem(int id) throws IOException {
-        testDB.openSssion();
+        testDB.openSession();
         Product a = testDB.session.get(Product.class, id);
         testDB.session.delete(a);
         testDB.session.flush();

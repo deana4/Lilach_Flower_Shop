@@ -130,7 +130,7 @@ public class SimpleServer extends AbstractServer {
                 CatalogControl.deleteItem(message.getIdItem());
             }
             if (message.getMessage().equals("cancelOrder")) {
-                OrderControl.cancelOrder(message.getOrderID());
+                OrderControl.cancelOrder(message.getOrderID(),message.getTimeCancel(), message.getDateCancel());
             }
             if (message.getMessage().equals("newOrder")) {
                 OrderControl.newOrder(message.getOrder(), message.getStoreID(), message.getUserID());

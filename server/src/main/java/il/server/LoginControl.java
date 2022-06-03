@@ -1,30 +1,38 @@
 package il.server;
 
-import il.entities.Employee;
-import il.entities.User;
+import il.entities.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
 
 public class LoginControl {
 
-    public static String checkLogin(String userName, String pass, boolean isWorker) {
-        String result = "";
+    public static Message checkLogin(String userName, String pass, boolean isWorker) {
+        Message message = new Message("result login");
+        message.setWorker(isWorker);
+
         if (isWorker) {
             List<Employee> lEmp = RegisterControl.getAllItems(Employee.class);
             for (Employee employee : lEmp) {
                 if (employee.getUsername().equals(userName)) {
                     if (employee.getPassword().equals(pass)) {
                         if (employee.isLogin()) {
-                            result = "this user already sighing from another device!";
-                            return result;
+                            message.setLoginResult("this user already sighing from another device!");
+                            message.setLoginStatus(false);
+                            return message;
                         }
                         setToActiveEmp(employee.getId());
+                        message.setLoginStatus(true);
+                        message.setEmployee(employee);
+                        return message;
+
                     } else {
-                        result = "incorrect password!";
+                        message.setLoginResult("incorrect password!");
+                        message.setLoginStatus(false);
+                        return message;
                     }
-                    return result;
                 }
             }
         }
@@ -34,19 +42,33 @@ public class LoginControl {
                 if (user.getUserName().equals(userName)) {
                     if (user.getPassword().equals(pass)) {
                         if (user.isLogin()) {
-                            result = "this user already sighing from another device!";
-                            return result;
+                            message.setLoginResult("this user already sighing from another device!");
+                            message.setLoginStatus(false);
+                            return message;
                         }
                         setToActiveUser(user.getId());
+                        message.setLoginStatus(true);
+                        message.setUsername(user.getUserName());
+
+
+//                        testDB.openSession();
+//                        user = testDB.session.get(User.class, user.getId());
+//                        testDB.closeSession();
+//                        message.setUser(user);
+
+                        return message;
                     } else {
-                        result = "incorrect password!";
+                        message.setLoginResult("incorrect password!");
+                        message.setLoginStatus(false);
+                        return message;
                     }
-                    return result;
                 }
             }
-            result = "username does not exist!";
         }
-        return result;
+        message.setLoginResult("username does not exist!");
+        message.setLoginStatus(false);
+        testDB.closeSession();
+        return message;
     }
 
 

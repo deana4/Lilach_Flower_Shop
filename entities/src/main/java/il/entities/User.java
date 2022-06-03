@@ -4,6 +4,8 @@ package il.entities;
 
 
 
+import org.hibernate.boot.cfgxml.spi.MappingReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public class User implements Serializable {
     private int priority;
 
 
-    @OneToMany (mappedBy = "user")
+    @OneToMany (mappedBy = "user", fetch = FetchType.EAGER)
     private List<Order> listOrders;
 
     @OneToMany(mappedBy = "user")

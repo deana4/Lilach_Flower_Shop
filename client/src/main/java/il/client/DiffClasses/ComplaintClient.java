@@ -2,7 +2,7 @@ package il.client.DiffClasses;
 
 import il.client.OrderClient;
 
-public class Complaint {
+public class ComplaintClient {
     private static int id = 0;
     private int this_id;
     private OrderClient order;
@@ -15,7 +15,7 @@ public class Complaint {
     private double refund;
 
 
-    public Complaint(OrderClient order, String complaint, String complaintDate, String complaintTime){
+    public ComplaintClient(OrderClient order, String complaint, String complaintDate, String complaintTime){
         this_id = id++;
         this.order = order;
         this.complaint = complaint;

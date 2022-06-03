@@ -1,6 +1,6 @@
 package il.client;
 
-import il.client.DiffClasses.Complaint;
+import il.client.DiffClasses.ComplaintClient;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
@@ -64,7 +64,7 @@ public class ComplainHandlerController {
 
     private OrderClient order;
 
-    private Complaint complaint;
+    private ComplaintClient complaint;
 
     private MyAccountController my_account_page_holder;
 
@@ -73,7 +73,7 @@ public class ComplainHandlerController {
     private int clicks_refund = 0;
 
     @FXML
-    void initialize(Complaint complaint, Stage stage){
+    void initialize(ComplaintClient complaint, Stage stage){
         this.stage = stage;
         this.setComplaint(complaint);
         this.compalin_id_textarea.setText(Integer.toString(complaint.getThis_id()));
@@ -248,11 +248,11 @@ public class ComplainHandlerController {
         this.order = order;
     }
 
-    public Complaint getComplaint() {
+    public ComplaintClient getComplaint() {
         return complaint;
     }
 
-    public void setComplaint(Complaint complaint) {
+    public void setComplaint(ComplaintClient complaint) {
         this.complaint = complaint;
     }
 

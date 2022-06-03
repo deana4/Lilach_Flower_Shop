@@ -3,6 +3,7 @@ il\client\RemoveFlowerWindowController.class
 il\client\ProductView.class
 il\client\controls\UserControl.class
 il\client\PopWindow.class
+il\client\DiffClasses\ComplaintClient.class
 il\client\MainPageController$MyThread.class
 il\client\ParentClass.class
 il\client\App.class
@@ -18,7 +19,6 @@ il\client\CatalogController.class
 il\client\controls\OrderControl.class
 il\client\DetailedOrderController.class
 il\client\MainPageController.class
-il\client\DiffClasses\Complaint.class
 il\client\ocsf\ObservableSWRClient.class
 il\client\ocsf\AbstractClient.class
 il\client\UserClient.class

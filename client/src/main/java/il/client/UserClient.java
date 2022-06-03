@@ -1,6 +1,6 @@
 package il.client;
 
-import il.client.DiffClasses.Complaint;
+import il.client.DiffClasses.ComplaintClient;
 import il.entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +23,7 @@ public class UserClient {
 
     private boolean isLogin = false;
 
-    private ObservableList<Complaint> complaintList  = FXCollections.observableArrayList();
+    private ObservableList<ComplaintClient> complaintList  = FXCollections.observableArrayList();
     private ObservableList<OrderClient> orderList = FXCollections.observableArrayList();
 
     private User UserServer = null;
@@ -47,11 +47,11 @@ public class UserClient {
             orderList.add(new OrderClient( "Sunday"+i, "12:0"+i, "13:0"+i, "Sunday"+i, "thankyou"+i, "Dean"+i, "1"+i, "bla"+i,"Store 1", cart ));
         }
         {
-            complaintList.add(new Complaint(orderList.get(0), "bad flowers","29/05/2022", "12:00"));
-            complaintList.add(new Complaint(orderList.get(1), "bad flowers","29/05/2022", "13:00"));
-            complaintList.add(new Complaint(orderList.get(2), "bad flowers","29/05/2022", "13:30"));
-            complaintList.add(new Complaint(orderList.get(3), "bad flowers","29/05/2022", "15:00"));
-            complaintList.add(new Complaint(orderList.get(4), "bad flowers","29/05/2022", "17:30"));
+            complaintList.add(new ComplaintClient(orderList.get(0), "bad flowers","29/05/2022", "12:00"));
+            complaintList.add(new ComplaintClient(orderList.get(1), "bad flowers","29/05/2022", "13:00"));
+            complaintList.add(new ComplaintClient(orderList.get(2), "bad flowers","29/05/2022", "13:30"));
+            complaintList.add(new ComplaintClient(orderList.get(3), "bad flowers","29/05/2022", "15:00"));
+            complaintList.add(new ComplaintClient(orderList.get(4), "bad flowers","29/05/2022", "17:30"));
         }
     }
 
@@ -115,11 +115,11 @@ public class UserClient {
         this.orderList = orderList;
     }
 
-    public ObservableList<Complaint> getComplaintList() {
+    public ObservableList<ComplaintClient> getComplaintList() {
         return complaintList;
     }
 
-    public void setComplaintList(ObservableList<Complaint> complaintList) {
+    public void setComplaintList(ObservableList<ComplaintClient> complaintList) {
         this.complaintList = complaintList;
     }
 
@@ -134,8 +134,8 @@ public class UserClient {
         return null;
     }
 
-    public Complaint getComplaintById(int id){
-        Complaint complaint;
+    public ComplaintClient getComplaintById(int id){
+        ComplaintClient complaint;
         for(int i=0; i< complaintList.size(); i++){
             complaint = complaintList.get(i);
             if(complaint.getThis_id() == id){

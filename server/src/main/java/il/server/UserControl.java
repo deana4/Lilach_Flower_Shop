@@ -110,7 +110,6 @@ public class UserControl {
             user.setLogin(false);
 
 
-        testDB.openSession();
         CriteriaBuilder builder2 = testDB.session.getCriteriaBuilder();
         CriteriaQuery<Employee> query2 = builder2.createQuery(Employee.class);
         query2.from(Employee.class);

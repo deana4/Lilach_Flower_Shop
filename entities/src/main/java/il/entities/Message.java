@@ -12,9 +12,15 @@ public class Message implements Serializable {
     }
 
     LinkedList<Product> listItem=null;
+
     Product item=null;
 
     User user=null;
+
+
+
+    Employee employee=null;
+
 
 
     //login/register
@@ -41,6 +47,12 @@ public class Message implements Serializable {
     String timeCancel;
     String dateCancel;
 
+    //complain
+    Complain complain;
+    String answer;
+    double refund;
+    int complainID;
+
 
 
     int userID;
@@ -48,6 +60,46 @@ public class Message implements Serializable {
     int iddatabase;
 
     static List<Store> stores=null;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public double getRefund() {
+        return refund;
+    }
+
+    public void setRefund(double refund) {
+        this.refund = refund;
+    }
+
+    public int getComplainID() {
+        return complainID;
+    }
+
+    public void setComplainID(int complainID) {
+        this.complainID = complainID;
+    }
+
+    public Complain getComplain() {
+        return complain;
+    }
+
+    public void setComplain(Complain complain) {
+        this.complain = complain;
+    }
 
     public String getTimeCancel() {
         return timeCancel;

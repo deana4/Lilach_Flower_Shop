@@ -36,23 +36,9 @@ public class SimpleServer extends AbstractServer {
                 String pass = message.getPass();
                 boolean isWorker = message.isWorker();
 
-                String result = LoginControl.checkLogin(username, pass, isWorker);
-
-                if (result.equals("")) {
-                    System.out.println("successfully! login: " + username);
-
-                    sendMessage.setMessage("result login");
-                    sendMessage.setLoginStatus(true);
-                    sendMessage.setUsername(username);
-                    sendMessage.setLoginResult("login was successful");
-                    client.sendToClient(sendMessage);
-                } else {
-                    System.out.println("faild! login: " + username);
-                    sendMessage.setMessage("result login");
-                    sendMessage.setLoginStatus(false);
-                    sendMessage.setLoginResult(result);
-                    client.sendToClient(sendMessage);
-                }
+                sendMessage = LoginControl.checkLogin(username, pass, isWorker);
+                System.out.println(sendMessage.getLoginResult());
+                client.sendToClient(sendMessage);
             }
 
             if (message.getMessage().equals("getCatalogItems")) {
@@ -135,9 +121,16 @@ public class SimpleServer extends AbstractServer {
             if (message.getMessage().equals("newOrder")) {
                 OrderControl.newOrder(message.getOrder(), message.getStoreID(), message.getUserID());
             }
+            if (message.getMessage().equals("newComplain")) {
+                OrderControl.newComplain(message.getComplain(), message.getOrderID());
+            }
+            if (message.getMessage().equals("complainAnswer")) {
+                OrderControl.complainAnswer(message.getAnswer(), message.getRefund(), message.getComplainID());
+            }
 
 
-        } catch(IOException e){
+
+            } catch(IOException e){
             System.out.println(e.getMessage());
             System.out.println("handleMessageFromClient Error!" + client.getInetAddress());
         }

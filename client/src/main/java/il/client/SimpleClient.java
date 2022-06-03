@@ -1,8 +1,5 @@
 package il.client;
 
-
-
-
 import il.client.events.*;
 import il.client.ocsf.AbstractClient;
 import il.entities.Product;
@@ -32,7 +29,15 @@ public class SimpleClient extends AbstractClient {
 		}
 
 		if(message.getMessage().equals("result login")){
-			EventBus.getDefault().post(new LoginEvent(message.isLoginStatus(), message.getLoginResult(), message.getUsername()));
+			if(!message.isLoginStatus())
+				EventBus.getDefault().post(new LoginEvent(false, message.getLoginResult()));
+			else{
+				if(message.isWorker())
+					EventBus.getDefault().post(new LoginEvent(true, "",message.getUsername()));
+				else{
+					EventBus.getDefault().post(new LoginEvent(true, "",message.getUsername()));
+				}
+			}
 		}
 
 		if(message.getMessage().equals("result register")){

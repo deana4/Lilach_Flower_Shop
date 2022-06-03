@@ -1,6 +1,5 @@
 package il.client;
 
-import il.client.DiffClasses.Complaint;
 import io.github.palexdev.materialfx.controls.MFXIconWrapper;
 import io.github.palexdev.materialfx.controls.MFXRectangleToggleNode;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;

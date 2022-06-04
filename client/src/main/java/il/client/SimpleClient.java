@@ -29,14 +29,19 @@ public class SimpleClient extends AbstractClient {
 		}
 
 		if(message.getMessage().equals("result login")){
+			LoginEvent eventlogIN = null;
 			if(!message.isLoginStatus())
 				EventBus.getDefault().post(new LoginEvent(false, message.getLoginResult()));
 			else{
-				if(!message.isWorker())
-					EventBus.getDefault().post(new LoginEvent(true, message.getUser(), message.getListComplains(), message.getListOrder(), message.getListStors()));
-				else{
-					EventBus.getDefault().post(new LoginEvent(message.getUsername(), message.getPermision()));
+				if(!message.isWorker()){
+					eventlogIN = new LoginEvent(true, message.getUser(), message.getListComplains(), message.getListOrder(), message.getListStors());
+					eventlogIN.setId(message.getUser().getId());
 				}
+				else{
+					eventlogIN = new LoginEvent(message.getUsername(), message.getPermision());
+					eventlogIN.setId(message.getIddatabase());
+				}
+				EventBus.getDefault().post(eventlogIN);
 			}
 		}
 

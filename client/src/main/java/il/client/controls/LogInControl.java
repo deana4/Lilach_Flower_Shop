@@ -1,5 +1,6 @@
 package il.client.controls;
 
+import il.client.LoginController;
 import il.client.SimpleClient;
 import il.entities.Message;
 
@@ -22,10 +23,10 @@ public class LogInControl{
     }
 
 
-    public static void logout(String username) throws IOException {
+    public static void logout(int id) throws IOException {
         Message message = new Message("logout");
-        message.setUsername(username);
-
+        message.setIddatabase(id);
+        message.setWorker(LoginController.isWorker);
         SimpleClient.getClient().sendToServer(message);
     }
 }

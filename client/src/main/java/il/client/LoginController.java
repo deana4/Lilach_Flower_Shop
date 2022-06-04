@@ -39,7 +39,7 @@ public class LoginController extends ParentClass{
 
     private MainPageController main_page_holder;
 
-    private boolean isWorker;
+
 
     private static boolean correctLogin;
 
@@ -50,6 +50,9 @@ public class LoginController extends ParentClass{
     public static LinkedList<Store> stores;
     public static User user;
     public static int permission;
+    public static int idConnected;
+    public static String username;
+    public static boolean isWorker;
 
 
 
@@ -62,15 +65,20 @@ public class LoginController extends ParentClass{
                 //change Main Controller AnchorPane to Catalog -> "maybe return to the last page the client was inside"
                 MainPageController.LoginName = event.getUsername();
                 MainPageController.isLogin = true;
-
-                if(event.isWorker()==false){
+                isWorker = event.isWorker();
+                if(event.isWorker()){
+                    permission = event.getPermission();
+                    idConnected = event.getId();
+                    username = event.getUsername();
+                }
+                else{
                     user = event.getUser();
                     complains = event.getComplainList();
                     orders = event.getOrderList();
                     stores = event.getStoreList();
+                    username = user.getUserName();
+                    idConnected = user.getId();
                 }
-                else
-                    permission = event.getPermission();
 
                 try {
                     MainPageController.getInstance().CatalogRefresh(); //Catalog, MyAccount, Cart

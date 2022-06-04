@@ -29,6 +29,7 @@ public class LoginControl {
                         message.setWorker(true);
                         message.setUsername(employee.getUsername());
                         message.setName(employee.getName());
+                        message.setIddatabase(employee.getId());
                         message.setPermision(employee.getPermission());
                         return message;
 
@@ -93,6 +94,7 @@ public class LoginControl {
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
     }
+
     private static void setToActiveEmp(int idUser){
         testDB.openSession();
         Employee e = testDB.session.get(Employee.class, idUser);

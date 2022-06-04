@@ -10,6 +10,10 @@ public class LoginEvent {
     private LinkedList<Complain> complainList=null;
     private LinkedList<Order> orderList=null;
 
+
+
+    private int id;
+
     public boolean isWorker() {
         return isWorker;
     }
@@ -60,6 +64,13 @@ public class LoginEvent {
 
     private String result;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public LinkedList<Complain> getComplainList() {
         return complainList;

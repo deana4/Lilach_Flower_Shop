@@ -6,9 +6,10 @@ import java.io.IOException;
 
 public class OrderControl {
 
-    public static void deleteOrder(Order a){
+    public static void deleteOrder(int id){
         testDB.openSession();
-        testDB.session.delete(a);
+        Order a = testDB.session.get(Order.class, id);
+        a.setStatus(1);
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
@@ -25,21 +26,37 @@ public class OrderControl {
         int order_time = timeToInt(a.getTimeReceive());
         if (current_date.equals(a.getDateReceive()) && order_time - current_time < 300) {
             if (order_time - current_time > 60)
-                //a.get 50% refunds
-                deleteOrder(a);
+                refund(a.getUser().getId(),0.5,a.getSum());
+            deleteOrder(a.getId());
             return;
         }
-        //a.get 100% refunds
-        deleteOrder(a);
+        refund(a.getUser().getId(),1,a.getSum());
+        deleteOrder(a.getId());
     }
 
+
+    public static void refund(int id, double percent, double sum){
+        testDB.openSession();
+        User u = testDB.session.get(User.class, id);
+        u.setCredit(u.getCredit()+(sum*percent));
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
+
     public static String makeDate(String date){
-        return date.substring(7,9)+date.substring(4,7);
+        String[] parts = date.split("-");
+        String year = parts[0];
+        String month = parts[1];
+        String day = parts[2];
+        return day+'-'+month+'-'+year;
     }
 
     public static int timeToInt(String time){
         time = time.replace(":", "");
-        time = time.substring(0,3);
+        if(time.length()>4)
+            time = time.substring(0,4);
         return Integer.parseInt(time);
     }
 
@@ -63,6 +80,8 @@ public class OrderControl {
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
     }
+
+    ////
 
     public static void newComplain(Complain complain, int orderID) throws IOException {
         testDB.openSession();

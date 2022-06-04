@@ -10,19 +10,6 @@ import il.entities.Order;
 import java.io.IOException;
 
 public class OrderControl {
-
-    public static void testNewOrder() throws IOException {
-        Order order = new Order(null, null, "testOrderFromClient", "asas","asas","1212", 0,"121212", "21212","", "");
-        order.addProduct(new CartProduct(CatalogController.getFlowerlist().get(0), 3));
-        order.addProduct(new CartProduct(CatalogController.getFlowerlist().get(2), 3));
-
-        newOrder(order, 1,1);
-    }
-
-    public static void testCancelOrder() throws IOException {
-        cancelOrder(1);
-    }
-
     public static void testNewComplain() throws IOException {
         Complain complain = new Complain("it's test complain!", "00/00/00");
         newComplain(complain, 1);
@@ -30,6 +17,18 @@ public class OrderControl {
 
     public static void testAnswerComplain() throws IOException {
         complainAnswer("it's a test answer!", 100, 4);
+    }
+
+    public static void testNewOrder() throws IOException {
+        Order order = new Order(null, null, "03-06-2022", "18:55","03-05-2022","1212", 0,"121212", "21212","", "");
+        order.addProduct(new CartProduct(CatalogController.getFlowerlist().get(0), 3));
+        order.addProduct(new CartProduct(CatalogController.getFlowerlist().get(2), 3));
+
+        newOrder(order, 1,1);
+    }
+
+    public static void testCancelOrder() throws IOException {
+        cancelOrder(4);
     }
 
 

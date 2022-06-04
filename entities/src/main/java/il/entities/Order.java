@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@SuppressWarnings("serial")
 @Entity
 @Table(name="orders")
 public class Order implements Serializable {

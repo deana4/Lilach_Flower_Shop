@@ -4,6 +4,8 @@ package il.entities;
 
 
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.boot.cfgxml.spi.MappingReference;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@SuppressWarnings("serial")
 @Entity
 //@Inheritance(strategy = InheritanceType.JOINED) // not must
 public class User implements Serializable {
@@ -33,13 +37,14 @@ public class User implements Serializable {
     private double discount;
     private int accountStatus;
     private boolean login;
-    private int priority;
+    private String priority;
 
 
     @OneToMany (mappedBy = "user")
     private List<Order> listOrders;
 
     @OneToMany(mappedBy = "user")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Complain> listComplains;
 
 
@@ -54,11 +59,11 @@ public class User implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-    public int getPriority() {
+    public String getPriority() {
         return priority;
     }
 
-    public void setPriority(int priority) {
+    public void setPriority(String priority) {
         this.priority = priority;
     }
 
@@ -96,12 +101,11 @@ public class User implements Serializable {
     public int getId() {
         return id;
     }
-    public User(String userName, String password, String creditCard, String position, String name, String identifyNumbers) {
+    public User(String userName, String password, String creditCard, String priority, String name, String identifyNumbers) {
         this.userName = userName;
         this.password = password;
         this.creditCard = creditCard;
         this.credit = 0;
-        this.position = position;
         this.name = name;
         this.identifyNumbers = identifyNumbers;
         this.accountStatus=1;
@@ -110,14 +114,24 @@ public class User implements Serializable {
         this.listComplains = new ArrayList<Complain>();
         this.liststore = new ArrayList<Store>();
         this.address = "";
-//        this.priority =  priority;
-
-
+        this.priority =  priority;
         this.phone = "";
         this.mail = "";
 //        this.expiryDate = expiryDate;
 //        this.discount=discount;
     }
+
+
+    public User(int id, String username, String name, String identifyNumbers, String priority, int acountStatus, double credit){
+        this.id = id;
+        this.userName = username;
+        this.name = name;
+        this.identifyNumbers = identifyNumbers;
+        this.priority = priority;
+        this.accountStatus = acountStatus;
+        this.credit = credit;
+    }
+
     public User() {}
 
     public String getUserName() {

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+
+@SuppressWarnings("serial")
 public class Message implements Serializable {
     String message;
 
@@ -13,33 +15,88 @@ public class Message implements Serializable {
     }
 
     LinkedList<Product> listItem=null;
-
-    Product item=null;
-
-    ArrayList<User> user=null;
-
-
-
-    Employee employee=null;
-
+    LinkedList<Store> listStors=null;
+    List<Order> listOrder = null;
+    List<Complain> listComplains = null;
+    LinkedList<User> listUsers = null;
 
 
     //login/register
     String username;
+    int idUser;
     String id;
     String pass;
     boolean isWorker;
     String credit_card;
     static String plan;
     String name;
-
-
-
     String phone;
-
-
-
     String mail;
+    double creadit;
+    String priorty;
+
+
+
+
+    int permision;
+
+    Product product;
+
+
+    public int getPermision() {
+        return permision;
+    }
+
+    public void setPermision(int permision) {
+        this.permision = permision;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public int getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(int accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
+    int accountStatus;
+
+    public double getCreadit() {
+        return creadit;
+    }
+
+    public void setCreadit(double creadit) {
+        this.creadit = creadit;
+    }
+
+
+
+
+    //recive login
+    boolean loginStatus;
+    String loginResult;
+
+    //recive register
+    boolean registerStatus;
+    String registerResult;
+
+    //setProduct
+    byte[] bFile;
+    double price;
+    String nameProduct;
+    int idProduct;
+    boolean sale;
+    double discountPer;
+    int idItem;
+    double newPrice;
 
     //order
     int orderID;
@@ -62,13 +119,6 @@ public class Message implements Serializable {
 
     static List<Store> stores=null;
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
 
     public String getAnswer() {
         return answer;
@@ -132,23 +182,6 @@ public class Message implements Serializable {
     public void setMail(String mail) {
         this.mail = mail;
     }
-    //recive login
-    boolean loginStatus;
-    String loginResult;
-
-    //recive register
-    boolean registerStatus;
-    String registerResult;
-
-    //setProduct
-    byte[] bFile;
-    double price;
-    String nameProduct;
-    int idProduct;
-    boolean sale;
-    double discountPer;
-    int idItem;
-    double newPrice;
 
     public Order getOrder() {
         return order;
@@ -333,22 +366,6 @@ public class Message implements Serializable {
         this.listItem = listItem;
     }
 
-    public Product getItem() {
-        return item;
-    }
-
-    public void setItem(Product item) {
-        this.item = item;
-    }
-
-    public ArrayList<User> getUser() {
-        return user;
-    }
-
-    public void setUser(ArrayList<User> user) {
-        this.user = user;
-    }
-
     public String getId() {
         return id;
     }
@@ -380,6 +397,54 @@ public class Message implements Serializable {
 
     public void setStores(List<Store> stores) {
         this.stores = stores;
+    }
+
+    public LinkedList<Store> getListStors() {
+        return listStors;
+    }
+
+    public void setListStors(LinkedList<Store> listStors) {
+        this.listStors = listStors;
+    }
+
+    public List<Order> getListOrder() {
+        return listOrder;
+    }
+
+    public void setListOrder(List<Order> listOrder) {
+        this.listOrder = listOrder;
+    }
+
+    public List<Complain> getListComplains() {
+        return listComplains;
+    }
+
+    public void setListComplains(List<Complain> listComplains) {
+        this.listComplains = listComplains;
+    }
+
+    public LinkedList<User> getListUsers() {
+        return listUsers;
+    }
+
+    public void setListUsers(LinkedList<User> listUsers) {
+        this.listUsers = listUsers;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getPriorty() {
+        return priorty;
+    }
+
+    public void setPriorty(String priorty) {
+        this.priorty = priorty;
     }
 
 }

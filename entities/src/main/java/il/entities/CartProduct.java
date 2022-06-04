@@ -4,6 +4,7 @@ package il.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Carkproducts")
 public class CartProduct implements Serializable {

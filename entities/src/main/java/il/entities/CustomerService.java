@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
+@SuppressWarnings("serial")
 @Entity
 public class CustomerService extends Employee implements Serializable {
 

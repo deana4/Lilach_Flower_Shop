@@ -26,7 +26,10 @@ public class LoginControl {
                         }
                         setToActiveEmp(employee.getId());
                         message.setLoginStatus(true);
-                        message.setEmployee(employee);
+                        message.setWorker(true);
+                        message.setUsername(employee.getUsername());
+                        message.setName(employee.getName());
+                        message.setPermision(employee.getPermission());
                         return message;
 
                     } else {
@@ -49,15 +52,23 @@ public class LoginControl {
                         }
                         setToActiveUser(user.getId());
                         message.setLoginStatus(true);
+                        message.setWorker(false);
                         message.setUsername(user.getUserName());
+                        message.setName(user.getName());
+                        message.setPriorty(user.getPriority());
+                        message.setCredit_card(user.getCreditCard());
+                        message.setCreadit(user.getCredit());
+                        message.setAccountStatus(user.getAccountStatus());
+
 
 
                         testDB.openSession();
                         user = testDB.session.get(User.class, user.getId());
-                        ArrayList<User> a = new ArrayList<>();
-                        a.add(user);
+                        List<Complain> complains = user.getListComplains();
+                        message.setListComplains(complains);
+//                        message.setListStors((LinkedList<Store>) user.getListstore());
+//                        message.setListComplains((LinkedList<Complain>) user.getListComplains());
                         testDB.closeSession();
-                        message.setUser(a);
 
                         return message;
                     } else {

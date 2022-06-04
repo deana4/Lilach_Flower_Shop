@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@SuppressWarnings("serial")
 @Entity
 @Table(name="stores")
 public class Store implements Serializable {

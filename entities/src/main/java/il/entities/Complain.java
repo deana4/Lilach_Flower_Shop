@@ -3,6 +3,8 @@ package il.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 
+
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "complains")
 public class Complain implements Serializable {

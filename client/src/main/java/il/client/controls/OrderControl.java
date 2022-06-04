@@ -10,14 +10,7 @@ import il.entities.Order;
 import java.io.IOException;
 
 public class OrderControl {
-    public static void testNewComplain() throws IOException {
-        Complain complain = new Complain("it's test complain!", "00/00/00");
-        newComplain(complain, 1);
-    }
 
-    public static void testAnswerComplain() throws IOException {
-        complainAnswer("it's a test answer!", 100, 4);
-    }
 
     public static void testNewOrder() throws IOException {
         Order order = new Order(null, null, "03-06-2022", "18:55","03-05-2022","1212", 0,"121212", "21212","", "");
@@ -49,22 +42,5 @@ public class OrderControl {
         message.setUserID(userID);
         SimpleClient.getClient().sendToServer(message);
     }
-
-    public static void newComplain(Complain complain, int orderID) throws IOException {
-        System.out.println("new complain to order "+ orderID);
-        Message message = new Message("newComplain");
-        message.setComplain(complain);
-        message.setOrderID(orderID);
-        SimpleClient.getClient().sendToServer(message);
-    }
-
-    public static void complainAnswer(String answer, double refund, int complainID) throws IOException {
-        Message message = new Message("complainAnswer");
-        message.setComplainID(complainID);
-        message.setAnswer(answer);
-        message.setRefund(refund);
-        SimpleClient.getClient().sendToServer(message);
-    }
-
 }
 

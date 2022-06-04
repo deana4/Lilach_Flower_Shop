@@ -122,10 +122,10 @@ public class SimpleServer extends AbstractServer {
                 OrderControl.newOrder(message.getOrder(), message.getStoreID(), message.getUserID());
             }
             if (message.getMessage().equals("newComplain")) {
-                OrderControl.newComplain(message.getComplain(), message.getOrderID());
+                ComplainConrtol.newComplain(message.getComplain(), message.getOrderID());
             }
             if (message.getMessage().equals("complainAnswer")) {
-                OrderControl.complainAnswer(message.getAnswer(), message.getRefund(), message.getComplainID());
+                ComplainConrtol.complainAnswer(message.getAnswer(), message.getRefund(), message.getComplainID());
             }
 
 

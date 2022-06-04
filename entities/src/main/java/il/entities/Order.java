@@ -37,6 +37,7 @@ public class Order implements Serializable {
     private String phoneReceives;
     private String address;
     private int status; //1- cancel ,2-delivered, 3-pending
+    private String type;
 
 
     public Order(User user, Store store, String dateReceive, String timeReceive, String dateOrder, String timeOrder, double sum, String greeting, String nameReceives, String phoneReceives, String address) {
@@ -59,11 +60,23 @@ public class Order implements Serializable {
 
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public Order getOrderForClient(){
         Order o = new Order(null, null, this.dateReceive, this.timeReceive, this.dateOrder, this.timeOrder, this.sum, this.greeting, this.nameReceives, this.phoneReceives, this.address);
         o.setId(this.id);
-        for(CartProduct p : this.products)
+        for(CartProduct p : this.products){
             o.addProduct(p);
+            if(this.complain!=null)
+                o.setComplain(this.complain.getComplainForClient());
+        }
+
         return o;
     }
 

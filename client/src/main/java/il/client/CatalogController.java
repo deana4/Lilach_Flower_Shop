@@ -1,6 +1,7 @@
 package il.client;
 
 import il.client.controls.CatalogControl;
+import il.client.controls.ComplainConrtol;
 import il.client.controls.OrderControl;
 import il.client.events.CatalogItemsEvent;
 import il.entities.Product;
@@ -117,6 +118,11 @@ public class CatalogController extends ParentClass{
                         gridPane.setMaxHeight(Region.USE_COMPUTED_SIZE);
 
                         GridPane.setMargin(node, new Insets(10));
+                    }
+                    try {
+                        ComplainConrtol.testAnswerComplain();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                     scrollPane.setContent(this.gridPane);
                 }

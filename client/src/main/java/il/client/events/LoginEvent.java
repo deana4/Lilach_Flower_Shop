@@ -10,7 +10,15 @@ public class LoginEvent {
     private LinkedList<Complain> complainList=null;
     private LinkedList<Order> orderList=null;
 
+    public int getStoreId() {
+        return storeId;
+    }
 
+    public void setStoreId(int storeId) {
+        this.storeId = storeId;
+    }
+
+    private int storeId;
 
     private int id;
 

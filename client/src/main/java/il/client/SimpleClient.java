@@ -36,6 +36,8 @@ public class SimpleClient extends AbstractClient {
 				if(!message.isWorker()){//user
 					eventlogIN = new LoginEvent(true, message.getUser(), message.getListComplains(), message.getListOrder(), message.getListStors());
 					eventlogIN.setId(message.getUser().getId());
+					if(message.getPermision()==3 || message.getPermision()==5)
+						eventlogIN.setStoreId(message.getStoreID());
 				}
 				else{//worker
 					eventlogIN = new LoginEvent(message.getUsername(), message.getPermision());

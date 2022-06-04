@@ -27,13 +27,46 @@ public class LoginControl {
 
                         //employee
                         setToActiveEmp(employee.getId());
-
                         message.setLoginStatus(true);
                         message.setWorker(true);
                         message.setUsername(employee.getUsername());
                         message.setName(employee.getName());
                         message.setIddatabase(employee.getId());
                         message.setPermision(employee.getPermission());
+
+                        StoreEmployee storeEmployee;
+                        BranchManager branchManager;
+
+                        switch (employee.getPermission()){
+                            case 1://system admin send all information
+                                message.setListComplains(ComplainConrtol.getAllOpenComplaint());
+                                message.setListOrder(OrderControl.getAllOrder());
+                                //users
+                                //employees
+                                //stores
+                                //report
+                                break;
+                            case 2://networkmaneger
+                                message.setListComplains(ComplainConrtol.getAllOpenComplaint());
+                                message.setListOrder(OrderControl.getAllOrder());
+                                //report
+                                break;
+                            case 3:
+                                //report
+                                branchManager = (BranchManager) employee;
+                                message.setStoreID(branchManager.getStore().getId());
+                                break;
+                            case 4:
+                                message.setListComplains(ComplainConrtol.getAllOpenComplaint());
+                                message.setListOrder(OrderControl.getAllOrder());
+                                break;
+                            case 5:
+                                storeEmployee = (StoreEmployee) employee;
+                                message.setStoreID(storeEmployee.getStore().getId());
+                                break;
+                        }
+
+
                         message.setListComplains(ComplainConrtol.getAllOpenComplaint());
                         message.setListOrder(OrderControl.getAllOrder());
 

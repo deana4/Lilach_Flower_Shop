@@ -53,6 +53,7 @@ public class LoginController extends ParentClass{
     public static int idConnected;
     public static String username;
     public static boolean isWorker;
+    public int storeIDWork;
 
 
 
@@ -72,6 +73,7 @@ public class LoginController extends ParentClass{
                     username = event.getUsername();
                     orders = event.getOrderList();
                     complains = event.getComplainList();
+                    storeIDWork = event.getStoreId();
                 }
                 else{
                     user = event.getUser();

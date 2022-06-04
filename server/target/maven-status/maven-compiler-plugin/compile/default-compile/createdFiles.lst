@@ -12,6 +12,7 @@ il\server\testDB.class
 il\server\ocsf\AbstractServer$1.class
 il\server\ocsf\ObservableServer.class
 il\server\ocsf\AbstractConnectionFactory.class
+il\server\ReportControl.class
 il\server\ocsf\ObservableOriginatorServer.class
 il\server\ocsf\AbstractServer.class
 il\server\ocsf\OriginatorMessage.class

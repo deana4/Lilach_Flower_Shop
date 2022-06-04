@@ -26,8 +26,6 @@ public class MyAccountController{
     private double yOffset;
     private ToggleGroup toggleGroup;
 
-
-
     @FXML
     private StackPane contentPane;
 

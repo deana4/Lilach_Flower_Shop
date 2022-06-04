@@ -38,9 +38,6 @@ public class ProductView extends ParentClass{
     private Label product_price;
 
     @FXML
-    private MFXButton update_product_button;
-
-    @FXML
     private ImageView discount_logo;
 
     @FXML
@@ -59,6 +56,9 @@ public class ProductView extends ParentClass{
 
     private int clicks_image=0;
 
+    private String type;
+    private String color;
+
     URL root = getClass().getResource("PopWindow.fxml");
 
 
@@ -76,77 +76,125 @@ public class ProductView extends ParentClass{
             this.product_price.setText(String.valueOf((int)(a.getPrice() - (a.getPrice()*this.discound_precentage)/100)));
         }
         this.id_of_flower = a.getId();
+        this.color = a.getColor();
+        this.type = a.getType();
     }
 
     @FXML
     void initialize(){
-        System.out.println(UserClient.getInstance().getPriority());
-        switch(UserClient.getInstance().getPriority()){
+        if(UserClient.getInstance().isWorker() == true) {
+            System.out.println(UserClient.getInstance().getPriority());
+            switch (UserClient.getInstance().getPriority()) {
+                case 1: {
+                    setPriorityBtnLowerThan2();
+                    this.atc_product_button.setDisable(true);
+                    this.atc_product_button.setVisible(false);
+                }
+                break;
+                case 2: {
+                    setPriorityBtnLowerThan2();
+                    this.atc_product_button.setDisable(false);
+                    this.atc_product_button.setVisible(true);
+                }
+                break;
+                case 3: {
+                    setPriorityBtnHigherThan2();
+                    /*maybe do more*/
+                }
+                break;
+                case 4: {
+                    setPriorityBtnHigherThan2();
+                }
+                break;
+                case 5: {
+                    setPriorityBtnHigherThan2();
+                }
+                break;
+
+            }
+        }else if(UserClient.getInstance().isWorker() == false){
+            switch (UserClient.getInstance().getPriority()) {
             case 1: {
                 setPriorityBtnLowerThan2();
                 this.atc_product_button.setDisable(true);
                 this.atc_product_button.setVisible(false);
-            } break;
+
+            }
+            break;
             case 2: {
                 setPriorityBtnLowerThan2();
                 this.atc_product_button.setDisable(false);
                 this.atc_product_button.setVisible(true);
-            } break;
+            }
+            break;
             case 3: {
-                int i;
                 setPriorityBtnHigherThan2();
                 /*maybe do more*/
-            } break;
+            }
+            break;
             case 4: {
                 setPriorityBtnHigherThan2();
-            } break;
+            }
+            break;
+            case 5: {
+                setPriorityBtnHigherThan2();
+            }
+            break;
 
+        }
         }
     }
 
     public void setPriorityBtnHigherThan2(){
-        this.update_product_button.setDisable(false);
-        this.update_product_button.setVisible(true);
         this.atc_product_button.setDisable(true);
+        this.atc_product_button.setVisible(false);
+        this.removeFlowerBtn.setDisable(false);
+        this.removeFlowerBtn.setVisible(true);
+        this.editFlower.setDisable(false);
+        this.editFlower.setVisible(true);
     }
     public void setPriorityBtnLowerThan2(){
-        this.update_product_button.setDisable(true);
-        this.update_product_button.setVisible(false);
+        this.removeFlowerBtn.setVisible(false);
+        this.removeFlowerBtn.setDisable(true);
+        this.editFlower.setVisible(false);
+        this.editFlower.setDisable(true);
     }
 
     @FXML
     void ClickedImage(MouseEvent event) throws IOException, ClassNotFoundException, InterruptedException {
-        //clicks_image++;
-       // if(clicks_image%2==1) {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(this.root);
-            Parent pop_window = fxmlLoader.load();    // need to load before using controller.
-            PopWindow controller = fxmlLoader.getController();
-            controller.FullSetter(this.getId(), this.product_name.getText(), this.product_price.getText(), this.on_discount, this.product_image.getImage());
-            cat_controller.setAnchorpang2Visibale();
-            cat_controller.setProductsAnchorpane2();
-            cat_controller.setSide_pic_anchorpane2(pop_window);
-            clicks_image=1;
-      //  }
-      //  else{
-      //      cat_controller.setAnchorpang2NotVisibale();
-      //  }
-    }
+//        //clicks_image++;
+//       // if(clicks_image%2==1) {
+//        Stage stage = new Stage();
+//        FXMLLoader fxmlLoader = new FXMLLoader();
+//        fxmlLoader.setLocation(this.root);
+//        Parent pop_window = fxmlLoader.load();    // need to load before using controller.
+//        PopWindow controller = fxmlLoader.getController();
+//        controller.FullSetter(this.getId(), this.product_name.getText(), this.product_price.getText(), this.on_discount, this.product_image.getImage());
+//        cat_controller.setAnchorpang2Visibale();
+//        cat_controller.setProductsAnchorpane2();
+//        cat_controller.setSide_pic_anchorpane2(pop_window);
+//        clicks_image=1;
+//      //  }
+//      //  else{
+//      //      cat_controller.setAnchorpang2NotVisibale();
+//      //  }
 
-    @FXML
-    void UpdateProduct(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("Update.fxml"));
-        Parent root = fxmlLoader.load();    // need to load before using controller.
-        UpdateController controller = fxmlLoader.getController();
-        Scene scene = new Scene(root, 250, 130);
-        stage.setTitle("Update Price Section");
+        fxmlLoader.setLocation(getClass().getResource("PopWindow.fxml"));
+        stage.initStyle(StageStyle.TRANSPARENT);
+        Scene scene = new Scene(fxmlLoader.load(), 681, 514);
+        scene.setFill(Color.TRANSPARENT);
+        PopWindow controller = fxmlLoader.getController();
+        controller.FullSetter(this.getId(), this.product_name.getText(), this.product_price.getText(), this.on_discount, this.product_image.getImage());
+        controller.initialize(stage,this);
+        controller.setStage(stage);
+        stage.setTitle("Edit Flower");
         stage.setScene(scene);
         stage.show();
-        controller.getProductView(this,stage);
     }
+
 
     void setNewPrice(String price){
         this.product_price.setText(price);
@@ -175,7 +223,7 @@ public class ProductView extends ParentClass{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("EditProductOnCatalog.fxml"));
         stage.initStyle(StageStyle.TRANSPARENT);
-        Scene scene = new Scene(fxmlLoader.load(), 625, 285);
+        Scene scene = new Scene(fxmlLoader.load(), 799, 414);
         scene.setFill(Color.TRANSPARENT);
         EditProductOnCatalogController controller = fxmlLoader.getController();
         controller.initialize(this);
@@ -287,6 +335,22 @@ public class ProductView extends ParentClass{
 
     public int getId_of_flower() {
         return id_of_flower;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public void setCat_controller(CatalogController cat_controller) {

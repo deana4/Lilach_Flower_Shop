@@ -1,19 +1,13 @@
 package il.server;
 
 import il.entities.Employee;
-import il.entities.Product;
 import il.entities.User;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import java.util.LinkedList;
 import java.util.List;
 
 
 
 public class LoginControl {
-
     public static String checkLogin(String userName, String pass, boolean isWorker) {
         String result = "";
         if (isWorker) {
@@ -35,6 +29,7 @@ public class LoginControl {
         }
         else {
             List<User> lUsers = RegisterControl.getAllItems(User.class);
+
             for (User user : lUsers) {
                 if (user.getUserName().equals(userName)) {
                     if (user.getPassword().equals(pass)) {
@@ -53,7 +48,6 @@ public class LoginControl {
         }
         return result;
     }
-
 
 
 

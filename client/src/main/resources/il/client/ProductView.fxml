@@ -15,45 +15,43 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="260.0" prefWidth="330.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ProductView">
+<AnchorPane prefHeight="260.0" prefWidth="330.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ProductView">
    <children>
       <MFXLegacyListView layoutX="15.0" layoutY="15.0" prefHeight="232.0" prefWidth="300.0" styleClass="CatalogItem" stylesheets="@CSSfiles/Backgrounds.css" />
       <ImageView fx:id="product_image" fitHeight="224.0" fitWidth="238.0" layoutX="46.0" layoutY="18.0" onMouseClicked="#ClickedImage" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../server/src/main/resources/images/Flower1.png" />
-         </image></ImageView>
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
       <ImageView fx:id="discount_logo" fitHeight="53.0" fitWidth="90.0" layoutX="200.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@images/DiscountPhoto/discount.jpg" />
          </image>
       </ImageView>
-      <HBox alignment="CENTER" layoutX="40.0" layoutY="193.0" prefHeight="44.0" prefWidth="250.0">
-         <children>
-            <MFXButton fx:id="update_product_button" disable="true" onAction="#UpdateProduct" rippleColor="#ffacf7" styleClass="mybutton" stylesheets="@CSSfiles/Buttons.css" text="Update" visible="false" />
-         </children>
-      </HBox>
-      <VBox layoutX="33.0" layoutY="30.0" prefHeight="106.0" prefWidth="148.0">
+      <VBox layoutX="33.0" layoutY="30.0" prefHeight="70.0" prefWidth="175.0">
          <children>
             <Label fx:id="product_name" text="Name">
                <font>
-                  <Font size="36.0" />
+                  <Font size="24.0" />
                </font>
                <effect>
                   <ColorAdjust />
                </effect>
                <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Label>
             <Label fx:id="product_price" prefHeight="53.0" prefWidth="126.0" text="Price">
                <font>
-                  <Font size="36.0" />
+                  <Font size="24.0" />
                </font>
                <effect>
                   <ColorAdjust />
                </effect>
                <cursor>
-                  <Cursor fx:constant="CROSSHAIR" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Label>
          </children>
@@ -76,11 +74,11 @@
             </LinearGradient>
          </rippleColor>
       </MFXButton>
-      <VBox alignment="CENTER" layoutX="33.0" layoutY="143.0" prefHeight="72.0" prefWidth="108.0" spacing="8.0">
+      <HBox layoutX="29.0" layoutY="177.0" prefHeight="25.0" prefWidth="272.0" spacing="30.0">
          <children>
-            <MFXButton fx:id="removeFlowerBtn" onAction="#removeFlowerClicked" prefHeight="30.0" prefWidth="204.0" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Remove Flower" />
-            <MFXButton fx:id="editFlower" onAction="#editFlowerClicked" prefHeight="30.0" prefWidth="135.0" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Edit Flower" />
+            <MFXButton fx:id="removeFlowerBtn" disable="true" onAction="#removeFlowerClicked" prefHeight="20.0" prefWidth="120.0" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Remove Flower" visible="false" />
+            <MFXButton fx:id="editFlower" disable="true" onAction="#editFlowerClicked" prefHeight="20.0" prefWidth="120.0" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Edit Flower" visible="false" />
          </children>
-      </VBox>
+      </HBox>
    </children>
 </AnchorPane>

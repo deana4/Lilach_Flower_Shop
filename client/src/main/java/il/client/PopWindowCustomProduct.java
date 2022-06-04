@@ -4,10 +4,10 @@
 
 package il.client;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class PopWindow extends ParentClass{
+public class PopWindowCustomProduct extends ParentClass{
 
     @FXML
     private Label id_txt;
@@ -38,7 +38,12 @@ public class PopWindow extends ParentClass{
     @FXML
     private ImageView discount_logo_poped;
 
+    @FXML
+    private MFXButton getBtn;
+
     private ProductView PVController;
+
+    private CustomProductController customProductController;
 
     private Stage stage;
 
@@ -68,12 +73,19 @@ public class PopWindow extends ParentClass{
     }
 
     @FXML
-    void initialize(Stage incomeStage, ProductView incomeController){
+    void initialize(Stage incomeStage, ProductView incomeController, CustomProductController customProductController){
         this.stage = incomeStage;
+        this.customProductController = customProductController;
         this.PVController = incomeController;
         product_on_stock.setSelected(true);
-//        product_on_stock.setDisable(true);
     }
+
+    @FXML
+    void getItemToCustomList(ActionEvent event) {
+        this.customProductController.addToChosenList(this.PVController);
+        this.stage.close();
+    }
+
 
     /** SETTERS AND GETTERS**/
     public ProductView getPVController() {

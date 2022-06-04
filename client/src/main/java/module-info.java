@@ -6,6 +6,7 @@ module il.client {
     requires org.kordamp.bootstrapfx.core;
     requires MaterialFX;
     requires eventbus;
+    requires VirtualizedFX;
 
     opens il.client to javafx.fxml;
     exports il.client;

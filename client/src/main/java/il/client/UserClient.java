@@ -22,6 +22,7 @@ public class UserClient {
     private boolean isFrozen = false;
 
     private boolean isLogin = false;
+    private boolean isWorker = false;
 
     private ObservableList<Complaint> complaintList  = FXCollections.observableArrayList();
     private ObservableList<Order> orderList = FXCollections.observableArrayList();
@@ -56,6 +57,8 @@ public class UserClient {
         }
     }
 
+
+
     public User getUserServer(){
 //        Message message = new Message("GetServerUser");
 //        this.UserServer = SimpleClient.getClient().sendToServer(message);
@@ -75,6 +78,7 @@ public class UserClient {
         }
         return user;
     }
+
 //    public void setUserByServer(User UserServer){
 ////        complaintList = UserServer.getComplaints(); //get from server complaints and Orders;
 ////        orderList = UserServer.getOrders();
@@ -156,5 +160,34 @@ public class UserClient {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isWorker() {
+        return isWorker;
+    }
+
+    @Override
+    public String toString() {
+        return "UserClient{" +
+                "priority=" + priority +
+                ", id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", creditCard='" + creditCard + '\'' +
+                ", credit=" + credit +
+                ", position='" + position + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", mail='" + mail + '\'' +
+                ", expiryDate='" + expiryDate + '\'' +
+                ", identifyNumbers='" + identifyNumbers + '\'' +
+                ", discount=" + discount +
+                ", isFrozen=" + isFrozen +
+                ", isLogin=" + isLogin +
+                ", isWorker=" + isWorker +
+                ", complaintList=" + complaintList +
+                ", orderList=" + orderList +
+                ", UserServer=" + UserServer +
+                '}';
     }
 }

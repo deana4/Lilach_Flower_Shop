@@ -13,13 +13,13 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="poped_window" prefHeight="514.0" prefWidth="681.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PopWindow">
+<AnchorPane fx:id="poped_window" prefHeight="514.0" prefWidth="681.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PopWindowCustomProduct">
    <children>
       <AnchorPane layoutX="45.0" layoutY="48.0" prefHeight="419.0" prefWidth="592.0" styleClass="DialogItemCatalog" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
-            <AnchorPane layoutX="234.0" layoutY="24.0" prefHeight="368.0" prefWidth="301.0" styleClass="ImageFrameCatalog" stylesheets="@CSSfiles/Backgrounds.css">
+            <AnchorPane layoutX="263.0" layoutY="43.0" prefHeight="350.0" prefWidth="290.0" styleClass="ImageFrameCatalog" stylesheets="@CSSfiles/Backgrounds.css">
                <children>
-                  <ImageView fx:id="product_zoomed_image" fitHeight="349.0" fitWidth="268.0" layoutX="17.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="product_zoomed_image" fitHeight="331.0" fitWidth="268.0" layoutX="12.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../server/src/main/resources/images/sunflower.jpeg" />
                      </image>
@@ -27,14 +27,14 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="discount_logo_poped" fitHeight="43.0" fitWidth="88.0" layoutX="25.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="discount_logo_poped" fitHeight="43.0" fitWidth="88.0" layoutX="25.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../client/src/main/resources/il/client/images/DiscountPhoto/discount.jpg" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
-            <VBox alignment="CENTER" layoutX="25.0" layoutY="75.0" prefHeight="244.0" prefWidth="182.0" spacing="10.0">
+            <VBox alignment="CENTER" layoutX="43.0" layoutY="62.0" prefHeight="312.0" prefWidth="219.0" spacing="30.0">
                <children>
                   <Label fx:id="id_txt" text="ID" textFill="#8d8d8d">
                      <font>
@@ -65,6 +65,7 @@
                         <Font size="13.0" />
                      </font>
                   </MFXCheckbox>
+                  <MFXButton fx:id="getBtn" onAction="#getItemToCustomList" prefHeight="25.0" prefWidth="84.0" rippleColor="#ffcbcb" rippleRadius="40.0" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Get it!" />
                </children>
             </VBox>
             <HBox alignment="CENTER" layoutX="43.0" layoutY="257.0" prefHeight="53.0" prefWidth="146.0" spacing="100.0" />

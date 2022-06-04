@@ -34,24 +34,45 @@ public class testDB {
         Product flower;
 
         flower = new Product("whiteroses", 20,true,25,"flower", "white");
-        CatalogControl.saveNewFlower(flower,"src/main/resources/images/whiteroses.jpeg" );
+        CatalogControl.saveNewFlower(flower,"src/main/resources/images/Lotus.png");
 
-        flower = new Product("sunflower", 23,true, 5, "flower", "yellow");
-        CatalogControl.saveNewFlower(flower, "src/main/resources/images/sunflower.jpeg");
+        flower = new Product("sunflower", 50,true, 5, "flower", "yellow");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/Lotus.png");
 
-        flower = new Product("chinaFlower", 20,false, 0, "flower", "red");
-        CatalogControl.saveNewFlower(flower, "src/main/resources/images/chinaFlower.jpeg");
+        flower = new Product("chinaFlower", 70,false, 0, "flower", "red");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/Lotus.png");
 
-        flower = new Product("pin", 20,false, 0,"flower", "pink");
-        CatalogControl.saveNewFlower(flower, "src/main/resources/images/pin.jpeg");
+        flower = new Product("pin", 90,false, 0,"flower", "pink");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/Lotus.png");
 
-        flower = new Product("whiteroses", 20,true, 50, "flower", "white");
-        CatalogControl.saveNewFlower(flower, "src/main/resources/images/whiteroses.jpeg");
+        flower = new Product("whiteroses", 120,true, 50, "flower", "white");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/Lotus.png");
 
-        flower = new Product("sunflower", 20,true, 50, "flower", "yellow");
-        CatalogControl.saveNewFlower(flower, "src/main/resources/images/sunflower.jpeg");
+        flower = new Product("sunflower", 25.99,true, 50, "flower", "yellow");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/Lotus.png");
 
         flower = new Product("Lotus", 100, true, 10,"flower","pink");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/Lotus.png");
+
+        flower = new Product("Rose1", 200,true,25,"flower", "offwhite");
+        CatalogControl.saveNewFlower(flower,"src/main/resources/images/Lotus.png");
+
+        flower = new Product("Rose12", 250,true, 5, "flower", "light blue");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/Lotus.png");
+
+        flower = new Product("Rose14", 300,false, 0, "flower", "gentle fuchsia");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/Lotus.png");
+
+        flower = new Product("Rose13", 350,false, 0,"flower", "fuchsia");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/Lotus.png");
+
+        flower = new Product("Rose15", 400,true, 50, "flower", "fuchsia white");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/Lotus.png");
+
+        flower = new Product("Rose16", 450,true, 50, "flower", "yellow greenish");
+        CatalogControl.saveNewFlower(flower, "src/main/resources/images/Lotus.png");
+
+        flower = new Product("Rose17", 550, true, 10,"flower","pink");
         CatalogControl.saveNewFlower(flower, "src/main/resources/images/Lotus.png");
 
 

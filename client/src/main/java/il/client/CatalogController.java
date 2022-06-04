@@ -92,6 +92,8 @@ public class CatalogController extends ParentClass{
 
                     URL path = getClass().getResource("ProductView.fxml");
 
+                    sortBySale(); //sorting the catalog items for making the items on sale - first
+
                     for(int i=0; i<flowerlist.size();i++){
                         my_fxml_loader = new FXMLLoader();
                         my_fxml_loader.setLocation(path);//change secondary.fxml to the fxml file from dean and liran
@@ -103,10 +105,11 @@ public class CatalogController extends ParentClass{
                         }
                         //     flowersFXML.add(node);
                         ProductView controller = my_fxml_loader.getController();
-                        productsControllers.put(flowerlist.get(i).getId(),controller);
                         controller.setCat_controller(this);
                         try {
                             controller.setData(flowerlist.get(i));
+                            productsControllers.put(i,controller);   //idiots
+                            MainPageController.getInstance().addColorToSystem(flowerlist.get(i).getColor());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -163,6 +166,25 @@ public class CatalogController extends ParentClass{
     }
 
 
+    public void sortBySale(){
+        List<Product> sortedListBySale = new LinkedList<Product>();
+        for(int i=0; i<flowerlist.size(); i++){ //sort by discount
+            Product tempProduct = flowerlist.get(i);
+            if(tempProduct.isOn_discount()){
+                sortedListBySale.add(tempProduct);
+            }
+        }
+        for(int i=0; i<flowerlist.size(); i++){ //sort by discount
+            Product tempProduct = flowerlist.get(i);
+            if(!tempProduct.isOn_discount()){
+                sortedListBySale.add(tempProduct);
+            }
+        }
+        this.setFlowerlist(sortedListBySale);
+    }
+
+
+
 
     public void setAnchorpang2Visibale(){
         this.catalog_anchorpane2.setVisible(true);
@@ -211,7 +233,6 @@ public class CatalogController extends ParentClass{
         scrollPane2.setContent(this.gridPane2);
     }
 
-
     public AnchorPane getSide_pic_anchorpane() {
         return side_pic_anchorpane;
     }
@@ -231,6 +252,8 @@ public class CatalogController extends ParentClass{
     public AnchorPane getCatalog_main_anchorpane() {
         return catalog_main_anchorpane;
     }
+
+
 
     public void setMain_page_holder(MainPageController main_page_holder) {
         this.main_page_holder = main_page_holder;

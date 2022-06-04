@@ -1,5 +1,6 @@
 package il.server;
 
+import il.client.UserClient;
 import il.entities.*;
 import il.server.ocsf.ConnectionToClient;
 import il.server.ocsf.AbstractServer;
@@ -14,7 +15,7 @@ public class SimpleServer extends AbstractServer {
     public SimpleServer(int port) throws Exception {
         super(port);
         System.out.println("Server listen on port:" + port);
-       //testDB.initMySQL();
+//       testDB.initMySQL();
     }
 
     public void closeServer() throws IOException {
@@ -39,7 +40,6 @@ public class SimpleServer extends AbstractServer {
 
                 if (result.equals("")){
                     System.out.println("successfully! login: "+ username);
-
                     sendMessage.setMessage("result login");
                     sendMessage.setLoginStatus(true);
                     sendMessage.setUsername(username);

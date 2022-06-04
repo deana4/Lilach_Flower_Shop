@@ -200,6 +200,14 @@ public class User implements Serializable {
 
     public List<Complain> getListComplains() {return listComplains;}
 
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
     public void addStore(Store store){
         this.liststore.add(store);
     }

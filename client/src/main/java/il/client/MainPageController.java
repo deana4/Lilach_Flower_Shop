@@ -8,6 +8,7 @@ import java.util.HashMap;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
 import io.github.palexdev.materialfx.utils.ScrollUtils;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.scene.Node;
@@ -100,6 +101,8 @@ public class MainPageController extends ParentClass {     //This is a singleton 
 
     @FXML
     private MFXFontIcon alwaysOnTopIcon;
+
+    private ObservableList<String> colors = FXCollections.observableArrayList(); //colors in the system
 
     private HashMap<String, Parent> root_map = new HashMap<String, Parent>();  //Hashmap of roots by names
 
@@ -310,6 +313,20 @@ public class MainPageController extends ParentClass {     //This is a singleton 
 
     public HashMap<String, Parent> getRoot_map() {
         return root_map;
+    }
+
+    public void addColorToSystem(String color){
+        this.colors.add(color);
+    }
+
+    public ObservableList<String> getColors(){
+        ObservableList<String> noDuplicateColors = FXCollections.observableArrayList();
+        for(String color: colors){
+            if(!noDuplicateColors.contains(color)){
+                noDuplicateColors.add(color);
+            }
+        }
+        return noDuplicateColors;
     }
 
     public void setRoot_map(HashMap<String, Parent> root_map) {

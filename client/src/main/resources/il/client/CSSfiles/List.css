@@ -1,0 +1,43 @@
+#ListBar {
+    -fx-background-color: #895ee1;
+    -fx-background-radius: 10;
+    -fx-border-color: pink;
+    -fx-border-radius: 10;
+    -fx-padding: 4;
+}
+
+#ListBar .virtual-flow {
+    -fx-background-color: transparent;
+}
+
+#ListBar:focused {
+    -fx-border-color: pink;
+}
+
+#ListBar .virtual-flow .mfx-list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+#ListBar .virtual-flow .mfx-list-cell .data-label {
+    -fx-text-fill: white;
+}
+
+#ListBar .virtual-flow .mfx-list-cell .user-icon {
+    -mfx-color: white;
+}
+
+#ListBar .virtual-flow .mfx-list-cell:hover,
+#ListBar .virtual-flow .mfx-list-cell:selected {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+#ListBar .virtual-flow .mfx-list-cell .mfx-ripple-generator {
+    -mfx-auto-clip: true;
+}
+
+#ListBar .virtual-flow .mfx-list-cell:selected .mfx-ripple-generator {
+    -mfx-paused: true;
+}

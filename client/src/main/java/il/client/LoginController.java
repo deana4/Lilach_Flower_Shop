@@ -1,6 +1,7 @@
 package il.client;
 
 import il.client.events.LoginEvent;
+import il.entities.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -46,11 +47,12 @@ public class LoginController extends ParentClass{
         Platform.runLater(()->{
             correctLogin = event.getStatus();
             if(correctLogin){
-                UserClient.getInstance().setPriority(2); //get this data from the server by sending the User Entity to this function
+                 //get this data from the server by sending the User Entity to this function
                 //goto var which represent the login option on the Main Controller and change it to 1.
                 //change Main Controller AnchorPane to Catalog -> "maybe return to the last page the client was inside"
                 MainPageController.LoginName = event.getUsername();
                 MainPageController.isLogin = true;
+                UserClient.getInstance().setPriority(2);
                 try {
                     MainPageController.getInstance().CatalogRefresh(); //Catalog, MyAccount, Cart
                 } catch (IOException e) {

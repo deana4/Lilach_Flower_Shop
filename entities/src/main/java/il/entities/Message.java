@@ -1,6 +1,7 @@
 package il.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Message implements Serializable {
 
     Product item=null;
 
-    User user=null;
+    ArrayList<User> user=null;
 
 
 
@@ -340,11 +341,11 @@ public class Message implements Serializable {
         this.item = item;
     }
 
-    public User getUser() {
+    public ArrayList<User> getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(ArrayList<User> user) {
         this.user = user;
     }
 

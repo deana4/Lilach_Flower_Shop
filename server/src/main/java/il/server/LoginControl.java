@@ -2,6 +2,7 @@ package il.server;
 
 import il.entities.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -51,10 +52,12 @@ public class LoginControl {
                         message.setUsername(user.getUserName());
 
 
-//                        testDB.openSession();
-//                        user = testDB.session.get(User.class, user.getId());
-//                        testDB.closeSession();
-//                        message.setUser(user);
+                        testDB.openSession();
+                        user = testDB.session.get(User.class, user.getId());
+                        ArrayList<User> a = new ArrayList<>();
+                        a.add(user);
+                        testDB.closeSession();
+                        message.setUser(a);
 
                         return message;
                     } else {

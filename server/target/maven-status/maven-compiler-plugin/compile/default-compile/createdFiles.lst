@@ -4,6 +4,8 @@ il\server\TestControl.class
 il\server\ocsf\ConnectionToClient.class
 module-info.class
 il\server\SimpleServer.class
+il\server\SendEmail$1.class
+il\server\SendEmail.class
 il\server\OrderControl.class
 il\server\testDB.class
 il\server\ocsf\AbstractServer$1.class

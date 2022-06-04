@@ -36,7 +36,7 @@ public class User implements Serializable {
     private int priority;
 
 
-    @OneToMany (mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany (mappedBy = "user")
     private List<Order> listOrders;
 
     @OneToMany(mappedBy = "user")

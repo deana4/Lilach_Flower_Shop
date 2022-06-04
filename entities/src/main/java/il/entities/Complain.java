@@ -33,7 +33,18 @@ public class Complain implements Serializable {
     public Complain(String complain_text, String date_complain) {
         this.complain_text = complain_text;
         this.date_complain = date_complain;
-        this.status=false;
+        this.status=true;
+        this.refund = 0;
+        this.answer_text="";
+    }
+
+    public Complain getComplainForClient(){
+        Complain c =  new Complain(this.complain_text, this.date_complain);
+        c.setRefund(this.refund);
+        c.setAnswer_text(this.answer_text);
+        c.setId(this.id);
+        return c;
+
     }
 
     public Complain() {}

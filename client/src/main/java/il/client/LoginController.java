@@ -2,6 +2,10 @@ package il.client;
 
 import il.client.controls.LogInControl;
 import il.client.events.LoginEvent;
+import il.entities.Complain;
+import il.entities.Order;
+import il.entities.Store;
+import il.entities.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -17,6 +21,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class LoginController extends ParentClass{
 
@@ -40,17 +45,33 @@ public class LoginController extends ParentClass{
 
     private int loginTries = 1;
 
+    public static LinkedList<Complain> complains;
+    public static LinkedList<Order> orders;
+    public static LinkedList<Store> stores;
+    public static User user;
+    public static int permission;
+
 
 
     @Subscribe
     public void compliteLogin(LoginEvent event){
         Platform.runLater(()->{
-            correctLogin = event.getStatus();
+            correctLogin = event.isLoginStatus();
             if(correctLogin){
                 //goto var which represent the login option on the Main Controller and change it to 1.
                 //change Main Controller AnchorPane to Catalog -> "maybe return to the last page the client was inside"
                 MainPageController.LoginName = event.getUsername();
                 MainPageController.isLogin = true;
+
+                if(event.isWorker()==false){
+                    user = event.getUser();
+                    complains = event.getComplainList();
+                    orders = event.getOrderList();
+                    stores = event.getStoreList();
+                }
+                else
+                    permission = event.getPermission();
+
                 try {
                     MainPageController.getInstance().CatalogRefresh(); //Catalog, MyAccount, Cart
                 } catch (IOException e) {

@@ -11,6 +11,7 @@ import org.hibernate.boot.cfgxml.spi.MappingReference;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -51,6 +52,32 @@ public class User implements Serializable {
 
     @ManyToMany
     private List<Store> liststore;
+
+
+
+    public LinkedList<Order> getOrdersForClient(){
+        List<Order> orders = this.getListOrders();
+        LinkedList<Order> newOrders = new LinkedList<>();
+        for(Order o : orders)
+            newOrders.add(o.getOrderForClient());
+        return newOrders;
+    }
+
+    public LinkedList<Complain> getComplainsForClient(){
+        List<Complain> complains = this.getListComplains();
+        LinkedList<Complain> newComplains = new LinkedList<>();
+        for(Complain o : complains)
+            newComplains.add(o.getComplainForClient());
+        return newComplains;
+    }
+
+    public LinkedList<Store> getStoresForClient(){
+        List<Store> stores = this.getListstore();
+        LinkedList<Store> newStores = new LinkedList<>();
+        for(Store o : stores)
+            newStores.add(o.getStoreForClient());
+        return newStores;
+    }
 
     public String getAddress() {
         return address;
@@ -120,7 +147,17 @@ public class User implements Serializable {
 //        this.expiryDate = expiryDate;
 //        this.discount=discount;
     }
-
+    public User getUserForClien(){
+        User u = new User(this.userName, "", this.creditCard, this.priority, this.name, this.identifyNumbers);
+        u.setId(this.id);
+        u.setMail(this.mail);
+        u.setCredit(this.credit);
+        u.setPhone(this.phone);
+        u.setAddress(this.address);
+//        u.setDiscount(this.discount);
+//        u.setExpiryDate(this.expiryDate);
+        return u;
+    }
 
     public User(int id, String username, String name, String identifyNumbers, String priority, int acountStatus, double credit){
         this.id = id;

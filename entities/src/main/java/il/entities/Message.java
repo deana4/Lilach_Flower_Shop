@@ -16,8 +16,8 @@ public class Message implements Serializable {
 
     LinkedList<Product> listItem=null;
     LinkedList<Store> listStors=null;
-    List<Order> listOrder = null;
-    List<Complain> listComplains = null;
+    LinkedList<Order> listOrder = null;
+    LinkedList<Complain> listComplains = null;
     LinkedList<User> listUsers = null;
 
 
@@ -37,11 +37,34 @@ public class Message implements Serializable {
 
 
 
+    User user;
+
+
+
+    Employee employee;
+
+
+
 
     int permision;
 
     Product product;
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public int getPermision() {
         return permision;
@@ -407,19 +430,19 @@ public class Message implements Serializable {
         this.listStors = listStors;
     }
 
-    public List<Order> getListOrder() {
+    public LinkedList<Order> getListOrder() {
         return listOrder;
     }
 
-    public void setListOrder(List<Order> listOrder) {
+    public void setListOrder(LinkedList<Order> listOrder) {
         this.listOrder = listOrder;
     }
 
-    public List<Complain> getListComplains() {
+    public LinkedList<Complain> getListComplains() {
         return listComplains;
     }
 
-    public void setListComplains(List<Complain> listComplains) {
+    public void setListComplains(LinkedList<Complain> listComplains) {
         this.listComplains = listComplains;
     }
 

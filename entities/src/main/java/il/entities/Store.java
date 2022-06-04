@@ -35,6 +35,12 @@ public class Store implements Serializable {
 
     public Store() {}
 
+    public Store getStoreForClient(){
+        Store s = new Store(this.address);
+        s.setId(this.id);
+        return s;
+    }
+
     public Store(String address) {
         this.address = address;
         this.listEmployees=new ArrayList<StoreEmployee>();

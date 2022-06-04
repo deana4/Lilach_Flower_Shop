@@ -59,6 +59,14 @@ public class Order implements Serializable {
 
     }
 
+    public Order getOrderForClient(){
+        Order o = new Order(null, null, this.dateReceive, this.timeReceive, this.dateOrder, this.timeOrder, this.sum, this.greeting, this.nameReceives, this.phoneReceives, this.address);
+        o.setId(this.id);
+        for(CartProduct p : this.products)
+            o.addProduct(p);
+        return o;
+    }
+
     public String getPhoneReceives() {
         return phoneReceives;
     }

@@ -87,4 +87,13 @@ public class CatalogControl {
         testDB.closeSession();
     }
 
+    public static void newItem(Product item){
+        testDB.openSession();
+        testDB.session.save(item);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+        System.out.println("add new item: "+ item.getName());
+    }
+
 }

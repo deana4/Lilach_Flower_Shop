@@ -11,6 +11,7 @@ il\client\AddToCartController.class
 il\client\ComplainController.class
 il\client\CartAdderController.class
 il\client\controls\CatalogControl.class
+il\client\controls\ComplainConrtol.class
 il\client\controls\LogInControl.class
 il\client\EditProductOnCatalogController.class
 module-info.class

@@ -3,6 +3,7 @@ il\server\RegisterControl.class
 il\server\TestControl.class
 il\server\ocsf\ConnectionToClient.class
 module-info.class
+il\server\ComplainConrtol.class
 il\server\SimpleServer.class
 il\server\SendEmail$1.class
 il\server\SendEmail.class

@@ -70,6 +70,8 @@ public class LoginController extends ParentClass{
                     permission = event.getPermission();
                     idConnected = event.getId();
                     username = event.getUsername();
+                    orders = event.getOrderList();
+                    complains = event.getComplainList();
                 }
                 else{
                     user = event.getUser();

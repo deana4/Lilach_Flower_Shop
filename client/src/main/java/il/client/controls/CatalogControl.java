@@ -67,7 +67,37 @@ public class CatalogControl {
     }
 
     //Need to add a method of adding item into the catalog list
-    public static void addItem(Product product) throws IOException {
+    public static void addItem(Product product, String urlImage) throws IOException {
+        System.out.println("test add item with image");
+        byte[] bFile = new byte[0];
+        try {
+            File file;
+            file = new File(urlImage);
+            FileInputStream fileInputStream = new FileInputStream(file);
+            bFile = new byte[(int) file.length()];
+            fileInputStream.read(bFile);
+            fileInputStream.close();
+        }
+        catch (Exception e){
+            if(!urlImage.equals(""))
+                System.out.println(e.getMessage());
+        }
+        product.setImage(bFile);
+        Message message = new Message("newItem");
+        message.setProduct(product);
+        SimpleClient.getClient().sendToServer(message);
+    }
 
+    public static void addItem(Product product) throws IOException {
+        Message message = new Message("newItem");
+        message.setProduct(product);
+        SimpleClient.getClient().sendToServer(message);
+    }
+
+    public static void testNewItem() throws IOException {
+        Product flower = new Product("testNewItem", 20,true,25,"flower", "white");
+        String url = "C:\\Users\\IDO\\Desktop\\lilach\\server\\src\\main\\resources\\images\\whiteroses.jpeg";
+
+        addItem(flower, url);
     }
 }

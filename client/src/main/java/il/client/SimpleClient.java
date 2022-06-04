@@ -33,13 +33,15 @@ public class SimpleClient extends AbstractClient {
 			if(!message.isLoginStatus())
 				EventBus.getDefault().post(new LoginEvent(false, message.getLoginResult()));
 			else{
-				if(!message.isWorker()){
+				if(!message.isWorker()){//user
 					eventlogIN = new LoginEvent(true, message.getUser(), message.getListComplains(), message.getListOrder(), message.getListStors());
 					eventlogIN.setId(message.getUser().getId());
 				}
-				else{
+				else{//worker
 					eventlogIN = new LoginEvent(message.getUsername(), message.getPermision());
 					eventlogIN.setId(message.getIddatabase());
+					eventlogIN.setOrderList(message.getListOrder());
+					eventlogIN.setComplainList(message.getListComplains());
 				}
 				EventBus.getDefault().post(eventlogIN);
 			}

@@ -3,6 +3,10 @@ package il.server;
 import il.entities.*;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
+import static il.server.SimpleServer.getAllItems;
 
 public class OrderControl {
 
@@ -79,5 +83,14 @@ public class OrderControl {
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
+    }
+
+    public static LinkedList<Order> getAllOrder(){
+        LinkedList<Order> c = new LinkedList<>();
+        List<Order> orders = getAllItems(Order.class);
+        for(Order order : orders){
+            c.add(order.getOrderForClient());
+        }
+        return c;
     }
 }

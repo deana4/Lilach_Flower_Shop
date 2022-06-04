@@ -5,6 +5,9 @@ import il.server.ocsf.ConnectionToClient;
 import il.server.ocsf.AbstractServer;
 
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,6 +28,17 @@ public class SimpleServer extends AbstractServer {
         this.close();
     }
 
+
+    public static <T> List<T> getAllItems(Class<T> object){
+        testDB.openSession();
+        CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(object);
+        Root<T> root = query.from(object);
+        List<T> data = testDB.session.createQuery(query).getResultList();
+        LinkedList<T> listItems = new LinkedList<>(data);
+        testDB.closeSession();
+        return listItems;
+    }
 
     @Override
     protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
@@ -65,6 +79,9 @@ public class SimpleServer extends AbstractServer {
                     LoginControl.setToDiactiveU(id);
             }
 
+            if (message.getMessage().equals("newItem")) {
+                CatalogControl.newItem(message.getProduct());
+            }
 
             if (message.getMessage().equals("setImageItem")) {
                 CatalogControl.setImage(message.getIdItem(), message.getbFile());

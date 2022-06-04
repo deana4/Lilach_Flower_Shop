@@ -24,13 +24,19 @@ public class LoginControl {
                             message.setLoginStatus(false);
                             return message;
                         }
+
+                        //employee
                         setToActiveEmp(employee.getId());
+
                         message.setLoginStatus(true);
                         message.setWorker(true);
                         message.setUsername(employee.getUsername());
                         message.setName(employee.getName());
                         message.setIddatabase(employee.getId());
                         message.setPermision(employee.getPermission());
+                        message.setListComplains(ComplainConrtol.getAllOpenComplaint());
+                        message.setListOrder(OrderControl.getAllOrder());
+
                         return message;
 
                     } else {
@@ -51,24 +57,22 @@ public class LoginControl {
                             message.setLoginStatus(false);
                             return message;
                         }
+
+                        //user
                         setToActiveUser(user.getId());
                         message.setLoginStatus(true);
                         message.setWorker(false);
 
-
-
                         testDB.openSession();
-
                         message.setUser(user.getUserForClien());
-
                         user = testDB.session.get(User.class, user.getId());
                         message.setListOrder(user.getOrdersForClient());
                         message.setListComplains(user.getComplainsForClient());
                         message.setListStors(user.getStoresForClient());
 
                         testDB.closeSession();
-
                         return message;
+
                     } else {
                         message.setLoginResult("incorrect password!");
                         message.setLoginStatus(false);

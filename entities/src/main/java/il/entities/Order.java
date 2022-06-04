@@ -20,7 +20,7 @@ public class Order implements Serializable {
     @ManyToOne
     private Store store;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", orphanRemoval = true)
     private List<CartProduct> products;
 
 

@@ -35,6 +35,16 @@ public class Message implements Serializable {
     double creadit;
     String priorty;
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    String address;
+
 
 
     User user;

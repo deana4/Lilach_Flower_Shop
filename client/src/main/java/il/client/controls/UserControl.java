@@ -3,9 +3,16 @@ package il.client.controls;
 import il.entities.Message;
 
 public class UserControl {
-    public void setName(int userID, String newUserName, boolean isWorker){
+    public void setUserName(int userID, String newUserName, boolean isWorker){
         Message message = new Message("setUserName");
         message.setUsername(newUserName);
+        message.setWorker(isWorker);
+        message.setUserID(userID);
+
+    }
+    public void setName(int userID, String newName, boolean isWorker){
+        Message message = new Message("setName");
+        message.setName(newName);
         message.setWorker(isWorker);
         message.setUserID(userID);
 
@@ -33,7 +40,7 @@ public class UserControl {
     }
     public void setAddress(int userID, String address, boolean isWorker){
         Message message = new Message("setAddress");
-        message.setUsername(address);
+        message.setAddress(address);
         message.setWorker(isWorker);
         message.setUserID(userID);
 

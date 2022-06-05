@@ -80,6 +80,7 @@ public class OrderControl {
             user.addOrder(order);
             store.addOrder(order);
         }
+
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();

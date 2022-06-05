@@ -7,7 +7,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 public class UserControl {
-    public static void setName(int userID, String newUserName, boolean isWorker){
+    public static void setName(int userID, String newName, boolean isWorker){
         testDB.openSession();
         User user = null;
         Employee employee=null;
@@ -15,13 +15,34 @@ public class UserControl {
         if(!isWorker){
             user = testDB.session.get(User.class, userID);
             if(user!=null){
-                user.setName(newUserName);
+                user.setName(newName);
             }
         }
         else{
             employee = testDB.session.get(Employee.class, userID);
             if(employee!=null)
-                employee.setName(newUserName);
+                employee.setName(newName);
+        }
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
+    public static void setUserName(int userID, String newUserName, boolean isWorker){
+        testDB.openSession();
+        User user = null;
+        Employee employee=null;
+
+        if(!isWorker){
+            user = testDB.session.get(User.class, userID);
+            if(user!=null){
+                user.setUserName(newUserName);
+            }
+        }
+        else{
+            employee = testDB.session.get(Employee.class, userID);
+            if(employee!=null)
+                employee.setUsername(newUserName);
         }
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
@@ -108,8 +129,11 @@ public class UserControl {
         List<User> data = testDB.session.createQuery(query).getResultList();
         for (User user : data)
             user.setLogin(false);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
 
-
+        testDB.openSession();
         CriteriaBuilder builder2 = testDB.session.getCriteriaBuilder();
         CriteriaQuery<Employee> query2 = builder2.createQuery(Employee.class);
         query2.from(Employee.class);

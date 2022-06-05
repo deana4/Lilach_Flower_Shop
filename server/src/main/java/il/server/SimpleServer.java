@@ -150,6 +150,27 @@ public class SimpleServer extends AbstractServer {
             if (message.getMessage().equals("complainAnswer")) {
                 ComplainConrtol.complainAnswer(message.getAnswer(), message.getRefund(), message.getComplainID());
             }
+            if (message.getMessage().equals("setUserName")) {
+                UserControl.setUserName(message.getUserID(), message.getUsername(), message.isWorker());
+            }
+            if (message.getMessage().equals("setName")) {
+                UserControl.setName(message.getUserID(), message.getName(), message.isWorker());
+            }
+            if (message.getMessage().equals("setPassword")) {
+                UserControl.setPassword(message.getUserID(), message.getPass(), message.isWorker());
+            }
+            if (message.getMessage().equals("setCreditCard")) {
+                UserControl.setCreditCard(message.getUserID(), message.getCredit_card(), message.isWorker());
+            }
+            if (message.getMessage().equals("setPhone")) {
+                UserControl.setPhone(message.getUserID(), message.getPhone(), message.isWorker());
+            }
+            if (message.getMessage().equals("setAddress")) {
+                UserControl.setAddress(message.getUserID(), message.getAddress(), message.isWorker());
+            }
+            if (message.getMessage().equals("setMail")) {
+                UserControl.setName(message.getUserID(), message.getMail(), message.isWorker());
+            }
 
 
 

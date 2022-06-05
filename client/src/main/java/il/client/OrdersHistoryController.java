@@ -99,7 +99,13 @@ public class OrdersHistoryController {
 
     /* gets and sets*/
 
+    public ObservableList<Order> getItems() {
+        return items;
+    }
 
+    public void setItems(ObservableList<Order> items) {
+        this.items = items;
+    }
 
     public void setMy_account_page_holder(MyAccountController my_account_page_holder) {
         this.my_account_page_holder = my_account_page_holder;

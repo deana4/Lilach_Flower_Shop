@@ -46,6 +46,7 @@ public class CartAdderController{
             AddToCartController cont = (AddToCartController)MainPageController.getInstance().getController_map().get("Cart");
             ObservableList<CartItem> cart = AddToCartController.getInstance().getItemsList();
             for(CartItem item: cart){
+                System.out.println("CartAdderController item id "+item.getItem_id() + " PVController id "+PVController.getId());
                 if(item.getItem_id() == PVController.getId()){
                     AddToCartController.getInstance().getItemsList().remove(item);
                     AddToCartController.getInstance().addItemToTable(item,Integer.parseInt(amountText.getText()));
@@ -61,6 +62,7 @@ public class CartAdderController{
             System.out.println(cont.items); //!!!!!!!!!!!!!!!!!!!!!!!!!
             System.out.println("added");
         }
+        this.stage.close();
     }
 
     @FXML

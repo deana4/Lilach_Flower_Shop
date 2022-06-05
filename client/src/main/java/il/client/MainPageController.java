@@ -239,6 +239,7 @@ public class MainPageController extends ParentClass {     //This is a singleton 
     @FXML
     void MyCartBTNClicked(ActionEvent event) throws IOException {
         LoadCartPage();
+        ((AddToCartController)controller_map.get("Cart")).setTotalSum();
     }
 
     @FXML

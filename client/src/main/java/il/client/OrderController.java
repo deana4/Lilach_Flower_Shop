@@ -460,22 +460,6 @@ public class OrderController {
         return toServer;
     }
 
-    //gets and sets
-
-    public void setSum_label(String sum_label) {
-        this.sum_label.setText(sum_label);
-    }
-
-    public void setMain_page_holder(MainPageController main_page_holder) {
-        this.main_page_holder = main_page_holder;
-    }
-
-    public void setCart_controller(AddToCartController cart_controller) {
-        this.cart_controller = cart_controller;
-    }
-
-    //end gets and sets
-
     //correctness functions
 
     private int nameCheck (String name, MFXTextField field_to_check){
@@ -803,6 +787,24 @@ public class OrderController {
         this.order_num_field.setText("1234");
     }
 
+    /* gets and sets*/
+
+    //gets and sets
+
+    public void setSum_label(String sum_label) {
+        this.sum_label.setText(sum_label);
+    }
+
+    public void setMain_page_holder(MainPageController main_page_holder) {
+        this.main_page_holder = main_page_holder;
+    }
+
+    public void setCart_controller(AddToCartController cart_controller) {
+        this.cart_controller = cart_controller;
+    }
+
+    //end gets and sets
+    /*end gets and sets*/
 
 
 }

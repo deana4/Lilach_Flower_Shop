@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 public class Order {
     private static int id = 0;
@@ -19,6 +20,7 @@ public class Order {
     private String phoneReceiver;
     private String Address;
     private String storeChoosen;
+    private double sum;
 
     @FXML
     private MFXButton complaint;
@@ -42,6 +44,9 @@ public class Order {
         this.complaint = new MFXButton("Add Complaint");
         this.cancel = new MFXButton("Cancel Order");
         this.storeChoosen = store;
+        for(int i=0; i<order_items.size(); i++){
+            sum = sum + (order_items.get(i).getItem_price() * order_items.get(i).getItem_amount());
+        }
         buttonsInitilize();
     }
 
@@ -69,7 +74,8 @@ public class Order {
             try {
                 MyAccountController.getInstance().LoadCancelOrderPage();
                 CancelOrderController.getInstance().setOrder_num_filed(Integer.toString(this_id));
-            } catch (IOException e) {
+                CancelOrderController.getInstance().setDetailsCancelOrder();
+            } catch (IOException | ParseException e) {
                 e.printStackTrace();
             }
         });
@@ -187,6 +193,11 @@ public class Order {
     public void setStoreChoosen(String storeChoosen) {
         this.storeChoosen = storeChoosen;
     }
+
+    public double getSum() { return sum; }
+
+    public void setSum(double sum) { this.sum = sum; }
+
     /* end gets and sets*/
 
     @Override

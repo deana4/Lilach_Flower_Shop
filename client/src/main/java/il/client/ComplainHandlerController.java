@@ -6,12 +6,18 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -64,6 +70,9 @@ public class ComplainHandlerController {
 
     @FXML
     private MFXButton submitBTN;
+
+    @FXML
+    private MFXButton viewOrderBTN;
 
     private Order order;
 
@@ -145,6 +154,23 @@ public class ComplainHandlerController {
         this.complain_handler_ancorpane3.setVisible(true);
         this.complain_handler_ancorpane2.setVisible(false);
         //send complaint handle to server
+    }
+
+    @FXML
+    void ViewOrderBTNClicked(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("FullOrderView.fxml"));
+        stage.initStyle(StageStyle.TRANSPARENT);
+        Scene scene = new Scene(fxmlLoader.load(), 639, 371);
+        scene.setFill(Color.TRANSPARENT);
+        FullOrderViewController controller = fxmlLoader.getController();
+        controller.initialize(this);
+        controller.setStage(stage);
+        stage.setTitle("Full Order Details");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

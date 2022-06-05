@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -56,7 +57,7 @@ public class AddToCartController{
     @FXML
     private TableColumn<CartItem, MFXButton> remove_btn_col;
 
-    private int total_sum = 0;
+    private double total_sum = 0;
 
     ObservableList<CartItem> items = FXCollections.observableArrayList();
 
@@ -82,7 +83,7 @@ public class AddToCartController{
         CartInstance = this;
         this.TableInitializeFields();
         cart_table.setItems(items);
-        sum_field.setText(String.valueOf(total_sum));
+        setTotalSum();
     }
 
     public void TableInitializeFields(){
@@ -93,6 +94,21 @@ public class AddToCartController{
         table_Column_id.setCellValueFactory(new PropertyValueFactory<CartItem,Integer>("item_id"));
         amount_change_btn_col.setCellValueFactory(new PropertyValueFactory<CartItem,MFXButton>("amountChangeBtn"));
         remove_btn_col.setCellValueFactory(new PropertyValueFactory<CartItem,MFXButton>("removeBtn"));
+    }
+
+    public void setTotalSum(){
+        total_sum = 0.0;
+        System.out.println("items size AddToCartControoler "+items.size());
+        if(items.size() == 0){
+            total_sum = 0.0;
+            sum_field.setText(String.valueOf(total_sum));
+            return;
+        }
+        for(int i=0; i<items.size(); i++){
+            total_sum = total_sum + (items.get(i).getItem_price() * items.get(i).getItem_amount());
+            System.out.println("total sum in AddToCartController "+ total_sum);
+        }
+        sum_field.setText(String.valueOf(total_sum));
     }
 
     public void setChanges(){
@@ -112,15 +128,17 @@ public class AddToCartController{
                 item.setItem_amount(amount);
             }
         }
+        setTotalSum();
     }
 
-    public void removeItemFromTable(int id){
+    public void removeItemFromTable(int id) throws IOException {
         for(CartItem item: items){
             if(item.getItem_id() == id){
                 this.items.remove(item);
                 System.out.println("Removed Item:" + item.getItem_name());
             }
         }
+        MainPageController.getInstance().LoadCartPage();
     }
 
     public void setAmountByID(int id, int amount){
@@ -129,6 +147,7 @@ public class AddToCartController{
                 item.setItem_amount(amount);
             }
         }
+        setTotalSum();
     }
 
 
@@ -141,7 +160,10 @@ public class AddToCartController{
 //        Parent root = fxmlLoader.load();
 //        OrderController controller = fxmlLoader.getController();
 //        controller.setCart_controller(this);
-        this.main_page_holder.LoadOrderPage();
+//        this.main_page_holder.LoadOrderPage();
+        OrderController order_controller = (OrderController) MainPageController.getInstance().getController_map().get("Order");
+        order_controller.setSum_label(Double.toString(total_sum));
+        MainPageController.getInstance().LoadOrderPage();
         // main_page_holder.getMain_first_load_pane().getChildren().addAll(root);
     }
 

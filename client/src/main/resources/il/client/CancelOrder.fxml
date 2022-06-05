@@ -18,7 +18,7 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <VBox alignment="TOP_CENTER" layoutX="326.0" layoutY="220.0" prefHeight="200.0" prefWidth="325.0" spacing="30.0">
+            <VBox alignment="CENTER" layoutX="272.0" layoutY="220.0" prefHeight="260.0" prefWidth="474.0" spacing="30.0">
                <children>
                   <MFXTextField fx:id="order_num_filed" alignment="CENTER" editable="false" text="order num">
                      <textFill>
@@ -30,14 +30,14 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="refund_status_label" text="refund status" textFill="#da0c0c">
+                  <Label fx:id="refund_status_label" alignment="CENTER" prefHeight="39.0" prefWidth="501.0" text="refund status" textFill="#da0c0c">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="52.0" prefWidth="206.0" spacing="10.0">
+                  <HBox prefHeight="52.0" prefWidth="344.0" spacing="10.0">
                      <children>
-                        <MFXButton fx:id="yesBTN" onAction="#YesBTNClicked" prefHeight="52.0" prefWidth="168.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Yes" textFill="#979797">
+                        <MFXButton fx:id="yesBTN" onAction="#YesBTNClicked" prefHeight="52.0" prefWidth="242.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Yes" textFill="#979797">
                            <font>
                               <Font size="25.0" />
                            </font>

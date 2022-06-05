@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="complain_handler_ancorpane1" prefHeight="747.0" prefWidth="665.0" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ComplainHandlerController">
+<AnchorPane fx:id="complain_handler_ancorpane1" prefHeight="747.0" prefWidth="665.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ComplainHandlerController">
    <children>
       <AnchorPane layoutX="1.0" layoutY="-23.0" prefHeight="794.0" prefWidth="698.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
@@ -40,7 +40,7 @@
                         </MFXTextField>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="246.0" layoutY="641.0" prefHeight="40.0" prefWidth="174.0" spacing="20.0">
+                  <HBox alignment="CENTER" layoutX="139.0" layoutY="641.0" prefHeight="40.0" prefWidth="420.0" spacing="20.0">
                      <children>
                         <MFXButton fx:id="submitBTN" onAction="#SubmitBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Submit" textFill="#979797">
                            <font>
@@ -48,6 +48,11 @@
                            </font>
                         </MFXButton>
                         <MFXButton fx:id="cancelBTN" onAction="#CancelBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Cancel" textFill="#979797">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton fx:id="viewOrderBTN" onAction="#ViewOrderBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="View Order" textFill="#979797">
                            <font>
                               <Font size="15.0" />
                            </font>

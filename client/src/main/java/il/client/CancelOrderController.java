@@ -2,12 +2,16 @@ package il.client;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CancelOrderController {
 
@@ -37,6 +41,8 @@ public class CancelOrderController {
 
     private MyAccountController my_account_page_holder;
 
+    private double refund = 0.0;
+
     private static CancelOrderController instance = null;
 
     public static CancelOrderController getInstance(){
@@ -47,7 +53,7 @@ public class CancelOrderController {
     }
 
     @FXML
-    void initialize(){
+    void initialize() throws ParseException {
         instance = this;
     }
 
@@ -68,7 +74,65 @@ public class CancelOrderController {
     @FXML
     void CloseBTNClicked(ActionEvent event) throws IOException {
         MyAccountController.getInstance().CancelOrderRefresh();
+        ObservableList<Order> order_list = UserClient.getInstance().getOrderList();
+        for(int i=0; i<order_list.size(); i++){
+            if(Integer.parseInt(this.order_num_filed.getText()) == order_list.get(i).getThis_id()){
+                order_list.remove(i);
+                break;
+            }
+        }
+        UserClient.getInstance().setOrderList(order_list);
+
         MyAccountController.getInstance().LoadOrdersHistoryPage();
+
+        sendToServer(UserClient.getInstance().getId(), Integer.parseInt(this.order_num_filed.getText()), refund);
+    }
+
+    public void setDetailsCancelOrder() throws ParseException {
+        int order_num = Integer.parseInt(this.order_num_filed.getText());
+        System.out.println(order_num +" CancelOrderController");
+        Order order = UserClient.getInstance().getOrderById(order_num);
+        double order_sum = order.getSum();
+        System.out.println("CancelOrderController "+order_sum);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        String order_receiver_date = order.getOrderReceiveDate();
+        String order_receiver_time = order.getOrderReceiveTime();
+
+        String dateAndTimeOrderReceiver = order_receiver_date + " " + order_receiver_time;
+        System.out.println(dateAndTimeOrderReceiver);
+        Date dtOrderReceiver = sdf.parse(dateAndTimeOrderReceiver);
+        System.out.println(dtOrderReceiver);
+
+        Date cancelOrder = new Date();
+
+        long difference_In_Time =  dtOrderReceiver.getTime()- cancelOrder.getTime();
+        long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
+        long difference_In_Hours = (difference_In_Time / (1000 * 60 * 60)) % 24;
+        long difference_In_Days = (difference_In_Time / (1000 * 60 * 60 * 24)) % 365;
+
+        System.out.println("difference in minutes "+difference_In_Minutes);
+        System.out.println("difference in hours " + difference_In_Hours);
+        System.out.println("difference in days "+ difference_In_Days);
+        System.out.println("difference in millisec " + difference_In_Time);
+
+        if(difference_In_Days>=0 && difference_In_Hours >=3){
+            this.refund_status_label.setText("100% from "+ Double.valueOf(order_sum)+ "--> "+Double.toString(order_sum));
+            this.refund=order_sum;
+        }
+        if(difference_In_Days==0 && difference_In_Hours<3 && difference_In_Hours>=1){
+            this.refund_status_label.setText("50% from "+ Double.valueOf(order_sum)+ "--> "+Double.toString(0.5*order_sum));
+            this.refund=0.5*order_sum;
+        }
+        if(difference_In_Days==0 && difference_In_Hours<1 ){
+            this.refund_status_label.setText("0% from "+ Double.valueOf(order_sum)+ "--> "+Double.toString(0*order_sum));
+            refund=0.0*order_sum;
+        }
+    }
+
+    public void sendToServer(int user_id, int order_id, double refund){
+        //calling the server function
+         return;
     }
 
     /* gets and sets*/

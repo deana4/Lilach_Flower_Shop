@@ -48,7 +48,11 @@ public class CartItem {
 
 
         removeBtn.setOnAction(event -> {
-            AddToCartController.getInstance().removeItemFromTable(this.item_id);
+            try {
+                AddToCartController.getInstance().removeItemFromTable(this.item_id);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         amountChangeBtn.setOnAction(event -> {

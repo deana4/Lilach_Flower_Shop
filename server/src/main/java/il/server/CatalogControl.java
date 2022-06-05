@@ -1,5 +1,6 @@
 package il.server;
 
+import il.entities.Message;
 import il.entities.Product;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -82,6 +83,24 @@ public class CatalogControl {
         testDB.openSession();
         Product a = testDB.session.get(Product.class, id);
         testDB.session.delete(a);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
+    public static void setType(int id, String type) throws IOException {
+        testDB.openSession();
+        Product a = testDB.session.get(Product.class, id);
+        a.setType(type);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
+    public static void setColor(int id, String color) throws IOException {
+        testDB.openSession();
+        Product a = testDB.session.get(Product.class, id);
+        a.setColor(color);
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();

@@ -53,7 +53,7 @@ public class CatalogControl {
         Message message = new Message("setSaleItem");
         message.setSale(sale);
         message.setIdItem(idItem);
-        if(sale==false)
+        if(sale==false || discount<=0)
             message.setDiscountPer(0);
         else
             message.setDiscountPer(discount);
@@ -91,6 +91,20 @@ public class CatalogControl {
     public static void addItem(Product product) throws IOException {
         Message message = new Message("newItem");
         message.setProduct(product);
+        SimpleClient.getClient().sendToServer(message);
+    }
+
+    public static void setType(int idItem, String type) throws IOException {
+        Message message = new Message("setTypeItem");
+        message.setType(type);
+        message.setIdItem(idItem);
+        SimpleClient.getClient().sendToServer(message);
+    }
+
+    public static void setColor(int idItem, String color) throws IOException {
+        Message message = new Message("setColorItem");
+        message.setColor(color);
+        message.setIdItem(idItem);
         SimpleClient.getClient().sendToServer(message);
     }
 

@@ -129,6 +129,12 @@ public class SimpleServer extends AbstractServer {
             if (message.getMessage().equals("setPriceItem")) {
                 CatalogControl.setPrice(message.getIdItem(), message.getNewPrice());
             }
+            if (message.getMessage().equals("setTypeItem")) {
+                CatalogControl.setType(message.getIdItem(), message.getType());
+            }
+            if (message.getMessage().equals("setColorItem")) {
+                CatalogControl.setColor(message.getIdItem(), message.getColor());
+            }
             if (message.getMessage().equals("deleteItem")) {
                 CatalogControl.deleteItem(message.getIdItem());
             }

@@ -23,9 +23,8 @@ public class SimpleClient extends AbstractClient {
 
 
 		if(message.getMessage().equals("item catalog list")){
-			System.out.println("get Flower object!");
-			List<Product> items = message.getListItem();
-			EventBus.getDefault().post(new CatalogItemsEvent(items));
+			System.out.println("get init data");
+			EventBus.getDefault().post(new CatalogItemsEvent(message.getListItem(), message.getListStors()));
 		}
 
 		if(message.getMessage().equals("result login")){

@@ -5,6 +5,7 @@ import il.client.controls.ComplainConrtol;
 import il.client.controls.OrderControl;
 import il.client.events.CatalogItemsEvent;
 import il.entities.Product;
+import il.entities.Store;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -62,6 +63,8 @@ public class CatalogController extends ParentClass{
 
     private static List<Product> flowerlist=null;
 
+    public static List<Store> allStores=null;
+
     private MainPageController main_page_holder;
 
     private LinkedList<ProductView> flowersFXML;
@@ -77,6 +80,7 @@ public class CatalogController extends ParentClass{
     @Subscribe
     public void setFlowerlist(CatalogItemsEvent event) throws IOException {
         Platform.runLater(()->{
+                    allStores = event.getStores();
                     flowerlist = event.getItems();
                     int col = 0;
                     int row = 0;

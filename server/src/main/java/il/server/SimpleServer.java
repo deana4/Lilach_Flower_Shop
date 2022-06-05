@@ -58,8 +58,13 @@ public class SimpleServer extends AbstractServer {
             if (message.getMessage().equals("getCatalogItems")) {
                 sendMessage.setMessage("item catalog list");
                 sendMessage.setListItem((LinkedList<Product>) CatalogControl.getAllItems());
+                List<Store> stores = SimpleServer.getAllItems(Store.class);
+                LinkedList<Store> newStores= new LinkedList<>();
+                for(Store s : stores)
+                    newStores.add(s.getStoreForClient());
+                sendMessage.setListStors(newStores);
                 client.sendToClient(sendMessage);
-                System.out.println("send Flowers to catalog");
+                System.out.println("send init data to: " + client.getInetAddress());
             }
 
             if (message.getMessage().equals("getStore")) {

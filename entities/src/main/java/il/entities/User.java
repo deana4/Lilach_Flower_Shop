@@ -38,7 +38,7 @@ public class User implements Serializable {
     private double discount;
     private int accountStatus;
     private boolean login;
-    private String priority;
+    private int priority;
 
 
     @OneToMany (mappedBy = "user")
@@ -86,13 +86,7 @@ public class User implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-    public String getPriority() {
-        return priority;
-    }
 
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
 
     public void setListOrders(List<Order> listOrders) {
         this.listOrders = listOrders;
@@ -128,7 +122,7 @@ public class User implements Serializable {
     public int getId() {
         return id;
     }
-    public User(String userName, String password, String creditCard, String priority, String name, String identifyNumbers) {
+    public User(String userName, String password, String creditCard, int priority, String name, String identifyNumbers) {
         this.userName = userName;
         this.password = password;
         this.creditCard = creditCard;
@@ -159,7 +153,7 @@ public class User implements Serializable {
         return u;
     }
 
-    public User(int id, String username, String name, String identifyNumbers, String priority, int acountStatus, double credit){
+    public User(int id, String username, String name, String identifyNumbers, int priority, int acountStatus, double credit){
         this.id = id;
         this.userName = username;
         this.name = name;

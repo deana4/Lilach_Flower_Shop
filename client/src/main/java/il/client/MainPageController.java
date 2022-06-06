@@ -277,7 +277,7 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         }
         UserClient.getInstance().setPriority(1);
         MainPageController.getInstance().Refresh();
-        LogInControl.logout(UserClient.getInstance().getUserName());
+        LogInControl.logout(UserClient.getInstance().getId());
         LoadHomePage();
     }
 

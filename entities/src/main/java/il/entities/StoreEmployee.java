@@ -28,7 +28,7 @@ public class StoreEmployee extends Employee implements Serializable {
 
     public StoreEmployee(String name, String username, String pass) {
         super(name, username, pass);
-        this.permission =5;
+        this.permission =1;
     }
 
 }

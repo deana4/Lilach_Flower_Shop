@@ -91,6 +91,7 @@ public class CatalogController extends ParentClass{
     public void setFlowerlist(CatalogItemsEvent event) throws IOException {
         Platform.runLater(()->{
                     flowerlist = event.getItems();
+                    RegisterController.allStores = event.getStores();
                     int col = 0;
                     int row = 0;
 

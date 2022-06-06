@@ -15,7 +15,7 @@ public class NetworkManger extends Employee implements Serializable {
 
     public NetworkManger(String name, String username, String pass) {
         super(name, username, pass);
-        this.permission = 2;
+        this.permission = 4;
     }
 
 }

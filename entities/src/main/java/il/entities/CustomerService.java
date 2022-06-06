@@ -18,7 +18,7 @@ public class CustomerService extends Employee implements Serializable {
 
     public CustomerService(String name, String username, String pass) {
         super(name, username, pass);
-        this.permission = 4;
+        this.permission = 2;
     }
 
 }

@@ -75,6 +75,9 @@ public class LoginController extends ParentClass{
                     orders = event.getOrderList();
                     complains = event.getComplainList();
                     storeIDWork = event.getStoreId();
+                    UserClient.getInstance().setWorker(true);
+                    UserClient.getInstance().setUserName(username);
+                    UserClient.getInstance().setPriority(permission);
                 }
                 else{
                     user = event.getUser();
@@ -83,6 +86,11 @@ public class LoginController extends ParentClass{
                     stores = event.getStoreList();
                     username = user.getUserName();
                     idConnected = user.getId();
+                    UserClient.getInstance().setWorker(false);
+                    UserClient.getInstance().setUserName(username);
+                    UserClient.getInstance().setPriority(2);
+                    UserClient.getInstance().setId(idConnected);
+                    UserClient.getInstance().setPlan(user.getPriority());
                 }
 
                 //set priority UserClient.getInstance()

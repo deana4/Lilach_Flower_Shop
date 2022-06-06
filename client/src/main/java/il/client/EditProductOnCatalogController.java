@@ -90,7 +90,8 @@ public class EditProductOnCatalogController {
 
 
 
-        retValue = detailChecker.CheckPriceValues(this.PriceText.getText(),PriceText);
+        retValue = detailChecker.CheckPriceValues(this.PriceText.getText(),"price");
+        System.out.println(this.PriceText.getText()+ "EditProduct");
         if(retValue == 1){
             CatalogControl.setPrice(PVController.getId(), Double.valueOf(this.PriceText.getText()));
 
@@ -100,7 +101,7 @@ public class EditProductOnCatalogController {
         }
 
 
-        retValue = detailChecker.CheckPriceValues(this.discountPercentText.getText(), discountPercentText);
+        retValue = detailChecker.CheckPriceValues(this.discountPercentText.getText(),"percent");
         if(retValue == 1){
             //        CatalogControl.setDiscountPercentage(PVController.getId(), Double.valueOf(this.discountPercent.getText()));
         }else if(retValue == 0){
@@ -118,11 +119,9 @@ public class EditProductOnCatalogController {
 
         //Need to implement on Control//
 
-//        CatalogControl.setColor(this.colorText.getText(), PVController.getId());
-//        CatalogControl.setType(PVController.getId(), typeText.getText());
-//        CatalogControl.updateImage(this.ImageURL.getText(), PVController.getId());
-//        CatalogControl.setOnDiscount(this.saleToggle.isSelected(), PVController.getId());
-
+        CatalogControl.setSale(this.saleToggle.isSelected(),PVController.getId(),Double.valueOf(discountPercentText.getText()));
+        CatalogControl.setColor(PVController.getId(), this.colorText.getText());
+        CatalogControl.setType(PVController.getId(), typeText.getText());
     }
     @FXML
     void closeWindow(ActionEvent event) {

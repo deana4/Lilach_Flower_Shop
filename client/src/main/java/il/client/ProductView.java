@@ -85,63 +85,60 @@ public class ProductView extends ParentClass{
         if(UserClient.getInstance().isWorker() == true) {
             System.out.println(UserClient.getInstance().getPriority());
             switch (UserClient.getInstance().getPriority()) {
-                case 1: {
-                    setPriorityBtnLowerThan2();
+                case 1: {  //regular worker
+                    setPriorityBtnHigherThan2();
                     this.atc_product_button.setDisable(true);
                     this.atc_product_button.setVisible(false);
                 }
                 break;
-                case 2: {
+                case 2: { // service
                     setPriorityBtnLowerThan2();
                     this.atc_product_button.setDisable(false);
                     this.atc_product_button.setVisible(true);
                 }
                 break;
-                case 3: {
+                case 3: { //store manager
                     setPriorityBtnHigherThan2();
                     /*maybe do more*/
                 }
                 break;
-                case 4: {
+                case 4: { //network manager
                     setPriorityBtnHigherThan2();
                 }
                 break;
-                case 5: {
+                case 5: { // system admin
                     setPriorityBtnHigherThan2();
                 }
                 break;
 
             }
         }else if(UserClient.getInstance().isWorker() == false){
-            switch (UserClient.getInstance().getPriority()) {
-            case 1: {
-                setPriorityBtnLowerThan2();
-                this.atc_product_button.setDisable(true);
-                this.atc_product_button.setVisible(false);
+            setPriorityBtnLowerThan2();
+            this.atc_product_button.setDisable(true);
+            this.atc_product_button.setVisible(false);
 
-            }
-            break;
-            case 2: {
-                setPriorityBtnLowerThan2();
-                this.atc_product_button.setDisable(false);
-                this.atc_product_button.setVisible(true);
-            }
-            break;
-            case 3: {
-                setPriorityBtnHigherThan2();
-                /*maybe do more*/
-            }
-            break;
-            case 4: {
-                setPriorityBtnHigherThan2();
-            }
-            break;
-            case 5: {
-                setPriorityBtnHigherThan2();
-            }
-            break;
-
-        }
+//            switch (UserClient.getInstance().getPriority()) {
+//            case 1: {
+//                setPriorityBtnLowerThan2();
+//                this.atc_product_button.setDisable(true);
+//                this.atc_product_button.setVisible(false);
+//
+//                setPriorityBtnHigherThan2();
+//
+//            }
+//            break;
+//            case 2: {
+//                setPriorityBtnLowerThan2();
+//                this.atc_product_button.setDisable(false);
+//                this.atc_product_button.setVisible(true);
+//            }
+//            break;
+//            case 3: {
+//                setPriorityBtnHigherThan2();
+//                /*maybe do more*/
+//            }
+//            break;
+//            }
         }
     }
 
@@ -159,6 +156,7 @@ public class ProductView extends ParentClass{
         this.editFlower.setVisible(false);
         this.editFlower.setDisable(true);
     }
+
 
     @FXML
     void ClickedImage(MouseEvent event) throws IOException, ClassNotFoundException, InterruptedException {

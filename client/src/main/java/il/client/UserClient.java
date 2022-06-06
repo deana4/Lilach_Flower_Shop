@@ -21,6 +21,7 @@ public class UserClient {
     private String address = "Default";
     private double discount = 0;
     private boolean isFrozen = false;
+    private int plan = 0;
 
     private boolean isLogin = false;
     private boolean isWorker = false;
@@ -250,7 +251,13 @@ public class UserClient {
         this.address = address;
     }
 
+    public int getPlan() {
+        return plan;
+    }
 
+    public void setPlan(int plan) {
+        this.plan = plan;
+    }
 
     public OrderClient getOrderById(int id){
         OrderClient order;

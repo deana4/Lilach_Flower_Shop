@@ -114,12 +114,13 @@ public class testDB {
         testDB.session.save(store3);
         b = new BranchManager("Itai Zeitony", "itai123456" , "123456789", store3);
         session.save(b);
-        e = new StoreEmployee("Shira Tzadok", "shira123456" , "123456789");
-        session.save(e);
-        store3.addEmployee(e);
+
         e = new StoreEmployee("Shahar Tavor", "shahar123456" , "123456789");
         session.save(e);
         store3.addEmployee(e);
+
+        CustomerService j = new CustomerService("Shira Tzadok", "shira123456" , "123456789");
+        session.save(j);
 
 
         User u1 = new User("ido7746", "123456789", "1234567812345678", 1, "ido", "123456789");

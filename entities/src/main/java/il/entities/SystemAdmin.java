@@ -15,7 +15,7 @@ public class SystemAdmin extends Employee implements Serializable {
 
     public SystemAdmin(String name, String username, String pass) {
         super(name, username, pass);
-        this.permission = 1;
+        this.permission = 5;
     }
 
 }

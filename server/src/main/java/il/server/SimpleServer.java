@@ -99,7 +99,7 @@ public class SimpleServer extends AbstractServer {
                 String pass = message.getPass();
                 String id = message.getId();
                 String credit_card = message.getCredit_card();
-                String plan = Message.getPlan();
+                int plan = Message.getPlan();
                 List<Store> stores = Message.getStores();
 
                 User newUser = new User(username, pass, credit_card, plan, name, id);

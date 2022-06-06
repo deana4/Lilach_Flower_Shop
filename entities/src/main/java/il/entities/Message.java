@@ -28,7 +28,7 @@ public class Message implements Serializable {
     String pass;
     boolean isWorker;
     String credit_card;
-    static String plan;
+    static int plan;
     String name;
     String phone;
     String mail;
@@ -363,11 +363,11 @@ public class Message implements Serializable {
         this.credit_card = credit_card;
     }
 
-    public static String getPlan() {
+    public static int getPlan() {
         return plan;
     }
 
-    public void setPlan(String plan) {
+    public void setPlan(int plan) {
         this.plan = plan;
     }
 

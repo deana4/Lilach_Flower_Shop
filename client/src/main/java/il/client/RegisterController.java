@@ -3,6 +3,7 @@ package il.client;
 
 import il.client.controls.RegisterControl;
 import il.client.events.RegisterEvent;
+import il.entities.Store;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -15,6 +16,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.util.List;
 
 public class RegisterController extends ParentClass{
 
@@ -23,6 +25,8 @@ public class RegisterController extends ParentClass{
     }
 
     public static int currectRegister = -1;
+
+    public static List<Store> allStores;
 
     @FXML
     private MFXTextField credit_card_tf;
@@ -149,7 +153,14 @@ public class RegisterController extends ParentClass{
             String[] registerDetails = {name, username, pass, id, credit_card, plan,store};
 
             //need to add store here
-            RegisterControl.register(name, username, pass, id ,credit_card, plan);
+
+            if(plan.equals("Specific Store Member"))
+              RegisterControl.register(name, username, pass, id ,credit_card, 1);
+            if(plan.equals("Store Wide Member"))
+                RegisterControl.register(name, username, pass, id ,credit_card, 2);
+            if(plan.equals("Yearly Member"))
+                RegisterControl.register(name, username, pass, id ,credit_card, 3);
+
         }
         else{
             this.errorWarning.setVisible(true);

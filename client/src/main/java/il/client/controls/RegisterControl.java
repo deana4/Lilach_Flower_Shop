@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class RegisterControl {
 
-    public static void register(String name, String username, String pass, String id, String credit_card, String plan) throws IOException {
+    public static void register(String name, String username, String pass, String id, String credit_card, int plan) throws IOException {
         Message message = new Message("register");
         message.setName(name);
         message.setUsername(username);

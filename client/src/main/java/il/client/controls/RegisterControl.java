@@ -1,9 +1,7 @@
-package il.client.control;
+package il.client.controls;
 
 import il.client.SimpleClient;
 import il.entities.Message;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 
-import il.client.control.LogInControl;
+import il.client.controls.LogInControl;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;

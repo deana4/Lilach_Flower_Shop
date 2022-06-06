@@ -1,6 +1,6 @@
 package il.client;
 
-import il.client.control.CatalogControl;
+import il.client.controls.CatalogControl;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;

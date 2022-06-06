@@ -1,7 +1,7 @@
 package il.client;
 
 
-import il.client.control.RegisterControl;
+import il.client.controls.RegisterControl;
 import il.client.events.RegisterEvent;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;

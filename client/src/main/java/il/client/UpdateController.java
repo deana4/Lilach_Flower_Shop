@@ -1,7 +1,7 @@
 package il.client;
 
 
-import il.client.control.CatalogControl;
+import il.client.controls.CatalogControl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;

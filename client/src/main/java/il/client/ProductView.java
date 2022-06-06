@@ -2,7 +2,7 @@ package il.client; /**
  * Sample Skeleton for 'ProductView.fxml' Controller Class
  */
 
-import il.client.control.CatalogControl;
+import il.client.controls.CatalogControl;
 import il.entities.Product;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;

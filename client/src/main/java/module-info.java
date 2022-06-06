@@ -13,4 +13,6 @@ module il.client {
     exports il.client.events;
     opens il.client.DiffClasses to javafx.fxml;
     exports il.client.DiffClasses;
+    exports il.client.control;
+    opens il.client.control to javafx.fxml;
 }

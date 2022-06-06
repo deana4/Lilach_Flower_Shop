@@ -1,5 +1,6 @@
 package il.client;
 
+import il.client.control.CatalogControl;
 import il.client.events.CatalogItemsEvent;
 import il.entities.Product;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
@@ -22,7 +23,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class CatalogController extends ParentClass{
 

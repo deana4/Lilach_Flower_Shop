@@ -74,7 +74,7 @@ public class CancelOrderController {
     @FXML
     void CloseBTNClicked(ActionEvent event) throws IOException {
         MyAccountController.getInstance().CancelOrderRefresh();
-        ObservableList<Order> order_list = UserClient.getInstance().getOrderList();
+        ObservableList<OrderClient> order_list = UserClient.getInstance().getOrderList();
         for(int i=0; i<order_list.size(); i++){
             if(Integer.parseInt(this.order_num_filed.getText()) == order_list.get(i).getThis_id()){
                 order_list.remove(i);
@@ -91,7 +91,7 @@ public class CancelOrderController {
     public void setDetailsCancelOrder() throws ParseException {
         int order_num = Integer.parseInt(this.order_num_filed.getText());
         System.out.println(order_num +" CancelOrderController");
-        Order order = UserClient.getInstance().getOrderById(order_num);
+        OrderClient order = UserClient.getInstance().getOrderById(order_num);
         double order_sum = order.getSum();
         System.out.println("CancelOrderController "+order_sum);
 

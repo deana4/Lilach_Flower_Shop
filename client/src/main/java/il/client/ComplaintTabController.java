@@ -1,6 +1,6 @@
 package il.client;
 
-import il.client.DiffClasses.Complaint;
+import il.client.DiffClasses.ComplaintClient;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView;
 import javafx.collections.FXCollections;
@@ -21,21 +21,21 @@ import java.text.ParseException;
 public class ComplaintTabController {
 
     @FXML
-    private TableColumn<Complaint, Integer> complaint_id_col;
+    private TableColumn<ComplaintClient, Integer> complaint_id_col;
 
     @FXML
-    private TableColumn<Complaint, String> date_col;
+    private TableColumn<ComplaintClient, String> date_col;
 
     @FXML
-    private TableColumn<Complaint, MFXButton> handle_col;
+    private TableColumn<ComplaintClient, MFXButton> handle_col;
 
     @FXML
-    private MFXLegacyTableView<Complaint> complaints_table;
+    private MFXLegacyTableView<ComplaintClient> complaints_table;
 
     @FXML
-    private TableColumn<Complaint, String> time_col;
+    private TableColumn<ComplaintClient, String> time_col;
 
-    ObservableList<Complaint> items = FXCollections.observableArrayList();
+    ObservableList<ComplaintClient> items = FXCollections.observableArrayList();
 
     private MyAccountController my_account_page_holder;
 
@@ -51,12 +51,12 @@ public class ComplaintTabController {
     //
     public void TableInitializeFields() {
         complaints_table.setFixedCellSize(40);
-        complaint_id_col.setCellValueFactory(new PropertyValueFactory<Complaint, Integer>("this_id"));
-        date_col.setCellValueFactory(new PropertyValueFactory<Complaint, String>("complaintDate"));
-        time_col.setCellValueFactory(new PropertyValueFactory<Complaint, String>("ComplaintTime"));
+        complaint_id_col.setCellValueFactory(new PropertyValueFactory<ComplaintClient, Integer>("this_id"));
+        date_col.setCellValueFactory(new PropertyValueFactory<ComplaintClient, String>("complaintDate"));
+        time_col.setCellValueFactory(new PropertyValueFactory<ComplaintClient, String>("ComplaintTime"));
 
         complaints_table.setRowFactory(s->{
-            TableRow<Complaint> row = new TableRow<Complaint>();
+            TableRow<ComplaintClient> row = new TableRow<ComplaintClient>();
             row.setOnMouseClicked(mouseEvent -> {
                         System.out.println(row.getItem());
                         try {
@@ -70,8 +70,8 @@ public class ComplaintTabController {
         });
     }
 
-    public void HandelComplaintScreen(TableRow<Complaint> row) throws IOException, ParseException {
-        Complaint complaint = UserClient.getInstance().getComplaintById(row.getItem().getThis_id());
+    public void HandelComplaintScreen(TableRow<ComplaintClient> row) throws IOException, ParseException {
+        ComplaintClient complaint = UserClient.getInstance().getComplaintById(row.getItem().getThis_id());
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader();

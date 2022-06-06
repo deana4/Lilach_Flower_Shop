@@ -1,5 +1,6 @@
 package il.client;
 
+import il.client.control.CatalogControl;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
@@ -13,7 +14,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.security.cert.Extension;
 import java.util.ArrayList;
 
 public class EditProductOnCatalogController {

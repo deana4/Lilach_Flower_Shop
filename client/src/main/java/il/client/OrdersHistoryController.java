@@ -2,7 +2,6 @@ package il.client;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView;
-import io.github.palexdev.materialfx.dialogs.MFXGenericDialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -20,31 +18,31 @@ import java.io.IOException;
 
 public class OrdersHistoryController {
     @FXML
-    private TableColumn<Order, String> date_col;
+    private TableColumn<OrderClient, String> date_col;
 
     @FXML
-    private TableColumn<Order, Integer> id_col;
+    private TableColumn<OrderClient, Integer> id_col;
 
     @FXML
-    private TableColumn<Order, String> name_receiver_col;
+    private TableColumn<OrderClient, String> name_receiver_col;
 
     @FXML
-    private MFXLegacyTableView<Order> orders_table;
+    private MFXLegacyTableView<OrderClient> orders_table;
 
     @FXML
-    private TableColumn<Order, String> phone_receiver_col;
+    private TableColumn<OrderClient, String> phone_receiver_col;
 
     @FXML
-    private TableColumn<Order, String> time_col;
+    private TableColumn<OrderClient, String> time_col;
 
     @FXML
-    private TableColumn<Order, MFXButton> complaint_col;
+    private TableColumn<OrderClient, MFXButton> complaint_col;
 
     @FXML
-    private TableColumn<Order, MFXButton> cancel_col;
+    private TableColumn<OrderClient, MFXButton> cancel_col;
 
 
-    ObservableList<Order> items = FXCollections.observableArrayList();
+    ObservableList<OrderClient> items = FXCollections.observableArrayList();
 
     private MyAccountController my_account_page_holder;
 
@@ -60,16 +58,16 @@ public class OrdersHistoryController {
 //
     public void TableInitializeFields() {
         orders_table.setFixedCellSize(40);
-        id_col.setCellValueFactory(new PropertyValueFactory<Order, Integer>("this_id"));
-        date_col.setCellValueFactory(new PropertyValueFactory<Order, String>("orderDate"));
-        time_col.setCellValueFactory(new PropertyValueFactory<Order, String>("orderTime"));
-        phone_receiver_col.setCellValueFactory(new PropertyValueFactory<Order, String>("phoneReceiver"));
-        name_receiver_col.setCellValueFactory(new PropertyValueFactory<Order, String>("nameReceiver"));
-        complaint_col.setCellValueFactory(new PropertyValueFactory<Order, MFXButton>("complaint"));
-        cancel_col.setCellValueFactory(new PropertyValueFactory<Order, MFXButton>("cancel"));
+        id_col.setCellValueFactory(new PropertyValueFactory<OrderClient, Integer>("this_id"));
+        date_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("orderDate"));
+        time_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("orderTime"));
+        phone_receiver_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("phoneReceiver"));
+        name_receiver_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("nameReceiver"));
+        complaint_col.setCellValueFactory(new PropertyValueFactory<OrderClient, MFXButton>("complaint"));
+        cancel_col.setCellValueFactory(new PropertyValueFactory<OrderClient, MFXButton>("cancel"));
 
         orders_table.setRowFactory(s->{
-            TableRow<Order> row = new TableRow<Order>();
+            TableRow<OrderClient> row = new TableRow<OrderClient>();
             row.setOnMouseClicked(mouseEvent -> {
                         System.out.println(row.getItem());
                         try {
@@ -82,8 +80,8 @@ public class OrdersHistoryController {
             return row;
         });
     }
-    public void detailedOrderScreen(TableRow<Order> row) throws IOException {
-        Order order = UserClient.getInstance().getOrderById(row.getItem().getThis_id());
+    public void detailedOrderScreen(TableRow<OrderClient> row) throws IOException {
+        OrderClient order = UserClient.getInstance().getOrderById(row.getItem().getThis_id());
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -99,11 +97,11 @@ public class OrdersHistoryController {
 
     /* gets and sets*/
 
-    public ObservableList<Order> getItems() {
+    public ObservableList<OrderClient> getItems() {
         return items;
     }
 
-    public void setItems(ObservableList<Order> items) {
+    public void setItems(ObservableList<OrderClient> items) {
         this.items = items;
     }
 

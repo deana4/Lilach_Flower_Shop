@@ -1,6 +1,6 @@
 package il.client;
 
-import il.client.DiffClasses.Complaint;
+import il.client.DiffClasses.ComplaintClient;
 import il.entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,8 +25,8 @@ public class UserClient {
     private boolean isLogin = false;
     private boolean isWorker = false;
 
-    private ObservableList<Complaint> complaintList  = FXCollections.observableArrayList();
-    private ObservableList<Order> orderList = FXCollections.observableArrayList();
+    private ObservableList<ComplaintClient> complaintList  = FXCollections.observableArrayList();
+    private ObservableList<OrderClient> orderList = FXCollections.observableArrayList();
 
     private User UserServer = null;
 
@@ -46,12 +46,12 @@ public class UserClient {
             cart.add(new CartItem("rose", 299.99, 2, 2));
 
             //for trying examples
-            orderList.add(new Order( "05/06/2022", "12:00", "16:00", "06/06/2022", "thankyou", "Dean1", "12", "bla","Store 1", cart ));
-            orderList.add(new Order( "03/06/2022", "12:00", "02:00", "05/06/2022", "thankyou", "Liran1", "13", "bla","Store 2", cart ));
-            orderList.add(new Order( "02/06/2022", "12:00", "00:38", "05/06/2022", "thankyou", "Dean2", "14", "bla","Store 1", cart ));
-            orderList.add(new Order( "01/06/2022", "12:00", "12:00", "05/06/2022", "thankyou", "Liran2", "15", "bla","Store 2", cart ));
+            orderList.add(new OrderClient( "05/06/2022", "12:00", "16:00", "06/06/2022", "thankyou", "Dean1", "12", "bla","Store 1", cart ));
+            orderList.add(new OrderClient( "03/06/2022", "12:00", "02:00", "05/06/2022", "thankyou", "Liran1", "13", "bla","Store 2", cart ));
+            orderList.add(new OrderClient( "02/06/2022", "12:00", "00:38", "05/06/2022", "thankyou", "Dean2", "14", "bla","Store 1", cart ));
+            orderList.add(new OrderClient( "01/06/2022", "12:00", "12:00", "05/06/2022", "thankyou", "Liran2", "15", "bla","Store 2", cart ));
             for(int i=0; i<20; i++){
-                orderList.add(new Order( "Sunday"+i, "12:0"+i, "13:0"+i, "Sunday"+i, "thankyou"+i, "Dean"+i, "1"+i, "bla"+i,"Store 1", cart ));
+                orderList.add(new OrderClient( "Sunday"+i, "12:0"+i, "13:0"+i, "Sunday"+i, "thankyou"+i, "Dean"+i, "1"+i, "bla"+i,"Store 1", cart ));
             }
 //            orderList.add(new Order( "05/06/2022", "12:00", "16:00", "06/06/2022", "thankyou", "Dean", "1", "bla","Store 1", cart ));
 //            orderList.add(new Order( "03/06/2022", "12:00", "02:00", "05/06/2022", "thankyou", "Dean", "1", "bla","Store 1", cart ));
@@ -59,11 +59,11 @@ public class UserClient {
 //            orderList.add(new Order( "01/06/2022", "12:00", "12:00", "05/06/2022", "thankyou", "Dean", "1", "bla","Store 1", cart ));
         }
         {
-            complaintList.add(new Complaint(orderList.get(0), "bad flowers","02/06/2022", "12:00"));
-            complaintList.add(new Complaint(orderList.get(1), "bad flowers","02/06/2022", "13:00"));
-            complaintList.add(new Complaint(orderList.get(2), "bad flowers","02/06/2022", "13:30"));
-            complaintList.add(new Complaint(orderList.get(3), "bad flowers","03/06/2022", "18:00"));
-            complaintList.add(new Complaint(orderList.get(4), "bad flowers","03/06/2022", "17:30"));
+            complaintList.add(new ComplaintClient(orderList.get(0), "bad flowers","02/06/2022", "12:00"));
+            complaintList.add(new ComplaintClient(orderList.get(1), "bad flowers","02/06/2022", "13:00"));
+            complaintList.add(new ComplaintClient(orderList.get(2), "bad flowers","02/06/2022", "13:30"));
+            complaintList.add(new ComplaintClient(orderList.get(3), "bad flowers","03/06/2022", "18:00"));
+            complaintList.add(new ComplaintClient(orderList.get(4), "bad flowers","03/06/2022", "17:30"));
         }
     }
 
@@ -122,19 +122,19 @@ public class UserClient {
         return position;
     }
 
-    public ObservableList<Order> getOrderList() {
+    public ObservableList<OrderClient> getOrderList() {
         return orderList;
     }
 
-    public void setOrderList(ObservableList<Order> orderList) {
+    public void setOrderList(ObservableList<OrderClient> orderList) {
         this.orderList = orderList;
     }
 
-    public ObservableList<Complaint> getComplaintList() {
+    public ObservableList<ComplaintClient> getComplaintList() {
         return complaintList;
     }
 
-    public void setComplaintList(ObservableList<Complaint> complaintList) {
+    public void setComplaintList(ObservableList<ComplaintClient> complaintList) {
         this.complaintList = complaintList;
     }
 
@@ -252,8 +252,8 @@ public class UserClient {
 
 
 
-    public Order getOrderById(int id){
-        Order order;
+    public OrderClient getOrderById(int id){
+        OrderClient order;
         for(int i=0; i< orderList.size(); i++){
             order = orderList.get(i);
             if(order.getThis_id() == id){
@@ -263,8 +263,8 @@ public class UserClient {
         return null;
     }
 
-    public Complaint getComplaintById(int id){
-        Complaint complaint;
+    public ComplaintClient getComplaintById(int id){
+        ComplaintClient complaint;
         for(int i=0; i< complaintList.size(); i++){
             complaint = complaintList.get(i);
             if(complaint.getThis_id() == id){

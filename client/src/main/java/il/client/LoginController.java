@@ -1,7 +1,7 @@
 package il.client;
 
+import il.client.control.LogInControl;
 import il.client.events.LoginEvent;
-import il.entities.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;

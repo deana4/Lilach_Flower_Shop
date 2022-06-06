@@ -1,6 +1,6 @@
 package il.client;
 
-import il.client.DiffClasses.Complaint;
+import il.client.DiffClasses.ComplaintClient;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
@@ -20,8 +20,6 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class ComplainHandlerController {
@@ -74,9 +72,9 @@ public class ComplainHandlerController {
     @FXML
     private MFXButton viewOrderBTN;
 
-    private Order order;
+    private OrderClient order;
 
-    private Complaint complaint;
+    private ComplaintClient complaint;
 
     private MyAccountController my_account_page_holder;
 
@@ -85,7 +83,7 @@ public class ComplainHandlerController {
     private int clicks_refund = 0;
 
     @FXML
-    void initialize(Complaint complaint, Stage stage) throws ParseException {
+    void initialize(ComplaintClient complaint, Stage stage) throws ParseException {
         this.stage = stage;
         this.setComplaint(complaint);
         this.compalin_id_textarea.setText(Integer.toString(complaint.getThis_id()));
@@ -292,19 +290,19 @@ public class ComplainHandlerController {
         this.submitBTN = submitBTN;
     }
 
-    public Order getOrder() {
+    public OrderClient getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(OrderClient order) {
         this.order = order;
     }
 
-    public Complaint getComplaint() {
+    public ComplaintClient getComplaint() {
         return complaint;
     }
 
-    public void setComplaint(Complaint complaint) {
+    public void setComplaint(ComplaintClient complaint) {
         this.complaint = complaint;
     }
 

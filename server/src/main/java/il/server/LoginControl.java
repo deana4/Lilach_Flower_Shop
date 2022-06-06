@@ -13,9 +13,8 @@ public class LoginControl {
     public static Message checkLogin(String userName, String pass, boolean isWorker) {
         Message message = new Message("result login");
         message.setWorker(isWorker);
-
         if (isWorker) {
-            List<Employee> lEmp = RegisterControl.getAllItems(Employee.class);
+            List<Employee> lEmp = SimpleServer.getAllItems(Employee.class);
             for (Employee employee : lEmp) {
                 if (employee.getUsername().equals(userName)) {
                     if (employee.getPassword().equals(pass)) {
@@ -39,16 +38,16 @@ public class LoginControl {
 
                         switch (employee.getPermission()){
                             case 1://system admin send all information
-                                message.setListComplains(ComplainConrtol.getAllOpenComplaint());
-                                message.setListOrder(OrderControl.getAllOrder());
+                                message.setListComplains(ComplainConrtol.getAllnComplaint(SimpleServer.getAllItems(Complain.class)));
+                                message.setListOrder(OrderControl.getAllOrder(SimpleServer.getAllItems(Order.class)));
                                 //users
                                 //employees
                                 //stores
                                 //report
                                 break;
                             case 2://networkmaneger
-                                message.setListComplains(ComplainConrtol.getAllOpenComplaint());
-                                message.setListOrder(OrderControl.getAllOrder());
+                                message.setListComplains(ComplainConrtol.getAllnComplaint(SimpleServer.getAllItems(Complain.class)));
+                                message.setListOrder(OrderControl.getAllOrder(SimpleServer.getAllItems(Order.class)));
                                 //report
                                 break;
                             case 3:
@@ -57,19 +56,16 @@ public class LoginControl {
                                 message.setStoreID(branchManager.getStore().getId());
                                 break;
                             case 4:
-                                message.setListComplains(ComplainConrtol.getAllOpenComplaint());
-                                message.setListOrder(OrderControl.getAllOrder());
+                                message.setListComplains(ComplainConrtol.getAllOpenComplaint(SimpleServer.getAllItems(Complain.class)));
+//                                message.setListOrder(OrderControl.getAllOrder(SimpleServer.getAllItems(Order.class)));
                                 break;
                             case 5:
                                 storeEmployee = (StoreEmployee) employee;
                                 message.setStoreID(storeEmployee.getStore().getId());
                                 break;
                         }
-
-
-                        message.setListComplains(ComplainConrtol.getAllOpenComplaint());
-                        message.setListOrder(OrderControl.getAllOrder());
-
+//                        message.setListComplains(ComplainConrtol.getAllOpenComplaint());
+//                        message.setListOrder(OrderControl.getAllOrder());
                         return message;
 
                     } else {
@@ -81,7 +77,7 @@ public class LoginControl {
             }
         }
         else {
-            List<User> lUsers = RegisterControl.getAllItems(User.class);
+            List<User> lUsers = SimpleServer.getAllItems(User.class);
             for (User user : lUsers) {
                 if (user.getUserName().equals(userName)) {
                     if (user.getPassword().equals(pass)) {
@@ -97,12 +93,11 @@ public class LoginControl {
                         message.setWorker(false);
 
                         testDB.openSession();
-                        message.setUser(user.getUserForClien());
                         user = testDB.session.get(User.class, user.getId());
+                        message.setUser(user.getUserForClien());
                         message.setListOrder(user.getOrdersForClient());
                         message.setListComplains(user.getComplainsForClient());
                         message.setListStors(user.getStoresForClient());
-
                         testDB.closeSession();
                         return message;
 

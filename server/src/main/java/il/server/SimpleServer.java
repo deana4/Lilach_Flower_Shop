@@ -29,8 +29,20 @@ public class SimpleServer extends AbstractServer {
         this.close();
     }
 
+    private <T, S> LinkedList<T> getAllItemsByKey(Class<T> object, String colum,S key){
+        testDB.openSession();
+        CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(object);
+        Root<T> root = query.from(object);
+        query.select(root);
+        query.where(builder.equal(root.get(colum),key));
+        List<T> data = testDB.session.createQuery(query).getResultList();
+        LinkedList<T> listItems = new LinkedList<>(data);
+        testDB.closeSession();
+        return listItems;
+    }
 
-    public static <T> List<T> getAllItems(Class<T> object){
+    public static <T> LinkedList<T> getAllItems(Class<T> object){
         testDB.openSession();
         CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery(object);
@@ -40,6 +52,8 @@ public class SimpleServer extends AbstractServer {
         testDB.closeSession();
         return listItems;
     }
+
+
 
     @Override
     protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
@@ -58,8 +72,8 @@ public class SimpleServer extends AbstractServer {
 
             if (message.getMessage().equals("getCatalogItems")) {
                 sendMessage.setMessage("item catalog list");
-                sendMessage.setListItem((LinkedList<Product>) CatalogControl.getAllItems());
-                List<Store> stores = SimpleServer.getAllItems(Store.class);
+                sendMessage.setListItem(getAllItems(Product.class));
+                List<Store> stores = getAllItems(Store.class);
                 LinkedList<Store> newStores= new LinkedList<>();
                 for(Store s : stores)
                     newStores.add(s.getStoreForClient());
@@ -70,7 +84,7 @@ public class SimpleServer extends AbstractServer {
 
             if (message.getMessage().equals("getStore")) {
                 sendMessage.setMessage("item store list");
-                sendMessage.setStores(RegisterControl.getAllItems(Store.class));
+                sendMessage.setStores(getAllItems(Store.class));
                 client.sendToClient(sendMessage);
                 System.out.println("send stores to client");
             }
@@ -177,7 +191,6 @@ public class SimpleServer extends AbstractServer {
             if (message.getMessage().equals("setMail")) {
                 UserControl.setName(message.getUserID(), message.getMail(), message.isWorker());
             }
-
 
 
             } catch(IOException e){

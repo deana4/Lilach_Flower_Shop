@@ -5,10 +5,41 @@ import il.entities.*;
 import java.util.LinkedList;
 
 public class LoginEvent {
-
-
     private LinkedList<Complain> complainList=null;
     private LinkedList<Order> orderList=null;
+    private LinkedList<Store>  storeList=null;
+    private int storeId;
+    private int id;
+    private boolean isWorker;
+    private String username;
+    private int permission;
+    private boolean loginStatus;
+    private String result;
+    private User user;
+
+    public LoginEvent(boolean status, String result){
+        this.loginStatus = status;
+        this.result = result;
+    }
+
+    public LoginEvent(boolean statsu, User user, LinkedList<Complain> complains, LinkedList<Order> orders, LinkedList<Store> stores){
+        this.loginStatus = statsu;
+        this.storeList = stores;
+        this.orderList = orders;
+        this.complainList = complains;
+        this.user = user;
+        this.username = user.getUserName();
+        this.isWorker = false;
+    }
+
+
+    public LoginEvent(String username, int permission){
+        this.loginStatus = true;
+        this.isWorker = true;
+        this.username = username;
+        this.permission = permission;
+    }
+
 
     public int getStoreId() {
         return storeId;
@@ -17,10 +48,6 @@ public class LoginEvent {
     public void setStoreId(int storeId) {
         this.storeId = storeId;
     }
-
-    private int storeId;
-
-    private int id;
 
     public boolean isWorker() {
         return isWorker;
@@ -46,13 +73,6 @@ public class LoginEvent {
         this.permission = permission;
     }
 
-    private boolean isWorker;
-
-    private String username;
-    private int permission;
-
-
-    private boolean loginStatus;
 
     public boolean isLoginStatus() {
         return loginStatus;
@@ -70,7 +90,6 @@ public class LoginEvent {
         this.result = result;
     }
 
-    private String result;
 
     public int getId() {
         return id;
@@ -111,32 +130,5 @@ public class LoginEvent {
     public void setUser(User user) {
         this.user = user;
     }
-
-    private LinkedList<Store>  storeList=null;
-    private User user;
-
-    public LoginEvent(boolean status, String result){
-        this.loginStatus = status;
-        this.result = result;
-    }
-
-    public LoginEvent(boolean statsu, User user, LinkedList<Complain> complains, LinkedList<Order> orders, LinkedList<Store> stores){
-        this.loginStatus = statsu;
-        this.storeList = stores;
-        this.orderList = orders;
-        this.complainList = complains;
-        this.user = user;
-        this.username = user.getUserName();
-        this.isWorker = false;
-    }
-
-
-    public LoginEvent(String username, int permission){
-        this.loginStatus = true;
-        this.isWorker = true;
-        this.username = username;
-        this.permission = permission;
-    }
-
 
 }

@@ -10,21 +10,11 @@ import java.util.List;
 
 public class RegisterControl {
 
-    public static<T> List<T> getAllItems(Class<T> object){
-        testDB.openSession();
-        CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
-        CriteriaQuery<T> query = builder.createQuery(object);
-        Root<T> root = query.from(object);
-        List<T> data = testDB.session.createQuery(query.orderBy()).getResultList();
-        LinkedList<T> listItems = new LinkedList<>(data);
-        testDB.closeSession();
-        return listItems;
-    }
 
 
 
     public static String checknewUser(User newUser){
-        List<User> lUsers = getAllItems(User.class);
+        List<User> lUsers = SimpleServer.getAllItems(User.class);
 //        compare_name c = new compare_name();
 //        int result = Collections.binarySearch(lUsers,newUser, c.comparename());
         for (User user: lUsers){

@@ -31,16 +31,6 @@ public class CatalogControl {
         }
     }
 
-    public static List<Product> getAllItems(){
-        testDB.openSession();
-        CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
-        CriteriaQuery<Product> query = builder.createQuery(Product.class);
-        query.from(Product.class);
-        List<Product> data = testDB.session.createQuery(query).getResultList();
-        LinkedList<Product> listItems = new LinkedList<Product>(data);
-        testDB.closeSession();
-        return listItems;
-    }
 
     public static void setPrice(int id, double newPrice) throws IOException {
         testDB.openSession();

@@ -181,6 +181,22 @@ public class testDB {
         o.getProducts().get(0).decAmount();
         o.getProducts().get(0).decAmount();
 
+        Complain c1 = new Complain("complaint test", "14/07/2022");
+        Complain c2 = new Complain("complaint test", "15/07/2022");
+        Complain c3 = new Complain("complaint test", "15/08/2022");
+        testDB.session.save(c1);
+        testDB.session.save(c2);
+        testDB.session.save(c3);
+
+        store.addComplain(c1);
+        u1.addComplain(c1);
+
+        store.addComplain(c2);
+        u2.addComplain(c2);
+
+        store2.addComplain(c3);
+        u3.addComplain(c3);
+
         session.flush();
     }
 
@@ -243,7 +259,7 @@ public class testDB {
             generateItems();
             session.getTransaction().commit(); // Save everything.
             closeSession();
-            List<Product> products = CatalogControl.getAllItems();
+            List<Product> products = SimpleServer.getAllItems(Product.class);
             openSession();
             generateStores(products);
             session.getTransaction().commit(); // Save everything.

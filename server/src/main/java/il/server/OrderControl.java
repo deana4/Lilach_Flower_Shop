@@ -4,9 +4,7 @@ import il.entities.*;
 
 import java.io.IOException;
 import java.util.LinkedList;
-import java.util.List;
 
-import static il.server.SimpleServer.getAllItems;
 
 public class OrderControl {
 
@@ -86,9 +84,8 @@ public class OrderControl {
         testDB.closeSession();
     }
 
-    public static LinkedList<Order> getAllOrder(){
+    public static LinkedList<Order> getAllOrder(LinkedList<Order> orders){
         LinkedList<Order> c = new LinkedList<>();
-        List<Order> orders = getAllItems(Order.class);
         for(Order order : orders){
             c.add(order.getOrderForClient());
         }

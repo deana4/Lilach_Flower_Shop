@@ -32,7 +32,6 @@ public class ComplainConrtol{
     }
 
     public static void complainAnswer(String answer, double refund, int complainID) throws IOException {
-        double amount=0;
         System.out.println("answer to complain "+ complainID);
         testDB.openSession();
         Complain complain = testDB.session.get(Complain.class, complainID);
@@ -42,14 +41,13 @@ public class ComplainConrtol{
         else{
             User user = complain.getUser();
             if(refund>0)
-                amount = (refund/100)*complain.getOrder().getSum();
-            user.setCredit(user.getCredit() + amount);
+            user.setCredit(user.getCredit() + refund);
             complain.setAnswer_text(answer);
             complain.setRefund(refund);
             complain.setStatus(false);
             testDB.session.flush();
             testDB.session.getTransaction().commit(); // Save everything.
-            sendmail(complainID, createAnswer(complainID ,amount));
+            sendmail(complainID, createAnswer(complainID ,refund));
         }
         testDB.closeSession();
     }

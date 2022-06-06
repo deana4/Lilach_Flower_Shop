@@ -1,8 +1,5 @@
 package il.client;
 
-
-
-
 import il.client.events.*;
 import il.client.ocsf.AbstractClient;
 import il.entities.Product;
@@ -26,13 +23,29 @@ public class SimpleClient extends AbstractClient {
 
 
 		if(message.getMessage().equals("item catalog list")){
-			System.out.println("get Flower object!");
-			List<Product> items = message.getListItem();
-			EventBus.getDefault().post(new CatalogItemsEvent(items));
+			System.out.println("get init data");
+			EventBus.getDefault().post(new CatalogItemsEvent(message.getListItem(), message.getListStors()));
 		}
 
 		if(message.getMessage().equals("result login")){
-			EventBus.getDefault().post(new LoginEvent(message.isLoginStatus(), message.getLoginResult(), message.getUsername()));
+			LoginEvent eventlogIN = null;
+			if(!message.isLoginStatus())
+				EventBus.getDefault().post(new LoginEvent(false, message.getLoginResult()));
+			else{
+				if(!message.isWorker()){//user
+					eventlogIN = new LoginEvent(true, message.getUser(), message.getListComplains(), message.getListOrder(), message.getListStors());
+					eventlogIN.setId(message.getUser().getId());
+					if(message.getPermision()==3 || message.getPermision()==5)
+						eventlogIN.setStoreId(message.getStoreID());
+				}
+				else{//worker
+					eventlogIN = new LoginEvent(message.getUsername(), message.getPermision());
+					eventlogIN.setId(message.getIddatabase());
+					eventlogIN.setOrderList(message.getListOrder());
+					eventlogIN.setComplainList(message.getListComplains());
+				}
+				EventBus.getDefault().post(eventlogIN);
+			}
 		}
 
 		if(message.getMessage().equals("result register")){

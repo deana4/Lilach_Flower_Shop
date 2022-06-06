@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@SuppressWarnings("serial")
 @Entity
 @Table(name="stores")
 public class Store implements Serializable {
@@ -32,6 +34,12 @@ public class Store implements Serializable {
 
 
     public Store() {}
+
+    public Store getStoreForClient(){
+        Store s = new Store(this.address);
+        s.setId(this.id);
+        return s;
+    }
 
     public Store(String address) {
         this.address = address;

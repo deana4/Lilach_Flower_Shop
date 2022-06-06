@@ -5,7 +5,7 @@ package il.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
+@SuppressWarnings("serial")
 @Entity
 @Table(name="employee")
 public abstract class Employee implements Serializable{
@@ -31,6 +31,12 @@ public abstract class Employee implements Serializable{
         this.login=false;
 
 //        this.permission = permission; // 1:= system admin, 2:= store wide manager 3:= shop manager, 4:= service employee, 5: shop employee
+    }
+
+    public Employee(String name, String username, int permission){
+        this.name = name;
+        this.username = username;
+        this.permission = permission;
     }
 
     /* gets and sets*/

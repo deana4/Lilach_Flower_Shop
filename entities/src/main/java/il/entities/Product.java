@@ -3,6 +3,8 @@ package il.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 
+
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "products")
 public class Product implements Serializable {
@@ -62,7 +64,7 @@ public class Product implements Serializable {
     public void setSale(boolean sale) {
         this.sale = sale;
         if(sale==false)
-            this.discount_perc=0;
+            this.discount_perc=100;
     }
 
     public double getPrice() {
@@ -112,5 +114,11 @@ public class Product implements Serializable {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public double getSalePrice(){
+        if(!this.sale)
+            return this.price;
+        return this.price*(this.discount_perc/100);
     }
 }

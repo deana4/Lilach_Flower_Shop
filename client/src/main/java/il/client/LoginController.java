@@ -2,6 +2,10 @@ package il.client;
 
 import il.client.controls.LogInControl;
 import il.client.events.LoginEvent;
+import il.entities.Complain;
+import il.entities.Order;
+import il.entities.Store;
+import il.entities.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -17,6 +21,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class LoginController extends ParentClass{
 
@@ -34,25 +39,54 @@ public class LoginController extends ParentClass{
 
     private MainPageController main_page_holder;
 
-    private boolean isWorker;
+
 
     private static boolean correctLogin;
 
     private int loginTries = 1;
+
+    public static LinkedList<Complain> complains;
+    public static LinkedList<Order> orders;
+    public static LinkedList<Store> stores;
+    public static User user;
+    public static int permission;
+    public static int idConnected;
+    public static String username;
+    public static boolean isWorker;
+    public int storeIDWork;
 
 
 
     @Subscribe
     public void compliteLogin(LoginEvent event){
         Platform.runLater(()->{
-            correctLogin = event.getStatus();
+            correctLogin = event.isLoginStatus();
             if(correctLogin){
                  //get this data from the server by sending the User Entity to this function
                 //goto var which represent the login option on the Main Controller and change it to 1.
                 //change Main Controller AnchorPane to Catalog -> "maybe return to the last page the client was inside"
                 MainPageController.LoginName = event.getUsername();
                 MainPageController.isLogin = true;
-                UserClient.getInstance().setPriority(2);
+                isWorker = event.isWorker();
+                if(event.isWorker()){
+                    permission = event.getPermission();
+                    idConnected = event.getId();
+                    username = event.getUsername();
+                    orders = event.getOrderList();
+                    complains = event.getComplainList();
+                    storeIDWork = event.getStoreId();
+                }
+                else{
+                    user = event.getUser();
+                    complains = event.getComplainList();
+                    orders = event.getOrderList();
+                    stores = event.getStoreList();
+                    username = user.getUserName();
+                    idConnected = user.getId();
+                }
+
+                //set priority UserClient.getInstance()
+
                 try {
                     MainPageController.getInstance().CatalogRefresh(); //Catalog, MyAccount, Cart
                 } catch (IOException e) {

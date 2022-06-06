@@ -1,6 +1,7 @@
 package il.client.events;
 
 import il.entities.Product;
+import il.entities.Store;
 
 import java.util.List;
 
@@ -14,7 +15,18 @@ public class CatalogItemsEvent {
     }
 
     private List<Product> items;
-    public CatalogItemsEvent(List<Product> items){
+
+    public List<Store> getStores() {
+        return stores;
+    }
+
+    public void setStores(List<Store> stores) {
+        this.stores = stores;
+    }
+
+    private List<Store> stores;
+    public CatalogItemsEvent(List<Product> items, List<Store> stores){
         this.items = items;
+        this.stores = stores;
     }
 }

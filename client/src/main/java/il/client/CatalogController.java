@@ -1,8 +1,12 @@
 package il.client;
 
 import il.client.controls.CatalogControl;
+import il.client.controls.ComplainConrtol;
+import il.client.controls.OrderControl;
+import il.client.controls.CatalogControl;
 import il.client.events.CatalogItemsEvent;
 import il.entities.Product;
+import il.entities.Store;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -252,8 +256,6 @@ public class CatalogController extends ParentClass{
     public AnchorPane getCatalog_main_anchorpane() {
         return catalog_main_anchorpane;
     }
-
-
 
     public void setMain_page_holder(MainPageController main_page_holder) {
         this.main_page_holder = main_page_holder;

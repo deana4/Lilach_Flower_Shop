@@ -3,8 +3,10 @@ package il.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="orders")
 public class Order implements Serializable {
@@ -18,21 +20,12 @@ public class Order implements Serializable {
     @ManyToOne
     private Store store;
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
-//    private List<CartProduct> products;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", orphanRemoval = true)
+    private List<CartProduct> products;
 
 
-//
-//    @ElementCollection
-//    @CollectionTable(name = "order_item_mapping",
-//            joinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "id")})
-//    @MapKeyColumn(name = "item_name")
-//    @Column(name = "price")
-//    HashMap<Integer, Integer> orderD;
-
-    @OneToOne
+    @OneToOne(orphanRemoval = true)
     private Complain complain;
-
 
     private String dateReceive;
     private String timeReceive;
@@ -43,8 +36,11 @@ public class Order implements Serializable {
     private String nameReceives;
     private String phoneReceives;
     private String address;
+    private int status; //1- cancel ,2-delivered, 3-pending
+    private String type;
 
-    public Order(User user,Store store, String dateReceive, String timeReceive, String dateOrder, String timeOrder, double sum, String greeting, String nameReceives, String phoneReceives, String address) {
+
+    public Order(User user, Store store, String dateReceive, String timeReceive, String dateOrder, String timeOrder, double sum, String greeting, String nameReceives, String phoneReceives, String address) {
         this.user = user;
         this.store = store;
         this.dateReceive = dateReceive;
@@ -56,30 +52,75 @@ public class Order implements Serializable {
         this.nameReceives = nameReceives;
         this.phoneReceives = phoneReceives;
         this.address = address;
-//        this.orderD = new HashMap<Integer, Integer>();
+        this.status=3;
+        this.products = new ArrayList<CartProduct>();
     }
 
     public Order() {
 
     }
-//
-//    public Order() {}
-//
-//    public void addProduct(CartProduct product){
-//        this.products.add(product);
-//        product.setOrder(this);
-//    }
-//
-//    public void removeProduct(CartProduct product){
-//        this.products.remove(product);
-//    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Order getOrderForClient(){
+        Order o = new Order(null, null, this.dateReceive, this.timeReceive, this.dateOrder, this.timeOrder, this.sum, this.greeting, this.nameReceives, this.phoneReceives, this.address);
+        o.setId(this.id);
+        for(CartProduct p : this.products){
+            o.addProduct(p);
+            if(this.complain!=null)
+                o.setComplain(this.complain.getComplainForClient());
+        }
+
+        return o;
+    }
+
+    public String getPhoneReceives() {
+        return phoneReceives;
+    }
+
+    public void setPhoneReceives(String phoneReceives) {
+        this.phoneReceives = phoneReceives;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public List<CartProduct> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<CartProduct> products) {
+        this.products = products;
+    }
+
+    public void addProduct(CartProduct product){
+        this.products.add(product);
+        product.setOrder(this);
+        this.sum+=product.getTotalPrice();
+    }
+
+    public void removeProduct(CartProduct product){
+        this.products.remove(product);
+        this.sum-=product.getTotalPrice();
+    }
 
 
-//    public HashMap<Integer, Integer> getOrderD() {
+//    public HashMap<Product, Integer> getOrderD() {
 //        return orderD;
 //    }
 //
-//    public void setOrderD(HashMap<Integer, Integer> orderD) {
+//    public void setOrderD(HashMap<Product, Integer> orderD) {
 //        this.orderD = orderD;
 //    }
 
@@ -185,6 +226,7 @@ public class Order implements Serializable {
 
     public void setComplain(Complain complain) {
         this.complain = complain;
+        complain.setOrder(this);
     }
 
 }

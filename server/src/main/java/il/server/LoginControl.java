@@ -1,66 +1,139 @@
 package il.server;
 
-import il.entities.Employee;
-import il.entities.User;
+import il.entities.*;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
 
 public class LoginControl {
-    public static String checkLogin(String userName, String pass, boolean isWorker) {
-        String result = "";
+
+    public static Message checkLogin(String userName, String pass, boolean isWorker) {
+        Message message = new Message("result login");
+        message.setWorker(isWorker);
+
         if (isWorker) {
             List<Employee> lEmp = RegisterControl.getAllItems(Employee.class);
             for (Employee employee : lEmp) {
                 if (employee.getUsername().equals(userName)) {
                     if (employee.getPassword().equals(pass)) {
                         if (employee.isLogin()) {
-                            result = "this user already sighing from another device!";
-                            return result;
+                            message.setLoginResult("this user already sighing from another device!");
+                            message.setLoginStatus(false);
+                            return message;
                         }
+
+                        //employee
                         setToActiveEmp(employee.getId());
+                        message.setLoginStatus(true);
+                        message.setWorker(true);
+                        message.setUsername(employee.getUsername());
+                        message.setName(employee.getName());
+                        message.setIddatabase(employee.getId());
+                        message.setPermision(employee.getPermission());
+
+                        StoreEmployee storeEmployee;
+                        BranchManager branchManager;
+
+                        switch (employee.getPermission()){
+                            case 1://system admin send all information
+                                message.setListComplains(ComplainConrtol.getAllOpenComplaint());
+                                message.setListOrder(OrderControl.getAllOrder());
+                                //users
+                                //employees
+                                //stores
+                                //report
+                                break;
+                            case 2://networkmaneger
+                                message.setListComplains(ComplainConrtol.getAllOpenComplaint());
+                                message.setListOrder(OrderControl.getAllOrder());
+                                //report
+                                break;
+                            case 3:
+                                //report
+                                branchManager = (BranchManager) employee;
+                                message.setStoreID(branchManager.getStore().getId());
+                                break;
+                            case 4:
+                                message.setListComplains(ComplainConrtol.getAllOpenComplaint());
+                                message.setListOrder(OrderControl.getAllOrder());
+                                break;
+                            case 5:
+                                storeEmployee = (StoreEmployee) employee;
+                                message.setStoreID(storeEmployee.getStore().getId());
+                                break;
+                        }
+
+
+                        message.setListComplains(ComplainConrtol.getAllOpenComplaint());
+                        message.setListOrder(OrderControl.getAllOrder());
+
+                        return message;
+
                     } else {
-                        result = "incorrect password!";
+                        message.setLoginResult("incorrect password!");
+                        message.setLoginStatus(false);
+                        return message;
                     }
-                    return result;
                 }
             }
         }
         else {
             List<User> lUsers = RegisterControl.getAllItems(User.class);
-
             for (User user : lUsers) {
                 if (user.getUserName().equals(userName)) {
                     if (user.getPassword().equals(pass)) {
                         if (user.isLogin()) {
-                            result = "this user already sighing from another device!";
-                            return result;
+                            message.setLoginResult("this user already sighing from another device!");
+                            message.setLoginStatus(false);
+                            return message;
                         }
+
+                        //user
                         setToActiveUser(user.getId());
+                        message.setLoginStatus(true);
+                        message.setWorker(false);
+
+                        testDB.openSession();
+                        message.setUser(user.getUserForClien());
+                        user = testDB.session.get(User.class, user.getId());
+                        message.setListOrder(user.getOrdersForClient());
+                        message.setListComplains(user.getComplainsForClient());
+                        message.setListStors(user.getStoresForClient());
+
+                        testDB.closeSession();
+                        return message;
+
                     } else {
-                        result = "incorrect password!";
+                        message.setLoginResult("incorrect password!");
+                        message.setLoginStatus(false);
+                        return message;
                     }
-                    return result;
                 }
             }
-            result = "username does not exist!";
         }
-        return result;
+        message.setLoginResult("username does not exist!");
+        message.setLoginStatus(false);
+        testDB.closeSession();
+        return message;
     }
 
 
 
+
     private static void setToActiveUser(int idUser){
-        testDB.openSssion();
+        testDB.openSession();
         User user = testDB.session.get(User.class, idUser);
         user.setLogin(true);
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
     }
+
     private static void setToActiveEmp(int idUser){
-        testDB.openSssion();
+        testDB.openSession();
         Employee e = testDB.session.get(Employee.class, idUser);
         e.setLogin(true);
         testDB.session.flush();
@@ -69,7 +142,7 @@ public class LoginControl {
     }
 
     public static void setToDiactiveU(int id){
-        testDB.openSssion();
+        testDB.openSession();
         User a = testDB.session.get(User.class, id);
         a.setLogin(false);
         testDB.session.flush();
@@ -78,7 +151,7 @@ public class LoginControl {
     }
 
     public static void setToDiactiveEmp(int id){
-        testDB.openSssion();
+        testDB.openSession();
         Employee a = testDB.session.get(Employee.class, id);
         a.setLogin(false);
         testDB.session.flush();

@@ -5,4 +5,5 @@ module il.server {
     requires java.naming;
     requires json;
     requires il.client;
+    requires java.mail;
 }

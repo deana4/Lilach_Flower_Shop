@@ -4,11 +4,18 @@ package il.entities;
 
 
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.boot.cfgxml.spi.MappingReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+
+@SuppressWarnings("serial")
 @Entity
 //@Inheritance(strategy = InheritanceType.JOINED) // not must
 public class User implements Serializable {
@@ -27,23 +34,81 @@ public class User implements Serializable {
     private String mail;
     private String expiryDate;
     private String identifyNumbers;
+    private String address;
     private double discount;
     private int accountStatus;
     private boolean login;
-    private int priority;
+    private String priority;
 
 
     @OneToMany (mappedBy = "user")
     private List<Order> listOrders;
 
-    @OneToMany(mappedBy = "complain_user")
+    @OneToMany(mappedBy = "user")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Complain> listComplains;
+
+
 
     @ManyToMany
     private List<Store> liststore;
 
 
 
+    public LinkedList<Order> getOrdersForClient(){
+        List<Order> orders = this.getListOrders();
+        LinkedList<Order> newOrders = new LinkedList<>();
+        for(Order o : orders)
+            newOrders.add(o.getOrderForClient());
+        return newOrders;
+    }
+
+    public LinkedList<Complain> getComplainsForClient(){
+        List<Complain> complains = this.getListComplains();
+        LinkedList<Complain> newComplains = new LinkedList<>();
+        for(Complain o : complains)
+            newComplains.add(o.getComplainForClient());
+        return newComplains;
+    }
+
+    public LinkedList<Store> getStoresForClient(){
+        List<Store> stores = this.getListstore();
+        LinkedList<Store> newStores = new LinkedList<>();
+        for(Store o : stores)
+            newStores.add(o.getStoreForClient());
+        return newStores;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public void setListOrders(List<Order> listOrders) {
+        this.listOrders = listOrders;
+    }
+
+    public void setListComplains(List<Complain> listComplains) {
+        this.listComplains = listComplains;
+    }
+
+    public List<Store> getListstore() {
+        return liststore;
+    }
+
+    public void setListstore(List<Store> liststore) {
+        this.liststore = liststore;
+    }
     public int getAccountStatus() {
         return accountStatus;
     }
@@ -63,12 +128,11 @@ public class User implements Serializable {
     public int getId() {
         return id;
     }
-    public User(String userName, String password, String creditCard, String position, String name, String identifyNumbers) {
+    public User(String userName, String password, String creditCard, String priority, String name, String identifyNumbers) {
         this.userName = userName;
         this.password = password;
         this.creditCard = creditCard;
         this.credit = 0;
-        this.position = position;
         this.name = name;
         this.identifyNumbers = identifyNumbers;
         this.accountStatus=1;
@@ -76,14 +140,35 @@ public class User implements Serializable {
         this.listOrders = new ArrayList<Order>();
         this.listComplains = new ArrayList<Complain>();
         this.liststore = new ArrayList<Store>();
-//        this.priority =  priority;
-
-
-//        this.phone = phone;
-//        this.mail = mail;
+        this.address = "";
+        this.priority =  priority;
+        this.phone = "";
+        this.mail = "";
 //        this.expiryDate = expiryDate;
 //        this.discount=discount;
     }
+    public User getUserForClien(){
+        User u = new User(this.userName, "", this.creditCard, this.priority, this.name, this.identifyNumbers);
+        u.setId(this.id);
+        u.setMail(this.mail);
+        u.setCredit(this.credit);
+        u.setPhone(this.phone);
+        u.setAddress(this.address);
+//        u.setDiscount(this.discount);
+//        u.setExpiryDate(this.expiryDate);
+        return u;
+    }
+
+    public User(int id, String username, String name, String identifyNumbers, String priority, int acountStatus, double credit){
+        this.id = id;
+        this.userName = username;
+        this.name = name;
+        this.identifyNumbers = identifyNumbers;
+        this.priority = priority;
+        this.accountStatus = acountStatus;
+        this.credit = credit;
+    }
+
     public User() {}
 
     public String getUserName() {

@@ -1,9 +1,12 @@
 package il.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+
+@SuppressWarnings("serial")
 public class Message implements Serializable {
     String message;
 
@@ -12,28 +15,103 @@ public class Message implements Serializable {
     }
 
     LinkedList<Product> listItem=null;
-    Product item=null;
-
-    User user=null;
-
-
+    LinkedList<Store> listStors=null;
+    LinkedList<Order> listOrder = null;
+    LinkedList<Complain> listComplains = null;
+    LinkedList<User> listUsers = null;
 
 
     //login/register
     String username;
+    int idUser;
     String id;
     String pass;
     boolean isWorker;
     String credit_card;
     static String plan;
     String name;
+    String phone;
+    String mail;
+    double creadit;
+    String priorty;
 
-    //order
-    int orderID;
+    public String getAddress() {
+        return address;
+    }
 
-    int iddatabase;
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-    static List<Store> stores=null;
+    String address;
+
+
+
+    User user;
+
+
+
+    Employee employee;
+
+
+
+
+    int permision;
+
+    Product product;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getPermision() {
+        return permision;
+    }
+
+    public void setPermision(int permision) {
+        this.permision = permision;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public int getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(int accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
+    int accountStatus;
+
+    public double getCreadit() {
+        return creadit;
+    }
+
+    public void setCreadit(double creadit) {
+        this.creadit = creadit;
+    }
+
+
+
 
     //recive login
     boolean loginStatus;
@@ -53,7 +131,133 @@ public class Message implements Serializable {
     int idItem;
     double newPrice;
 
+    public String getType() {
+        return type;
+    }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    String type;
+    String color;
+
+    //order
+    int orderID;
+    Order order;
+    int storeID;
+    String timeCancel;
+    String dateCancel;
+
+    //complain
+    Complain complain;
+    String answer;
+    double refund;
+    int complainID;
+
+
+
+    int userID;
+
+    int iddatabase;
+
+    static List<Store> stores=null;
+
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public double getRefund() {
+        return refund;
+    }
+
+    public void setRefund(double refund) {
+        this.refund = refund;
+    }
+
+    public int getComplainID() {
+        return complainID;
+    }
+
+    public void setComplainID(int complainID) {
+        this.complainID = complainID;
+    }
+
+    public Complain getComplain() {
+        return complain;
+    }
+
+    public void setComplain(Complain complain) {
+        this.complain = complain;
+    }
+
+    public String getTimeCancel() {
+        return timeCancel;
+    }
+
+    public void setTimeCancel(String timeCancel) {
+        this.timeCancel = timeCancel;
+    }
+
+    public String getDateCancel() {
+        return dateCancel;
+    }
+
+    public void setDateCancel(String dateCancel) {
+        this.dateCancel = dateCancel;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public int getStoreID() {
+        return storeID;
+    }
+
+    public void setStoreID(int storeID) {
+        this.storeID = storeID;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
     public int getOrderID() {
         return orderID;
     }
@@ -214,22 +418,6 @@ public class Message implements Serializable {
         this.listItem = listItem;
     }
 
-    public Product getItem() {
-        return item;
-    }
-
-    public void setItem(Product item) {
-        this.item = item;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public String getId() {
         return id;
     }
@@ -261,6 +449,54 @@ public class Message implements Serializable {
 
     public void setStores(List<Store> stores) {
         this.stores = stores;
+    }
+
+    public LinkedList<Store> getListStors() {
+        return listStors;
+    }
+
+    public void setListStors(LinkedList<Store> listStors) {
+        this.listStors = listStors;
+    }
+
+    public LinkedList<Order> getListOrder() {
+        return listOrder;
+    }
+
+    public void setListOrder(LinkedList<Order> listOrder) {
+        this.listOrder = listOrder;
+    }
+
+    public LinkedList<Complain> getListComplains() {
+        return listComplains;
+    }
+
+    public void setListComplains(LinkedList<Complain> listComplains) {
+        this.listComplains = listComplains;
+    }
+
+    public LinkedList<User> getListUsers() {
+        return listUsers;
+    }
+
+    public void setListUsers(LinkedList<User> listUsers) {
+        this.listUsers = listUsers;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getPriorty() {
+        return priorty;
+    }
+
+    public void setPriorty(String priorty) {
+        this.priorty = priorty;
     }
 
 }

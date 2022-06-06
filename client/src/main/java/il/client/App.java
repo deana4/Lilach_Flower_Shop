@@ -40,6 +40,7 @@ public class App extends Application {
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);
 //            stage.initStyle(StageStyle.UNDECORATED);
+//            test erea
             stage.show();
         }
         catch (Exception e){

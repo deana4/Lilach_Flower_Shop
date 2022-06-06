@@ -6,7 +6,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 
-
+@SuppressWarnings("serial")
 @Entity
 public class StoreEmployee extends Employee implements Serializable {
 

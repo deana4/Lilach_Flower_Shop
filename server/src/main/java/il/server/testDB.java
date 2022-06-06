@@ -9,7 +9,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class testDB {
@@ -21,7 +20,7 @@ public class testDB {
         configuration.addAnnotatedClass(Product.class).addAnnotatedClass(User.class).addAnnotatedClass(Complain.class).addAnnotatedClass(Order.class)
                 .addAnnotatedClass(Employee.class).addAnnotatedClass(Store.class).addAnnotatedClass(SystemAdmin.class)
                 .addAnnotatedClass(StoreEmployee.class).addAnnotatedClass(NetworkManger.class).addAnnotatedClass(CustomerService.class)
-                .addAnnotatedClass(BranchManager.class)
+                .addAnnotatedClass(BranchManager.class).addAnnotatedClass(CartProduct.class);
         ;
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties())
@@ -79,7 +78,7 @@ public class testDB {
         session.flush();
     }
 
-    private static void generateStores(){
+    private static void generateStores(List<Product> products){
         SystemAdmin a = new SystemAdmin("admin admin", "admin", "adminadmin");
         testDB.session.save(a);
         Store store = new Store("Haifa");
@@ -151,10 +150,35 @@ public class testDB {
         store3.addUser(u2);
         store3.addUser(u3);
 
-        Order o = new Order(u1, store, "datarecive", "asas","asas","1212", 100.0,"121212", "21212","", "");
-
-
+        Order o = new Order(u1, store, "orde1", "asas","asas","1212", 100.0,"121212", "21212","", "");
         session.save(o);
+        o.addProduct(new CartProduct(products.get(0), 1));
+        o.addProduct(new CartProduct(products.get(1), 4));
+        o.addProduct(new CartProduct(products.get(4), 2));
+        for(CartProduct p : o.getProducts())
+            session.save(p);
+
+        o = new Order(u2, store2, "order2", "asas","asas","1212", 100.0,"121212", "21212","", "");
+        session.save(o);
+        o.addProduct(new CartProduct(products.get(5), 1));
+        o.addProduct(new CartProduct(products.get(3), 1));
+        o.addProduct(new CartProduct(products.get(1), 3));
+        for(CartProduct p : o.getProducts())
+            session.save(p);
+        o.getProducts().get(1).incAmount();
+        o.getProducts().get(0).decAmount();
+
+
+        o = new Order(u6, store3, "order3", "asas","asas","1212", 100.0,"121212", "21212","", "");
+        session.save(o);
+        o.addProduct(new CartProduct(products.get(5), 4));
+        o.addProduct(new CartProduct(products.get(3), 4));
+        o.addProduct(new CartProduct(products.get(1), 3));
+        for(CartProduct p : o.getProducts())
+            session.save(p);
+        o.getProducts().get(1).decAmount();
+        o.getProducts().get(0).decAmount();
+        o.getProducts().get(0).decAmount();
 
         session.flush();
     }
@@ -197,7 +221,7 @@ public class testDB {
 //        session.getTransaction().commit(); // Save everything.
 //    }
 
-    public static void openSssion(){
+    public static void openSession(){
         try {
             System.out.println("open session to mySQL");
             SessionFactory sessionFactory = getSessionFactory();
@@ -214,10 +238,13 @@ public class testDB {
 
     public static void initMySQL(){
         try {
-            System.out.println("open session to mySQL");
-            openSssion();
+            openSession();
             generateItems();
-            generateStores();
+            session.getTransaction().commit(); // Save everything.
+            closeSession();
+            List<Product> products = CatalogControl.getAllItems();
+            openSession();
+            generateStores(products);
             session.getTransaction().commit(); // Save everything.
             closeSession();
 

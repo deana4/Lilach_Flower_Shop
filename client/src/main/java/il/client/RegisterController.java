@@ -64,10 +64,14 @@ public class RegisterController extends ParentClass{
             this.plan_chooser.getItems().add("Specific Store Member");
             this.plan_chooser.getItems().add("Store Wide Member");
             this.plan_chooser.getItems().add("Yearly Member");
-            this.store_choose.getItems().add("Store 1");
-            this.store_choose.getItems().add("Store 2");
-            this.store_choose.getItems().add("Store 3");
-            this.store_choose.getItems().add("Store 4");
+//            for(int i=0; i<allStores.size(); i++){
+//                this.store_choose.getItems().add(allStores.get(i).getAddress());
+//            }
+
+//            this.store_choose.getItems().add("Store 1");
+//            this.store_choose.getItems().add("Store 2");
+//            this.store_choose.getItems().add("Store 3");
+//            this.store_choose.getItems().add("Store 4");
         }
     }
 

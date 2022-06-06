@@ -1,6 +1,6 @@
 package il.server;
 
-import il.client.UserClient;
+//import il.client.UserClient;
 import il.entities.*;
 import il.server.ocsf.ConnectionToClient;
 import il.server.ocsf.AbstractServer;

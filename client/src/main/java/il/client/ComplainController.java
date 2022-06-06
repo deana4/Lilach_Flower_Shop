@@ -1,5 +1,7 @@
 package il.client;
 
+import il.client.controls.ComplainConrtol;
+import il.entities.Complain;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
@@ -8,6 +10,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ComplainController {
 
@@ -80,8 +84,14 @@ public class ComplainController {
 
     @FXML
     void SendBTNClicked(ActionEvent event) {
-        String complaint = complain_textarea.getText();
+        String complaint_text = complain_textarea.getText();
         //send complaint to server!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date complaintDate = new Date();
+        String strDate = sdf.format(complaintDate);
+
+        Complain new_complaint = new Complain(complaint_text, strDate); //send complaint to server
         complain_ancorpane2.setVisible(false);
         complain_ancorpane3.setVisible(true);
 

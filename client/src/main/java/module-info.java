@@ -7,6 +7,8 @@ module il.client {
     requires MaterialFX;
     requires eventbus;
     requires VirtualizedFX;
+    requires java.sql;
+    requires mysql.connector.java;
 
     opens il.client to javafx.fxml;
     exports il.client;

@@ -138,6 +138,14 @@ public class DetailsChecker {
         return -1; //we dont need to be here
     }
 
+    public int EmptyCheck (String string){
+        if(string.equals("")||string.equals(" ")||string.equals("Empty")){
+            return 0;
+        } else{
+            return 1;
+        }
+    }
+
 
 
 }

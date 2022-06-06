@@ -72,6 +72,14 @@ public class AddProductToCatalogDialogController {
         int ErrorCollector = 0;         //collecting errors throw value checks
         int retValue;
 
+        retValue = detailChecker.EmptyCheck(this.nameText.getText());
+        if(retValue == 0){
+            this.nameText.setPromptText("Empty");
+            ErrorCollector += 1;
+        }
+
+
+
         if(ErrorCollector == 0){
             MainPageController.getInstance().CatalogRefresh();
             this.stage.close();

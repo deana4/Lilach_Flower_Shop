@@ -1,6 +1,7 @@
 package il.client;
 
 import il.client.DiffClasses.ComplaintClient;
+import il.client.controls.ComplainConrtol;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
@@ -148,10 +149,16 @@ public class ComplainHandlerController {
     }
 
     @FXML
-    void SubmitBTNClicked(ActionEvent event) {
+    void SubmitBTNClicked(ActionEvent event) throws IOException {
         this.complain_handler_ancorpane3.setVisible(true);
         this.complain_handler_ancorpane2.setVisible(false);
         //send complaint handle to server
+        double refund = 0.0;
+        if(this.refund_chooser.isSelected()){
+            refund = Double.valueOf(this.refund_filed.getText());
+        }
+
+        ComplainConrtol.complainAnswer(this.answe_textarea.getText(), refund, Integer.valueOf(this.compalin_id_textarea.getText()));
     }
 
     @FXML

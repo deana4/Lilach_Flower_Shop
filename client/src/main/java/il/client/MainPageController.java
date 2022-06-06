@@ -179,16 +179,6 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         }
         {
             fxmlLoader = new FXMLLoader();
-            var = getClass().getResource("Register.fxml");
-            fxmlLoader.setLocation(var);
-            root = fxmlLoader.load();
-            RegisterController controller = fxmlLoader.getController();
-            root_map.put("Register",root);
-            controller_map.put("Register",controller);
-            ((RegisterController)controller_map.get("Register")).setMain_controller(this);
-        }
-        {
-            fxmlLoader = new FXMLLoader();
             var = getClass().getResource("Catalog.fxml");
             fxmlLoader.setLocation(var);
             root = fxmlLoader.load();
@@ -218,6 +208,16 @@ public class MainPageController extends ParentClass {     //This is a singleton 
             root_map.put("Home",root);
             controller_map.put("Home",controller);
             ((HomeController)controller_map.get("Home")).setMain_page_holder(this);
+        }
+        {
+            fxmlLoader = new FXMLLoader();
+            var = getClass().getResource("Register.fxml");
+            fxmlLoader.setLocation(var);
+            root = fxmlLoader.load();
+            RegisterController controller = fxmlLoader.getController();
+            root_map.put("Register",root);
+            controller_map.put("Register",controller);
+            ((RegisterController)controller_map.get("Register")).setMain_controller(this);
         }
 
     }

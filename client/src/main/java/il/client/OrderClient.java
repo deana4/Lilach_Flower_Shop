@@ -1,5 +1,6 @@
 package il.client;
 
+import il.entities.Order;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +22,8 @@ public class OrderClient {
     private String Address;
     private String storeChoosen;
     private double sum;
+    private boolean isDelivery;
+    private String nameOrdering;
 
     @FXML
     private MFXButton complaint;
@@ -30,7 +33,7 @@ public class OrderClient {
 
     private ObservableList<CartItem> order_items = FXCollections.observableArrayList();
 
-    public OrderClient(String orderDate, String orderTime, String orderReceiveTime, String orderReceiveDate, String greeting, String nameReceiver, String phoneReceiver, String address, String store, ObservableList<CartItem> order_items) {
+    public OrderClient(String orderDate, String orderTime, String orderReceiveTime, String orderReceiveDate, String greeting, String nameReceiver, String phoneReceiver, String address, String store, ObservableList<CartItem> order_items, boolean isDelivery, String nameOrdering) {
         this.this_id = id++;
         this.orderDate = orderDate;
         this.orderTime = orderTime;
@@ -44,10 +47,31 @@ public class OrderClient {
         this.complaint = new MFXButton("Add Complaint");
         this.cancel = new MFXButton("Cancel Order");
         this.storeChoosen = store;
+        this.isDelivery = isDelivery;
+        this.nameOrdering = nameOrdering;
         for(int i=0; i<order_items.size(); i++){
             sum = sum + (order_items.get(i).getItem_price() * order_items.get(i).getItem_amount());
         }
         buttonsInitilize();
+    }
+
+    public OrderClient(Order order){
+        this.this_id = order.getId();
+        this.orderDate = order.getDateOrder();
+        this.orderTime = order.getTimeOrder();
+        this.sum = order.getSum();
+        this.orderReceiveTime = order.getTimeReceive();
+        this.orderReceiveDate = order.getDateReceive();
+        this.greeting = order.getGreeting();
+        this.nameReceiver = order.getNameReceives();
+        this.phoneReceiver = order.getPhoneReceives();
+        this.Address = order.getAddress();
+        this.nameOrdering = order.getUser().getUserName();
+        for(int i=0; i<order.getProducts().size(); i++){
+            this.order_items.add(new CartItem(order.getProducts().get(i)));
+        }
+        this.storeChoosen = order.getStore().getAddress();
+      //  this.isDelivery = order.isDelivery();
     }
 
     public void buttonsInitilize(){
@@ -197,6 +221,22 @@ public class OrderClient {
     public double getSum() { return sum; }
 
     public void setSum(double sum) { this.sum = sum; }
+
+    public boolean isDelivery() {
+        return isDelivery;
+    }
+
+    public void setDelivery(boolean delivery) {
+        isDelivery = delivery;
+    }
+
+    public String getNameOrdering() {
+        return nameOrdering;
+    }
+
+    public void setNameOrdering(String nameOrdering) {
+        this.nameOrdering = nameOrdering;
+    }
 
     /* end gets and sets*/
 

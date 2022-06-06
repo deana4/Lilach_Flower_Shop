@@ -1,5 +1,7 @@
 package il.client;
 
+import il.client.controls.CatalogControl;
+import il.entities.Product;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
@@ -53,11 +55,11 @@ public class AddProductToCatalogDialogController {
     @FXML
     private MFXTextField discountPercentText;
 
-    DetailsChecker detailChecker;
+    private DetailsChecker detailChecker;
 
     private Stage stage;
     private ProductView PVController;
-    ArrayList<String> listFiles;
+    private ArrayList<String> listFiles;
 
     @FXML
     void initialize(){
@@ -78,19 +80,44 @@ public class AddProductToCatalogDialogController {
             ErrorCollector += 1;
         }
 
+        retValue = detailChecker.CheckPriceValues(this.PriceText.getText(), "price");
+        if(retValue == 0){
+            this.PriceText.setPromptText("Error");
+            ErrorCollector += 1;
+        }
+
+        retValue = detailChecker.EmptyCheck(this.colorText.getText());
+        if(retValue == 0){
+            this.colorText.setPromptText("Empty");
+            ErrorCollector += 1;
+        }
+
+        retValue = detailChecker.EmptyCheck(this.typeText.getText());
+        if(retValue == 0){
+            this.typeText.setPromptText("Empty");
+            ErrorCollector += 1;
+        }
+
+        retValue = detailChecker.EmptyCheck(this.ImageURL.getText());
+        if(retValue == 0){
+            this.ImageURL.setPromptText("Empty");
+            ErrorCollector += 1;
+        }
+
+        if(saleToggle.isSelected()){
+            retValue = detailChecker.CheckPriceValues(this.discountPercentText.getText(), "percent");
+            if(retValue == 0){
+                this.discountPercentText.setPromptText("Empty");
+                ErrorCollector += 1;
+            }
+        }
 
 
         if(ErrorCollector == 0){
-            MainPageController.getInstance().CatalogRefresh();
+            addFlowerToTheServer();
+            MainPageController.getInstance().LoadCatalogFromZero();
             this.stage.close();
         }
-
-        //Need to implement on Control//
-
-//        CatalogControl.setColor(this.colorText.getText(), PVController.getId());
-//        CatalogControl.setType(PVController.getId(), typeText.getText());
-//        CatalogControl.updateImage(this.ImageURL.getText(), PVController.getId());
-//        CatalogControl.setOnDiscount(this.saleToggle.isSelected(), PVController.getId());
 
     }
     @FXML
@@ -129,12 +156,17 @@ public class AddProductToCatalogDialogController {
     @FXML
     void ToggleClicked(MouseEvent event) { //setting the percentage toggle to respond with the text field.
         if(saleToggle.isSelected()){
-            this.discountPercentText.setText(String.valueOf((PVController.getDiscound_precentage())));
             this.discountPercentText.setDisable(false);
         }else if(!saleToggle.isSelected()){
             this.discountPercentText.setText(String.valueOf(0.0));
             this.discountPercentText.setDisable(true);
         }
+    }
+
+    public void addFlowerToTheServer() throws IOException {
+        Product product = new Product(this.nameText.getText(), Double.valueOf(this.PriceText.getText()), saleToggle.isSelected(), Double.valueOf(this.discountPercentText.getText()), this.typeText.getText(), this.colorText.getText());
+        CatalogControl.addItem(product,this.ImageURL.getText());
+        MainPageController.getInstance().addColorToSystem(this.colorText.getText());
     }
 
     public void setStage(Stage stage) {

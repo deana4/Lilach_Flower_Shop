@@ -47,12 +47,6 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                      <children>
-                        <MFXTextField id="customField" fx:id="AddressText" alignment="TOP_LEFT" floatMode="BORDER" floatingText="Change Address" prefHeight="0.0" prefWidth="241.0" stylesheets="@CSSfiles/css/TextFields.css" />
-                        <MFXButton fx:id="addressBtn" alignment="CENTER" buttonType="RAISED" depthLevel="LEVEL1" onMouseClicked="#changeAddress" rippleColor="#ffd3d3" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-                     <children>
                         <MFXTextField id="customField" fx:id="mailText" alignment="TOP_LEFT" floatMode="BORDER" floatingText="Change Mail" prefHeight="0.0" prefWidth="241.0" stylesheets="@CSSfiles/css/TextFields.css" />
                         <MFXButton fx:id="mailBtn" alignment="CENTER" buttonType="RAISED" depthLevel="LEVEL1" onMouseClicked="#changeMail" rippleColor="#ffd3d3" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />
                      </children>

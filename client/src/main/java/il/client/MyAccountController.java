@@ -63,17 +63,19 @@ public class MyAccountController{
 
     private void initializeLoader() {
         MFXLoader loader = new MFXLoader();
-        if (!UserClient.getInstance().isWorker()){
+        System.out.println("MyAccount isworker?"+UserClient.getInstance().isWorker()+UserClient.getInstance().getUserName());
+        if (UserClient.getInstance().isWorker()==false){
+            System.out.println("in if");
         loader.addView(MFXLoaderBean.of("MyAccount", loadURL("EditAccountDetails.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-variant7-mark", "Account Preferences")).setDefaultRoot(true).get());
         loader.addView(MFXLoaderBean.of("Orders", loadURL("OrdersHistory.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-list-dropdown", "Orders")).get());
         }
 
-        if (UserClient.getInstance().isWorker() && UserClient.getInstance().getPriority()==2){
+        if (UserClient.getInstance().isWorker() && UserClient.getInstance().getPlan()==4){
         loader.addView(MFXLoaderBean.of("Complaints", loadURL("ComplaintsTab.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-message", "Complaints")).get());
         }
 
-        if(UserClient.getInstance().isWorker() && UserClient.getInstance().getPriority()==5){
-        loader.addView(MFXLoaderBean.of("System Admin Panel", loadURL("SystemManager.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-users", "System Admin Panel")).get());
+        if(UserClient.getInstance().isWorker() && UserClient.getInstance().getPlan()==5){
+        loader.addView(MFXLoaderBean.of("System Admin Panel", loadURL("PeopleList.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-users", "System Admin Panel")).get());
         }
 
         loader.setOnLoadedAction(beans -> {

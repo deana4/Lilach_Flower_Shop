@@ -85,28 +85,28 @@ public class ProductView extends ParentClass{
         if(UserClient.getInstance().isWorker() == true) {
             System.out.println(UserClient.getInstance().getPriority());
             switch (UserClient.getInstance().getPriority()) {
-                case 1: {  //regular worker
+                case 3: {  //regular worker
                     setPriorityBtnHigherThan2();
                     this.atc_product_button.setDisable(true);
                     this.atc_product_button.setVisible(false);
                 }
                 break;
-                case 2: { // service
+                case 4: { // service
                     setPriorityBtnLowerThan2();
                     this.atc_product_button.setDisable(false);
                     this.atc_product_button.setVisible(true);
                 }
                 break;
-                case 3: { //store manager
+                case 5: { //store manager
                     setPriorityBtnHigherThan2();
                     /*maybe do more*/
                 }
                 break;
-                case 4: { //network manager
+                case 6: { //network manager
                     setPriorityBtnHigherThan2();
                 }
                 break;
-                case 5: { // system admin
+                case 7: { // system admin
                     setPriorityBtnHigherThan2();
                 }
                 break;

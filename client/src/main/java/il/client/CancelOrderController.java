@@ -1,5 +1,6 @@
 package il.client;
 
+import il.client.controls.OrderControl;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.ObservableList;
@@ -66,7 +67,6 @@ public class CancelOrderController {
     @FXML
     void YesBTNClicked(ActionEvent event) throws IOException {
 //        orderControl.cancelOrder(orderID);
-        //sent to server that the user want to cancel this order!!!!!!
         this.cancel_order_anchorpane2.setVisible(false);
         this.cancel_order_anchorpane3.setVisible(true);
 
@@ -86,7 +86,7 @@ public class CancelOrderController {
 
         MyAccountController.getInstance().LoadOrdersHistoryPage();
 
-        sendToServer(UserClient.getInstance().getId(), Integer.parseInt(this.order_num_filed.getText()), refund);
+        OrderControl.cancelOrder(Integer.parseInt(this.order_num_filed.getText()),refund);
     }
 
     public void setDetailsCancelOrder() throws ParseException {
@@ -131,10 +131,6 @@ public class CancelOrderController {
         }
     }
 
-    public void sendToServer(int user_id, int order_id, double refund){
-        //calling the server function
-         return;
-    }
 
     /* gets and sets*/
 

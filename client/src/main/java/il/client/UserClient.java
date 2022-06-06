@@ -1,9 +1,15 @@
 package il.client;
 
 import il.client.DiffClasses.ComplaintClient;
+import il.entities.Complain;
+import il.entities.Order;
+import il.entities.Store;
 import il.entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class UserClient {
     Priority priority = null;
@@ -18,16 +24,17 @@ public class UserClient {
     private String mail = "Default";
     private String expiryDate = "Default";
     private String identifyNumbers = "Default";
-    private String address = "Default";
     private double discount = 0;
     private boolean isFrozen = false;
     private int plan = 0;
+    private LinkedList<Integer> stores;
 
     private boolean isLogin = false;
     private boolean isWorker = false;
 
     private ObservableList<ComplaintClient> complaintList  = FXCollections.observableArrayList();
     private ObservableList<OrderClient> orderList = FXCollections.observableArrayList();
+    private List<Store> storesOfStore;
 
     private User UserServer = null;
 
@@ -47,12 +54,12 @@ public class UserClient {
             cart.add(new CartItem("rose", 299.99, 2, 2));
 
             //for trying examples
-            orderList.add(new OrderClient( "05/06/2022", "12:00", "16:00", "06/06/2022", "thankyou", "Dean1", "12", "bla","Store 1", cart ));
-            orderList.add(new OrderClient( "03/06/2022", "12:00", "02:00", "05/06/2022", "thankyou", "Liran1", "13", "bla","Store 2", cart ));
-            orderList.add(new OrderClient( "02/06/2022", "12:00", "00:38", "05/06/2022", "thankyou", "Dean2", "14", "bla","Store 1", cart ));
-            orderList.add(new OrderClient( "01/06/2022", "12:00", "12:00", "05/06/2022", "thankyou", "Liran2", "15", "bla","Store 2", cart ));
+            orderList.add(new OrderClient( "05/06/2022", "12:00", "16:00", "06/06/2022", "thankyou", "Dean1", "12", "bla","Store 1", cart ,true, "Aviv1"));
+            orderList.add(new OrderClient( "03/06/2022", "12:00", "02:00", "05/06/2022", "thankyou", "Liran1", "13", "bla","Store 2", cart ,false,"Aviv2"));
+            orderList.add(new OrderClient( "02/06/2022", "12:00", "00:38", "05/06/2022", "thankyou", "Dean2", "14", "bla","Store 1", cart ,true,"Aviv3"));
+            orderList.add(new OrderClient( "01/06/2022", "12:00", "12:00", "05/06/2022", "thankyou", "Liran2", "15", "bla","Store 2", cart,false ,"Aviv4"));
             for(int i=0; i<20; i++){
-                orderList.add(new OrderClient( "Sunday"+i, "12:0"+i, "13:0"+i, "Sunday"+i, "thankyou"+i, "Dean"+i, "1"+i, "bla"+i,"Store 1", cart ));
+                orderList.add(new OrderClient( "Sunday"+i, "12:0"+i, "13:0"+i, "Sunday"+i, "thankyou"+i, "Dean"+i, "1"+i, "bla"+i,"Store 1", cart ,true,"Aviv"+i));
             }
 //            orderList.add(new Order( "05/06/2022", "12:00", "16:00", "06/06/2022", "thankyou", "Dean", "1", "bla","Store 1", cart ));
 //            orderList.add(new Order( "03/06/2022", "12:00", "02:00", "05/06/2022", "thankyou", "Dean", "1", "bla","Store 1", cart ));
@@ -65,6 +72,7 @@ public class UserClient {
             complaintList.add(new ComplaintClient(orderList.get(2), "bad flowers","02/06/2022", "13:30"));
             complaintList.add(new ComplaintClient(orderList.get(3), "bad flowers","03/06/2022", "18:00"));
             complaintList.add(new ComplaintClient(orderList.get(4), "bad flowers","03/06/2022", "17:30"));
+            complaintList.add(new ComplaintClient(orderList.get(5), "bad flowers","07/06/2022", "01:00"));
         }
     }
 
@@ -90,22 +98,6 @@ public class UserClient {
         return user;
     }
 
-//    public void setUserByServer(User UserServer){
-////        complaintList = UserServer.getComplaints(); //get from server complaints and Orders;
-////        orderList = UserServer.getOrders();
-//        id = UserServer.getId();
-//        userName = UserServer.getUserName();
-//        password = UserServer.getPassword();
-//        creditCard = UserServer.getCreditCard();
-//        credit = UserServer.getCredit();
-//        position = UserServer.getPosition();
-//        name = UserServer.getName();
-//        phone = UserServer.getPhone();
-//        mail = UserServer.getMail();
-//        expiryDate = UserServer.getExpiryDate();
-//        identifyNumbers = UserServer.getIdentifyNumbers();
-//        discount = UserServer.getDiscount();
-//    }
     public void TestLoginFunction(int id, String username, String password, String CreditCard, String name, String position, double discount, String mail){
 //        complaintList = UserServer.getComplaints(); //get from server complaints and Orders;
 //        orderList = UserServer.getOrders();
@@ -131,12 +123,24 @@ public class UserClient {
         this.orderList = orderList;
     }
 
+    public void setOrderList(List<Order> orders){
+        for(int i=0; i<orders.size(); i++){
+            orderList.add(new OrderClient(orders.get(i)));
+        }
+    }
+
     public ObservableList<ComplaintClient> getComplaintList() {
         return complaintList;
     }
 
     public void setComplaintList(ObservableList<ComplaintClient> complaintList) {
         this.complaintList = complaintList;
+    }
+
+    public void setComplaintList(List<Complain> complaints){
+        for(int i=0; i<complaints.size(); i++){
+            complaintList.add(new ComplaintClient(complaints.get(i)));
+        }
     }
 
     public int getId() {
@@ -243,20 +247,20 @@ public class UserClient {
         isWorker = worker;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public int getPlan() {
         return plan;
     }
 
     public void setPlan(int plan) {
         this.plan = plan;
+    }
+
+    public List<Store> getStoresOfStore() {
+        return storesOfStore;
+    }
+
+    public void setStoresOfStore(List<Store> storesOfStore) {
+        this.storesOfStore = storesOfStore;
     }
 
     public OrderClient getOrderById(int id){
@@ -281,6 +285,16 @@ public class UserClient {
         return null;
     }
 
+    public void removeComplaintById(int id){
+        ComplaintClient complaint;
+        for(int i=0; i< complaintList.size(); i++){
+            complaint = complaintList.get(i);
+            if(complaint.getThis_id() == id){
+                complaintList.remove(i);
+            }
+        }
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -295,6 +309,14 @@ public class UserClient {
 
     public boolean isWorker() {
         return isWorker;
+    }
+
+    public LinkedList<Integer> getStores() {
+        return stores;
+    }
+
+    public void setStores(LinkedList<Integer> stores) {
+        this.stores = stores;
     }
 
     @Override

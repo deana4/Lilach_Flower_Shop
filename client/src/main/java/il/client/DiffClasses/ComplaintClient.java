@@ -1,6 +1,7 @@
 package il.client.DiffClasses;
 
 import il.client.OrderClient;
+import il.entities.Complain;
 
 public class ComplaintClient {
     private static int id = 0;
@@ -22,6 +23,14 @@ public class ComplaintClient {
         this.ComplaintTime = complaintTime;
         this.complaintDate = complaintDate;
 
+    }
+
+    public ComplaintClient(Complain complaint){
+        this_id = complaint.getId();
+        this.order = new OrderClient(complaint.getOrder());
+        this.complaint = complaint.getComplain_text();
+       // this.ComplaintTime = complaint.getTime();
+        this.complaintDate = complaint.getDate_complain();
     }
 
 

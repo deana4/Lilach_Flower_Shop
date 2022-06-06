@@ -1,5 +1,6 @@
 package il.client;
 
+import il.client.controls.UserControl;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
@@ -16,12 +17,6 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class SystemManagerController {
-
-    @FXML
-    private MFXButton addressBtn;
-
-    @FXML
-    private MFXTextField addressText;
 
     @FXML
     private MFXTextField PhoneText;
@@ -70,8 +65,14 @@ public class SystemManagerController {
 
     private DetailsChecker checker = new DetailsChecker();
 
+    private Stage stage;
+
+    private boolean isWorker=false;
+
+    private int person_id;
+
     @FXML
-    void initialize(){
+    void initialize(Stage stage){
 //        this.usernameText.setPromptText(UserClient.getInstance().getUserName());
 //        this.passwordText.setPromptText(UserClient.getInstance().getPassword());
 //        this.creditCardText.setPromptText(UserClient.getInstance().getCreditCard());
@@ -88,25 +89,14 @@ public class SystemManagerController {
 //            this.addressText.setText("");
 //            this.addressBtn.setDisable(true);
 //        }
-        this.freezeBtn.setDisable(true);
-        this.usernameText.setDisable(true);
-        this.usernameBtn.setDisable(true);
-        this.passwordText.setDisable(true);
-        this.passwordBtn.setDisable(true);
-        this.creditCardText.setDisable(true);
-        this.creditcardBtn.setDisable(true);
-        this.PhoneText.setDisable(true);
-        this.phoneBtn.setDisable(true);
-        this.addressText.setDisable(true);
-        this.addressBtn.setDisable(true);
-        this.mailText.setDisable(true);
-        this.mailBtn.setDisable(true);
-        this.permissionsText.setDisable(true);
-        this.permissionsBtn.setDisable(true);
-    }
 
-    @FXML
-    void changeAddressClicked(ActionEvent event) {
+        if(isWorker){
+            initWorker();
+        }
+        else{
+            initClient();
+        }
+
 
     }
 
@@ -119,6 +109,7 @@ public class SystemManagerController {
         }
         else{
             //send to server
+            UserControl.setCreditCard(getPerson_id(), this.creditCardText.getText(), isWorker());
             this.creditCardText.clear();
             this.creditCardText.setPromptText("Changed!");
         }
@@ -133,6 +124,7 @@ public class SystemManagerController {
         }
         else{
             //send to server
+            UserControl.setMail(getPerson_id(), this.mailText.getText(), isWorker());
             this.mailText.clear();
             this.mailText.setPromptText("Changed!");
         }
@@ -147,6 +139,7 @@ public class SystemManagerController {
         }
         else{
             //send to server
+            UserControl.setPhone(getPerson_id(), this.PhoneText.getText(), isWorker());
             this.PhoneText.clear();
             this.PhoneText.setPromptText("Changed!");
         }
@@ -161,6 +154,7 @@ public class SystemManagerController {
         //}
         // else{
         //send to server
+        UserControl.setUserName(getPerson_id(), this.usernameText.getText(), isWorker());
         this.usernameText.clear();
         this.usernameText.setPromptText("Changed!");
         //}
@@ -168,7 +162,7 @@ public class SystemManagerController {
 
     @FXML
     void freezeAccountClicked(ActionEvent event) {
-
+        UserControl.setAccountStatus(getPerson_id(), 0 , isWorker);
     }
 
     @FXML
@@ -180,6 +174,7 @@ public class SystemManagerController {
         }
         else{
             //send to server
+            UserControl.setPassword(getPerson_id(), this.passwordText.getText(), isWorker());
             this.passwordText.clear();
             this.passwordText.setPromptText("Changed!");
         }
@@ -199,14 +194,28 @@ public class SystemManagerController {
         }
         else{
             //send to server
+            UserControl.setPermission(getPerson_id(), Integer.valueOf(this.permissionsText.getText()), isWorker());
             this.permissionsText.clear();
             this.permissionsText.setPromptText("Changed!");
         }
     }
 
-    @FXML
-    void userPickerClicked(ActionEvent event) throws IOException {
-        //the init of the buttons should be in the people list by the chosen one. not here!!!
+    public void initWorker(){
+        this.creditCardText.clear();
+        this.creditCardText.setPromptText(" ");
+        this.creditCardText.setDisable(true);
+        this.creditcardBtn.setDisable(true);
+        this.PhoneText.clear();
+        this.PhoneText.setPromptText(" ");
+        this.PhoneText.setDisable(true);
+        this.phoneBtn.setDisable(true);
+        this.mailText.clear();
+        this.mailText.setPromptText(" ");
+        this.mailText.setDisable(true);
+        this.mailBtn.setDisable(true);
+        this.usernameText.setPromptText(getUsernameText());
+        this.passwordText.setPromptText(getPasswordText());
+        this.permissionsText.setPromptText(getPermissionsText());
         this.freezeBtn.setDisable(false);
         this.usernameText.setDisable(false);
         this.usernameBtn.setDisable(false);
@@ -214,82 +223,107 @@ public class SystemManagerController {
         this.passwordBtn.setDisable(false);
         this.permissionsText.setDisable(false);
         this.permissionsBtn.setDisable(false);
-        this.usernameText.setPromptText(UserClient.getInstance().getUserName());
-        this.passwordText.setPromptText(UserClient.getInstance().getPassword());
-        this.permissionsText.setPromptText(String.valueOf(UserClient.getInstance().getPriority()));
-        if (toggleWorker.isSelected()) {
-            this.creditCardText.clear();
-            this.creditCardText.setPromptText(" ");
-            this.creditCardText.setDisable(true);
-            this.creditcardBtn.setDisable(true);
-            this.addressText.clear();
-            this.addressText.setPromptText(" ");
-            this.addressText.setDisable(true);
-            this.addressBtn.setDisable(true);
-            this.PhoneText.clear();
-            this.PhoneText.setPromptText(" ");
-            this.PhoneText.setDisable(true);
-            this.phoneBtn.setDisable(true);
-            this.mailText.clear();
-            this.mailText.setPromptText(" ");
-            this.mailText.setDisable(true);
-            this.mailBtn.setDisable(true);
-        } else {
-            this.creditCardText.clear();
-            this.creditCardText.setPromptText(" ");
-            this.creditCardText.setDisable(false);
-            this.creditcardBtn.setDisable(false);
-            this.addressText.clear();
-            this.addressText.setPromptText(" ");
-            this.addressText.setDisable(false);
-            this.addressBtn.setDisable(false);
-            this.PhoneText.clear();
-            this.PhoneText.setPromptText(" ");
-            this.PhoneText.setDisable(false);
-            this.phoneBtn.setDisable(false);
-            this.mailText.clear();
-            this.mailText.setPromptText(" ");
-            this.mailText.setDisable(false);
-            this.mailBtn.setDisable(false);
-            this.creditCardText.setPromptText(UserClient.getInstance().getCreditCard());
-            this.PhoneText.setPromptText(UserClient.getInstance().getPhone());
-            this.mailText.setPromptText(UserClient.getInstance().getMail());
-            this.addressText.setPromptText(UserClient.getInstance().getAddress());
-
-
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("PeopleList.fxml"));
-            stage.initStyle(StageStyle.TRANSPARENT);
-            Scene scene = new Scene(fxmlLoader.load(), 699, 644);
-            scene.setFill(Color.TRANSPARENT);
-            PeopleListController controller = fxmlLoader.getController();
-            controller.initialize(this);
-            controller.setStage(stage);
-            stage.setTitle("People List");
-            stage.setScene(scene);
-            stage.show();
-        }
     }
+
+    public void initClient() {
+        this.creditCardText.clear();
+        this.creditCardText.setPromptText(" ");
+        this.creditCardText.setDisable(false);
+        this.creditcardBtn.setDisable(false);
+        this.PhoneText.clear();
+        this.PhoneText.setPromptText(" ");
+        this.PhoneText.setDisable(false);
+        this.phoneBtn.setDisable(false);
+        this.mailText.clear();
+        this.mailText.setPromptText(" ");
+        this.mailText.setDisable(false);
+        this.mailBtn.setDisable(false);
+        this.creditCardText.setPromptText(getCreditCardText());
+        this.PhoneText.setPromptText(getPhoneText());
+        this.mailText.setPromptText(getMailText());
+        this.usernameText.setPromptText(getUsernameText());
+        this.passwordText.setPromptText(getPasswordText());
+        this.permissionsText.setPromptText(getPermissionsText());
+        this.freezeBtn.setDisable(false);
+        this.usernameText.setDisable(false);
+        this.usernameBtn.setDisable(false);
+        this.passwordText.setDisable(false);
+        this.passwordBtn.setDisable(false);
+        this.permissionsText.setDisable(false);
+        this.permissionsBtn.setDisable(false);
+    }
+
 
     @FXML
-    void workerToggleClicked(MouseEvent event) {
-        this.freezeBtn.setDisable(true);
-        this.usernameText.setDisable(true);
-        this.usernameBtn.setDisable(true);
-        this.passwordText.setDisable(true);
-        this.passwordBtn.setDisable(true);
-        this.creditCardText.setDisable(true);
-        this.creditcardBtn.setDisable(true);
-        this.PhoneText.setDisable(true);
-        this.phoneBtn.setDisable(true);
-        this.addressText.setDisable(true);
-        this.addressBtn.setDisable(true);
-        this.mailText.setDisable(true);
-        this.mailBtn.setDisable(true);
-        this.permissionsText.setDisable(true);
-        this.permissionsBtn.setDisable(true);
+    void closeWindow(ActionEvent event) {
+        this.stage.close();
     }
 
+    /* gets and sets */
+
+    public String getPhoneText() {
+        return PhoneText.getText();
+    }
+
+    public void setPhoneText(String phoneText) {
+        PhoneText.setText(phoneText);
+    }
+
+    public String getCreditCardText() {
+        return creditCardText.getText();
+    }
+
+    public void setCreditCardText(String creditCardText) {
+        this.creditCardText.setText(creditCardText);
+    }
+
+    public String getMailText() {
+        return mailText.getText();
+    }
+
+    public void setMailText(String mailText) {
+        this.mailText.setText(mailText);
+    }
+
+    public String getPasswordText() {
+        return passwordText.getText();
+    }
+
+    public void setPasswordText(String passwordText) {
+        this.passwordText.setText(passwordText);
+    }
+
+    public String getPermissionsText() {
+        return permissionsText.getText();
+    }
+
+    public void setPermissionsText(String permissionsText) {
+        this.permissionsText.setText(permissionsText);
+    }
+
+    public String getUsernameText() {
+        return usernameText.getText();
+    }
+
+    public void setUsernameText(String usernameText) {
+        this.usernameText.setText(usernameText);
+    }
+
+    public boolean isWorker() {
+        return isWorker;
+    }
+
+    public void setWorker(boolean worker) {
+        isWorker = worker;
+    }
+
+    public int getPerson_id() {
+        return person_id;
+    }
+
+    public void setPerson_id(int person_id) {
+        this.person_id = person_id;
+    }
+
+    /* end sets and gets*/
 }

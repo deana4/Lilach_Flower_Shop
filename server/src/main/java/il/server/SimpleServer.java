@@ -29,7 +29,7 @@ public class SimpleServer extends AbstractServer {
         this.close();
     }
 
-    private <T, S> LinkedList<T> getAllItemsByKey(Class<T> object, String colum,S key){
+    public static <T, S> LinkedList<T> getAllItemsByKey(Class<T> object, String colum,S key){
         testDB.openSession();
         CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery(object);
@@ -84,7 +84,7 @@ public class SimpleServer extends AbstractServer {
 
             if (message.getMessage().equals("getStore")) {
                 sendMessage.setMessage("item store list");
-                sendMessage.setStores(getAllItems(Store.class));
+                sendMessage.setListStors(getAllItems(Store.class));;
                 client.sendToClient(sendMessage);
                 System.out.println("send stores to client");
             }
@@ -113,8 +113,8 @@ public class SimpleServer extends AbstractServer {
                 String pass = message.getPass();
                 String id = message.getId();
                 String credit_card = message.getCredit_card();
-                int plan = Message.getPlan();
-                List<Store> stores = Message.getStores();
+                int plan = message.getPlan();
+                List<Store> stores = message.getListStors();
 
                 User newUser = new User(username, pass, credit_card, plan, name, id);
                 System.out.println("get register request:" + username);
@@ -123,14 +123,7 @@ public class SimpleServer extends AbstractServer {
 
 
                 if (result.equals("")) {
-                    if (RegisterControl.register(newUser)) {
-                        sendMessage.setRegisterStatus(true);
-                        sendMessage.setRegisterResult("user as been register!");
-                        newUser.addStore2(stores);
-                    } else {
-                        sendMessage.setRegisterStatus(false);
-                        sendMessage.setRegisterResult("Error: somethings wrong with the database.");
-                    }
+                    RegisterControl.register(newUser, stores);
                 } else {
                     sendMessage.setRegisterStatus(false);
                     sendMessage.setRegisterResult(result);
@@ -184,9 +177,6 @@ public class SimpleServer extends AbstractServer {
             }
             if (message.getMessage().equals("setPhone")) {
                 UserControl.setPhone(message.getUserID(), message.getPhone(), message.isWorker());
-            }
-            if (message.getMessage().equals("setAddress")) {
-                UserControl.setAddress(message.getUserID(), message.getAddress(), message.isWorker());
             }
             if (message.getMessage().equals("setMail")) {
                 UserControl.setName(message.getUserID(), message.getMail(), message.isWorker());

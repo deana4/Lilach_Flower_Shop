@@ -4,8 +4,10 @@ package il.client;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 
 import il.client.controls.LogInControl;
+import il.entities.Store;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -106,6 +108,8 @@ public class MainPageController extends ParentClass {     //This is a singleton 
     private HashMap<String,Object> controller_map = new HashMap<String,Object>(); //Hashmap of Controllers by names
 
     private UserClient user;
+
+    public static List<Store> allStores;
 
     private static MainPageController instance = null;
 

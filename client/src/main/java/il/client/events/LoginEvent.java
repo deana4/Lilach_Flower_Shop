@@ -8,6 +8,33 @@ public class LoginEvent {
     private LinkedList<Complain> complainList=null;
     private LinkedList<Order> orderList=null;
     private LinkedList<Store>  storeList=null;
+    private LinkedList<User>  storeUser=null;
+
+    public LinkedList<User> getStoreUser() {
+        return storeUser;
+    }
+
+    public void setStoreUser(LinkedList<User> storeUser) {
+        this.storeUser = storeUser;
+    }
+
+    public LinkedList<Employee> getStoreEmploeey() {
+        return storeEmploeey;
+    }
+
+    public void setStoreEmploeey(LinkedList<Employee> storeEmploeey) {
+        this.storeEmploeey = storeEmploeey;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    private LinkedList<Employee>  storeEmploeey=null;
     private int storeId;
     private int id;
     private boolean isWorker;
@@ -16,6 +43,7 @@ public class LoginEvent {
     private boolean loginStatus;
     private String result;
     private User user;
+    private String password;
 
     public LoginEvent(boolean status, String result){
         this.loginStatus = status;

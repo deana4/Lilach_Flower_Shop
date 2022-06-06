@@ -2,8 +2,7 @@ package il.client;
 
 import il.client.events.*;
 import il.client.ocsf.AbstractClient;
-import il.entities.Product;
-import il.entities.Message;
+import il.entities.*;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.*;
@@ -41,8 +40,34 @@ public class SimpleClient extends AbstractClient {
 				else{//worker
 					eventlogIN = new LoginEvent(message.getUsername(), message.getPermision());
 					eventlogIN.setId(message.getIddatabase());
-					eventlogIN.setOrderList(message.getListOrder());
-					eventlogIN.setComplainList(message.getListComplains());
+					eventlogIN.setPassword(message.getPass());
+					switch (message.getPermision()){
+						case 5://system admin send all information
+							eventlogIN.setComplainList(message.getListComplains());
+							eventlogIN.setOrderList(message.getListOrder());
+							eventlogIN.setStoreEmploeey(message.getListEmploeeys());
+							eventlogIN.setStoreUser(message.getListUsers());
+							break;
+						case 4://networkmaneger
+							eventlogIN.setComplainList(message.getListComplains());
+							eventlogIN.setOrderList(message.getListOrder());
+							break;
+						case 3:
+							//report
+							eventlogIN.setStoreId(message.getStoreID());
+							eventlogIN.setComplainList(message.getListComplains());
+							eventlogIN.setOrderList(message.getListOrder());
+							break;
+						case 2:
+							eventlogIN.setComplainList(message.getListComplains());
+							eventlogIN.setOrderList(message.getListOrder());
+							break;
+						case 1:
+							eventlogIN.setStoreId(message.getStoreID());
+							eventlogIN.setOrderList(message.getListOrder());
+							break;
+					}
+
 				}
 				EventBus.getDefault().post(eventlogIN);
 			}

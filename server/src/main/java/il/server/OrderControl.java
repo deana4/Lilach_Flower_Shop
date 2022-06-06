@@ -4,6 +4,7 @@ import il.entities.*;
 
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 
 
 public class OrderControl {
@@ -88,6 +89,22 @@ public class OrderControl {
         LinkedList<Order> c = new LinkedList<>();
         for(Order order : orders){
             c.add(order.getOrderForClient());
+        }
+        return c;
+    }
+
+    public static LinkedList<Order> getAllnOrders(int storeID){
+        testDB.openSession();
+        List<Order> complains = SimpleServer.getAllItems(Order.class);
+        testDB.closeSession();
+        LinkedList<Order> c = new LinkedList<>();
+        for(Order comp : complains){
+            if(storeID!=-1){
+                if(comp.getStore().getId()==storeID)
+                    c.add(comp.getOrderForClient());
+            }
+            else
+                c.add(comp.getOrderForClient());
         }
         return c;
     }

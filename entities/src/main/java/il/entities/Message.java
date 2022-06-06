@@ -20,6 +20,16 @@ public class Message implements Serializable {
     LinkedList<Complain> listComplains = null;
     LinkedList<User> listUsers = null;
 
+    public LinkedList<Employee> getListEmploeeys() {
+        return listEmploeeys;
+    }
+
+    public void setListEmploeeys(LinkedList<Employee> listEmploeeys) {
+        this.listEmploeeys = listEmploeeys;
+    }
+
+    LinkedList<Employee> listEmploeeys=null;
+
 
     //login/register
     String username;
@@ -28,12 +38,13 @@ public class Message implements Serializable {
     String pass;
     boolean isWorker;
     String credit_card;
-    static int plan;
+    int plan;
     String name;
     String phone;
     String mail;
     double creadit;
     String priorty;
+
 
     public String getAddress() {
         return address;
@@ -168,9 +179,6 @@ public class Message implements Serializable {
     int userID;
 
     int iddatabase;
-
-    static List<Store> stores=null;
-
 
     public String getAnswer() {
         return answer;
@@ -363,7 +371,7 @@ public class Message implements Serializable {
         this.credit_card = credit_card;
     }
 
-    public static int getPlan() {
+    public int getPlan() {
         return plan;
     }
 
@@ -440,15 +448,6 @@ public class Message implements Serializable {
 
     public void setWorker(boolean worker) {
         isWorker = worker;
-    }
-
-
-    public static List<Store> getStores() {
-        return stores;
-    }
-
-    public void setStores(List<Store> stores) {
-        this.stores = stores;
     }
 
     public LinkedList<Store> getListStors() {

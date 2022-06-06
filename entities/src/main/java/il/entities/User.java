@@ -34,7 +34,6 @@ public class User implements Serializable {
     private String mail;
     private String expiryDate;
     private String identifyNumbers;
-    private String address;
     private double discount;
     private int accountStatus;
     private boolean login;
@@ -79,13 +78,6 @@ public class User implements Serializable {
         return newStores;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
 
     public void setListOrders(List<Order> listOrders) {
@@ -134,20 +126,20 @@ public class User implements Serializable {
         this.listOrders = new ArrayList<Order>();
         this.listComplains = new ArrayList<Complain>();
         this.liststore = new ArrayList<Store>();
-        this.address = "";
         this.priority =  priority;
-        this.phone = "";
-        this.mail = "";
+        this.phone = "Default";
+        this.mail = "Default";
 //        this.expiryDate = expiryDate;
 //        this.discount=discount;
     }
     public User getUserForClien(){
-        User u = new User(this.userName, "", this.creditCard, this.priority, this.name, this.identifyNumbers);
+        User u = new User(this.userName, this.password, this.creditCard, this.priority, this.name, this.identifyNumbers);
         u.setId(this.id);
         u.setMail(this.mail);
         u.setCredit(this.credit);
         u.setPhone(this.phone);
-        u.setAddress(this.address);
+        u.setAccountStatus(this.accountStatus);
+        u.setLogin(this.login);
 //        u.setDiscount(this.discount);
 //        u.setExpiryDate(this.expiryDate);
         return u;

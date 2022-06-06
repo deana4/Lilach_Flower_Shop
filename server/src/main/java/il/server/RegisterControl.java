@@ -1,5 +1,6 @@
 package il.server;
 
+import il.entities.Store;
 import il.entities.User;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -34,21 +35,23 @@ public class RegisterControl {
 
 
 
-    public static boolean register(User newUser){
+    public static void register(User newUser, List<Store> stores){
         testDB.openSession();
         try {
             testDB.session.save(newUser);
+            for(Store s:stores){
+                Store store = testDB.session.get(Store.class, s.getId());
+                store.addUser(newUser);
+            }
             testDB.session.flush();
             testDB.session.getTransaction().commit();
             System.out.println("user add to mySQL");
-            return true;
         }
         catch (Exception e){
             e.printStackTrace();
             System.out.println("Error: register");
         }
         testDB.closeSession();
-        return false;
     }
 
 }

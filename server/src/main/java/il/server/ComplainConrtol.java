@@ -77,17 +77,17 @@ public class ComplainConrtol{
     }
 
 
-    public static LinkedList<Complain> getAllnComplaint(LinkedList<Complain> complains){
+    public static LinkedList<Complain> getAllnComplaint(int storeID){
+        testDB.openSession();
+        List<Complain> complains = SimpleServer.getAllItems(Complain.class);
+        testDB.closeSession();
         LinkedList<Complain> c = new LinkedList<>();
         for(Complain comp : complains){
-                c.add(comp.getComplainForClient());
-        }
-        return c;
-    }
-    public static LinkedList<Complain> getAllOpenComplaint(LinkedList<Complain> complains){
-        LinkedList<Complain> c = new LinkedList<>();
-        for(Complain comp : complains){
-            if(comp.isStatus())
+            if(storeID!=-1){
+                 if(comp.getStore().getId()==storeID)
+                     c.add(comp.getComplainForClient());
+            }
+            else
                 c.add(comp.getComplainForClient());
         }
         return c;

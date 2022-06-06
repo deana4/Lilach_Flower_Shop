@@ -32,40 +32,43 @@ public class LoginControl {
                         message.setName(employee.getName());
                         message.setIddatabase(employee.getId());
                         message.setPermision(employee.getPermission());
+                        message.setPass(employee.getPassword());
 
                         StoreEmployee storeEmployee;
                         BranchManager branchManager;
 
+                        LinkedList<User> users = UserControl.getAllnUser();
+                        LinkedList<Order> orders = OrderControl.getAllnOrders(-1);
+                        LinkedList<Employee> employees = UserControl.getAllnEmployee(-1);
+
                         switch (employee.getPermission()){
-                            case 1://system admin send all information
-                                message.setListComplains(ComplainConrtol.getAllnComplaint(SimpleServer.getAllItems(Complain.class)));
-                                message.setListOrder(OrderControl.getAllOrder(SimpleServer.getAllItems(Order.class)));
-                                //users
-                                //employees
-                                //stores
-                                //report
+                            case 5://system admin send all information
+                                message.setListComplains(ComplainConrtol.getAllnComplaint(-1));
+                                message.setListOrder(OrderControl.getAllnOrders(-1));
+                                message.setListUsers(UserControl.getAllnUser());
+                                message.setListEmploeeys(UserControl.getAllnEmployee(-1));
                                 break;
-                            case 2://networkmaneger
-                                message.setListComplains(ComplainConrtol.getAllnComplaint(SimpleServer.getAllItems(Complain.class)));
-                                message.setListOrder(OrderControl.getAllOrder(SimpleServer.getAllItems(Order.class)));
-                                //report
+                            case 4://networkmaneger
+                                message.setListComplains(ComplainConrtol.getAllnComplaint(-1));
+                                message.setListOrder(OrderControl.getAllnOrders(-1));
                                 break;
                             case 3:
                                 //report
                                 branchManager = (BranchManager) employee;
                                 message.setStoreID(branchManager.getStore().getId());
+                                message.setListComplains(ComplainConrtol.getAllnComplaint(branchManager.getStore().getId()));
+                                message.setListOrder(OrderControl.getAllnOrders(branchManager.getStore().getId()));
                                 break;
-                            case 4:
-                                message.setListComplains(ComplainConrtol.getAllOpenComplaint(SimpleServer.getAllItems(Complain.class)));
-//                                message.setListOrder(OrderControl.getAllOrder(SimpleServer.getAllItems(Order.class)));
+                            case 2:
+                                message.setListComplains(ComplainConrtol.getAllnComplaint(-1));
+                                message.setListOrder(OrderControl.getAllOrder(SimpleServer.getAllItems(Order.class)));
                                 break;
-                            case 5:
+                            case 1:
                                 storeEmployee = (StoreEmployee) employee;
                                 message.setStoreID(storeEmployee.getStore().getId());
+                                message.setListOrder(OrderControl.getAllnOrders(storeEmployee.getStore().getId()));
                                 break;
                         }
-//                        message.setListComplains(ComplainConrtol.getAllOpenComplaint());
-//                        message.setListOrder(OrderControl.getAllOrder());
                         return message;
 
                     } else {

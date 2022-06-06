@@ -78,6 +78,7 @@ public class LoginController extends ParentClass{
                     UserClient.getInstance().setWorker(true);
                     UserClient.getInstance().setUserName(username);
                     UserClient.getInstance().setPriority(permission);
+                    UserClient.getInstance().setId(event.getId());
                 }
                 else{
                     user = event.getUser();

@@ -8,7 +8,6 @@ public class TestControl {
             UserControl.setName(1, "test2", false);
             UserControl.setPhone(1, "test2", false);
             UserControl.setCreditCard(1, "test2", false);
-            UserControl.setAddress(1, "test2", false);
             UserControl.setMail(1, "test2", false);
             UserControl.setPassword(1, "test2", false);
             System.out.println("finish: testUserControl");

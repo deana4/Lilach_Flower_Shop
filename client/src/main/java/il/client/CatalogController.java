@@ -1,8 +1,6 @@
 package il.client;
 
-import il.client.controls.CatalogControl;
-import il.client.controls.ComplainConrtol;
-import il.client.controls.OrderControl;
+import il.client.controls.*;
 import il.client.controls.CatalogControl;
 import il.client.events.CatalogItemsEvent;
 import il.entities.Product;
@@ -91,7 +89,7 @@ public class CatalogController extends ParentClass{
     public void setFlowerlist(CatalogItemsEvent event) throws IOException {
         Platform.runLater(()->{
                     flowerlist = event.getItems();
-                    RegisterController.allStores = event.getStores();
+                    MainPageController.allStores = event.getStores();
                     int col = 0;
                     int row = 0;
 

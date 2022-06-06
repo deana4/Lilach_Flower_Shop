@@ -1,0 +1,109 @@
+.mybutton{
+    -fx-background-color: linear-gradient(to bottom right, lightsalmon, coral);
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.mybutton:hover{
+    -fx-background-color: linear-gradient(to bottom right, lightpink, lightpink);
+}
+
+.mybutton-round{
+    -fx-border-radius: 60px;
+    -fx-background-radius: 5em;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-max-width: 40px;
+    -fx-max-height: 30px;
+}
+
+.nav-buttons{
+    -fx-background-color: transparent;
+    -fx-border-radius: 60px;
+    -fx-background-radius: 5em;
+}
+.nav-buttons:hover{
+    -fx-background-color: linear-gradient(to bottom right, lightpink, lightblue);
+    -fx-text-fill: white;
+}
+.nav-buttons:focused {
+    /*-fx-color: -fx-focused-base;*/
+    -fx-background-color: linear-gradient(to bottom right, lightpink, lightblue);
+    -fx-background-insets: -1.4, 0, 1, 2;
+    -fx-background-radius:  8.5, 5, 4, 3;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+
+/* Simple Buttons On Program*/
+.simple-btn{
+    -fx-background-color: transparent;
+    -fx-border-radius: 60px;
+    -fx-background-radius: 5em;
+}
+.simple-btn:hover{
+    -fx-background-color: linear-gradient(to bottom left, lightpink,lightgoldenrodyellow);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.simple-btn:focused {
+    /*-fx-color: -fx-focused-base;*/
+    -fx-background-color: linear-gradient(to bottom left, lightpink,lightgoldenrodyellow);
+    -fx-background-insets: -1.4, 0, 1, 2;
+    -fx-background-radius:  8.5, 5, 4, 3;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.logout-btn{
+    -fx-background-color: linear-gradient(to bottom left, lightpink,lightgoldenrodyellow);
+    -fx-border-radius: 60px;
+    -fx-background-radius: 5em;
+    -fx-background-radius-color:red;
+}
+.logout-btn:hover{
+    -fx-background-color: linear-gradient(to bottom right, lightsalmon, coral);
+    -fx-text-fill: white;
+}
+
+
+.refresh-btn{
+    -fx-background-color: linear-gradient(to bottom right, lightblue, lightseagreen);
+    -fx-border-radius: 100px;
+    -fx-background-radius: 5em;
+}
+
+.close-icon {
+    -mfx-color: #da3312;
+    -fx-opacity: 0.5;
+}
+
+.close-icon:hover {
+    -fx-opacity: 1.0;
+}
+
+.minimize-icon {
+    -mfx-color: #ffbf37;
+    -fx-opacity: 0.5;
+}
+
+.minimize-icon:hover {
+    -fx-opacity: 1.0;
+}
+
+.always-on-top-icon {
+    -mfx-color: #c37ecd;
+    -fx-opacity: 0.5;
+}
+
+.always-on-top-icon:hover {
+    -fx-opacity: 1.0;
+}
+
+.always-on-top-icon:filled {
+    -fx-opacity: 1.0;
+}
+

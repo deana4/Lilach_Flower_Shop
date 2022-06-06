@@ -1,0 +1,90 @@
+.imageAnchor{
+    -fx-background-color: pink;
+    -fx-background-radius: 100em;
+    -fx-border-radius: 50%;
+}
+.scroll-pane{
+    -fx-background-color: transparent;
+    -fx-background-radius: 100em;
+    -fx-border-radius: 50%;
+}
+.Headers{
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe Script";
+    -fx-background-color: #F4BFBF;
+    -fx-background-radius: 250em;
+    -fx-border-radius: 90%;
+    -fx-alignment: center;
+}
+.CatalogItem{
+    -fx-text-fill: white;
+    -fx-background-color: white;
+    -fx-background-radius: 4em;
+    -fx-border-radius: 10%;
+    -fx-alignment: center;
+}
+.mainAnchor{
+    -fx-background-color: white;
+    -fx-background-radius: 5em;
+    -fx-border-color: #979797;
+}
+.background-color{
+    -fx-background-color: white;
+}
+
+.MainBorder{
+    -fx-background-color: white;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    /*-fx-alignment: center;*/
+    -fx-border-color: #979797;
+}
+
+.AnchorStyle{
+    -fx-background-color: white;
+    /*-fx-background-radius: 2em;*/
+    -fx-border-radius: 1%;
+}
+
+.sideBar{
+    -fx-background-color: linear-gradient(to bottom right, #F4BFBF, FFD9C0);
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    /*-fx-alignment: center;*/
+    -fx-border-color: linear-gradient(to bottom right, FFD9C0, #F4BFBF, FFD9C0,F4BFBF );
+}
+
+.HeadersNoBackground{
+    -fx-text-fill: white;
+    /*-fx-background-color: #979797;*/
+    /*-fx-background-radius: 250em;*/
+    -fx-border-radius: 90%;
+    -fx-alignment: center;
+}
+
+.Dialog{
+    -fx-background-color: white;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    /*-fx-alignment: center;*/
+    -fx-border-color: #979797;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 12, 0, 0, 0);
+}
+
+.ImageFrameCatalog{
+    -fx-background-color: #FFF2F2;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    /*-fx-alignment: center;*/
+    -fx-border-color: pink;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0), 20, 0, 0, 0);
+}
+
+.DialogItemCatalog{
+    -fx-background-color: white;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    /*-fx-alignment: center;*/
+    -fx-border-color: #979797;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 50, 0, 0, 0);
+}

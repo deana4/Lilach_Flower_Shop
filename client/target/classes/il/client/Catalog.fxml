@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane fx:id="catalog_main_anchorpane" prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CatalogController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane fx:id="mainBorder" prefHeight="640.0" prefWidth="1226.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">
+               <left>
+                  <AnchorPane fx:id="side_pic_anchorpane" opacity="0.75" prefHeight="640.0" prefWidth="68.0" styleClass="CatalogItem" stylesheets="@CSSfiles/Backgrounds.css" visible="false" BorderPane.alignment="CENTER" />
+               </left>
+               <center>
+                  <MFXScrollPane fx:id="scrollPane" prefHeight="640.0" prefWidth="685.0" stylesheets="@CSSfiles/Backgrounds.css" BorderPane.alignment="CENTER">
+                     <content>
+                        <GridPane fx:id="gridPane" alignment="CENTER" hgap="10.0" layoutX="90.0" layoutY="60.0" prefHeight="625.0" prefWidth="1137.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" vgap="10.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="626.0" minWidth="10.0" prefWidth="379.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="626.0" minWidth="10.0" prefWidth="379.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="501.0" minHeight="10.0" prefHeight="287.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="501.0" minHeight="10.0" prefHeight="287.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </GridPane>
+                     </content>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </MFXScrollPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="catalog_anchorpane2" prefHeight="646.0" prefWidth="1240.0" visible="false">
+         <children>
+            <BorderPane fx:id="mainBorder1" layoutY="-6.0" prefHeight="652.0" prefWidth="1240.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">
+               <left>
+                  <AnchorPane fx:id="side_pic_anchorpane2" opacity="0.75" prefHeight="652.0" prefWidth="414.0" styleClass="CatalogItem" stylesheets="@CSSfiles/Backgrounds.css" visible="false" BorderPane.alignment="CENTER" />
+               </left>
+               <center>
+                  <MFXScrollPane fx:id="scrollPane2" prefHeight="640.0" prefWidth="713.0" stylesheets="@CSSfiles/Backgrounds.css" BorderPane.alignment="CENTER">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <content>
+                        <GridPane fx:id="gridPane2" alignment="CENTER" hgap="10.0" layoutX="90.0" layoutY="60.0" prefHeight="646.0" prefWidth="819.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" vgap="10.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="626.0" minWidth="10.0" prefWidth="379.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="626.0" minWidth="10.0" prefWidth="379.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="501.0" minHeight="10.0" prefHeight="287.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="501.0" minHeight="10.0" prefHeight="287.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </GridPane>
+                     </content>
+                  </MFXScrollPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

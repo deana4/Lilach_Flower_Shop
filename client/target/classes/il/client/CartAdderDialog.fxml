@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.font.MFXFontIcon?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+
+<AnchorPane prefHeight="215.0" prefWidth="405.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CartAdderController">
+   <children>
+      <AnchorPane fx:id="DialogPane" layoutX="21.0" layoutY="17.0" prefHeight="177.0" prefWidth="357.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css">
+         <children>
+            <VBox alignment="CENTER" layoutX="29.0" layoutY="18.0" prefHeight="141.0" prefWidth="284.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <MFXTextField id="customPassword" fx:id="amountText" floatMode="BORDER" floatingText="How Many Of This Kind?" promptText="Amount" stylesheets="@CSSfiles/css/TextFields.css" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <MFXButton fx:id="applyBtn" onAction="#applyClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <MFXButton alignment="TOP_LEFT" contentDisplay="CENTER" depthLevel="LEVEL0" ellipsisString="" layoutX="313.0" layoutY="6.0" onAction="#closeWindow" prefHeight="21.0" prefWidth="10.0" rippleAnimateBackground="false" rippleColor="RED" text=" " textAlignment="CENTER">
+               <graphic>
+                  <MFXFontIcon fx:id="closeIcon" description="mfx-x-circle" size="15.0" styleClass="close-icon">
+                     <color>
+                        <Color red="1.0" />
+                     </color>
+                  </MFXFontIcon>
+               </graphic>
+            </MFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="646.0" prefWidth="976.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.OrdersHistoryController">
+   <children>
+      <MFXLegacyTableView fx:id="orders_table" layoutX="20.0" layoutY="153.0" prefHeight="451.0" prefWidth="937.0" styleClass="table-row-cell" stylesheets="@CSSfiles/MenubarCSS.css">
+         <columns>
+            <TableColumn fx:id="cancel_col" prefWidth="75.0" text="Cancel" />
+            <TableColumn fx:id="complaint_col" prefWidth="75.0" text="Complaint" />
+            <TableColumn fx:id="id_col" prefWidth="65.0" text="ID" />
+            <TableColumn fx:id="date_col" prefWidth="169.0" text="Date Order" />
+            <TableColumn fx:id="time_col" prefWidth="121.0" text="Time Order" />
+            <TableColumn fx:id="name_receiver_col" prefWidth="132.0" text="Name Receiver" />
+            <TableColumn fx:id="phone_receiver_col" prefWidth="148.0" text="Phone Receiver" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </MFXLegacyTableView>
+      <Label layoutX="404.0" layoutY="70.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="My Orders">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

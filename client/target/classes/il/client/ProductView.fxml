@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyListView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="260.0" prefWidth="330.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ProductView">
+   <children>
+      <MFXLegacyListView layoutX="15.0" layoutY="15.0" prefHeight="232.0" prefWidth="300.0" styleClass="CatalogItem" stylesheets="@CSSfiles/Backgrounds.css" />
+      <ImageView fx:id="product_image" fitHeight="224.0" fitWidth="238.0" layoutX="46.0" layoutY="18.0" onMouseClicked="#ClickedImage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../server/src/main/resources/images/Flower1.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
+      <ImageView fx:id="discount_logo" fitHeight="53.0" fitWidth="90.0" layoutX="200.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@images/DiscountPhoto/discount.jpg" />
+         </image>
+      </ImageView>
+      <VBox layoutX="33.0" layoutY="30.0" prefHeight="70.0" prefWidth="175.0">
+         <children>
+            <Label fx:id="product_name" text="Name">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <effect>
+                  <ColorAdjust />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Label>
+            <Label fx:id="product_price" prefHeight="53.0" prefWidth="126.0" text="Price">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <effect>
+                  <ColorAdjust />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Label>
+         </children>
+      </VBox>
+      <MFXButton fx:id="atc_product_button" layoutX="117.0" layoutY="202.0" onAction="#AddProductToCart" prefHeight="25.0" prefWidth="96.0" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Add To Cart" visible="false">
+         <rippleColor>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.959876537322998" green="0.6990740895271301" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </rippleColor>
+      </MFXButton>
+      <HBox layoutX="29.0" layoutY="177.0" prefHeight="25.0" prefWidth="272.0" spacing="30.0">
+         <children>
+            <MFXButton fx:id="removeFlowerBtn" disable="true" onAction="#removeFlowerClicked" prefHeight="20.0" prefWidth="120.0" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Remove Flower" visible="false" />
+            <MFXButton fx:id="editFlower" disable="true" onAction="#editFlowerClicked" prefHeight="20.0" prefWidth="120.0" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Edit Flower" visible="false" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXListView?>
+<?import io.github.palexdev.materialfx.controls.MFXSlider?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CustomProductController">
+   <children>
+      <AnchorPane layoutX="29.0" layoutY="25.0" prefHeight="598.0" prefWidth="1177.0">
+         <children>
+            <ImageView fitHeight="598.0" fitWidth="1177.0" layoutX="265.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ClientImages/AccountPrefImage.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="646.0" prefWidth="1240.0" style="-fx-background-color: transparent;" stylesheets="@CSSfiles/Backgrounds.css">
+         <children>
+            <Label layoutX="338.0" layoutY="29.0" prefHeight="40.0" prefWidth="551.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Style your own product">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <MFXListView id="ListBar" fx:id="listOfProducts" layoutX="365.0" layoutY="92.0" prefHeight="134.0" prefWidth="233.0" stylesheets="@CSSfiles/List.css" thumbColor="#ff6969" thumbHoverColor="#895ee1" trackColor="#ffb3b3" />
+            <MFXListView id="ListBar" fx:id="listOfChosenProducts" layoutX="613.0" layoutY="92.0" prefHeight="134.0" prefWidth="233.0" stylesheets="@CSSfiles/List.css" />
+            <VBox alignment="CENTER" layoutX="539.0" layoutY="253.0" prefHeight="195.0" prefWidth="233.0" spacing="26.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="253.0">
+                     <children>
+                        <MFXSlider fx:id="min_price_slider" max="1000.0" onMouseReleased="#setListByPriceMax" popupSide="OTHER_SIDE" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="253.0">
+                     <children>
+                        <MFXSlider fx:id="max_price_slider" max="1000.0" onMouseReleased="#setListByPriceMax" popupSide="OTHER_SIDE" value="1000.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="253.0">
+                     <children>
+                        <MFXComboBox fx:id="type_chooser" floatMode="BORDER" floatingText="Type List" prefHeight="34.0" prefWidth="170.0" />
+                     </children>
+                  </HBox>
+                  <MFXComboBox fx:id="colorPicker" floatMode="BORDER" floatingText="Type List" onAction="#setListByColor" prefHeight="34.0" prefWidth="170.0" />
+               </children>
+            </VBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="437.0" layoutY="305.0" prefHeight="21.0" prefWidth="131.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="117.0" text="Max Price range:" textFill="#979797">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="448.0" layoutY="415.0" prefHeight="23.0" prefWidth="117.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="120.0" text="Dominante Color:" textFill="#979797">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="520.0" layoutY="352.0" prefHeight="21.0" prefWidth="45.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="41.0" text="Type:" textFill="#979797">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="438.0" layoutY="255.0" prefHeight="23.0" prefWidth="131.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="117.0" text="Min Price range:" textFill="#979797">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox alignment="TOP_CENTER" layoutX="463.0" layoutY="528.0" prefHeight="85.0" prefWidth="270.0" spacing="10.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                     <children>
+                        <MFXButton fx:id="addToCartBTN" onAction="#AddToCartBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Add to cart" textFill="#979797" />
+                        <MFXButton fx:id="iAmDoneBTN" onAction="#IAmDoneBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Goto Cart" textFill="#979797" />
+                     </children>
+                  </HBox>
+                  <MFXButton fx:id="cancelBTN" onAction="#CancelBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Cancel" textFill="#979797" />
+               </children>
+            </VBox>
+            <MFXToggleButton fx:id="active_color_chooser" layoutX="464.0" layoutY="460.0" prefHeight="16.0" prefWidth="233.0" text="Active Dominante Color pick" textFill="#979797" />
+            <HBox alignment="CENTER" layoutX="498.0" layoutY="501.0" prefHeight="31.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label text="Estimated cost:" textFill="#979797">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="sum_label" text="sum" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

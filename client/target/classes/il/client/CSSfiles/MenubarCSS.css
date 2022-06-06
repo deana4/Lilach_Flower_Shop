@@ -1,0 +1,23 @@
+
+.table-cell {
+    -fx-text-fill: BLACK;
+    -fx-alignment: CENTER;
+}
+.table-row-cell:hover {
+    /*-fx-text-fill: #979797;*/
+    /*-fx-background-color: #F1EEE9;*/
+}
+.table-row-cell:selected{
+    /*-fx-text-fill: #979797;*/
+    -fx-background-color: #F1EEE9;
+}
+
+
+/*.table-cell:hover{*/
+/*    -fx-text-fill: #979797;*/
+/*    -fx-background-color: #979797;*/
+/*}*/
+
+/*.modena{*/
+/*    -fx-text-fill: BLACK;*/
+/*}*/

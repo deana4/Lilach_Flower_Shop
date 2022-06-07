@@ -54,6 +54,12 @@ public class LoginController extends ParentClass{
     public static String username;
     public static boolean isWorker;
     public int storeIDWork;
+    public static String credit_card;
+    public static String password;
+    public static String phone;
+    public static String mail;
+    public static double credit;
+    public static int frozen;
 
 
 
@@ -77,8 +83,18 @@ public class LoginController extends ParentClass{
                     storeIDWork = event.getStoreId();
                     UserClient.getInstance().setWorker(true);
                     UserClient.getInstance().setUserName(username);
-                    UserClient.getInstance().setPriority(permission);
                     UserClient.getInstance().setId(event.getId());
+                    switch(permission){
+                        case 1: {UserClient.getInstance().setPriority(3); UserClient.getInstance().setPlan(permission); break;} //worker
+                        case 2: {UserClient.getInstance().setPriority(4); UserClient.getInstance().setPlan(permission); break;} //service worker
+                        case 3: {UserClient.getInstance().setPriority(5); UserClient.getInstance().setPlan(permission); break;} //store manager
+                        case 4: {UserClient.getInstance().setPriority(6); UserClient.getInstance().setPlan(permission); break;} //network manager
+                        case 5: {UserClient.getInstance().setPriority(7); UserClient.getInstance().setPlan(permission); break;}//system admin
+                    }
+                    System.out.println("LoginController getPriority "+UserClient.getInstance().getPriority()+ "plan "+UserClient.getInstance().getPlan());
+                    UserClient.getInstance().setPriority(permission);
+                    //UserClient.getInstance().setPassword(password);
+                    //init store
                 }
                 else{
                     user = event.getUser();
@@ -87,11 +103,30 @@ public class LoginController extends ParentClass{
                     stores = event.getStoreList();
                     username = user.getUserName();
                     idConnected = user.getId();
+                    password = user.getPassword();
+                    credit_card = user.getCreditCard();
+                    phone = user.getPhone();
+                    mail = user.getMail();
+                    credit = user.getCredit();
+                    frozen = user.getAccountStatus();
                     UserClient.getInstance().setWorker(false);
                     UserClient.getInstance().setUserName(username);
                     UserClient.getInstance().setPriority(2);
                     UserClient.getInstance().setId(idConnected);
                     UserClient.getInstance().setPlan(user.getPriority());
+                    UserClient.getInstance().setPassword(password);
+                    UserClient.getInstance().setCreditCard(credit_card);
+                    UserClient.getInstance().setPhone(phone);
+                    UserClient.getInstance().setMail(mail);
+                    UserClient.getInstance().setCredit(credit);
+                    UserClient.getInstance().setOrderList(orders);
+                    UserClient.getInstance().setComplaintList(complains);
+                    UserClient.getInstance().setStoresOfStore(stores);
+                    if (frozen == 1) {
+                        UserClient.getInstance().setFrozen(true);
+                    } else {
+                        UserClient.getInstance().setFrozen(false);
+                    }
                 }
 
                 //set priority UserClient.getInstance()

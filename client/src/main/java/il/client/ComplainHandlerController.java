@@ -88,7 +88,7 @@ public class ComplainHandlerController {
         this.stage = stage;
         this.setComplaint(complaint);
         this.compalin_id_textarea.setText(Integer.toString(complaint.getThis_id()));
-        this.customer_name_textarea.setText(UserClient.getInstance().getName());
+        this.customer_name_textarea.setText(complaint.getOrder().getNameOrdering());
         System.out.println("complaint " + this.complaint.getComplaint());
         this.customer_complain_textarea.setText(this.complaint.getComplaint());
 
@@ -158,7 +158,8 @@ public class ComplainHandlerController {
             refund = Double.valueOf(this.refund_filed.getText());
         }
 
-        ComplainConrtol.complainAnswer(this.answe_textarea.getText(), refund, Integer.valueOf(this.compalin_id_textarea.getText()));
+        ComplainConrtol.complainAnswer(this.answe_textarea.getText(), refund, Integer.parseInt(this.compalin_id_textarea.getText()));
+        UserClient.getInstance().removeComplaintById(Integer.parseInt(this.compalin_id_textarea.getText()));
     }
 
     @FXML
@@ -171,7 +172,9 @@ public class ComplainHandlerController {
         Scene scene = new Scene(fxmlLoader.load(), 639, 371);
         scene.setFill(Color.TRANSPARENT);
         FullOrderViewController controller = fxmlLoader.getController();
-        controller.initialize(this);
+        ComplaintClient this_compalint = UserClient.getInstance().getComplaintById(Integer.parseInt(this.compalin_id_textarea.getText()));
+        OrderClient order_of_this_compalint = this_compalint.getOrder();
+        controller.initialize(this,order_of_this_compalint);
         controller.setStage(stage);
         stage.setTitle("Full Order Details");
         stage.setScene(scene);
@@ -327,6 +330,14 @@ public class ComplainHandlerController {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    public String getCustomer_name_textarea() {
+        return customer_name_textarea.getText();
+    }
+
+    public void setCustomer_name_textarea(String customer_name_textarea) {
+        this.customer_name_textarea.setText(customer_name_textarea);
     }
 
     /*end sets and gets*/

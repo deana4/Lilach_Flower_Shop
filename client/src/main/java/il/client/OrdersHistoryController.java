@@ -50,9 +50,9 @@ public class OrdersHistoryController {
     void initialize(){
         TableInitializeFields();
         items = UserClient.getInstance().getOrderList();
-        for(int i=0; i< items.size(); i++){
-            System.out.println(items.get(i));
-        }
+//        for(int i=0; i< items.size(); i++){
+//            System.out.println(items.get(i));
+//        } printing the orders
         orders_table.setItems(UserClient.getInstance().getOrderList());
     }
 //

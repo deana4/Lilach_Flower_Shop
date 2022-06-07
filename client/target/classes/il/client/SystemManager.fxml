@@ -2,31 +2,17 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import io.github.palexdev.materialfx.font.MFXFontIcon?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="646.0" prefWidth="976.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.SystemManagerController">
+<AnchorPane prefHeight="473.0" prefWidth="418.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.SystemManagerController">
    <children>
-      <Label layoutX="225.0" layoutY="22.0" prefHeight="52.0" prefWidth="526.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Admin Panel">
-         <font>
-            <Font name="Segoe Print Bold" size="23.0" />
-         </font>
-      </Label>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="646.0" prefWidth="976.0">
+      <AnchorPane layoutX="9.0" layoutY="12.0" prefHeight="449.0" prefWidth="428.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
-            <ImageView fitHeight="646.0" fitWidth="674.0" layoutX="165.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@ClientImages/AccountPrefIMG.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="412.0" layoutY="516.0" text="Check Your Errors!" textFill="RED" visible="false" />
-            <VBox alignment="CENTER" layoutX="279.0" layoutY="184.0" prefHeight="394.0" prefWidth="388.0">
+            <VBox alignment="CENTER" layoutX="44.0" layoutY="38.0" prefHeight="396.0" prefWidth="340.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                      <children>
@@ -54,12 +40,6 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                      <children>
-                        <MFXTextField id="customField" fx:id="addressText" alignment="CENTER" floatMode="BORDER" floatingText="Change Address" prefHeight="0.0" prefWidth="241.0" stylesheets="@CSSfiles/css/TextFields.css" />
-                        <MFXButton fx:id="addressBtn" alignment="CENTER" buttonType="RAISED" depthLevel="LEVEL1" onAction="#changeAddressClicked" rippleColor="#ffd3d3" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-                     <children>
                         <MFXTextField id="customField" fx:id="mailText" alignment="CENTER" floatMode="BORDER" floatingText="Change Mail" prefHeight="0.0" prefWidth="241.0" stylesheets="@CSSfiles/css/TextFields.css" />
                         <MFXButton fx:id="mailBtn" alignment="CENTER" buttonType="RAISED" depthLevel="LEVEL1" onAction="#changeMailClicked" rippleColor="#ffd3d3" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />
                      </children>
@@ -70,15 +50,18 @@
                         <MFXButton fx:id="permissionsBtn" alignment="CENTER" buttonType="RAISED" depthLevel="LEVEL1" onAction="#permissionsBtnClicked" rippleColor="#ffd3d3" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />
                      </children>
                   </HBox>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" layoutX="384.0" layoutY="70.0" prefHeight="108.0" prefWidth="155.0">
-               <children>
-                  <MFXToggleButton fx:id="toggleWorker" onMouseClicked="#workerToggleClicked" text="Is worker?" />
-                  <MFXButton fx:id="pickUserBtn" onAction="#userPickerClicked" prefHeight="32.0" prefWidth="144.0" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Pick User" />
                   <MFXButton fx:id="freezeBtn" alignment="CENTER" buttonType="RAISED" depthLevel="LEVEL1" onAction="#freezeAccountClicked" prefHeight="38.0" prefWidth="136.0" rippleColor="#ffd3d3" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Freeze Account" />
                </children>
             </VBox>
+            <MFXButton alignment="TOP_LEFT" contentDisplay="CENTER" depthLevel="LEVEL0" ellipsisString="" layoutX="384.0" layoutY="14.0" onAction="#closeWindow" prefHeight="21.0" prefWidth="10.0" rippleAnimateBackground="false" rippleColor="RED" text=" " textAlignment="CENTER">
+               <graphic>
+                  <MFXFontIcon fx:id="closeIcon" description="mfx-x-circle" size="15.0" styleClass="close-icon">
+                     <color>
+                        <Color red="1.0" />
+                     </color>
+                  </MFXFontIcon>
+               </graphic>
+            </MFXButton>
          </children>
       </AnchorPane>
    </children>

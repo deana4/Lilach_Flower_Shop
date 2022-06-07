@@ -153,6 +153,8 @@ public class SimpleServer extends AbstractServer {
             }
             if (message.getMessage().equals("cancelOrder")) {
                 OrderControl.cancelOrder(message.getOrderID(),message.getTimeCancel(), message.getDateCancel());
+                if(message.getRefund()>0)
+                    OrderControl.refund(message.getOrderID(), 1, message.getRefund());
             }
             if (message.getMessage().equals("newOrder")) {
                 OrderControl.newOrder(message.getOrder(), message.getStoreID(), message.getUserID());
@@ -179,7 +181,7 @@ public class SimpleServer extends AbstractServer {
                 UserControl.setPhone(message.getUserID(), message.getPhone(), message.isWorker());
             }
             if (message.getMessage().equals("setMail")) {
-                UserControl.setName(message.getUserID(), message.getMail(), message.isWorker());
+                UserControl.setMail(message.getUserID(), message.getMail(), message.isWorker());
             }
 
 

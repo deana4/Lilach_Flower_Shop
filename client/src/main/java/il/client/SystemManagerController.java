@@ -116,7 +116,7 @@ public class SystemManagerController {
     }
 
     @FXML
-    void changeMailClicked(ActionEvent event) {
+    void changeMailClicked(ActionEvent event) throws IOException {
         int correctness = checker.mailCheck(this.mailText.getText());
         if(correctness == 0){
             this.mailText.clear();
@@ -131,7 +131,7 @@ public class SystemManagerController {
     }
 
     @FXML
-    void changePhoneClicked(ActionEvent event) {
+    void changePhoneClicked(ActionEvent event) throws IOException {
         int correctness = checker.phoneCheck(this.PhoneText.getText());
         if(correctness == 0){
             this.PhoneText.clear();
@@ -146,7 +146,7 @@ public class SystemManagerController {
     }
 
     @FXML
-    void changeUsernameClicked(ActionEvent event) {
+    void changeUsernameClicked(ActionEvent event) throws IOException {
         //check if the user name is already exist in DB
         //if(already in server){
         //this.usernameText.clear();
@@ -161,12 +161,12 @@ public class SystemManagerController {
     }
 
     @FXML
-    void freezeAccountClicked(ActionEvent event) {
+    void freezeAccountClicked(ActionEvent event) throws IOException {
         UserControl.setAccountStatus(getPerson_id(), 0 , isWorker);
     }
 
     @FXML
-    void passwordChangeClicked(ActionEvent event) {
+    void passwordChangeClicked(ActionEvent event) throws IOException {
         int correctness = checker.passwordCheck(this.passwordText.getText());
         if(correctness == 0){
             this.passwordText.clear();
@@ -181,7 +181,7 @@ public class SystemManagerController {
     }
 
     @FXML
-    void permissionsBtnClicked(ActionEvent event) {
+    void permissionsBtnClicked(ActionEvent event) throws IOException {
         int correctness;
         if(toggleWorker.isSelected()) {
             correctness = checker.permissionCheck(this.permissionsText.getText(), "worker");

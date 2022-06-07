@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
+
 public class EditAccountDetailsController {
 
 
@@ -70,7 +72,7 @@ public class EditAccountDetailsController {
     }
 
     @FXML
-    void changeMail(MouseEvent event) {
+    void changeMail(MouseEvent event) throws IOException {
         int correctness = checker.mailCheck(this.mailText.getText());
         if(correctness == 0){
             this.mailText.clear();
@@ -86,7 +88,7 @@ public class EditAccountDetailsController {
     }
 
     @FXML
-    void changePhone(MouseEvent event) {
+    void changePhone(MouseEvent event) throws IOException {
         int correctness = checker.phoneCheck(this.phoneText.getText());
         if(correctness == 0){
             this.phoneText.clear();
@@ -101,7 +103,7 @@ public class EditAccountDetailsController {
     }
 
     @FXML
-    void changeUsername(MouseEvent event) {
+    void changeUsername(MouseEvent event) throws IOException {
         //check if the user name is already exist in DB
         //if(already in server){
         //this.usernameText.clear();
@@ -116,7 +118,7 @@ public class EditAccountDetailsController {
     }
 
     @FXML
-    void passwordChange(MouseEvent event) {
+    void passwordChange(MouseEvent event) throws IOException {
         int correctness = checker.passwordCheck(this.passwordText.getText());
         if(correctness == 0){
             this.passwordText.clear();

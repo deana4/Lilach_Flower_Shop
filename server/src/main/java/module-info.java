@@ -4,6 +4,5 @@ module il.server {
     requires org.hibernate.orm.core;
     requires java.naming;
     requires json;
-   // requires il.client;
     requires java.mail;
 }

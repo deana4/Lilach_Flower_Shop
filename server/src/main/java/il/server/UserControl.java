@@ -4,6 +4,7 @@ import il.entities.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -103,6 +104,42 @@ public class UserControl {
         user = testDB.session.get(User.class, userID);
         if (user != null) {
             user.setMail(mail);
+            testDB.session.flush();
+            testDB.session.getTransaction().commit(); // Save everything.
+        }
+        testDB.closeSession();
+    }
+
+    public static void setPermission(int userID, int permission, boolean isWorker) throws IOException {
+        testDB.openSession();
+        User user = null;
+        Employee employee=null;
+
+        if(!isWorker){
+            user = testDB.session.get(User.class, userID);
+            if(user!=null){
+                user.setPriority(permission);
+            }
+        }
+        else{
+            employee = testDB.session.get(Employee.class, userID);
+            if(employee!=null)
+                employee.setPermission(permission);
+        }
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+
+    }
+
+    public static void setAccountStatus(int userID, int freeze, boolean isWorker) throws IOException { //1 not freeze, 0 freeze
+        if (isWorker)
+            return;
+        testDB.openSession();
+        User user = null;
+        user = testDB.session.get(User.class, userID);
+        if (user != null) {
+            user.setAccountStatus(freeze);
             testDB.session.flush();
             testDB.session.getTransaction().commit(); // Save everything.
         }

@@ -81,6 +81,7 @@ public class LoginController extends ParentClass{
                     orders = event.getOrderList();
                     complains = event.getComplainList();
                     storeIDWork = event.getStoreId();
+                    password = event.getPassword();
                     UserClient.getInstance().setWorker(true);
                     UserClient.getInstance().setUserName(username);
                     UserClient.getInstance().setId(event.getId());
@@ -93,8 +94,8 @@ public class LoginController extends ParentClass{
                     }
                     System.out.println("LoginController getPriority "+UserClient.getInstance().getPriority()+ "plan "+UserClient.getInstance().getPlan());
                     UserClient.getInstance().setPriority(permission);
-                    //UserClient.getInstance().setPassword(password);
-                    //init store
+                    UserClient.getInstance().setPassword(password);
+                    UserClient.getInstance().setStoresOfStore(event.getStoreList());
                 }
                 else{
                     user = event.getUser();
@@ -188,14 +189,14 @@ public class LoginController extends ParentClass{
 
         }
         if(isWorker){
-            LogInControl.logIn(username, password, isWorker);
+            LogInControl.logIn(username, password, workerChecker.isSelected());
 //            UserClient.getInstance().setUserByServer(UserClient.getInstance().getUserServer());
             //correctLogin = (send msg to server - to find (string = username-password)
             // for specific worker id in the worker table
             //  return 'true' if username found and the password matches the username's id found
             // don't return list of workers, just return true or false according to the result)
         } else {
-            LogInControl.logIn(username, password, isWorker);
+            LogInControl.logIn(username, password, workerChecker.isSelected());
 //            UserClient.getInstance().setUserByServer(UserClient.getInstance().getUserServer());
             }
             //correctLogin = (send msg to server - to find (string = username-password)

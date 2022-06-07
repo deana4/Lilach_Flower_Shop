@@ -29,6 +29,16 @@ public class Complain implements Serializable {
     private String complain_text;
     private String answer_text;
 
+    public String getDataComplain() {
+        return dataComplain;
+    }
+
+    public void setDataComplain(String dataComplain) {
+        this.dataComplain = dataComplain;
+    }
+
+    private String dataComplain;
+
 
     public Complain(String complain_text, String date_complain) {
         this.complain_text = complain_text;

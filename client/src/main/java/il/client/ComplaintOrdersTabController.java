@@ -1,6 +1,5 @@
 package il.client;
 
-import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,8 +14,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.text.ParseException;
 
-public class OrdersHistoryController {
+public class ComplaintOrdersTabController {
+
     @FXML
     private TableColumn<OrderClient, String> date_col;
 
@@ -27,7 +28,7 @@ public class OrdersHistoryController {
     private TableColumn<OrderClient, String> name_receiver_col;
 
     @FXML
-    private MFXLegacyTableView<OrderClient> orders_table;
+    private MFXLegacyTableView<OrderClient> complaint_order_table;
 
     @FXML
     private TableColumn<OrderClient, String> phone_receiver_col;
@@ -35,44 +36,45 @@ public class OrdersHistoryController {
     @FXML
     private TableColumn<OrderClient, String> time_col;
 
-    @FXML
-    private TableColumn<OrderClient, MFXButton> complaint_col;
-
-    @FXML
-    private TableColumn<OrderClient, MFXButton> cancel_col;
-
-
     ObservableList<OrderClient> items = FXCollections.observableArrayList();
 
     private MyAccountController my_account_page_holder;
 
+    private static ComplaintOrdersTabController instance = null;
+
+    public static ComplaintOrdersTabController getInstance(){
+        if(instance == null){
+            System.out.println("Error Occured");
+        }
+        return instance;
+    }
+
     @FXML
     void initialize(){
+        instance = this;
         TableInitializeFields();
         items = UserClient.getInstance().getOrderList();
 //        for(int i=0; i< items.size(); i++){
 //            System.out.println(items.get(i));
 //        } printing the orders
-        orders_table.setItems(UserClient.getInstance().getOrderList());
+        complaint_order_table.setItems(UserClient.getInstance().getOrderList());
     }
-//
+    //
     public void TableInitializeFields() {
-        orders_table.setFixedCellSize(40);
+        complaint_order_table.setFixedCellSize(40);
         id_col.setCellValueFactory(new PropertyValueFactory<OrderClient, Integer>("this_id"));
         date_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("orderDate"));
         time_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("orderTime"));
         phone_receiver_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("phoneReceiver"));
         name_receiver_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("nameReceiver"));
-//        complaint_col.setCellValueFactory(new PropertyValueFactory<OrderClient, MFXButton>("complaint"));
-//        cancel_col.setCellValueFactory(new PropertyValueFactory<OrderClient, MFXButton>("cancel"));
 
-        orders_table.setRowFactory(s->{
+        complaint_order_table.setRowFactory(s->{
             TableRow<OrderClient> row = new TableRow<OrderClient>();
             row.setOnMouseClicked(mouseEvent -> {
                         System.out.println(row.getItem());
                         try {
-                            detailedOrderScreen(row);
-                        } catch (IOException e) {
+                            compalintOrderScreen(row);
+                        } catch (IOException | ParseException e) {
                             e.printStackTrace();
                         }
                     }
@@ -80,19 +82,28 @@ public class OrdersHistoryController {
             return row;
         });
     }
-    public void detailedOrderScreen(TableRow<OrderClient> row) throws IOException {
+    public void compalintOrderScreen(TableRow<OrderClient> row) throws IOException, ParseException {
         OrderClient order = UserClient.getInstance().getOrderById(row.getItem().getThis_id());
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("DetailedOrder.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 625 , 285);
-        DetailedOrderController controller = fxmlLoader.getController();
+        fxmlLoader.setLocation(getClass().getResource("Complain.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 797 , 627);
+        ComplainController controller = fxmlLoader.getController();
         stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setTitle("Detailed Order");
+        stage.setTitle("Compalint Order");
         stage.setScene(scene);
         stage.show();
         controller.initialize(order,stage);
+    }
+
+    public void RemoveOrderById(int id){
+        for(int i=0; i<items.size(); i++){
+            if(items.get(i).getThis_id() == id){
+                items.remove(i);
+                break;
+            }
+        }
     }
 
     /* gets and sets*/
@@ -110,4 +121,6 @@ public class OrdersHistoryController {
     }
 
     /* end gets and sets*/
+
+
 }

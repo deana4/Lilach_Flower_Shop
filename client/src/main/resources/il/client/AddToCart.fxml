@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="646.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.AddToCartController">
    <children>
@@ -43,6 +45,11 @@
                   </HBox>
                </children>
             </VBox>
+            <Label fx:id="no_items_label" layoutX="608.0" layoutY="563.0" prefHeight="44.0" prefWidth="606.0" text="Please enter at least one item to your cart" textFill="#e40707" visible="false">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

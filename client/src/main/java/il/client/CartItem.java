@@ -78,7 +78,8 @@ public class CartItem {
             scene.setFill(Color.TRANSPARENT);
             CartAdderController controller = fxmlLoader.getController();
             ProductView product_controller = CatalogController.getInstance().getProductsControllers().get(this.item_id);
-            controller.initialize(stage,product_controller);
+            System.out.println("in CartItem "+this.item_id+" "+product_controller.getId());
+            controller.initialize(stage,product_controller, this.item_id);
             stage.setTitle("Add To Cart Section");
             stage.setScene(scene);
             stage.show();

@@ -1,10 +1,14 @@
 package il.client;
 
+import il.client.controls.OrderControl;
+import il.entities.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +25,8 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
@@ -145,8 +151,6 @@ public class OrderController {
     @FXML
     private AnchorPane order_pane4;
 
-    @FXML
-    private MFXTextField order_num_field;
 
     @FXML
     private MFXButton thankYouBTN;
@@ -171,10 +175,22 @@ public class OrderController {
     private Label error_label;
 
     @FXML
-    private MFXComboBox<String> store_chooser;
+    public MFXComboBox<String> store_chooser;
+
+    private ObservableList<CartItem> cart = FXCollections.observableArrayList();;
+
+    private static OrderController OrderInstance = null;
+
+    public static OrderController getInstance(){
+        if(OrderInstance == null) {
+            OrderInstance = new OrderController();
+        }
+        return OrderInstance;
+    }
 
     @FXML
     void initialize() throws IOException {
+        OrderInstance = this;
         for(int i=10; i<=20; i++){
             this.time_choose.getItems().add(Integer.toString(i) + ":00");
             this.time_choose.getItems().add(Integer.toString(i) + ":30");
@@ -187,10 +203,12 @@ public class OrderController {
         this.reciver_phone_choose.getItems().add("052");
         this.reciver_phone_choose.getItems().add("053");
         this.reciver_phone_choose.getItems().add("054");
-        this.store_chooser.getItems().add("Store 1");
-        this.store_chooser.getItems().add("Store 2");
-        this.store_chooser.getItems().add("Store 3");
-        this.store_chooser.getItems().add("Store 4");
+        if(UserClient.getInstance().getPlan() == 1){ //specific store membership
+            String store_name = UserClient.getInstance().getStoresOfStore().get(0).getAddress();
+            this.store_chooser.setValue(store_name);
+            this.store_chooser.setDisable(true);
+        }
+        //init stores in catalog
 
         //if the user registered to spesific store he can only order from this store!!!!!!!!!!!!!!!!!
 //        if(user.getplan()=="Store"){
@@ -214,7 +232,7 @@ public class OrderController {
     }
 
     @FXML
-    void PayBTNClicked(MouseEvent event) throws JSONException {
+    void PayBTNClicked(MouseEvent event) throws JSONException, IOException {
 
         //check correctness
         int counter = 0;
@@ -277,27 +295,20 @@ public class OrderController {
         //get the details from the initialize we did here
         counter_details_clicks++;
         if(counter_details_clicks%2==1){
-            this.my_name_field.setText("Liran Eliav");
-            this.my_credit_card_field.setText("1234567890123456");
-            String phone="0509446360";
-            int third_digit = parseInt(String.valueOf(phone.charAt(2)));
-            switch (third_digit){
-                case 0: {this.my_phone_choose.setValue("050"); break;}
-                case 2: {this.my_phone_choose.setValue("052"); break;}
-                case 3: {this.my_phone_choose.setValue("053"); break;}
-                case 4: {this.my_phone_choose.setValue("054"); break;}
+            this.my_name_field.setText(UserClient.getInstance().getName());
+            this.my_credit_card_field.setText(UserClient.getInstance().getCreditCard());
+            if(UserClient.getInstance().getPhone()!="" && UserClient.getInstance().getPhone()!="Default" && UserClient.getInstance().getPhone()!=null) {
+                int third_digit = parseInt(String.valueOf(UserClient.getInstance().getPhone().charAt(2)));
+                switch (third_digit) {
+                    case 0: { this.my_phone_choose.setValue("050");break; }
+                    case 2: { this.my_phone_choose.setValue("052");break; }
+                    case 3: { this.my_phone_choose.setValue("053");break; }
+                    case 4: { this.my_phone_choose.setValue("054");break; }
+                }
+                this.my_phone_field.setText(UserClient.getInstance().getPhone().substring(3));
             }
-            this.my_phone_field.setText(phone.substring(3));
-            this.my_mail_field.setText("lll@gmail.com");
-            //address is from the type: String = address,city,home,floor,apartment
-            String location = "Leon,Haifa,34,18,35";
-            String[] parts = location.split(",");
-            this.street_field.setText(parts[0]);
-            this.city_field.setText(parts[1]);
-            this.home_num_field.setText(parts[2]);
-            this.floor_num_field.setText(parts[3]);
-            this.apartment_num_field.setText(parts[4]);
-
+            if(UserClient.getInstance().getMail()!=null && UserClient.getInstance().getMail()!="" && UserClient.getInstance().getMail()!="Defualt")
+            this.my_mail_field.setText(UserClient.getInstance().getMail());
         }
         else{
             this.my_name_field.setText("");
@@ -777,14 +788,39 @@ public class OrderController {
         return correct;
     }
 
-    private void correctOrder() throws JSONException {
+    private void correctOrder() throws JSONException, IOException {
         //send to server the order details
         JSONObject finishOrder = readySendToServer(false);
         this.order_pane2.setVisible(false);
         this.order_pane3.setVisible(false);
         this.order_pane4.setVisible(true);
         //get from server the order number of the order we just created!!!!
-        this.order_num_field.setText("1234");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String[] date_time = dtf.format(now).split(" ");
+        String address="";
+        if(deliveryChecker.isSelected()){
+            address = this.street_field.getText()+","+this.city_field.getText()
+                    +","+this.home_num_field.getText()+","+this.floor_num_field.getText()+","+this.apartment_num_field.getText();
+        }
+        else{
+            address=store_chooser.getSelectedItem();
+        }
+        if(!this.elseOrderChecker.isSelected()) {this.reciver_name_field.setText(""); this.reciver_phone_field.setText("");}
+        Store chosen_store = UserClient.getInstance().getStoreByAddress(this.store_chooser.getSelectedItem());
+        Order full_order = new Order(UserClient.getInstance().fromUserClientToUser(), chosen_store, this.date_picker.getText(), this.time_choose.getSelectedItem(), date_time[0],date_time[1], Double.parseDouble(this.sum_label.getText()), this.greeting_field.getText(),this.reciver_name_field.getText(), this.reciver_phone_field.getText()+this.reciver_phone_field.getText(),address);
+        for(int i=0; i<cart.size(); i++)
+        {
+            Product product = new Product(cart.get(i).getItem_name(), cart.get(i).getItem_price(), false, 0.0, null, null);
+            CartProduct cart_product = new CartProduct(product, cart.get(i).getItem_amount());
+            full_order.addProduct(cart_product);
+        }
+        if(store_chooser.getSelectedItem().equals("Haifa"))
+            OrderControl.newOrder(full_order, 1, UserClient.getInstance().getId());
+        if(store_chooser.getSelectedItem().equals("Tel Aviv"))
+            OrderControl.newOrder(full_order, 2, UserClient.getInstance().getId());
+        if(store_chooser.getSelectedItem().equals("Jerusalem"))
+            OrderControl.newOrder(full_order, 3, UserClient.getInstance().getId());
     }
 
     /* gets and sets*/
@@ -803,7 +839,15 @@ public class OrderController {
         this.cart_controller = cart_controller;
     }
 
-    //end gets and sets
+    public static OrderController getOrderInstance() { return OrderInstance; }
+
+    public static void setOrderInstance(OrderController orderInstance) { OrderInstance = orderInstance; }
+
+    public ObservableList<CartItem> getCart() { return cart; }
+
+    public void setCart(ObservableList<CartItem> cart) { this.cart = cart; }
+
+//end gets and sets
     /*end gets and sets*/
 
 

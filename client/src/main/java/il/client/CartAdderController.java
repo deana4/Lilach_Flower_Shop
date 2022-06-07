@@ -27,11 +27,13 @@ public class CartAdderController{
 
     private Stage stage;
     private ProductView PVController;
+    private int product_id;
 
     @FXML
-    void initialize(Stage stage, ProductView controller){
+    void initialize(Stage stage, ProductView controller, int product_id){
         this.stage = stage;
         this.PVController = controller;
+        this.product_id = product_id;
     }
     @FXML
     void applyClicked(ActionEvent event) throws IOException {
@@ -45,17 +47,28 @@ public class CartAdderController{
         }else if(checkNum == 1){
             AddToCartController cont = (AddToCartController)MainPageController.getInstance().getController_map().get("Cart");
             ObservableList<CartItem> cart = AddToCartController.getInstance().getItemsList();
-            for(CartItem item: cart){
-                System.out.println("CartAdderController item id "+item.getItem_id() + " PVController id "+PVController.getId());
-                if(item.getItem_id() == PVController.getId()){
-                    AddToCartController.getInstance().getItemsList().remove(item);
-                    AddToCartController.getInstance().addItemToTable(item,Integer.parseInt(amountText.getText()));
-                    System.out.println("in true");
+            for(int i=0; i< cart.size(); i++){
+                System.out.println("CartAdderController item id "+ product_id + " PVController id "+PVController.getId());
+                if(cart.get(i).getItem_id()== this.product_id){
+                    CartItem changed_item = AddToCartController.getInstance().getCartItemById(this.product_id);
+                    AddToCartController.getInstance().removeCartItemById(this.product_id);
+                    AddToCartController.getInstance().addItemToTable(changed_item, Integer.parseInt(this.amountText.getText()));
+                    System.out.println("in CartAdderController the product was already in the cart");
                     isFound = true;
+                    break;
                 }
             }
+//            for(CartItem item: cart){
+//                System.out.println("CartAdderController item id "+item.getItem_id() + " PVController id "+PVController.getId());
+//                if(item.getItem_id() == PVController.getId()){
+//                    AddToCartController.getInstance().getItemsList().remove(item);
+//                    AddToCartController.getInstance().addItemToTable(item,Integer.parseInt(amountText.getText()));
+//                    System.out.println("in true");
+//                    isFound = true;
+//                }
+//            }
             if(isFound == false) {
-                System.out.println("in false");
+                System.out.println("in CartAdderController in false-the product not in cart");
                 cont.addItemToTable(PVController.getProduct_name(), PVController.getProduct_price(), getPVController().getId(), Integer.parseInt(this.amountText.getText()));
             }
             cont.setChanges();

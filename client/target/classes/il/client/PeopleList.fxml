@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="646.0" prefWidth="976.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PeopleListController">
    <children>
-      <AnchorPane prefHeight="646.0" prefWidth="976.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css">
+      <AnchorPane fx:id="anchorpane_chooser" prefHeight="646.0" prefWidth="986.0">
+         <children>
+            <HBox alignment="CENTER" layoutX="273.0" layoutY="273.0" prefHeight="100.0" prefWidth="496.0" spacing="40.0">
+               <children>
+                  <MFXButton fx:id="userBTN" onAction="#UserBTNClicked" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Users" textFill="#979797">
+                     <font>
+                        <Font size="37.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton fx:id="employeeBTN" onAction="#EmployeeBTNClicked" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Employees" textFill="#979797">
+                     <font>
+                        <Font size="37.0" />
+                     </font>
+                  </MFXButton>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorpane_clients" prefHeight="646.0" prefWidth="976.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
          <children>
             <MFXLegacyTableView fx:id="people_table" layoutX="184.0" layoutY="154.0" prefHeight="453.0" prefWidth="609.0" styleClass="table-row-cell" stylesheets="@CSSfiles/MenubarCSS.css">
                <columns>
@@ -26,7 +46,28 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <MFXToggleButton fx:id="toggleWorker" layoutX="429.0" layoutY="105.0" onMouseClicked="#workerToggleClicked" text="Is worker?" />
+            <MFXToggleButton fx:id="toggleWorker" disable="true" layoutX="429.0" layoutY="105.0" onMouseClicked="#workerToggleClicked" text="Is worker?" />
+            <MFXButton fx:id="go_back_userBTN" layoutX="50.0" layoutY="595.0" onAction="#GoBackUserClicked" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="go back" textFill="#979797" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorpane_employees" layoutX="10.0" layoutY="10.0" prefHeight="646.0" prefWidth="976.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
+         <children>
+            <MFXLegacyTableView fx:id="employee_table" layoutX="184.0" layoutY="154.0" prefHeight="453.0" prefWidth="609.0" styleClass="table-row-cell" stylesheets="@CSSfiles/MenubarCSS.css">
+               <columns>
+                  <TableColumn fx:id="full_employee_name_col" prefWidth="75.0" text="Full Employee Name" />
+                  <TableColumn fx:id="employee_user_name_col" prefWidth="75.0" text="Employee User-Name" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </MFXLegacyTableView>
+            <Label layoutX="231.0" layoutY="40.0" prefHeight="55.0" prefWidth="515.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Choose the relevant person">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <MFXToggleButton fx:id="toggleWorker1" disable="true" layoutX="429.0" layoutY="105.0" onMouseClicked="#workerToggleClicked" selected="true" styleClass="mfx-toggle-button" stylesheets="@CSSfiles/css/ChecksRadiosToggles.css" text="Is worker?" />
+            <MFXButton fx:id="go_back_workerBTN" layoutX="54.0" layoutY="595.0" onAction="#GoBackWorkerClicked" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="go back" textFill="#979797" />
          </children>
       </AnchorPane>
    </children>

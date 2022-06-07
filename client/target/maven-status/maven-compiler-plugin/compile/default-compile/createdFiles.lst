@@ -35,10 +35,12 @@ il\client\events\LoginEvent.class
 il\client\CartItem.class
 il\client\OrderController.class
 il\client\ComplainHandlerController.class
+il\client\CancelOrdersTabController.class
 il\client\ocsf\ObservableClient.class
 il\client\EditAccountDetailsController.class
 il\client\RegisterController.class
 il\client\SystemManagerController.class
+il\client\ComplaintOrdersTabController.class
 il\client\AddProductToCatalogDialogController.class
 il\client\SimpleClient.class
 il\client\DetailsChecker.class

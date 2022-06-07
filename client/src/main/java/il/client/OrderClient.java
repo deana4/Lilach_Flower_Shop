@@ -66,11 +66,11 @@ public class OrderClient {
         this.nameReceiver = order.getNameReceives();
         this.phoneReceiver = order.getPhoneReceives();
         this.Address = order.getAddress();
-        this.nameOrdering = order.getUser().getUserName();
+        //this.nameOrdering = order.getUser().getName();
         for(int i=0; i<order.getProducts().size(); i++){
             this.order_items.add(new CartItem(order.getProducts().get(i)));
         }
-        this.storeChoosen = order.getStore().getAddress();
+      //  this.storeChoosen = order.getStore().getAddress();
       //  this.isDelivery = order.isDelivery();
     }
 

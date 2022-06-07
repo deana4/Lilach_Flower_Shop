@@ -132,6 +132,7 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         thread.start();
         LoadFirstPage();
         System.out.println("This code is outside of the thread");
+
     }
 
 
@@ -241,6 +242,7 @@ public class MainPageController extends ParentClass {     //This is a singleton 
     void MyCartBTNClicked(ActionEvent event) throws IOException {
         LoadCartPage();
         ((AddToCartController)controller_map.get("Cart")).setTotalSum();
+        AddToCartController.getInstance().setNo_items_labelFalse();
     }
 
     @FXML
@@ -349,6 +351,18 @@ public class MainPageController extends ParentClass {     //This is a singleton 
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    public static List<Store> getAllStores() {
+        return allStores;
+    }
+
+    public static void setAllStores(List<Store> allStores) {
+        MainPageController.allStores = allStores;
+    }
+
+    public Object getControllerByKey(String key){
+        return controller_map.get(key);
     }
 
     /*-------------------------------------- Special Functions --------------------------------------*/

@@ -1,6 +1,7 @@
 package il.client;
 
 import il.client.controls.OrderControl;
+import il.entities.Order;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.ObservableList;
@@ -8,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -44,6 +46,10 @@ public class CancelOrderController {
 
     private double refund = 0.0;
 
+    private Stage stage;
+
+    private OrderClient this_order;
+
     private static CancelOrderController instance = null;
 
     public static CancelOrderController getInstance(){
@@ -54,14 +60,20 @@ public class CancelOrderController {
     }
 
     @FXML
-    void initialize() throws ParseException {
+    void initialize(OrderClient order, Stage stage) throws ParseException {
         instance = this;
+        this.stage = stage;
+        this_order = order;
+        this.order_num_filed.setText(Integer.toString(order.getThis_id()));
+        setDetailsCancelOrder();
+
     }
 
     @FXML
     void NoBTNClicked(ActionEvent event) throws IOException {
 //        MyAccountController.getInstance().CancelOrderRefresh();
-        MyAccountController.getInstance().LoadOrdersHistoryPage();
+//        MyAccountController.getInstance().LoadOrdersHistoryPage();
+        this.stage.close();
     }
 
     @FXML
@@ -87,6 +99,10 @@ public class CancelOrderController {
         MyAccountController.getInstance().LoadOrdersHistoryPage();
 
         OrderControl.cancelOrder(Integer.parseInt(this.order_num_filed.getText()),refund);
+
+        UserClient.getInstance().removeOrderById(Integer.parseInt(this.order_num_filed.getText()));
+
+      //  CancelOrdersTabController.getInstance().RemoveOrderById(Integer.parseInt(this.order_num_filed.getText()));
     }
 
     public void setDetailsCancelOrder() throws ParseException {
@@ -107,7 +123,7 @@ public class CancelOrderController {
 
         Date cancelOrder = new Date();
 
-        long difference_In_Time =  dtOrderReceiver.getTime()- cancelOrder.getTime();
+        long difference_In_Time =  dtOrderReceiver.getTime() - cancelOrder.getTime();
         long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
         long difference_In_Hours = (difference_In_Time / (1000 * 60 * 60)) % 24;
         long difference_In_Days = (difference_In_Time / (1000 * 60 * 60 * 24)) % 365;
@@ -129,6 +145,15 @@ public class CancelOrderController {
             this.refund_status_label.setText("0% from "+ Double.valueOf(order_sum)+ "--> "+Double.toString(0*order_sum));
             refund=0.0*order_sum;
         }
+        if(difference_In_Days<0){
+            this.refund_status_label.setText("You can't cancel this order! You get it");
+            this.yesBTN.setDisable(true);
+        }
+    }
+
+    @FXML
+    void closeWindow(ActionEvent event) {
+        this.stage.close();
     }
 
 
@@ -144,6 +169,14 @@ public class CancelOrderController {
 
     public void setOrder_num_filed(String order_num_filed) {
         this.order_num_filed.setText(order_num_filed);
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     /* end gets and sets*/

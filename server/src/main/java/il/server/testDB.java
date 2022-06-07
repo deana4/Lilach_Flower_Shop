@@ -181,9 +181,9 @@ public class testDB {
         o.getProducts().get(0).decAmount();
         o.getProducts().get(0).decAmount();
 
-        Complain c1 = new Complain("complaint test", "14/07/2022");
-        Complain c2 = new Complain("complaint test", "15/07/2022");
-        Complain c3 = new Complain("complaint test", "15/08/2022");
+        Complain c1 = new Complain("complaint test", "14/07/2022","12:00");
+        Complain c2 = new Complain("complaint test", "15/07/2022","12:00");
+        Complain c3 = new Complain("complaint test", "15/08/2022","13:00");
         testDB.session.save(c1);
         testDB.session.save(c2);
         testDB.session.save(c3);

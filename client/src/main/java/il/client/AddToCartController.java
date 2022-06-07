@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -29,6 +30,9 @@ public class AddToCartController{
 
     protected MainPageController main_page_holder;
 
+
+    @FXML
+    private Label no_items_label;
 
     @FXML
     private MFXLegacyTableView<CartItem> cart_table;
@@ -112,7 +116,12 @@ public class AddToCartController{
     }
 
     public void setChanges(){
+        total_sum = 0.0;
         cart_table.setItems(items);
+        for(int i=0; i<items.size(); i++){
+            total_sum = total_sum + (items.get(i).getItem_price() * items.get(i).getItem_amount());
+        }
+        this.sum_field.setText(Double.toString(total_sum));
     }
     public void addItemToTable(String name, double price, int id, int amount){
         CartItem item = new CartItem(name,price,amount,id);
@@ -132,12 +141,25 @@ public class AddToCartController{
     }
 
     public void removeItemFromTable(int id) throws IOException {
-        for(CartItem item: items){
-            if(item.getItem_id() == id){
-                this.items.remove(item);
-                System.out.println("Removed Item:" + item.getItem_name());
+        double price_of_product=0.0;
+        for(int i=0; i<this.items.size(); i++){
+            if(items.get(i).getItem_id() == id){
+                price_of_product = items.get(i).getItem_price() * items.get(i).getItem_amount();
+                System.out.println("Removed Item:" + items.get(i).getItem_name() + " "+ price_of_product);
+                this.items.remove(items.get(i));
+                System.out.println("Removed Item");
+                break;
             }
         }
+//        for(CartItem item: items){
+//            if(item.getItem_id() == id){
+//                price_of_product = item.getItem_price() * item.getItem_amount();
+//                this.items.remove(item);
+//                System.out.println("Removed Item:" + item.getItem_name());
+//            }
+//        }
+        this.total_sum = total_sum - price_of_product;
+        this.sum_field.setText(Double.toString(total_sum));
         MainPageController.getInstance().LoadCartPage();
     }
 
@@ -153,18 +175,20 @@ public class AddToCartController{
 
     @FXML
     void OrderBTNClicked(MouseEvent event) throws IOException {
-        // main_page_holder.getMain_first_load_pane().getChildren().clear();
-//        FXMLLoader fxmlLoader = new FXMLLoader();
-//        URL var = getClass().getResource("Order.fxml");
-//        fxmlLoader.setLocation(var);
-//        Parent root = fxmlLoader.load();
-//        OrderController controller = fxmlLoader.getController();
-//        controller.setCart_controller(this);
-//        this.main_page_holder.LoadOrderPage();
-        OrderController order_controller = (OrderController) MainPageController.getInstance().getController_map().get("Order");
-        order_controller.setSum_label(Double.toString(total_sum));
-        MainPageController.getInstance().LoadOrderPage();
-        // main_page_holder.getMain_first_load_pane().getChildren().addAll(root);
+        if(items.size()!=0) {
+            OrderController order_controller = (OrderController) MainPageController.getInstance().getController_map().get("Order");
+            if(UserClient.getInstance().getPlan()==3 && total_sum>50) { //yearly membership
+                order_controller.setSum_label(Double.toString(total_sum * 0.9));
+            }
+            else{
+                order_controller.setSum_label(Double.toString(total_sum));
+            }
+            MainPageController.getInstance().LoadOrderPage();
+            OrderController.getInstance().setCart(this.items);
+            this.no_items_label.setVisible(false);
+        } else{
+            this.no_items_label.setVisible(true);
+        }
     }
 
     public void LoadCart() throws IOException {
@@ -175,6 +199,24 @@ public class AddToCartController{
         OrderController controller = fxmlLoader.getController();
         controller.setCart_controller(this);
         controller.setSum_label(this.sum_field.getText());
+    }
+
+
+    public CartItem getCartItemById(int id){
+        for(int i=0; i< items.size(); i++){
+            if(items.get(i).getItem_id() == id){
+                return items.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void removeCartItemById(int id){
+        for(int i=0; i<items.size(); i++){
+            if(items.get(i).getItem_id() == id){
+                items.remove(i);
+            }
+        }
     }
 
 
@@ -194,5 +236,11 @@ public class AddToCartController{
         return items;
     }
 
+    public void setNo_items_labelFalse() {
+        no_items_label.setVisible(false);
+    }
 
+    public void setNo_items_labelTrue() {
+        this.no_items_label.setVisible(true);
+    }
 }

@@ -29,27 +29,28 @@ public class Complain implements Serializable {
     private String complain_text;
     private String answer_text;
 
-    public String getDataComplain() {
-        return dataComplain;
+    public String getTimeComplain() {
+        return timeComplain;
     }
 
-    public void setDataComplain(String dataComplain) {
-        this.dataComplain = dataComplain;
+    public void setTimeComplain(String timeComplain) {
+        this.timeComplain = timeComplain;
     }
 
-    private String dataComplain;
+    private String timeComplain;
 
 
-    public Complain(String complain_text, String date_complain) {
+    public Complain(String complain_text, String date_complain, String timeComplain) {
         this.complain_text = complain_text;
         this.date_complain = date_complain;
         this.status=true;
         this.refund = 0;
         this.answer_text="";
+        this.timeComplain = timeComplain;
     }
 
     public Complain getComplainForClient(){
-        Complain c =  new Complain(this.complain_text, this.date_complain);
+        Complain c =  new Complain(this.complain_text, this.date_complain,this.timeComplain);
         c.setRefund(this.refund);
         c.setAnswer_text(this.answer_text);
         c.setId(this.id);

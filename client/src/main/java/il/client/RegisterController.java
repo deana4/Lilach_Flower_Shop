@@ -53,7 +53,7 @@ public class RegisterController extends ParentClass{
     private MFXTextField username_tf;
 
     @FXML
-    private MFXComboBox<String> store_choose;
+    public MFXComboBox<String> store_choose;
 
     private MainPageController main_controller;
 
@@ -64,14 +64,7 @@ public class RegisterController extends ParentClass{
             this.plan_chooser.getItems().add("Specific Store Member");
             this.plan_chooser.getItems().add("Store Wide Member");
             this.plan_chooser.getItems().add("Yearly Member");
-//            for(int i=0; i<allStores.size(); i++){
-//                this.store_choose.getItems().add(allStores.get(i).getAddress());
-//            }
-
-//            this.store_choose.getItems().add("Store 1");
-//            this.store_choose.getItems().add("Store 2");
-//            this.store_choose.getItems().add("Store 3");
-//            this.store_choose.getItems().add("Store 4");
+            //init stores in catalog
         }
     }
 
@@ -305,4 +298,11 @@ public class RegisterController extends ParentClass{
         this.main_controller = main_controller;
     }
 
+    public MFXComboBox<String> getStore_choose() {
+        return store_choose;
+    }
+
+    public void setStore_choose(MFXComboBox<String> store_choose) {
+        this.store_choose = store_choose;
+    }
 }

@@ -2,6 +2,7 @@ package il.client;
 
 import io.github.palexdev.materialfx.controls.*;
 import io.github.palexdev.materialfx.controls.cell.MFXListCell;
+import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
 import io.github.palexdev.materialfx.utils.others.FunctionalStringConverter;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.PickResult;
@@ -29,6 +31,24 @@ import java.util.List;
 import java.util.function.Function;
 
 public class CustomProductController {
+
+    @FXML
+    private TableColumn<ProductView, String> chosen_id_col;
+
+    @FXML
+    private TableColumn<ProductView, String> chosen_name_col;
+
+    @FXML
+    private MFXLegacyTableView<ProductView> chosen_table;
+
+    @FXML
+    private TableColumn<ProductView, String> name_col;
+
+    @FXML
+    private TableColumn<ProductView, String> id_col;
+
+    @FXML
+    private MFXLegacyTableView<ProductView> products_table;
 
     @FXML
     private MFXToggleButton active_color_chooser;

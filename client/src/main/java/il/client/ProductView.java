@@ -114,8 +114,8 @@ public class ProductView extends ParentClass{
             }
         }else if(UserClient.getInstance().isWorker() == false){
             setPriorityBtnLowerThan2();
-            this.atc_product_button.setDisable(true);
-            this.atc_product_button.setVisible(false);
+            this.atc_product_button.setDisable(false);
+            this.atc_product_button.setVisible(true);
 
 //            switch (UserClient.getInstance().getPriority()) {
 //            case 1: {
@@ -208,7 +208,7 @@ public class ProductView extends ParentClass{
         stage.initStyle(StageStyle.TRANSPARENT);
         scene.setFill(Color.TRANSPARENT);
         CartAdderController controller = fxmlLoader.getController();
-        controller.initialize(stage,this);
+        controller.initialize(stage,this, this.getId());
         stage.setTitle("Add To Cart Section");
         stage.setScene(scene);
         stage.show();

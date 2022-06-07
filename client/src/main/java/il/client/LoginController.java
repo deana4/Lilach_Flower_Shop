@@ -2,10 +2,7 @@ package il.client;
 
 import il.client.controls.LogInControl;
 import il.client.events.LoginEvent;
-import il.entities.Complain;
-import il.entities.Order;
-import il.entities.Store;
-import il.entities.User;
+import il.entities.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -60,6 +57,7 @@ public class LoginController extends ParentClass{
     public static String mail;
     public static double credit;
     public static int frozen;
+    private static String name;
 
 
 
@@ -90,7 +88,14 @@ public class LoginController extends ParentClass{
                         case 2: {UserClient.getInstance().setPriority(4); UserClient.getInstance().setPlan(permission); break;} //service worker
                         case 3: {UserClient.getInstance().setPriority(5); UserClient.getInstance().setPlan(permission); break;} //store manager
                         case 4: {UserClient.getInstance().setPriority(6); UserClient.getInstance().setPlan(permission); break;} //network manager
-                        case 5: {UserClient.getInstance().setPriority(7); UserClient.getInstance().setPlan(permission); break;}//system admin
+                        case 5:
+                        {
+                            UserClient.getInstance().setPriority(7);
+                            UserClient.getInstance().setPlan(permission);
+                            UserClient.getInstance().setEmployees(event.getStoreEmploeey());
+                            UserClient.getInstance().setAllusers(event.getStoreUser());
+                            break;
+                        }//system admin
                     }
                     System.out.println("LoginController getPriority "+UserClient.getInstance().getPriority()+ "plan "+UserClient.getInstance().getPlan());
                     UserClient.getInstance().setPriority(permission);
@@ -110,6 +115,7 @@ public class LoginController extends ParentClass{
                     mail = user.getMail();
                     credit = user.getCredit();
                     frozen = user.getAccountStatus();
+                    name = user.getName();
                     UserClient.getInstance().setWorker(false);
                     UserClient.getInstance().setUserName(username);
                     UserClient.getInstance().setPriority(2);
@@ -123,6 +129,7 @@ public class LoginController extends ParentClass{
                     UserClient.getInstance().setOrderList(orders);
                     UserClient.getInstance().setComplaintList(complains);
                     UserClient.getInstance().setStoresOfStore(stores);
+                    UserClient.getInstance().setName(name);
                     if (frozen == 1) {
                         UserClient.getInstance().setFrozen(true);
                     } else {

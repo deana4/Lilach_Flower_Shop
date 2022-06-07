@@ -58,7 +58,7 @@ public class DetailedOrderController {
         }
         amountText.setText(Integer.toString(amount));
         dateReceiverText.setText(orderToLook.getOrderReceiveDate());
-        storeText.setText(orderToLook.getStoreChoosen());
+//        storeText.setText(orderToLook.getStoreChoosen());
         for(int i=0; i<holder.size();i++){
             sum = sum + holder.get(i).getItem_price();
         }

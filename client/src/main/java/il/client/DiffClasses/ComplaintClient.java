@@ -29,7 +29,7 @@ public class ComplaintClient {
         this_id = complaint.getId();
         this.order = new OrderClient(complaint.getOrder());
         this.complaint = complaint.getComplain_text();
-       // this.ComplaintTime = complaint.getTime();
+        //this.ComplaintTime = complaint.getTime();
         this.complaintDate = complaint.getDate_complain();
     }
 

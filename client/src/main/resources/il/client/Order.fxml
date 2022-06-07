@@ -275,19 +275,6 @@
                                 <Font size="45.0" />
                             </font>
                         </Label>
-                        <Label prefHeight="20.0" prefWidth="107.0" text="Order Number:" textFill="#979797">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
-                        </Label>
-                        <MFXTextField fx:id="order_num_field" alignment="CENTER" editable="false" prefHeight="50.0" prefWidth="168.0">
-                            <textFill>
-                                <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
-                            </textFill>
-                            <font>
-                                <Font size="17.0" />
-                            </font>
-                        </MFXTextField>
                         <MFXButton fx:id="thankYouBTN" onAction="#ThankYouBTNClicked" prefHeight="40.0" prefWidth="203.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Thank you!" textFill="#979797">
                             <font>
                                 <Font size="29.0" />

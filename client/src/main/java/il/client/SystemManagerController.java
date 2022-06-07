@@ -201,6 +201,7 @@ public class SystemManagerController {
     }
 
     public void initWorker(){
+        this.mailText.setEditable(false);
         this.creditCardText.clear();
         this.creditCardText.setPromptText(" ");
         this.creditCardText.setDisable(true);
@@ -324,6 +325,10 @@ public class SystemManagerController {
     public void setPerson_id(int person_id) {
         this.person_id = person_id;
     }
+
+    public Stage getStage() { return stage; }
+
+    public void setStage(Stage stage) { this.stage = stage; }
 
     /* end sets and gets*/
 }

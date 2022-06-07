@@ -68,6 +68,8 @@ public class MyAccountController{
             System.out.println("in if");
         loader.addView(MFXLoaderBean.of("MyAccount", loadURL("EditAccountDetails.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-variant7-mark", "Account Preferences")).setDefaultRoot(true).get());
         loader.addView(MFXLoaderBean.of("Orders", loadURL("OrdersHistory.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-list-dropdown", "Orders")).get());
+        loader.addView(MFXLoaderBean.of("Cancel Orders", loadURL("CancelOrders.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-x-circle", "Cancel Orders")).get());
+        loader.addView(MFXLoaderBean.of("Complaints on Orders", loadURL("ComplaintOrders.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-plus", "Complaints on Orders")).get());
         }
 
         if (UserClient.getInstance().isWorker() && UserClient.getInstance().getPlan()==4){
@@ -165,6 +167,16 @@ public class MyAccountController{
             controller_map.put("ComplaintsTab", controller);
             ((ComplaintTabController) controller_map.get("ComplaintsTab")).setMy_account_page_holder(this);
         }
+//        {
+//            fxmlLoader = new FXMLLoader();
+//            var = getClass().getResource("PeopleList.fxml");
+//            fxmlLoader.setLocation(var);
+//            root = fxmlLoader.load();
+//            PeopleListController controller = fxmlLoader.getController();
+//            root_map.put("PeopleList", root);
+//            controller_map.put("PeopleList", controller);
+//            ((PeopleListController) controller_map.get("PeopleList")).setMy_account_page_holder(this);
+//        }
 
 
 
@@ -201,6 +213,8 @@ public class MyAccountController{
         ((ComplaintTabController)controller_map.get("ComplaintsTab")).setMy_account_page_holder(this);
         this.contentPane.getChildren().addAll(root_map.get("ComplaintsTab"));
     }
+
+
 
     public void ComplainRefresh() throws IOException {
         Parent root;

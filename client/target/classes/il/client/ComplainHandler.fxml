@@ -68,7 +68,7 @@
                         </Label>
                         <HBox alignment="CENTER" prefHeight="47.0" prefWidth="252.0">
                            <children>
-                              <MFXTextField fx:id="hours_field" editable="false" floatMode="DISABLED" prefHeight="26.0" prefWidth="90.0" text="hours">
+                              <MFXTextField fx:id="hours_field" editable="false" floatMode="DISABLED" prefHeight="26.0" prefWidth="90.0" styleClass="restTF" text="hours">
                                  <textFill>
                                     <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                                  </textFill>
@@ -81,7 +81,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <MFXTextField fx:id="minutes_field" editable="false" floatMode="DISABLED" prefHeight="26.0" prefWidth="90.0" text="minutes">
+                              <MFXTextField fx:id="minutes_field" editable="false" floatMode="DISABLED" prefHeight="26.0" prefWidth="90.0" styleClass="restTF" text="minutes">
                                  <textFill>
                                     <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                                  </textFill>

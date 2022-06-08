@@ -33,7 +33,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <MFXListView id="ListBar" fx:id="listOfProducts" layoutX="928.0" layoutY="123.0" prefHeight="400.0" prefWidth="233.0" stylesheets="@CSSfiles/List.css" thumbColor="#ff6969" thumbHoverColor="#895ee1" trackColor="#ffb3b3" />
+            <MFXListView id="ListBar" fx:id="listOfProducts" layoutX="928.0" layoutY="123.0" prefHeight="400.0" prefWidth="233.0" stylesheets="@CSSfiles/List.css" thumbColor="#ff9292" thumbHoverColor="#83416b" trackColor="#ffb3b3" />
             <MFXListView id="ListBar" fx:id="listOfChosenProducts" layoutX="43.0" layoutY="123.0" prefHeight="400.0" prefWidth="233.0" stylesheets="@CSSfiles/List.css" />
             <VBox alignment="CENTER" layoutX="543.0" layoutY="188.0" prefHeight="195.0" prefWidth="233.0" spacing="26.0">
                <children>
@@ -49,13 +49,13 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="40.0" prefWidth="253.0">
                      <children>
-                        <MFXComboBox fx:id="type_chooser" floatMode="BORDER" floatingText="Type List" prefHeight="34.0" prefWidth="170.0">
+                        <MFXComboBox fx:id="type_chooser" floatMode="BORDER" floatingText="Type List" prefHeight="34.0" prefWidth="170.0" styleClass="restTF">
                            <textFill>
                               <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                            </textFill></MFXComboBox>
                      </children>
                   </HBox>
-                  <MFXComboBox fx:id="colorPicker" floatMode="BORDER" floatingText="Color List" onAction="#setListByColor" prefHeight="34.0" prefWidth="170.0" />
+                  <MFXComboBox fx:id="colorPicker" floatMode="BORDER" floatingText="Color List" onAction="#setListByColor" prefHeight="34.0" prefWidth="170.0" styleClass="restTF" />
                </children>
             </VBox>
             <HBox alignment="CENTER_RIGHT" layoutX="411.0" layoutY="242.0" prefHeight="21.0" prefWidth="131.0">

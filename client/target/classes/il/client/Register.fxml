@@ -29,7 +29,7 @@
             </Label>
             <VBox alignment="TOP_CENTER" layoutX="490.0" layoutY="144.0" prefHeight="485.0" prefWidth="261.0" spacing="25.0">
                <children>
-                  <MFXTextField fx:id="name_tf" floatMode="BORDER" floatingText="Full Name" floatingTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="29.0" prefWidth="257.0">
+                  <MFXTextField fx:id="name_tf" floatMode="BORDER" floatingText="Full Name" floatingTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="29.0" prefWidth="257.0" styleClass="restTF">
                      <textFill>
                         <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                      </textFill>
@@ -37,34 +37,34 @@
                         <Insets />
                      </opaqueInsets>
                   </MFXTextField>
-                  <MFXTextField fx:id="username_tf" floatMode="BORDER" floatingText="Username" floatingTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="29.0" prefWidth="178.0">
+                  <MFXTextField fx:id="username_tf" floatMode="BORDER" floatingText="Username" floatingTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="29.0" prefWidth="178.0" styleClass="restTF">
                      <textFill>
                         <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                      </textFill>
                   </MFXTextField>
-                  <MFXTextField fx:id="pass_tf" floatMode="BORDER" floatingText="Password" floatingTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="20.0" prefWidth="225.0">
+                  <MFXTextField fx:id="pass_tf" floatMode="BORDER" floatingText="Password" floatingTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="20.0" prefWidth="225.0" styleClass="restTF">
                      <textFill>
                         <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                      </textFill>
                   </MFXTextField>
-                  <MFXTextField fx:id="id_tf" floatMode="BORDER" floatingText="ID" floatingTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="20.0" prefWidth="225.0">
+                  <MFXTextField fx:id="id_tf" floatMode="BORDER" floatingText="ID" floatingTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="20.0" prefWidth="225.0" styleClass="restTF">
                      <textFill>
                         <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                      </textFill>
                   </MFXTextField>
-                  <MFXTextField fx:id="credit_card_tf" floatMode="BORDER" floatingText="Credit Card" floatingTextGap="0.0" graphicTextGap="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="20.0" prefWidth="225.0">
+                  <MFXTextField fx:id="credit_card_tf" floatMode="BORDER" floatingText="Credit Card" floatingTextGap="0.0" graphicTextGap="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="1" prefHeight="20.0" prefWidth="225.0" styleClass="restTF">
                      <textFill>
                         <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                      </textFill>
                   </MFXTextField>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="3.0">
                      <children>
-                        <MFXComboBox fx:id="plan_chooser" borderGap="15.0" floatMode="BORDER" onAction="#PlanChooserClicked" prefHeight="34.0" prefWidth="138.0" text="Choose Plan">
+                        <MFXComboBox fx:id="plan_chooser" borderGap="15.0" floatMode="BORDER" onAction="#PlanChooserClicked" prefHeight="34.0" prefWidth="138.0" styleClass="restTF" text="Choose Plan">
                            <textFill>
                               <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                            </textFill>
                         </MFXComboBox>
-                        <MFXComboBox fx:id="store_choose" borderGap="15.0" floatMode="BORDER" prefHeight="21.0" prefWidth="152.0" text="Choose Store">
+                        <MFXComboBox fx:id="store_choose" borderGap="15.0" floatMode="BORDER" prefHeight="21.0" prefWidth="152.0" styleClass="restTF" text="Choose Store">
                            <textFill>
                               <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                            </textFill>

@@ -25,7 +25,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <MFXTextField fx:id="order_number_field" editable="false" floatMode="BORDER" prefHeight="27.0" prefWidth="135.0">
+                        <MFXTextField fx:id="order_number_field" editable="false" floatMode="BORDER" prefHeight="27.0" prefWidth="135.0" styleClass="restTF">
                            <textFill>
                               <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                            </textFill>
@@ -41,7 +41,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <TextArea fx:id="complain_textarea" prefHeight="224.0" prefWidth="256.0" wrapText="true">
+                  <TextArea fx:id="complain_textarea" prefHeight="224.0" prefWidth="256.0" styleClass="restTF" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor></TextArea>

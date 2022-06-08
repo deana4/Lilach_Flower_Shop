@@ -15,7 +15,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="260.0" prefWidth="330.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ProductView">
+<AnchorPane prefHeight="260.0" prefWidth="330.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ProductView">
    <children>
       <MFXLegacyListView layoutX="15.0" layoutY="15.0" prefHeight="232.0" prefWidth="300.0" styleClass="CatalogItem" stylesheets="@CSSfiles/Backgrounds.css" />
       <ImageView fx:id="product_image" fitHeight="224.0" fitWidth="238.0" layoutX="46.0" layoutY="18.0" onMouseClicked="#ClickedImage" pickOnBounds="true" preserveRatio="true">
@@ -30,9 +30,20 @@
             <Image url="@images/DiscountPhoto/discount.jpg" />
          </image>
       </ImageView>
-      <VBox layoutX="33.0" layoutY="30.0" prefHeight="70.0" prefWidth="175.0">
+      <VBox layoutX="38.0" layoutY="26.0" prefHeight="105.0" prefWidth="159.0">
          <children>
             <Label fx:id="product_name" text="Name">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <effect>
+                  <ColorAdjust />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Label>
+            <Label fx:id="product_originalPrice" prefHeight="53.0" prefWidth="126.0" text="Original Price">
                <font>
                   <Font size="24.0" />
                </font>

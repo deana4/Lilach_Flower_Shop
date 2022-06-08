@@ -66,18 +66,22 @@ public class MyAccountController{
         System.out.println("MyAccount isworker?"+UserClient.getInstance().isWorker()+UserClient.getInstance().getUserName());
         if (UserClient.getInstance().isWorker()==false){
             System.out.println("in if");
-        loader.addView(MFXLoaderBean.of("MyAccount", loadURL("EditAccountDetails.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-variant7-mark", "Account Preferences")).setDefaultRoot(true).get());
-        loader.addView(MFXLoaderBean.of("Orders", loadURL("OrdersHistory.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-list-dropdown", "Orders")).get());
-        loader.addView(MFXLoaderBean.of("Cancel Orders", loadURL("CancelOrders.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-x-circle", "Cancel Orders")).get());
-        loader.addView(MFXLoaderBean.of("Complaints on Orders", loadURL("ComplaintOrders.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-plus", "Complaints on Orders")).get());
+            loader.addView(MFXLoaderBean.of("MyAccount", loadURL("EditAccountDetails.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-variant7-mark", "Account Preferences")).setDefaultRoot(true).get());
+            loader.addView(MFXLoaderBean.of("Orders", loadURL("OrdersHistory.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-list-dropdown", "Orders")).get());
+            loader.addView(MFXLoaderBean.of("Cancel Orders", loadURL("CancelOrders.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-x-circle", "Cancel Orders")).get());
+            loader.addView(MFXLoaderBean.of("Complaints on Orders", loadURL("ComplaintOrders.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-plus", "Complaints on Orders")).get());
         }
 
-        if (UserClient.getInstance().isWorker() && UserClient.getInstance().getPlan()==4){
-        loader.addView(MFXLoaderBean.of("Complaints", loadURL("ComplaintsTab.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-message", "Complaints")).get());
+        if (UserClient.getInstance().isWorker() && UserClient.getInstance().getPlan()==2){
+        loader.addView(MFXLoaderBean.of("Complaints", loadURL("ComplaintsTab.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-message", "Complaints")).setDefaultRoot(true).get());
         }
 
         if(UserClient.getInstance().isWorker() && UserClient.getInstance().getPlan()==5){
-        loader.addView(MFXLoaderBean.of("System Admin Panel", loadURL("PeopleList.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-users", "System Admin Panel")).get());
+        loader.addView(MFXLoaderBean.of("System Admin Panel", loadURL("PeopleList.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-users", "System Admin Panel")).setDefaultRoot(true).get());
+        }
+
+        if(UserClient.getInstance().isWorker() && UserClient.getInstance().getPlan()==3){
+            loader.addView(MFXLoaderBean.of("BlankPage", loadURL("BlankPage.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-users", "System Admin Panel")).setDefaultRoot(true).get());
         }
 
         loader.setOnLoadedAction(beans -> {

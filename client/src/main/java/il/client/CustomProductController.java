@@ -84,6 +84,9 @@ public class CustomProductController {
     private Label sum_label;
 
     @FXML
+    private Label errorLabel;
+
+    @FXML
     private MFXComboBox<String> type_chooser;
 
     @FXML
@@ -106,8 +109,9 @@ public class CustomProductController {
     private ObservableList<ProductView> temp = FXCollections.observableArrayList();
 
 
-    private boolean onColorPick = false;
-    private boolean onPricePick = false;
+    private String colorInList = null;
+    private int min = 0;
+    private int max = 1000;
 
     @FXML
     void initialize(){
@@ -142,7 +146,7 @@ public class CustomProductController {
         });
 
         listOfChosenProducts.setOnMouseClicked(action-> {
-            ProductView product = listOfProducts.getSelectionModel().getSelectedValues().get(0);
+            ProductView product = listOfChosenProducts.getSelectionModel().getSelectedValues().get(0);
             RemoveProductSelected(product);
         });
         /* Finish table initialize*/
@@ -155,84 +159,44 @@ public class CustomProductController {
         }
         {
             colorPicker.setItems(MainPageController.getInstance().getColors());
+            colorPicker.getItems().add(0,"All"); //All color option
         }
     }
 
 
-    public synchronized void addToChosenList(ProductView product){
-        temp.clear();
-        int flag = 0;
-        for(ProductView prod : chosenProducts){
-            temp.add(prod);
+    public void addToChosenList(ProductView product){
+        if(!this.listOfChosenProducts.getItems().contains(product)){
+            this.listOfChosenProducts.getItems().add(product);
+        }else if(this.listOfChosenProducts.getItems().contains(product)){
+            System.out.println("Value is already picked from catalog list - CUSTOMPRODUCTCONTROLLER");
         }
-        this.chosenProducts.clear();
-        for(ProductView prod : temp){
-            if(prod.getId() == product.getId()){
-                flag = 1;
-                break;
-            }
-        }
-        if(flag == 0){
-            temp.add(product);
-        }
-        for(ProductView prod : temp){
-            this.chosenProducts.add(prod);
-        }
-        this.listOfChosenProducts.setItems(chosenProducts);
-        this.sum_label.setText(calculateOrderSum(chosenProducts));
+        this.sum_label.setText(calculateOrderSum(this.listOfChosenProducts.getItems()));
     }
+
 
     public String calculateOrderSum(ObservableList<ProductView> list){
         double sum = 0;
-        for(ProductView product : list){
-            sum = sum + product.getProduct_price();
+
+        for(int i = 0 ; i<list.size(); i++){
+            sum = sum + list.get(i).getProduct_price();
         }
         return Double.toString(sum);
     }
 
-    private synchronized  void RemoveProductSelected(ProductView product) {
-        temp.clear();
-        for(ProductView prod : chosenProducts){
-            if(prod.getId() != product.getId()){
-                temp.add(prod);
+
+    private void RemoveProductSelected(ProductView product) {
+        if(this.listOfChosenProducts.getItems().size() == 1 && this.listOfChosenProducts.getItems().get(0).getId() == product.getId()){
+            this.listOfChosenProducts.getItems().remove(this.listOfChosenProducts.getItems().get(0));
+        }else if(this.listOfChosenProducts.getItems().size() > 1){
+            for(int i = 0 ; i<this.listOfChosenProducts.getItems().size(); i++){
+                if(this.listOfChosenProducts.getItems().get(i).getId() == product.getId()){
+                    this.listOfChosenProducts.getItems().remove(this.listOfChosenProducts.getItems().get(i));
+                    break;
+                }
             }
         }
-        if(chosenProducts.size() == 1){
-            if(chosenProducts.get(0).getId() == product.getId()) {
-                temp.clear();
-            }
-        }
-        for(int i = 0 ; i < temp.size() ; i++){
-            System.out.println(temp.get(i).getProduct_name() + "Printing on CustomProductController under Remove ProductSelected Function");
-        }
-        this.chosenProducts.clear();
-        this.chosenProducts.addAll(temp);
-        this.listOfChosenProducts.setItems(chosenProducts);
-        this.sum_label.setText(calculateOrderSum(chosenProducts));
+        this.sum_label.setText(calculateOrderSum(this.listOfChosenProducts.getItems()));
     }
-//    private void RemoveProductSelected(ProductView product) {
-//        temp.clear();
-//        if(chosenProducts.size() == 1){
-//            if(chosenProducts.get(0).getId() == product.getId()){
-//                chosenProducts.clear();
-//            }
-//        }else {
-//            for(ProductView prod : chosenProducts){
-//                temp.add(prod);
-//            }
-//            this.chosenProducts.clear();
-//            for(ProductView prod : temp){
-//                if(prod.getId() == product.getId()){
-//                    temp.remove(prod);
-//                    break;
-//                }
-//            }
-//            for(ProductView prod : temp){
-//                this.chosenProducts.add(prod);
-//            }
-//        }
-//        this.listOfChosenProducts.setItems(chosenProducts);
-//    }
 
     private void LoadProductSelected(ProductView product) throws IOException {
         Stage stage = new Stage();
@@ -243,7 +207,7 @@ public class CustomProductController {
         Scene scene = new Scene(fxmlLoader.load(), 681, 514);
         scene.setFill(Color.TRANSPARENT);
         PopWindowCustomProduct controller = fxmlLoader.getController();
-        controller.FullSetter(product.getId(), product.getProduct_name(), String.valueOf(product.getProduct_price()), product.isOn_discount(), product.getProductImageNotURL());
+        controller.FullSetter(product.getId(), product.getProduct_name(), String.valueOf(product.getProduct_price()), product.isOn_discount(), product.getProductImageNotURL(), product.getColor(), product.getType());
         controller.initialize(stage,product,this);
         controller.setStage(stage);
         stage.setTitle("Custom Item View");
@@ -275,118 +239,106 @@ public class CustomProductController {
 
     @FXML
     void AddToCartBTNClicked(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("CartAdderDialogCustom.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 405  , 215);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        scene.setFill(Color.TRANSPARENT);
-        CartAdderCustomController controller = fxmlLoader.getController();
-        controller.initialize(stage,chosenProducts);
-        stage.setTitle("Add To Cart Section");
-        stage.setScene(scene);
-        stage.show();
+        if(this.type_chooser.getValue() == "" || this.type_chooser.getValue() == null || this.listOfChosenProducts.getItems().isEmpty()){
+            this.errorLabel.setVisible(true);
+        }else {
+            this.errorLabel.setVisible(false);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("CartAdderDialogCustom.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 405  , 215);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            scene.setFill(Color.TRANSPARENT);
+            CartAdderCustomController controller = fxmlLoader.getController();
+            controller.setStage(stage);
+            controller.initialize(this.listOfChosenProducts.getItems(),this.type_chooser.getValue(),-1);
+            stage.setTitle("Add To Cart Section");
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     @FXML
-    void CancelBTNClicked(ActionEvent event) {
-
+    void CancelBTNClicked(ActionEvent event) throws IOException {
+        MainPageController.getInstance().LoadCatalogPage();
     }
 
     @FXML
-    void IAmDoneBTNClicked(ActionEvent event) {
-
+    void IAmDoneBTNClicked(ActionEvent event) throws IOException {
+        MainPageController.getInstance().LoadCartPage();
     }
 
-//    @FXML
-//    void setListByPriceMax(MouseEvent event) {
-//        int maxValue = (int) this.max_price_slider.getValue();
-//        int minValue = (int) this.min_price_slider.getValue();
-//        this.onPricePick = false;
-//        if(minValue>maxValue) {
-//            listOfProducts.setItems(null);
-//            listOfProducts.setItems(this.productListManeuver);
-//        }
-//        else if(onColorPick == true){
-//            if(minValue <= maxValue){
-//                for(ProductView product : productListManeuver){
-//                    if(!(product.getProduct_price()>=minValue) || !(product.getProduct_price() <= maxValue)){
-//                        productListManeuver.remove(product);
-//                    }
-//                }
-//            }
-//        }else if(onColorPick = false){
-//            if(minValue <= maxValue){
-//                for(ProductView product : productListManeuver){
-//                    if(!(product.getProduct_price()>=minValue) || !(product.getProduct_price() <= maxValue)){
-//                        productListManeuver.remove(product);
-//                    }
-//                }
-//                for(ProductView product : productList){
-//                    if((product.getProduct_price()>=minValue && product.getProduct_price() <= maxValue) && !productListManeuver.contains(product)){
-//                        productListManeuver.add(product);
-//                    }
-//                }
-//            }
-//        }
-//
-//        this.onPricePick = true;
-//        this.onColorPick = false;
-//        this.listOfProducts.setItems(productListManeuver);
-//    }
-
     @FXML
-    synchronized void setListByPriceMax(MouseEvent event) {
+    void setListByPriceMax(MouseEvent event) {
         this.productListManeuver.clear();
         int maxValue = (int) this.max_price_slider.getValue();
         int minValue = (int) this.min_price_slider.getValue();
-        if(minValue <= maxValue){
-            for(ProductView product : productList){
-                if(product.getProduct_price() >= minValue && product.getProduct_price() <= maxValue){
-                    productListManeuver.add(product);
+        this.min = minValue;
+        this.max = maxValue;
+        System.out.println(productList);
+        if (min <= max) {
+           checkPrice();
+        }
+        this.listOfProducts.setItems(productListManeuver);
+    }
+
+
+    @FXML
+    void setListByColor() {
+        productListManeuver.clear();
+        this.colorInList = this.colorPicker.getValue(); //maybe not null
+        checkColor();
+        this.listOfProducts.setItems(productListManeuver);
+    }
+
+
+    void checkPrice(){
+        for(int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getProduct_price() >= min && productList.get(i).getProduct_price() <= max) {
+                if (this.colorInList != null) {
+                    if(colorInList.equals("All")){
+                        this.productListManeuver.add(productList.get(i));
+                    }else {
+                        if (this.productList.get(i).getColor().equals(colorInList)) {
+                            this.productListManeuver.add(productList.get(i));
+                        }
+                    }
+                } else if (this.colorInList == null){
+                    this.productListManeuver.add(productList.get(i));
                 }
             }
         }
-        this.listOfProducts.setItems(productListManeuver);
     }
 
-    @FXML
-    synchronized void setListByColor() {
-        this.productListManeuver.clear();
-        for (ProductView product : productList) {
-            if(product.getColor().equals(this.colorPicker.getValue())) {
-                productListManeuver.add(product);
-            }
-        }
-        this.listOfProducts.setItems(productListManeuver);
-    }
-
-
-
-//    @FXML
-//    void setListByColor(){
-//        this.onColorPick = false;
-//        if(onPricePick == true){
-//            for(ProductView product : productListManeuver){
-//                if(!product.getColor().equals(this.colorPicker.getValue())){
-//                    productListManeuver.remove(product);
-//                }
-//            }
-//        }else if(onPricePick == false){
-//            for(ProductView product : productListManeuver){
-//                if(!product.getColor().equals(this.colorPicker.getValue())){
-//                    productListManeuver.remove(product);
-//                }
-//            }
-//            for(ProductView product : productList){
-//                if((product.getColor().equals(this.colorPicker.getValue())) && !productListManeuver.contains(product)){
-//                    productListManeuver.add(product);
+//    void checkPrice(){   ***WORKING
+//        for(int i = 0; i < productList.size(); i++) {
+//            if (productList.get(i).getProduct_price() >= min && productList.get(i).getProduct_price() <= max) {
+//                if (this.colorInList != null) {
+//                    if (this.productList.get(i).getColor().equals(colorInList)) {
+//                        this.productListManeuver.add(productList.get(i));
+//                    }
+//                } else if (this.colorInList == null){
+//                    this.productListManeuver.add(productList.get(i));
 //                }
 //            }
 //        }
-//        this.onPricePick = false;
-//        this.onColorPick = true;
-//        this.listOfProducts.setItems(productListManeuver);
 //    }
+
+    void checkColor(){
+        for(int i = 0; i < productList.size(); i++) {
+            if(this.colorInList == "All"){
+                if (productList.get(i).getProduct_price() >= min && productList.get(i).getProduct_price() <= max) {
+                    this.productListManeuver.add(productList.get(i));
+                }
+            }else {
+                if (this.productList.get(i).getColor().equals(this.colorInList)) {
+                    if (productList.get(i).getProduct_price() >= min && productList.get(i).getProduct_price() <= max) {
+                        this.productListManeuver.add(productList.get(i));
+                    }
+                }
+            }
+        }
+    }
+
 }

@@ -27,14 +27,14 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="discount_logo_poped" fitHeight="43.0" fitWidth="88.0" layoutX="25.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="discount_logo_poped" fitHeight="43.0" fitWidth="88.0" layoutX="25.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
-                        <Image url="@../../../../../../client/src/main/resources/il/client/images/DiscountPhoto/discount.jpg" />
+                        <Image url="@images/DiscountPhoto/discount.jpg" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
-            <VBox alignment="CENTER" layoutX="25.0" layoutY="75.0" prefHeight="244.0" prefWidth="182.0" spacing="10.0">
+            <VBox alignment="CENTER" layoutX="12.0" layoutY="21.0" prefHeight="368.0" prefWidth="210.0" spacing="10.0">
                <children>
                   <Label fx:id="id_txt" text="ID" textFill="#8d8d8d">
                      <font>
@@ -53,6 +53,22 @@
                      </cursor>
                   </Label>
                   <Label fx:id="price_txt" text="Price" textFill="#979797">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="colorText" text="Color" textFill="#979797">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="typeText" text="Type" textFill="#979797">
                      <font>
                         <Font size="33.0" />
                      </font>

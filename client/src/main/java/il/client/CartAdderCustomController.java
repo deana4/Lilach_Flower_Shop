@@ -1,5 +1,6 @@
 package il.client;
 
+import com.mysql.cj.xdevapi.Client;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
@@ -25,18 +26,23 @@ public class CartAdderCustomController {
     @FXML
     private MFXFontIcon closeIcon;
 
+
     private Stage stage;
     private ProductView PVController;
-    ObservableList<ProductView> list = FXCollections.observableArrayList();
+    private String CustomItemtype;
+    private ObservableList<ProductView> list = FXCollections.observableArrayList();
+    private int customItemId;
 
     @FXML
-    void initialize(Stage stage, ObservableList<ProductView> list){
-        this.stage = stage;
+    void initialize(ObservableList<ProductView> list, String type, int id){
         this.list = list;
+        this.CustomItemtype = type;
+        this.customItemId = id;
     }
+
     @FXML
     void applyClicked(ActionEvent event) throws IOException {
-        boolean isFound = false;
+        boolean flag = false;
         DialogPane.setOnMouseClicked(e -> {
             applyBtn.setText("Apply");
         });
@@ -44,29 +50,69 @@ public class CartAdderCustomController {
         if(checkNum == 0){
             applyBtn.setText("Error: Amount 0");
         }else if(checkNum == 1){
-            AddToCartController cont = (AddToCartController)MainPageController.getInstance().getController_map().get("Cart");
-            ObservableList<CartItem> cart = AddToCartController.getInstance().getItemsList();
-            for(CartItem item: cart){
-                if(item.getItem_id() == PVController.getId()){
-                    AddToCartController.getInstance().getItemsList().remove(item);
-                    AddToCartController.getInstance().addItemToTable(item,Integer.parseInt(amountText.getText()));
-                    System.out.println("in true");
-                    isFound = true;
+            for(int i=0;i<AddToCartController.getInstance().customItems.size(); i++){
+                if(AddToCartController.getInstance().customItems.get(i).getCustomId() == this.customItemId) {
+                    ClientCustomItem CustomItem = new ClientCustomItem(this.CustomItemtype, Integer.valueOf(this.amountText.getText()), calculateOrderSum(list), list);
+                    AddToCartController.getInstance().removeItemFromCustomTable(this.customItemId);
+                    AddToCartController.getInstance().addItemToCustomTable(CustomItem, Integer.parseInt(this.amountText.getText()));
+                    System.out.println("replaced the one we found - CARTADDERCUSTOM");
+                    flag = true;
+                    break;
                 }
             }
-            if(isFound == false) {
-                System.out.println("in false");
-                for(ProductView product : this.list){
-                    PVController = product;
-                    cont.addItemToTable(PVController.getProduct_name(), PVController.getProduct_price(), getPVController().getId(), Integer.parseInt(this.amountText.getText()));
-                }
-
+            if(flag == false){
+                ClientCustomItem CustomItem = new ClientCustomItem(this.CustomItemtype, Integer.valueOf(this.amountText.getText()), calculateOrderSum(list), list);
+                AddToCartController.getInstance().removeItemFromCustomTable(this.customItemId);
+                AddToCartController.getInstance().addItemToCustomTable(CustomItem, Integer.parseInt(this.amountText.getText()));
+                System.out.println("added without finding one before");
             }
-            cont.setChanges();
-            System.out.println(cont.items); //!!!!!!!!!!!!!!!!!!!!!!!!!
-            System.out.println("added");
+            AddToCartController.getInstance().setChangesCustom();
+            this.stage.close();
         }
     }
+
+    public String calculateOrderSum(ObservableList<ProductView> list){
+        double sum = 0;
+
+        for(int i = 0 ; i<list.size(); i++){
+            sum = sum + list.get(i).getProduct_price();
+        }
+        return Double.toString(sum);
+    }
+
+//    @FXML
+//    void applyClicked(ActionEvent event) throws IOException {
+//        boolean isFound = false;
+//        DialogPane.setOnMouseClicked(e -> {
+//            applyBtn.setText("Apply");
+//        });
+//        int checkNum = AmountCheck(this.amountText.getText(),this.amountText);
+//        if(checkNum == 0){
+//            applyBtn.setText("Error: Amount 0");
+//        }else if(checkNum == 1){
+//            AddToCartController cont = (AddToCartController)MainPageController.getInstance().getController_map().get("Cart");
+//            ObservableList<CartItem> cart = AddToCartController.getInstance().getItemsList();
+//            for(int i=0; i<cart.size();i++){
+//                if(cart.get(i).getItem_id() == PVController.getId()){
+//                    AddToCartController.getInstance().getItemsList().remove(cart.get(i));
+//                    AddToCartController.getInstance().addItemToTable(cart.get(i),Integer.parseInt(amountText.getText()));
+//                    System.out.println("in true");
+//                    isFound = true;
+//                }
+//            }
+//            if(isFound == false) {
+//                System.out.println("in false");
+//                for(ProductView product : this.list){
+//                    PVController = product;
+//                    cont.addItemToTable(PVController.getProduct_name(), PVController.getProduct_price(), getPVController().getId(), Integer.parseInt(this.amountText.getText()));
+//                }
+//
+//            }
+//            cont.setChanges();
+//            System.out.println(cont.items); //!!!!!!!!!!!!!!!!!!!!!!!!!
+//            System.out.println("added");
+//        }
+//    }
 
     @FXML
     void closeWindow(ActionEvent event) {
@@ -109,13 +155,13 @@ public class CartAdderCustomController {
         this.stage = stage;
     }
 
-    public ProductView getPVController() {
-        return PVController;
-    }
-
-    public void setPVController(ProductView PVController) {
-        this.PVController = PVController;
-    }
+//    public ProductView getPVController() {
+//        return PVController;
+//    }
+//
+//    public void setPVController(ProductView PVController) {
+//        this.PVController = PVController;
+//    }
 
     /* END G AND S */
 }

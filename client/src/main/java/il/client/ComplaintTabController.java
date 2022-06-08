@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -78,6 +79,7 @@ public class ComplaintTabController {
         fxmlLoader.setLocation(getClass().getResource("ComplainHandler.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 698 , 794);
         ComplainHandlerController controller = fxmlLoader.getController();
+        scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setTitle("Complaint Handler");
         stage.setScene(scene);

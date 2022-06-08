@@ -148,18 +148,34 @@ public class CatalogController extends ParentClass{
                     }
 
                     try {
-                        Parent root_add_product = LoadAddProduct();
-                        GridPane.setConstraints(root_add_product,0,row);
-                        gridPane.getChildren().addAll(root_add_product);
-                        GridPane.setMargin(root_add_product , new Insets(10));
-
-                        Parent custom_add_product = LoadCustomProduct();
-                        GridPane.setConstraints(custom_add_product,1,row);
-                        gridPane.getChildren().addAll(custom_add_product);
-                        GridPane.setMargin(custom_add_product , new Insets(10));
+                        if(UserClient.getInstance().getPriority() == 2){
+                            Parent custom_add_product = LoadCustomProduct();
+                            gridPane.getChildren().addAll(custom_add_product);
+                            GridPane.setConstraints(custom_add_product,col,row);
+                            GridPane.setMargin(custom_add_product , new Insets(10));
+                        }else if(UserClient.getInstance().getPriority() > 2 && UserClient.getInstance().getPriority() != 4){
+                            Parent root_add_product = LoadAddProduct();
+                            gridPane.getChildren().addAll(root_add_product);
+                            GridPane.setConstraints(root_add_product,col,row);
+                            GridPane.setMargin(root_add_product , new Insets(10));
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
+//                    try {
+//                        Parent root_add_product = LoadAddProduct();
+//                        GridPane.setConstraints(root_add_product,0,row);
+//                        gridPane.getChildren().addAll(root_add_product);
+//                        GridPane.setMargin(root_add_product , new Insets(10));
+//
+//                        Parent custom_add_product = LoadCustomProduct();
+//                        GridPane.setConstraints(custom_add_product,1,row);
+//                        gridPane.getChildren().addAll(custom_add_product);
+//                        GridPane.setMargin(custom_add_product , new Insets(10));
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                     scrollPane.setContent(this.gridPane);
                 }
                 );

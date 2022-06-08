@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -89,6 +90,7 @@ public class ComplaintOrdersTabController {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("Complain.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 797 , 627);
+        scene.setFill(Color.TRANSPARENT);
         ComplainController controller = fxmlLoader.getController();
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setTitle("Compalint Order");

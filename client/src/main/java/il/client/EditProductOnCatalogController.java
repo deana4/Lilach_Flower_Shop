@@ -28,19 +28,31 @@ public class EditProductOnCatalogController {
     private MFXFontIcon closeIcon;
 
     @FXML
-    private MFXTextField nameText;
-
-    @FXML
-    private MFXTextField typeText;
-
-    @FXML
     private MFXTextField colorText;
 
     @FXML
-    private MFXButton setChanges;
+    private MFXButton color_apply_btn;
+
+    @FXML
+    private MFXTextField discountPercentText;
+
+    @FXML
+    private MFXButton discount_apply_btn;
 
     @FXML
     private MFXButton fileBtn;
+
+    @FXML
+    private MFXButton image_apply_btn;
+
+    @FXML
+    private MFXTextField nameText;
+
+    @FXML
+    private MFXButton name_apply_btn;
+
+    @FXML
+    private MFXButton price_apply_btn;
 
     @FXML
     private ImageView productImage;
@@ -49,7 +61,13 @@ public class EditProductOnCatalogController {
     private MFXToggleButton saleToggle;
 
     @FXML
-    private MFXTextField discountPercentText;
+    private MFXButton setChanges;
+
+    @FXML
+    private MFXTextField typeText;
+
+    @FXML
+    private MFXButton type_apply_btn;
 
     DetailsChecker detailChecker;
 
@@ -86,19 +104,19 @@ public class EditProductOnCatalogController {
     void ChangesApplied(ActionEvent event) throws IOException {
         int ErrorCollector = 0;         //collecting errors throw value checks
         int retValue;
-        CatalogControl.setName(this.nameText.getText(), PVController.getId());
+//        CatalogControl.setName(this.nameText.getText(), PVController.getId()); //in NameBTNClicked
 
 
 
-        retValue = detailChecker.CheckPriceValues(this.PriceText.getText(),"price");
-        System.out.println(this.PriceText.getText()+ "EditProduct");
-        if(retValue == 1){
-            CatalogControl.setPrice(PVController.getId(), Double.valueOf(this.PriceText.getText()));
-
-        }else if(retValue == 0){
-            ErrorCollector+=1;
-            PriceText.setText("Error");
-        }
+//        retValue = detailChecker.CheckPriceValues(this.PriceText.getText(),"price");
+//        System.out.println(this.PriceText.getText()+ "EditProduct");
+//        if(retValue == 1){
+//            CatalogControl.setPrice(PVController.getId(), Double.valueOf(this.PriceText.getText()));
+//
+//        }else if(retValue == 0){
+//            ErrorCollector+=1;
+//            PriceText.setText("Error");
+//        } //in PriceBTNClicked
 
 
         retValue = detailChecker.CheckPriceValues(this.discountPercentText.getText(),"percent");
@@ -110,21 +128,22 @@ public class EditProductOnCatalogController {
         }
 
 
-        CatalogControl.updateImage(this.ImageURL.getText(), PVController.getId());
+//        CatalogControl.updateImage(this.ImageURL.getText(), PVController.getId()); //in ImageBTNClicked
 
-        if(ErrorCollector == 0){
-            MainPageController.getInstance().CatalogRefresh();
-            this.stage.close();
-        }
+//        if(ErrorCollector == 0){
+//            MainPageController.getInstance().CatalogRefresh();
+//            this.stage.close();
+//        } //in closeWindow
 
         //Need to implement on Control//
 
         CatalogControl.setSale(this.saleToggle.isSelected(),PVController.getId(),Double.valueOf(discountPercentText.getText()));
-        CatalogControl.setColor(PVController.getId(), this.colorText.getText());
-        CatalogControl.setType(PVController.getId(), typeText.getText());
+//        CatalogControl.setColor(PVController.getId(), this.colorText.getText()); //in ColorBTNClicked
+//        CatalogControl.setType(PVController.getId(), typeText.getText()); //in TypeBTNClicked
     }
     @FXML
-    void closeWindow(ActionEvent event) {
+    void closeWindow(ActionEvent event) throws IOException {
+        MainPageController.getInstance().CatalogRefresh();
         this.stage.close();
     }
 
@@ -167,9 +186,78 @@ public class EditProductOnCatalogController {
         }
     }
 
+
+    @FXML
+    void ColorBTNClicked(ActionEvent event) throws IOException {
+        String old_color = PVController.getColor();
+        String new_color = this.colorText.getText();
+        MainPageController.getInstance().removeColorFromSystem(old_color);
+        MainPageController.getInstance().addColorToSystem(new_color);
+        CatalogControl.setColor(PVController.getId(), this.colorText.getText());
+        this.colorText.clear();
+        this.colorText.setPromptText("Changed!");
+    }
+
+    @FXML
+    void DiscountBTNClicked(ActionEvent event) throws IOException {
+        int correctness;
+        correctness = detailChecker.CheckPriceValues(this.discountPercentText.getText(),"percent");
+        if(correctness == 0){
+            this.discountPercentText.setPromptText("Error");
+            return;
+        }
+            CatalogControl.setSale(this.saleToggle.isSelected(),PVController.getId(),Double.parseDouble(discountPercentText.getText()));
+            this.discountPercentText.clear();
+            this.discountPercentText.setPromptText("Changed!");
+
+    }
+
+    @FXML
+    void ImageBTNClicked(ActionEvent event) throws IOException {
+        CatalogControl.updateImage(this.ImageURL.getText(), PVController.getId());
+        this.ImageURL.clear();
+        this.ImageURL.setPromptText("Changed!");
+    }
+
+    @FXML
+    void NameBTNClicked(ActionEvent event) throws IOException {
+        CatalogControl.setName(this.nameText.getText(), PVController.getId());
+        this.nameText.clear();
+        this.nameText.setPromptText("Changed!");
+        System.out.println("in EditProductOnCatalog in clicked on apply name");
+    }
+
+    @FXML
+    void PriceBTNClicked(ActionEvent event) throws IOException {
+        int correctness;
+        correctness = detailChecker.CheckPriceValues(this.PriceText.getText(),"price");
+        System.out.println(this.PriceText.getText()+ "EditProduct");
+        if(correctness == 1){
+            this.PriceText.clear();
+            this.PriceText.setPromptText("Changed!");
+            CatalogControl.setPrice(PVController.getId(), Double.parseDouble(this.PriceText.getText()));
+
+        }else if(correctness == 0){
+            PriceText.setPromptText("Error");
+        }
+    }
+
+    @FXML
+    void TypeBTNClicked(ActionEvent event) throws IOException {
+        CatalogControl.setType(PVController.getId(), typeText.getText());
+        this.typeText.clear();
+        this.typeText.setPromptText("Changed!");
+    }
+
+
+
+    /*gets and sets*/
+
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
+    /*end gets and sets*/
 
 
 }

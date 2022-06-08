@@ -10,7 +10,7 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 
-<AnchorPane prefHeight="260.0" prefWidth="330.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.AddProductToCatalogController">
+<AnchorPane prefHeight="260.0" prefWidth="330.0" style="-fx-background-color: transparent;" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.AddProductToCatalogController">
    <children>
       <MFXLegacyListView layoutX="15.0" layoutY="15.0" prefHeight="232.0" prefWidth="300.0" styleClass="CatalogItem" stylesheets="@CSSfiles/Backgrounds.css" />
       <ImageView fx:id="product_image" fitHeight="224.0" fitWidth="238.0" layoutX="46.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">

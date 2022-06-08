@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="371.0" prefWidth="639.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.FullOrderViewController">
+<AnchorPane prefHeight="371.0" prefWidth="639.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.FullOrderViewController">
    <children>
       <AnchorPane layoutX="26.0" layoutY="17.0" prefHeight="336.0" prefWidth="586.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
@@ -16,32 +16,32 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <MFXTextField id="customPassword" fx:id="userNmaeText" allowEdit="false" floatMode="BORDER" floatingText="The User that order" promptText="User name" stylesheets="@CSSfiles/css/TextFields.css" />
-                        <MFXTextField id="customPassword" fx:id="receiverNameText" allowEdit="false" floatMode="BORDER" floatingText="The User that receiver" promptText="Receiver Name" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="userNmaeText" allowEdit="false" floatMode="BORDER" floatingText="The User that order" promptText="User name" styleClass="restTF" />
+                        <MFXTextField fx:id="receiverNameText" allowEdit="false" floatMode="BORDER" floatingText="The User that receiver" promptText="Receiver Name" styleClass="restTF" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <MFXTextField id="customPassword" fx:id="amountText" allowEdit="false" floatMode="BORDER" floatingText="Amount Of Items" promptText="Amount" stylesheets="@CSSfiles/css/TextFields.css" />
-                        <MFXTextField id="customPassword" fx:id="storeText" allowEdit="false" floatMode="BORDER" floatingText="Store Choosen" promptText="Store" stylesheets="@CSSfiles/css/TextFields.css" />
-                        <MFXTextField id="customPassword" fx:id="sumText1" allowEdit="false" floatMode="BORDER" floatingText="Sum Of Order" promptText="Sum" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="amountText" allowEdit="false" floatMode="BORDER" floatingText="Amount Of Items" promptText="Amount" styleClass="restTF" />
+                        <MFXTextField fx:id="storeText" allowEdit="false" floatMode="BORDER" floatingText="Store Choosen" promptText="Store" styleClass="restTF" />
+                        <MFXTextField fx:id="sumText1" allowEdit="false" floatMode="BORDER" floatingText="Sum Of Order" promptText="Sum" styleClass="restTF" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <MFXTextField id="customPassword" fx:id="timeReceiverText" allowEdit="false" floatMode="BORDER" floatingText="Time Receive" prefHeight="38.0" prefWidth="181.0" promptText="Time Receive" stylesheets="@CSSfiles/css/TextFields.css" />
-                        <MFXTextField id="customPassword" fx:id="dateReceiverText" allowEdit="false" floatMode="BORDER" floatingText="Date Receive" prefHeight="38.0" prefWidth="189.0" promptText="Date Receive" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="timeReceiverText" allowEdit="false" floatMode="BORDER" floatingText="Time Receive" prefHeight="38.0" prefWidth="181.0" promptText="Time Receive" styleClass="restTF" />
+                        <MFXTextField fx:id="dateReceiverText" allowEdit="false" floatMode="BORDER" floatingText="Date Receive" prefHeight="38.0" prefWidth="189.0" promptText="Date Receive" styleClass="restTF" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="503.0" spacing="10.0">
                      <children>
-                        <MFXTextField id="customPassword" fx:id="addressText" allowEdit="false" floatMode="BORDER" floatingText="Address" prefHeight="38.0" prefWidth="489.0" promptText="Address" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="addressText" allowEdit="false" floatMode="BORDER" floatingText="Address" prefHeight="38.0" prefWidth="489.0" promptText="Address" styleClass="restTF" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <MFXTextField id="customPassword" fx:id="isGreetingText" allowEdit="false" floatMode="BORDER" floatingText="Greeting?" promptText="true/false" stylesheets="@CSSfiles/css/TextFields.css" />
-                        <MFXTextField id="customPassword" fx:id="DeliveryOrPickupText" allowEdit="false" floatMode="BORDER" floatingText="Delivery/Pickup?" promptText="Delivery/Pickup" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="isGreetingText" allowEdit="false" floatMode="BORDER" floatingText="Greeting?" promptText="true/false" styleClass="restTF" />
+                        <MFXTextField fx:id="DeliveryOrPickupText" allowEdit="false" floatMode="BORDER" floatingText="Delivery/Pickup?" promptText="Delivery/Pickup" styleClass="restTF" />
                      </children>
                   </HBox>
                </children>

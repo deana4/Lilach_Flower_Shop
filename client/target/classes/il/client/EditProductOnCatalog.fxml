@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="414.0" prefWidth="799.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.EditProductOnCatalogController">
+<AnchorPane prefHeight="414.0" prefWidth="799.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.EditProductOnCatalogController">
    <children>
       <AnchorPane layoutX="26.0" layoutY="20.0" prefHeight="375.0" prefWidth="747.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
@@ -33,7 +33,7 @@
             <MFXButton fx:id="setChanges" layoutX="588.0" layoutY="11.0" onAction="#ChangesApplied" prefHeight="32.0" prefWidth="68.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" visible="false" />
             <VBox alignment="CENTER" layoutX="251.0" layoutY="94.0" prefHeight="212.0" prefWidth="246.0" spacing="5.0">
                <children>
-                  <MFXTextField id="customPassword" fx:id="ImageURL" allowEdit="false" floatMode="BORDER" floatingText="Image URL" prefHeight="38.0" prefWidth="304.0" promptText="Image URL" stylesheets="@CSSfiles/css/TextFields.css" />
+                  <MFXTextField fx:id="ImageURL" allowEdit="false" floatMode="BORDER" floatingText="Image URL" prefHeight="38.0" prefWidth="304.0" promptText="Image URL" styleClass="restTF" stylesheets="@CSSfiles/css/TextFields.css" />
                   <MFXButton fx:id="fileBtn" onAction="#getFile" text="Bring File" />
                   <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="451.0" spacing="10.0">
                      <children>
@@ -46,7 +46,7 @@
             <VBox alignment="CENTER" layoutX="540.0" layoutY="94.0" prefHeight="139.0" prefWidth="130.0" spacing="20.0">
                <children>
                   <MFXToggleButton fx:id="saleToggle" onMouseClicked="#ToggleClicked" text="On Sale?" textFill="#979797" />
-                  <MFXTextField id="customPassword" fx:id="discountPercentText" floatMode="BORDER" floatingText="\%Discount" prefHeight="38.0" prefWidth="137.0" promptText="Discount Percentage" stylesheets="@CSSfiles/css/TextFields.css" />
+                  <MFXTextField fx:id="discountPercentText" floatMode="BORDER" floatingText="\%Discount" prefHeight="38.0" prefWidth="137.0" promptText="Discount Percentage" styleClass="restTF" stylesheets="@CSSfiles/css/TextFields.css" />
                   <MFXButton fx:id="discount_apply_btn" onAction="#DiscountBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />
                </children>
             </VBox>
@@ -54,10 +54,10 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                      <children>
-                        <MFXTextField id="customPassword" fx:id="nameText" floatMode="BORDER" floatingText="Name" promptText="Change Name" stylesheets="@CSSfiles/css/TextFields.css" />
-                        <MFXTextField id="customPassword" fx:id="PriceText" floatMode="BORDER" floatingText="Price Before Sale" promptText="Set New Price Before Sale" stylesheets="@CSSfiles/css/TextFields.css" />
-                        <MFXTextField id="customPassword" fx:id="colorText" floatMode="BORDER" floatingText="Color" promptText="Change Color" stylesheets="@CSSfiles/css/TextFields.css" />
-                        <MFXTextField id="customPassword" fx:id="typeText" floatMode="BORDER" floatingText="Type" promptText="Change Type" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="nameText" floatMode="BORDER" floatingText="Name" promptText="Change Name" styleClass="restTF" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="PriceText" floatMode="BORDER" floatingText="Price Before Sale" promptText="Set New Price Before Sale" styleClass="restTF" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="colorText" floatMode="BORDER" floatingText="Color" promptText="Change Color" styleClass="restTF" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="typeText" floatMode="BORDER" floatingText="Type" promptText="Change Type" styleClass="restTF" stylesheets="@CSSfiles/css/TextFields.css" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="35.0">

@@ -177,6 +177,11 @@ public class CatalogController extends ParentClass{
 //                        e.printStackTrace();
 //                    }
                     scrollPane.setContent(this.gridPane);
+                    try {
+                        OrderControl.deliverdOrder(1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 );
 

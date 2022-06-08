@@ -14,7 +14,7 @@ public class AppServer
     private static SimpleServer server;
 
 
-    private static int port = 3000;
+    private static int port = 3009;
     private static boolean initServer = false;
 
     public static void main( String[] args ) throws IOException {
@@ -25,6 +25,8 @@ public class AppServer
         catch (Exception e){
             server.closeServer();
         }
+
+
     }
 
 }

@@ -37,7 +37,7 @@ public class User implements Serializable {
     private double discount;
     private int accountStatus;
     private boolean login;
-    private int priority;
+    private int priority;  //3 year member, 2 store wide member, 1 species store member
 
 
     @OneToMany (mappedBy = "user")

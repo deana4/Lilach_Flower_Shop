@@ -46,6 +46,12 @@ public class OrderControl {
         SimpleClient.getClient().sendToServer(message);
     }
 
+    public static void deliverdOrder(int orderID) throws IOException {
+        Message message = new Message("deliverdOrder");
+        message.setOrderID(orderID);
+        SimpleClient.getClient().sendToServer(message);
+    }
+
 
     public static void newOrder(Order order, int storeID, int userID) throws IOException {
         System.out.println("made new order to store "+ storeID);

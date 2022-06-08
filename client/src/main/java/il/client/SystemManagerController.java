@@ -101,7 +101,7 @@ public class SystemManagerController {
     }
 
     @FXML
-    void changeCreditClicked(ActionEvent event) {
+    void changeCreditClicked(ActionEvent event) throws IOException {
         int correctness = checker.creditCardCheck(this.creditCardText.getText());
         if(correctness == 0){
             this.creditCardText.clear();

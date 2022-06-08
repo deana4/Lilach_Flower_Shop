@@ -1,6 +1,6 @@
 package il.server;
 
-//import il.client.UserClient;
+
 import il.entities.*;
 import il.server.ocsf.ConnectionToClient;
 import il.server.ocsf.AbstractServer;
@@ -29,6 +29,21 @@ public class SimpleServer extends AbstractServer {
         this.close();
     }
 
+    //get item by order
+    public static <T, S> LinkedList<T> getAllItemsByKeyandOrderby(Class<T> object, String colum,S key, String orderby){
+        testDB.openSession();
+        CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(object);
+        Root<T> root = query.from(object);
+        query.select(root);
+        query.where(builder.equal(root.get(colum),key));
+        query.orderBy(builder.desc(root.get(orderby)));
+        List<T> data = testDB.session.createQuery(query).getResultList();
+        LinkedList<T> listItems = new LinkedList<>(data);
+        testDB.closeSession();
+        return listItems;
+    }
+
     public static <T, S> LinkedList<T> getAllItemsByKey(Class<T> object, String colum,S key){
         testDB.openSession();
         CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
@@ -42,6 +57,19 @@ public class SimpleServer extends AbstractServer {
         return listItems;
     }
 
+    public static <T> LinkedList<T> getAllItemsInorder(Class<T> object, String orderby){
+        testDB.openSession();
+        CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(object);
+        Root<T> root = query.from(object);
+        query.orderBy(builder.desc(root.get(orderby)));
+        List<T> data = testDB.session.createQuery(query).getResultList();
+        LinkedList<T> listItems = new LinkedList<>(data);
+        testDB.closeSession();
+        return listItems;
+    }
+
+
     public static <T> LinkedList<T> getAllItems(Class<T> object){
         testDB.openSession();
         CriteriaBuilder builder = testDB.session.getCriteriaBuilder();
@@ -54,10 +82,15 @@ public class SimpleServer extends AbstractServer {
     }
 
 
-
     @Override
     protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
             try {
+//                testDB.openSession();
+//                NetworkManger b = new NetworkManger("manager", "maa" , "123456789");
+//                testDB.session.save(b);
+//                testDB.session.getTransaction().commit(); // Save everything.
+//                testDB.closeSession();
+
             Message message = (Message) msg;
             Message sendMessage = new Message("");
             if (message.getMessage().equals("login")) {
@@ -73,21 +106,22 @@ public class SimpleServer extends AbstractServer {
             if (message.getMessage().equals("getCatalogItems")) {
                 sendMessage.setMessage("item catalog list");
                 sendMessage.setListItem(getAllItems(Product.class));
-                List<Store> stores = getAllItems(Store.class);
-                LinkedList<Store> newStores= new LinkedList<>();
-                for(Store s : stores)
-                    newStores.add(s.getStoreForClient());
-                sendMessage.setListStors(newStores);
+//                List<Store> stores = getAllItems(Store.class);
+//                LinkedList<Store> newStores= new LinkedList<>();
+//                for(Store s : stores)
+//                    newStores.add(s.getStoreForClient());
+//                sendMessage.setListStors(newStores);
+                sendMessage.setListStors(getAllItems(Store.class));
                 client.sendToClient(sendMessage);
                 System.out.println("send init data to: " + client.getInetAddress());
             }
 
-            if (message.getMessage().equals("getStore")) {
-                sendMessage.setMessage("item store list");
-                sendMessage.setListStors(getAllItems(Store.class));;
-                client.sendToClient(sendMessage);
-                System.out.println("send stores to client");
-            }
+//            if (message.getMessage().equals("getStore")) {
+//                sendMessage.setMessage("item store list");
+//                sendMessage.setListStors(getAllItems(Store.class));;
+//                client.sendToClient(sendMessage);
+//                System.out.println("send stores to client");
+//            }
 
 
             if (message.getMessage().equals("logout")) {
@@ -152,9 +186,10 @@ public class SimpleServer extends AbstractServer {
                 CatalogControl.deleteItem(message.getIdItem());
             }
             if (message.getMessage().equals("cancelOrder")) {
-                OrderControl.cancelOrder(message.getOrderID(),message.getTimeCancel(), message.getDateCancel());
+//                OrderControl.cancelOrder(message.getOrderID(),message.getTimeCancel(), message.getDateCancel());
+                OrderControl.cancelOrder(message.getOrderID());
                 if(message.getRefund()>0)
-                    OrderControl.refund(message.getOrderID(), 1, message.getRefund());
+                    OrderControl.refund(message.getOrderID(),message.getRefund());
             }
             if (message.getMessage().equals("newOrder")) {
                 OrderControl.newOrder(message.getOrder(), message.getStoreID(), message.getUserID());
@@ -165,25 +200,35 @@ public class SimpleServer extends AbstractServer {
             if (message.getMessage().equals("complainAnswer")) {
                 ComplainConrtol.complainAnswer(message.getAnswer(), message.getRefund(), message.getComplainID());
             }
-            if (message.getMessage().equals("setUserName")) {
-                UserControl.setUserName(message.getUserID(), message.getUsername(), message.isWorker());
-            }
-            if (message.getMessage().equals("setName")) {
-                UserControl.setName(message.getUserID(), message.getName(), message.isWorker());
-            }
-            if (message.getMessage().equals("setPassword")) {
-                UserControl.setPassword(message.getUserID(), message.getPass(), message.isWorker());
-            }
-            if (message.getMessage().equals("setCreditCard")) {
-                UserControl.setCreditCard(message.getUserID(), message.getCredit_card(), message.isWorker());
-            }
-            if (message.getMessage().equals("setPhone")) {
-                UserControl.setPhone(message.getUserID(), message.getPhone(), message.isWorker());
-            }
-            if (message.getMessage().equals("setMail")) {
-                UserControl.setMail(message.getUserID(), message.getMail(), message.isWorker());
-            }
+                if (message.getMessage().equals("setInfo")) {
+                    String result = "";
+                    sendMessage.setMessage("result client info update");
+                    if (message.getSetinfo().equals("setUserName"))
+                        result = UserControl.setUserName(message.getUserID(), message.getUsername(), message.isWorker());
+                    if (message.getSetinfo().equals("setName"))
+                        UserControl.setName(message.getUserID(), message.getName(), message.isWorker());
+                    if (message.getSetinfo().equals("setPassword"))
+                        UserControl.setPassword(message.getUserID(), message.getPass(), message.isWorker());
+                    if (message.getSetinfo().equals("setCreditCard"))
+                        result =  UserControl.setCreditCard(message.getUserID(), message.getCredit_card(), message.isWorker());
+                    if (message.getSetinfo().equals("setPhone"))
+                        UserControl.setPhone(message.getUserID(), message.getPhone(), message.isWorker());
+                    if (message.getSetinfo().equals("setMail"))
+                        UserControl.setMail(message.getUserID(), message.getMail(), message.isWorker());
+                    if (message.getSetinfo().equals("setAddress"))
+                        UserControl.setAddress(message.getUserID(), message.getAddress(), message.isWorker());
+                    if (message.getSetinfo().equals("setPermission"))
+                        UserControl.setPermission(message.getUserID(), message.getPermision(), message.isWorker());
+                    if (message.getSetinfo().equals("setAccountStatus"))
+                        result = UserControl.setAccountStatus(message.getUserID(), message.getAccountStatus(), message.isWorker(), getAllItems(User.class));
 
+                    sendMessage.setUodateResult(result);
+                    sendMessage.setListEmploeeys(getAllItems(Employee.class));
+                    sendMessage.setListUsers(getAllItems(User.class));
+                    System.out.println("send new data to cleint");
+                    client.sendToClient(sendMessage);
+                    System.out.println("send new data to cleint");
+                }
 
             } catch(IOException e){
             System.out.println(e.getMessage());

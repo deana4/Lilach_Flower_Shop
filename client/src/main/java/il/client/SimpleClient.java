@@ -76,9 +76,10 @@ public class SimpleClient extends AbstractClient {
 		if(message.getMessage().equals("result register")){
 			EventBus.getDefault().post(new RegisterEvent(message.isRegisterStatus(), message.getRegisterResult()));
 		}
-
+		if(message.getMessage().equals("result client info update")){
+			EventBus.getDefault().post(new UpdateinfroEvent(message.getUodateResult(),message.getListUsers(),message.getListEmploeeys()));
+		}
 	}
-	
 	public static SimpleClient getClient() {
 		if (client == null) {
 			client = new SimpleClient(App.ip, App.port);

@@ -20,6 +20,28 @@ public class Message implements Serializable {
     LinkedList<Complain> listComplains = null;
     LinkedList<User> listUsers = null;
 
+    public String getUodateResult() {
+        return uodateResult;
+    }
+
+    public void setUodateResult(String uodateResult) {
+        this.uodateResult = uodateResult;
+    }
+
+    public String getSetinfo() {
+        return setinfo;
+    }
+
+    public void setSetinfo(String setinfo) {
+        this.setinfo = setinfo;
+    }
+
+    //INFO UPATE
+    private String uodateResult;
+
+
+    private String setinfo;
+
     public LinkedList<Employee> getListEmploeeys() {
         return listEmploeeys;
     }

@@ -23,6 +23,7 @@ il\client\controls\OrderControl.class
 il\client\DetailedOrderController.class
 il\client\PeopleListController.class
 il\client\ClientCustomItem.class
+il\client\events\UpdateinfroEvent.class
 il\client\CustomProductController$ItemCellFactory.class
 il\client\MainPageController.class
 il\client\PopWindowCustomProduct.class
@@ -40,6 +41,7 @@ il\client\CancelOrdersTabController.class
 il\client\ocsf\ObservableClient.class
 il\client\EditAccountDetailsController.class
 il\client\RegisterController.class
+il\client\controls\ReportControl.class
 il\client\SystemManagerController.class
 il\client\ComplaintOrdersTabController.class
 il\client\AddProductToCatalogDialogController.class

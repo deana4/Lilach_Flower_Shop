@@ -56,7 +56,7 @@ public class EditAccountDetailsController {
     }
 
     @FXML
-    void changeCredit(MouseEvent event) {
+    void changeCredit(MouseEvent event) throws IOException {
         int correctness = checker.creditCardCheck(this.creditCardText.getText());
         if(correctness==0){
             this.creditCardText.clear();

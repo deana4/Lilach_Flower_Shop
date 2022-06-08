@@ -22,7 +22,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String userName;
+    private String userName ="default";
     @Column(name = "user_password")
     private String password;
     private String creditCard;

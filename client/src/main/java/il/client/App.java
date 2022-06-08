@@ -3,17 +3,16 @@ package il.client;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
+
+
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import il.client.SimpleClient;
+
 import javafx.stage.StageStyle;
-//import org.kordamp.bootstrapfx.BootstrapFX;
-//import org.kordamp.bootstrapfx.scene.layout.Panel;
+
 
 import java.io.IOException;
 
@@ -21,7 +20,7 @@ public class App extends Application {
     private SimpleClient client = null;
 
     public static String ip = "127.0.0.1";
-    public static int port = 3000;
+    public static int port = 3010;
 
     @Override
     public void start(Stage stage) throws IOException {

@@ -10,12 +10,12 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 
-<AnchorPane prefHeight="260.0" prefWidth="330.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.AddProductToCatalogController">
+<AnchorPane prefHeight="260.0" prefWidth="330.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.AddProductToCatalogController">
    <children>
       <MFXLegacyListView layoutX="15.0" layoutY="15.0" prefHeight="232.0" prefWidth="300.0" styleClass="CatalogItem" stylesheets="@CSSfiles/Backgrounds.css" />
       <ImageView fx:id="product_image" fitHeight="224.0" fitWidth="238.0" layoutX="46.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../server/src/main/resources/images/Flower1.png" />
+            <Image url="@ClientImages/Flower1.png" />
          </image></ImageView>
       <HBox alignment="CENTER" layoutX="33.0" layoutY="161.0" prefHeight="63.0" prefWidth="250.0">
          <children>

@@ -26,7 +26,7 @@
                <children>
                   <HBox prefHeight="396.0" prefWidth="901.0" spacing="25.0">
                      <children>
-                        <MFXLegacyTableView fx:id="cart_table" fixedCellSize="20.0" prefHeight="396.0" prefWidth="501.0" stylesheets="@CSSfiles/Backgrounds.css" tableMenuButtonVisible="true" viewOrder="20.0">
+                        <MFXLegacyTableView fx:id="cart_table" fixedCellSize="20.0" prefHeight="396.0" prefWidth="501.0" style="-fx-background-color: transparent;" stylesheets="@CSSfiles/Backgrounds.css" tableMenuButtonVisible="true" viewOrder="20.0">
                            <columns>
                               <TableColumn fx:id="remove_btn_col" editable="false" prefWidth="98.0" sortType="DESCENDING" text="Remove" />
                               <TableColumn fx:id="amount_change_btn_col" editable="false" prefWidth="98.0" sortType="DESCENDING" text="Change Amount" />
@@ -39,7 +39,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </MFXLegacyTableView>
-                        <MFXLegacyTableView fx:id="cart_CustomTable" fixedCellSize="20.0" prefHeight="396.0" prefWidth="481.0" stylesheets="@CSSfiles/Backgrounds.css" tableMenuButtonVisible="true" viewOrder="20.0">
+                        <MFXLegacyTableView fx:id="cart_CustomTable" fixedCellSize="20.0" prefHeight="396.0" prefWidth="481.0" style="-fx-background-color: transparent;" stylesheets="@CSSfiles/Backgrounds.css" tableMenuButtonVisible="true" viewOrder="20.0">
                            <columns>
                               <TableColumn fx:id="remove_btn_col_Custom" editable="false" prefWidth="98.0" sortType="DESCENDING" text="Remove" />
                               <TableColumn fx:id="amount_change_btn_Custom" editable="false" prefWidth="98.0" sortType="DESCENDING" text="Change Amount" />

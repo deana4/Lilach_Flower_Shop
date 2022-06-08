@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="646.0" prefWidth="976.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ComplaintTabController">
+<AnchorPane prefHeight="646.0" prefWidth="976.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ComplaintTabController">
    <children>
       <MFXLegacyTableView fx:id="complaints_table" layoutX="20.0" layoutY="153.0" prefHeight="451.0" prefWidth="937.0" styleClass="table-row-cell" stylesheets="@CSSfiles/MenubarCSS.css">
          <columns>
@@ -19,7 +19,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </MFXLegacyTableView>
-      <Label layoutX="333.0" layoutY="49.0" prefHeight="66.0" prefWidth="310.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Complaints">
+      <Label layoutX="334.0" layoutY="52.0" prefHeight="50.0" prefWidth="310.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Complaints">
          <font>
             <Font size="36.0" />
          </font>

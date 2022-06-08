@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="414.0" prefWidth="799.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.AddProductToCatalogDialogController">
+<AnchorPane prefHeight="414.0" prefWidth="799.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.AddProductToCatalogDialogController">
    <children>
       <AnchorPane layoutX="26.0" layoutY="20.0" prefHeight="375.0" prefWidth="747.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
@@ -25,23 +25,23 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="58.0" prefWidth="322.0" spacing="10.0">
                      <children>
-                        <MFXTextField id="customPassword" fx:id="nameText" floatMode="BORDER" floatingText="Name" stylesheets="@CSSfiles/css/TextFields.css" />
-                        <MFXTextField id="customPassword" fx:id="PriceText" floatMode="BORDER" floatingText="Price" stylesheets="@CSSfiles/css/TextFields.css" />
-                        <MFXTextField id="customPassword" fx:id="colorText" floatMode="BORDER" floatingText="Color" stylesheets="@CSSfiles/css/TextFields.css" />
-                        <MFXTextField id="customPassword" fx:id="typeText" floatMode="BORDER" floatingText="Type" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="nameText" floatMode="BORDER" floatingText="Name" styleClass="restTF" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="PriceText" floatMode="BORDER" floatingText="Price" styleClass="restTF" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="colorText" floatMode="BORDER" floatingText="Color" styleClass="restTF" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="typeText" floatMode="BORDER" floatingText="Type" styleClass="restTF" stylesheets="@CSSfiles/Backgrounds.css" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="451.0" spacing="10.0">
                      <children>
                         <ImageView fx:id="productImage" fitHeight="128.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" />
-                        <MFXTextField id="customPassword" fx:id="ImageURL" allowEdit="false" floatMode="BORDER" floatingText="Image URL" prefHeight="38.0" prefWidth="304.0" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="ImageURL" allowEdit="false" floatMode="BORDER" floatingText="Image URL" prefHeight="38.0" prefWidth="304.0" styleClass="restTF" stylesheets="@CSSfiles/css/TextFields.css" />
                         <MFXButton fx:id="fileBtn" onAction="#getFile" text="Bring File" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="25.0" prefWidth="550.0" spacing="40.0">
                      <children>
                         <MFXToggleButton fx:id="saleToggle" onMouseClicked="#ToggleClicked" text="On Sale?" textFill="#979797" />
-                        <MFXTextField id="customPassword" fx:id="discountPercentText" floatMode="BORDER" floatingText="Discount" prefHeight="38.0" prefWidth="137.0" promptText="Discount Percentage" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="discountPercentText" floatMode="BORDER" floatingText="Discount" prefHeight="38.0" prefWidth="137.0" promptText="Discount Percentage" styleClass="restTF" stylesheets="@CSSfiles/css/TextFields.css" />
                      </children>
                   </HBox>
                </children>

@@ -28,7 +28,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="646.0" prefWidth="1240.0" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.MyAccountController">
+<AnchorPane fx:id="rootPane" prefHeight="646.0" prefWidth="1240.0" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.MyAccountController">
     <VBox layoutY="1.0" prefHeight="646.0" prefWidth="251.0" styleClass="sideBar" stylesheets="@CSSfiles/Backgrounds.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="1.0">
         <padding>
             <Insets bottom="10.0" left="10.0" top="60.0" />
@@ -43,11 +43,6 @@
          <font>
             <Font name="Calibri" size="29.0" />
          </font>
-        </Label>
-        <Label styleClass="menu-label" text="Components">
-            <VBox.margin>
-                <Insets left="5.0" top="40.0" />
-            </VBox.margin>
         </Label>
         <MFXScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="440.0" prefWidth="236.0" VBox.vgrow="ALWAYS">
             <VBox.margin>

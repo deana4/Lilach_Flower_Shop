@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="646.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.RegisterController">
+<AnchorPane prefHeight="646.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.RegisterController">
    <children>
       <AnchorPane prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
@@ -22,7 +22,7 @@
                   <Image url="@ClientImages/RegisterImage.png" />
                </image>
             </ImageView>
-            <Label layoutX="454.0" layoutY="97.0" prefHeight="47.0" prefWidth="334.0" styleClass="Headers" stylesheets="@CSSfiles/Buttons.css" text="Lilach Registration" textFill="#979797">
+            <Label layoutX="415.0" layoutY="82.0" prefHeight="25.0" prefWidth="411.0" styleClass="Headers" stylesheets="@CSSfiles/Buttons.css" text="Lilach Registration" textFill="#979797">
                <font>
                   <Font name="Comic Sans MS" size="33.0" />
                </font>

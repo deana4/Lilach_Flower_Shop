@@ -12,11 +12,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CustomProductController">
    <children>
-      <AnchorPane layoutX="29.0" layoutY="25.0" prefHeight="598.0" prefWidth="1177.0">
+      <AnchorPane layoutX="31.0" layoutY="25.0" prefHeight="598.0" prefWidth="1200.0">
          <children>
             <ImageView fitHeight="598.0" fitWidth="1177.0" layoutX="265.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -32,9 +33,9 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <MFXListView id="ListBar" fx:id="listOfProducts" layoutX="482.0" layoutY="85.0" prefHeight="155.0" prefWidth="233.0" stylesheets="@CSSfiles/List.css" thumbColor="#ff6969" thumbHoverColor="#895ee1" trackColor="#ffb3b3" />
+            <MFXListView id="ListBar" fx:id="listOfProducts" layoutX="928.0" layoutY="123.0" prefHeight="400.0" prefWidth="233.0" stylesheets="@CSSfiles/List.css" thumbColor="#ff6969" thumbHoverColor="#895ee1" trackColor="#ffb3b3" />
             <MFXListView id="ListBar" fx:id="listOfChosenProducts" layoutX="43.0" layoutY="123.0" prefHeight="400.0" prefWidth="233.0" stylesheets="@CSSfiles/List.css" />
-            <VBox alignment="CENTER" layoutX="539.0" layoutY="253.0" prefHeight="195.0" prefWidth="233.0" spacing="26.0">
+            <VBox alignment="CENTER" layoutX="543.0" layoutY="188.0" prefHeight="195.0" prefWidth="233.0" spacing="26.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="40.0" prefWidth="253.0">
                      <children>
@@ -48,13 +49,16 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="40.0" prefWidth="253.0">
                      <children>
-                        <MFXComboBox fx:id="type_chooser" floatMode="BORDER" floatingText="Type List" prefHeight="34.0" prefWidth="170.0" />
+                        <MFXComboBox fx:id="type_chooser" floatMode="BORDER" floatingText="Type List" prefHeight="34.0" prefWidth="170.0">
+                           <textFill>
+                              <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
+                           </textFill></MFXComboBox>
                      </children>
                   </HBox>
                   <MFXComboBox fx:id="colorPicker" floatMode="BORDER" floatingText="Color List" onAction="#setListByColor" prefHeight="34.0" prefWidth="170.0" />
                </children>
             </VBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="437.0" layoutY="305.0" prefHeight="21.0" prefWidth="131.0">
+            <HBox alignment="CENTER_RIGHT" layoutX="411.0" layoutY="242.0" prefHeight="21.0" prefWidth="131.0">
                <children>
                   <Label prefHeight="21.0" prefWidth="117.0" text="Max Price range:" textFill="#979797">
                      <font>
@@ -63,7 +67,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="448.0" layoutY="415.0" prefHeight="23.0" prefWidth="117.0">
+            <HBox alignment="CENTER_RIGHT" layoutX="422.0" layoutY="352.0" prefHeight="23.0" prefWidth="117.0">
                <children>
                   <Label prefHeight="21.0" prefWidth="120.0" text="Dominante Color:" textFill="#979797">
                      <font>
@@ -72,7 +76,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="520.0" layoutY="352.0" prefHeight="21.0" prefWidth="45.0">
+            <HBox alignment="CENTER_RIGHT" layoutX="494.0" layoutY="289.0" prefHeight="21.0" prefWidth="45.0">
                <children>
                   <Label prefHeight="21.0" prefWidth="41.0" text="Type:" textFill="#979797">
                      <font>
@@ -81,7 +85,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="438.0" layoutY="255.0" prefHeight="23.0" prefWidth="131.0">
+            <HBox alignment="CENTER_RIGHT" layoutX="412.0" layoutY="192.0" prefHeight="23.0" prefWidth="131.0">
                <children>
                   <Label prefHeight="21.0" prefWidth="117.0" text="Min Price range:" textFill="#979797">
                      <font>
@@ -90,7 +94,7 @@
                   </Label>
                </children>
             </HBox>
-            <VBox alignment="TOP_CENTER" layoutX="454.0" layoutY="506.0" prefHeight="85.0" prefWidth="288.0" spacing="10.0">
+            <VBox alignment="TOP_CENTER" layoutX="450.0" layoutY="450.0" prefHeight="85.0" prefWidth="288.0" spacing="10.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                      <children>
@@ -101,7 +105,7 @@
                   <MFXButton fx:id="cancelBTN" onAction="#CancelBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Cancel" textFill="#979797" />
                </children>
             </VBox>
-            <HBox alignment="CENTER" layoutX="498.0" layoutY="464.0" prefHeight="31.0" prefWidth="200.0" spacing="10.0">
+            <HBox alignment="CENTER" layoutX="474.0" layoutY="411.0" prefHeight="31.0" prefWidth="240.0" spacing="10.0">
                <children>
                   <Label text="Estimated cost:" textFill="#979797">
                      <font>
@@ -111,26 +115,25 @@
                   <Label fx:id="sum_label" text="sum" />
                </children>
             </HBox>
-            <MFXLegacyTableView fx:id="products_table" layoutX="474.0" layoutY="102.0" prefHeight="134.0" prefWidth="248.0" visible="false">
-               <columns>
-                  <TableColumn fx:id="id_col" prefWidth="75.0" text="Product ID" />
-                  <TableColumn fx:id="name_col" prefWidth="172.0" text="Product Name" />
-               </columns>
-            </MFXLegacyTableView>
             <MFXLegacyTableView fx:id="chosen_table" layoutX="35.0" layoutY="123.0" visible="false">
                <columns>
                   <TableColumn fx:id="chosen_id_col" prefWidth="75.0" text="Product ID" />
                   <TableColumn fx:id="chosen_name_col" prefWidth="172.0" text="Product Name" />
                </columns>
             </MFXLegacyTableView>
-            <Label layoutX="87.0" layoutY="85.0" text="Chosen Items" textFill="#979797">
+            <Label layoutX="107.0" layoutY="98.0" text="Choosen Items" textFill="#979797">
                <font>
-                  <Font size="24.0" />
+                  <Font size="16.0" />
                </font>
             </Label>
             <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="499.0" layoutY="597.0" prefHeight="17.0" prefWidth="200.0" text="Please check your errors!" textFill="RED" visible="false">
                <font>
                   <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="988.0" layoutY="98.0" text="Catalog Items" textFill="#979797">
+               <font>
+                  <Font size="16.0" />
                </font>
             </Label>
          </children>

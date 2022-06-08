@@ -18,7 +18,7 @@
 
 <AnchorPane fx:id="rootPane" prefHeight="800.0" prefWidth="1300.0" styleClass="MainBorder" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.MainPageController">
    <children>
-      <MFXTextField fx:id="user_wellcome" allowEdit="false" floatMode="BORDER" layoutX="220.0" layoutY="29.0" prefHeight="15.0" prefWidth="172.0" selectable="false" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
+      <MFXTextField fx:id="user_wellcome" allowEdit="false" floatMode="BORDER" layoutX="220.0" layoutY="29.0" prefHeight="15.0" prefWidth="172.0" selectable="false" styleClass="smallHeader" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
          <textFill>
             <Color red="0.5526315569877625" green="0.5526315569877625" blue="0.5526315569877625" opacity="0.8700000047683716" />
          </textFill>

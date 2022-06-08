@@ -12,11 +12,11 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="compain_ancorepane1" prefHeight="627.0" prefWidth="671.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ComplainController">
+<AnchorPane fx:id="compain_ancorepane1" prefHeight="613.0" prefWidth="671.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ComplainController">
    <children>
-      <AnchorPane fx:id="complain_ancorpane2" layoutX="19.0" layoutY="13.0" prefHeight="600.0" prefWidth="596.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css">
+      <AnchorPane fx:id="complain_ancorpane2" layoutX="18.0" layoutY="22.0" prefHeight="569.0" prefWidth="635.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
-            <VBox alignment="TOP_CENTER" layoutX="105.0" layoutY="109.0" prefHeight="429.0" prefWidth="414.0" spacing="15.0">
+            <VBox alignment="TOP_CENTER" layoutX="105.0" layoutY="109.0" prefHeight="390.0" prefWidth="414.0" spacing="15.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="353.0" spacing="10.0">
                      <children>
@@ -25,14 +25,14 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <MFXTextField fx:id="order_number_field" editable="false" prefHeight="49.0" prefWidth="135.0">
+                        <MFXTextField fx:id="order_number_field" editable="false" floatMode="BORDER" prefHeight="27.0" prefWidth="135.0" styleClass="restTF">
                            <textFill>
                               <Color red="0.5921568870544434" green="0.5921568870544434" blue="0.5921568870544434" opacity="0.8700000047683716" />
                            </textFill>
                         </MFXTextField>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="256.0" spacing="10.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="414.0" spacing="10.0">
                      <children>
                         <Label prefHeight="21.0" prefWidth="168.0" text="How we can help you?" textFill="#979797">
                            <font>
@@ -41,7 +41,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <TextArea fx:id="complain_textarea" prefHeight="224.0" prefWidth="256.0" wrapText="true">
+                  <TextArea fx:id="complain_textarea" prefHeight="224.0" prefWidth="256.0" styleClass="restTF" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor></TextArea>
@@ -52,7 +52,7 @@
                   </MFXButton>
                </children>
             </VBox>
-            <HBox layoutX="169.0" layoutY="537.0" prefHeight="49.0" prefWidth="286.0" spacing="50.0">
+            <HBox layoutX="169.0" layoutY="499.0" prefHeight="49.0" prefWidth="286.0" spacing="50.0">
                <children>
                   <MFXButton fx:id="sendBTN" onAction="#SendBTNClicked" prefHeight="48.0" prefWidth="128.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Send" textFill="#979797">
                      <font>

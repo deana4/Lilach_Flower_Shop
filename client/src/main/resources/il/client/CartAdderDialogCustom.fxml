@@ -16,7 +16,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <MFXTextField id="customPassword" fx:id="amountText" floatMode="BORDER" floatingText="How Many Of This Kind?" promptText="Amount" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="amountText" floatMode="BORDER" floatingText="How Many Of This Kind?" promptText="Amount" styleClass="restTF" stylesheets="@CSSfiles/css/TextFields.css" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">

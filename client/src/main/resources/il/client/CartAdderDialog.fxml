@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="215.0" prefWidth="405.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CartAdderController">
+<AnchorPane prefHeight="215.0" prefWidth="405.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CartAdderController">
    <children>
       <AnchorPane fx:id="DialogPane" layoutX="21.0" layoutY="17.0" prefHeight="177.0" prefWidth="357.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
@@ -16,7 +16,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <MFXTextField id="customPassword" fx:id="amountText" floatMode="BORDER" floatingText="How Many Of This Kind?" promptText="Amount" stylesheets="@CSSfiles/css/TextFields.css" />
+                        <MFXTextField fx:id="amountText" floatMode="BORDER" floatingText="How Many Of This Kind?" promptText="Amount" styleClass="restTF" stylesheets="@CSSfiles/css/TextFields.css" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">

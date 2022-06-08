@@ -9,12 +9,15 @@
     -fx-border-radius: 50%;
 }
 .Headers{
-    -fx-text-fill: white;
     -fx-font-family: "Segoe Script";
-    -fx-background-color: #6A67CE;
+    -fx-background-color: linear-gradient(to bottom right, lightpink,lightblue);
     -fx-background-radius: 250em;
     -fx-border-radius: 90%;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
     -fx-alignment: center;
+    /*-fx-alignment: center;*/
+    -fx-border-color: linear-gradient(to bottom right, lightpink, lightblue,lightpink,lightblue);
 }
 .CatalogItem{
     -fx-text-fill: white;
@@ -47,11 +50,35 @@
 }
 
 .sideBar{
-    -fx-background-color: linear-gradient(to bottom right, #F4BFBF, FFD9C0);
+    -fx-background-color:linear-gradient(to bottom right, lightpink,lightblue);
     -fx-background-radius: 1em;
     -fx-border-radius: 1em;
     /*-fx-alignment: center;*/
-    -fx-border-color: linear-gradient(to bottom right, FFD9C0, #F4BFBF, FFD9C0,F4BFBF );
+    -fx-border-color: linear-gradient(to bottom right, lightpink, lightblue,lightpink,lightblue);
+}
+
+.smallHeader{
+    -fx-font-family: "Segoe Script";
+    -fx-background-color: linear-gradient(to bottom right, lightpink,lightblue);
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    /*-fx-alignment: center;*/
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-border-color: linear-gradient(to bottom right, lightpink, lightblue,lightpink,lightblue);
+}
+
+.rest{
+    -fx-background-color: linear-gradient(to bottom right, lightpink,lightblue);
+    /*-fx-alignment: center;*/
+    -fx-border-color: linear-gradient(to bottom right, lightpink, lightblue,lightpink,lightblue);
+}
+
+.restTF{
+    /*-fx-background-color: linear-gradient(to bottom right, lightpink,lightblue);*/
+    /*-fx-alignment: center;*/
+    -fx-border-color: linear-gradient(to bottom right, lightpink, lightblue,lightpink,lightblue);
 }
 
 .HeadersNoBackground{
@@ -73,6 +100,15 @@
 
 .ImageFrameCatalog{
     -fx-background-color: #FFF2F2;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    /*-fx-alignment: center;*/
+    -fx-border-color: pink;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0), 20, 0, 0, 0);
+}
+
+.CatalogFrame{
+    -fx-background-color: light pink;
     -fx-background-radius: 1em;
     -fx-border-radius: 1em;
     /*-fx-alignment: center;*/

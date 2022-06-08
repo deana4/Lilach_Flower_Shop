@@ -15,13 +15,13 @@ public class Complain implements Serializable {
     @ManyToOne
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Store store;
 
     @Column(name = "complain_date")
     private String date_complain;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private Order order;
 
     private double refund;

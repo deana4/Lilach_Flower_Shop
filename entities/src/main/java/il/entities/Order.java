@@ -24,7 +24,7 @@ public class Order implements Serializable {
     private List<CartProduct> products;
 
 
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(fetch = FetchType.EAGER, orphanRemoval = true)
     private Complain complain;
 
     private String dateReceive;

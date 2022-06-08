@@ -1,6 +1,7 @@
 package il.client;
 
 import il.client.controls.LogInControl;
+import il.client.controls.ReportControl;
 import il.client.events.LoginEvent;
 import il.entities.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -80,6 +81,7 @@ public class LoginController extends ParentClass{
                     complains = event.getComplainList();
                     storeIDWork = event.getStoreId();
                     password = event.getPassword();
+                    ReportControl report = new ReportControl(orders, complains, "2022/05/09", "2022/06/09", -1);
                     UserClient.getInstance().setWorker(true);
                     UserClient.getInstance().setUserName(username);
                     UserClient.getInstance().setId(event.getId());
@@ -116,6 +118,7 @@ public class LoginController extends ParentClass{
                     credit = user.getCredit();
                     frozen = user.getAccountStatus();
                     name = user.getName();
+
                     UserClient.getInstance().setWorker(false);
                     UserClient.getInstance().setUserName(username);
                     UserClient.getInstance().setPriority(2);
@@ -130,6 +133,7 @@ public class LoginController extends ParentClass{
                     UserClient.getInstance().setComplaintList(complains);
                     UserClient.getInstance().setStoresOfStore(stores);
                     UserClient.getInstance().setName(name);
+
                     if (frozen == 1) {
                         UserClient.getInstance().setFrozen(true);
                     } else {

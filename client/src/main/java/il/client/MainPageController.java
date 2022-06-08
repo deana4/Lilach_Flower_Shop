@@ -137,7 +137,17 @@ public class MainPageController extends ParentClass {     //This is a singleton 
 
 
     private void initButtons(){
-        closeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> Platform.exit());
+        closeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                    try {
+                        LogInControl.logout(UserClient.getInstance().getId());
+                        UserClient.getInstance().resetUserClient();
+                        Platform.exit();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+        );
+//        closeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> Platform.exit());
         minimizeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> ((Stage) this.main_first_load_pane.getScene().getWindow()).setIconified(true));
         alwaysOnTopIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             boolean newVal = !stage.isAlwaysOnTop();
@@ -268,6 +278,25 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         this.main_first_load_pane.getChildren().addAll(root);
     }
 
+//    @FXML
+//    void LogoutBTNClicked(ActionEvent event) throws IOException {
+//        {
+//            this.login_btn.setVisible(true);
+//            this.register_btn.setVisible(true);
+//            this.user_wellcome.setVisible(false);
+//            this.user_wellcome.clear();
+//            this.myacc_btn.setVisible(false);
+//            this.mycart_btn.setVisible(false);
+//            this.Logout_btn.setVisible(false);
+//            this.setLogin(false);
+//            this.setLoginName("Default");
+//        }
+//        UserClient.getInstance().setPriority(1);
+//        MainPageController.getInstance().Refresh();
+//        LogInControl.logout(UserClient.getInstance().getId());
+//        LoadHomePage();
+//    }
+
     @FXML
     void LogoutBTNClicked(ActionEvent event) throws IOException {
         {
@@ -281,9 +310,9 @@ public class MainPageController extends ParentClass {     //This is a singleton 
             this.setLogin(false);
             this.setLoginName("Default");
         }
-        UserClient.getInstance().setPriority(1);
-        MainPageController.getInstance().Refresh();
         LogInControl.logout(UserClient.getInstance().getId());
+        UserClient.getInstance().resetUserClient();
+        MainPageController.getInstance().Refresh();
         LoadHomePage();
     }
 
@@ -321,6 +350,15 @@ public class MainPageController extends ParentClass {     //This is a singleton 
 
     public void addColorToSystem(String color){
         this.colors.add(color);
+    }
+
+    public void removeColorFromSystem(String color){
+        for(int i=0; i<colors.size(); i++)
+        {
+            if(colors.get(i).equals(color)){
+                colors.remove(i);
+            }
+        }
     }
 
     public ObservableList<String> getColors(){

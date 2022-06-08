@@ -116,6 +116,10 @@ public class UserClient {
         return user;
     }
 
+    public void resetUserClient(){ //added by Dean
+        user = new UserClient();
+    }
+
     public void TestLoginFunction(int id, String username, String password, String CreditCard, String name, String position, double discount, String mail){
 //        complaintList = UserServer.getComplaints(); //get from server complaints and Orders;
 //        orderList = UserServer.getOrders();

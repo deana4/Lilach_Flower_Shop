@@ -243,7 +243,7 @@ public class CustomProductController {
         Scene scene = new Scene(fxmlLoader.load(), 681, 514);
         scene.setFill(Color.TRANSPARENT);
         PopWindowCustomProduct controller = fxmlLoader.getController();
-        controller.FullSetter(product.getId(), product.getProduct_name(), String.valueOf(product.getProduct_price()), product.isOn_discount(), product.getProductImageNotURL());
+        controller.FullSetter(product.getId(), product.getProduct_name(), String.valueOf(product.getProduct_price()), product.isOn_discount(), product.getProductImageNotURL(), product.getColor(), product.getType());
         controller.initialize(stage,product,this);
         controller.setStage(stage);
         stage.setTitle("Custom Item View");

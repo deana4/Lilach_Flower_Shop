@@ -307,8 +307,11 @@ public class OrderController {
                 }
                 this.my_phone_field.setText(UserClient.getInstance().getPhone().substring(3));
             }
-            if(UserClient.getInstance().getMail()!=null && UserClient.getInstance().getMail()!="" && UserClient.getInstance().getMail()!="Defualt")
-            this.my_mail_field.setText(UserClient.getInstance().getMail());
+            System.out.println("OrderController "+this.my_mail_field.getText());
+            if(UserClient.getInstance().getMail()!=null && UserClient.getInstance().getMail()!="" && UserClient.getInstance().getMail()!="Defualt"){
+                this.my_mail_field.setText(UserClient.getInstance().getMail());
+                System.out.println("OrderController "+this.my_mail_field.getText());
+            }
         }
         else{
             this.my_name_field.setText("");

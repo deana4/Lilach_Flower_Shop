@@ -146,8 +146,8 @@ public class RegisterController extends ParentClass{
         System.out.println(counter_of_correctness);
         if(counter_of_correctness == 7){
             //send register details to the server
-            String store = this.store_choose.getValue();
-            String[] registerDetails = {name, username, pass, id, credit_card, plan,store};
+//            String store = this.store_choose.getValue();
+//            String[] registerDetails = {name, username, pass, id, credit_card, plan,store};
 
             //need to add store here
 

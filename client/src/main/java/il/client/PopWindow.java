@@ -44,10 +44,31 @@ public class PopWindow extends ParentClass{
 
     private boolean on_discount;
 
+    @FXML
+    private Label typeText;
+
+    @FXML
+    private Label colorText;
+
 
     @FXML
     void CheckBoxClicked(MouseEvent event) {
 
+    }
+
+    @FXML
+    void FullSetter(int id, String name, String price, boolean on_discount, Image image, String color, String type){
+        this.id_txt.setText(Integer.toString(id));
+        this.price_txt.setText(price);
+        this.name_txt.setText(name);
+        this.on_discount = on_discount;
+        this.colorText.setText(color);
+        this.typeText.setText(type);
+        this.product_zoomed_image.setImage(image);
+        if(on_discount){
+            System.out.println(on_discount);
+            this.discount_logo_poped.setVisible(true);
+        }
     }
 
     @FXML

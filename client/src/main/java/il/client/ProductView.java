@@ -59,10 +59,28 @@ public class ProductView extends ParentClass{
     private String type;
     private String color;
 
+    @FXML
+    private Label product_originalPrice; //added by Dean
+
     URL root = getClass().getResource("PopWindow.fxml");
 
 
     public void setData(Product a) throws IOException {
+//        product_price.setText(String.valueOf(a.getPrice()));
+//        product_name.setText(a.getName());
+//
+//        Image image = new Image(new ByteArrayInputStream(a.getImage()));
+//        product_image.setImage(image);
+//
+//        this.on_discount = a.isOn_discount();
+//        this.discound_precentage = a.getDiscount_perc();
+//        if(this.on_discount){
+//            this.discount_logo.setVisible(true);
+//            this.product_price.setText(String.valueOf((int)(a.getPrice() - (a.getPrice()*this.discound_precentage)/100)));
+//        }
+//        this.id_of_flower = a.getId();
+//        this.color = a.getColor();
+//        this.type = a.getType();
         product_price.setText(String.valueOf(a.getPrice()));
         product_name.setText(a.getName());
 
@@ -71,13 +89,19 @@ public class ProductView extends ParentClass{
 
         this.on_discount = a.isOn_discount();
         this.discound_precentage = a.getDiscount_perc();
+        this.product_originalPrice.setText(String.valueOf(a.getPrice()));
         if(this.on_discount){
+            this.product_originalPrice.setStyle("-fx-text-decoration:line-through");
             this.discount_logo.setVisible(true);
             this.product_price.setText(String.valueOf((int)(a.getPrice() - (a.getPrice()*this.discound_precentage)/100)));
         }
         this.id_of_flower = a.getId();
         this.color = a.getColor();
         this.type = a.getType();
+
+        if(!this.on_discount){
+            this.product_price.setVisible(false);
+        }
     }
 
     @FXML
@@ -113,9 +137,18 @@ public class ProductView extends ParentClass{
 
             }
         }else if(UserClient.getInstance().isWorker() == false){
-            setPriorityBtnLowerThan2();
-            this.atc_product_button.setDisable(false);
-            this.atc_product_button.setVisible(true);
+            if(UserClient.getInstance().getPriority() != 1) {
+                setPriorityBtnLowerThan2();
+                this.atc_product_button.setDisable(false);
+                this.atc_product_button.setVisible(true);
+            }
+            else{
+                if (UserClient.getInstance().getPriority() ==1){
+                    setPriorityBtnLowerThan2();
+                    this.atc_product_button.setDisable(true);
+                    this.atc_product_button.setVisible(false);
+                }
+            }
 
 //            switch (UserClient.getInstance().getPriority()) {
 //            case 1: {
@@ -177,20 +210,36 @@ public class ProductView extends ParentClass{
 //      //      cat_controller.setAnchorpang2NotVisibale();
 //      //  }
 
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("PopWindow.fxml"));
-        stage.initStyle(StageStyle.TRANSPARENT);
-        Scene scene = new Scene(fxmlLoader.load(), 681, 514);
-        scene.setFill(Color.TRANSPARENT);
-        PopWindow controller = fxmlLoader.getController();
-        controller.FullSetter(this.getId(), this.product_name.getText(), this.product_price.getText(), this.on_discount, this.product_image.getImage());
-        controller.initialize(stage,this);
-        controller.setStage(stage);
-        stage.setTitle("Edit Flower");
-        stage.setScene(scene);
-        stage.show();
+//        Stage stage = new Stage();
+//        stage.initModality(Modality.APPLICATION_MODAL);
+//        FXMLLoader fxmlLoader = new FXMLLoader();
+//        fxmlLoader.setLocation(getClass().getResource("PopWindow.fxml"));
+//        stage.initStyle(StageStyle.TRANSPARENT);
+//        Scene scene = new Scene(fxmlLoader.load(), 681, 514);
+//        scene.setFill(Color.TRANSPARENT);
+//        PopWindow controller = fxmlLoader.getController();
+//        controller.FullSetter(this.getId(), this.product_name.getText(), this.product_price.getText(), this.on_discount, this.product_image.getImage());
+//        controller.initialize(stage,this);
+//        controller.setStage(stage);
+//        stage.setTitle("Edit Flower");
+//        stage.setScene(scene);
+//        stage.show();
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("PopWindow.fxml"));
+            stage.initStyle(StageStyle.TRANSPARENT);
+            Scene scene = new Scene(fxmlLoader.load(), 681, 514);
+            scene.setFill(Color.TRANSPARENT);
+            PopWindow controller = fxmlLoader.getController();
+            controller.FullSetter(this.getId(), this.product_name.getText(), this.product_price.getText(), this.on_discount, this.product_image.getImage(), this.color, this.type);
+            controller.initialize(stage,this);
+            controller.setStage(stage);
+            stage.setTitle("Edit Flower");
+            stage.setScene(scene);
+            stage.show();
+
     }
 
 

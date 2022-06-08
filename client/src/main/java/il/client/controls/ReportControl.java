@@ -155,6 +155,17 @@ public class ReportControl {
         }
     }
 
+    public int getcountDate(String date){
+        if(!complain_date.containsKey(date))
+            return 0;
+        return complain_date.get(date);
+    }
+    public int getcountProduct(String product){
+        if(!products.containsKey(product))
+            return 0;
+        return complain_date.get(product);
+    }
+
 
 
 

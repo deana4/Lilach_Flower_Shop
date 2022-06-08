@@ -192,6 +192,13 @@ public class OrderController {
     @FXML
     void initialize() throws IOException {
         OrderInstance = this;
+        if(MainPageController.allStores!=null){
+            for(int i=0; i<MainPageController.allStores.size(); i++){
+                OrderController order_controller = (OrderController) MainPageController.getInstance().getControllerByKey("Order");
+                order_controller.store_chooser.getItems().add(MainPageController.allStores.get(i).getAddress());
+            }
+        }
+
         for(int i=10; i<=20; i++){
             this.time_choose.getItems().add(Integer.toString(i) + ":00");
             this.time_choose.getItems().add(Integer.toString(i) + ":30");
@@ -204,11 +211,11 @@ public class OrderController {
         this.reciver_phone_choose.getItems().add("052");
         this.reciver_phone_choose.getItems().add("053");
         this.reciver_phone_choose.getItems().add("054");
-        if(UserClient.getInstance().getPlan() == 1){ //specific store membership
-            String store_name = UserClient.getInstance().getStoresOfStore().get(0).getAddress();
-            this.store_chooser.setValue(store_name);
-            this.store_chooser.setDisable(true);
-        }
+//        if(UserClient.getInstance().getPlan() == 1){ //specific store membership
+//            String store_name = UserClient.getInstance().getStoresOfStore().get(0).getAddress();
+//            this.store_chooser.setValue(store_name);
+//            this.store_chooser.setDisable(true);
+//        }
         //init stores in catalog
 
         //if the user registered to spesific store he can only order from this store!!!!!!!!!!!!!!!!!
@@ -832,6 +839,8 @@ public class OrderController {
             OrderControl.newOrder(full_order, 2, UserClient.getInstance().getId());
         if(store_chooser.getSelectedItem().equals("Jerusalem"))
             OrderControl.newOrder(full_order, 3, UserClient.getInstance().getId());
+        MainPageController.getInstance().AddToCartRefresh();
+        MainPageController.getInstance().OrderRefresh();
     }
 
     /* gets and sets*/

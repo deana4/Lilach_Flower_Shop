@@ -30,26 +30,94 @@ public class UserControl {
         testDB.closeSession();
     }
 
-    public static void setUserName(int userID, String newUserName, boolean isWorker){
+    public static void changeClientUsername(int userID, String newUserName) {
         testDB.openSession();
-        User user = null;
-        Employee employee=null;
-
-        if(!isWorker){
-            user = testDB.session.get(User.class, userID);
-            if(user!=null){
-                user.setUserName(newUserName);
-            }
-        }
-        else{
-            employee = testDB.session.get(Employee.class, userID);
-            if(employee!=null)
-                employee.setUsername(newUserName);
-        }
+        User user = testDB.session.get(User.class, userID);
+        user.setUserName(newUserName);
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
     }
+
+    public static void changeClientCC(int userID, String cc) {
+        testDB.openSession();
+        User user = testDB.session.get(User.class, userID);
+        user.setCreditCard(cc);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
+    public static void changeEmpUsename(int userID , String newUserName) {
+        testDB.openSession();
+        Employee employee = testDB.session.get(Employee.class, userID);
+        employee.setUsername(newUserName);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
+    public static String setAccountStatus (int userID, int accountStatus, boolean isWorker, LinkedList<User> users) {
+        if (isWorker)
+            return "Error: You send employee instead user";
+        testDB.openSession();
+        User user = testDB.session.get(User.class, userID);
+        testDB.closeSession();
+        changeUserAccountStatus(userID ,accountStatus);
+        if (user == null)
+            return "Error: User not found";
+        for (User u : users) {
+            if (u.getCreditCard().equals(user.getCreditCard())) {
+                changeUserAccountStatus(u.getId(), accountStatus);
+            }
+        }
+        return "";
+    }
+
+    private static void changeUserAccountStatus (int userID ,int accountStatus) {
+        testDB.openSession();
+        User user = testDB.session.get(User.class, userID);
+        user.setAccountStatus(accountStatus);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
+
+
+    public static String setUserName(int userID, String newUserName, boolean isWorker) {
+        User user = null;
+        Employee employee = null;
+        if (!isWorker) {//user
+            testDB.openSession();
+            user = testDB.session.get(User.class, userID);
+            testDB.closeSession();
+            if (user == null)
+                return "Error: User not found";
+            List<User> lUsers = SimpleServer.getAllItems(User.class);
+            for (User u : lUsers) {
+                if (u.getUserName().equals( newUserName))
+                    return "Error: User name has been used, please choose another one";
+            }
+            changeClientUsername(userID,newUserName);
+            return"";
+        }
+        else {//employee
+            testDB.openSession();
+            employee = testDB.session.get(Employee.class, userID);
+            testDB.closeSession();
+            if (employee == null)
+                return "Error: User not found";
+            List<Employee> lemp = SimpleServer.getAllItems(Employee.class);
+            for (Employee e : lemp) {
+                if (e.getUsername().equals(newUserName))
+                    return "Error: User name has been used, please choose another one";
+            }
+            changeEmpUsename(userID, newUserName);
+            return "";
+        }
+    }
+
     public static void setPassword(int userID, String newPass, boolean isWorker){
         testDB.openSession();
         User user = null;
@@ -70,19 +138,25 @@ public class UserControl {
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
     }
-    public static void setCreditCard(int userID, String cc, boolean isWorker) {
+    public static String setCreditCard (int userID, String cc, boolean isWorker) {
         if (isWorker)
-            return;
+            return "Error: Data base dont save employee Credit Card ";
         testDB.openSession();
-        User user = null;
-        user = testDB.session.get(User.class, userID);
-        if (user != null) {
-            user.setCreditCard(cc);
-            testDB.session.flush();
-            testDB.session.getTransaction().commit(); // Save everything.
-        }
+        User user = testDB.session.get(User.class, userID);
         testDB.closeSession();
+        if (user == null)
+            return "Error: User not found";
+        List<User> lUsers = SimpleServer.getAllItems(User.class);
+        for (User u : lUsers) {
+            if (u.getCreditCard().equals(cc)) {
+                if (u.getAccountStatus() == 0)
+                    return "Error: credit card belong to frozen account";
+            }
+        }
+        changeClientCC(userID, cc);
+        return "";
     }
+
     public static void setPhone(int userID, String phone, boolean isWorker){
         if (isWorker)
             return;
@@ -97,6 +171,34 @@ public class UserControl {
         testDB.closeSession();
     }
     public static void setMail(int userID, String mail, boolean isWorker){
+        if (isWorker)
+            return;
+        testDB.openSession();
+        User user = null;
+        user = testDB.session.get(User.class, userID);
+        if (user != null) {
+            user.setMail(mail);
+            testDB.session.flush();
+            testDB.session.getTransaction().commit(); // Save everything.
+        }
+        testDB.closeSession();
+    }
+
+//    public static void setPermission(int empID, int p, boolean isWorker){
+//        if (!isWorker)
+//            return;
+//        testDB.openSession();
+//        Employee e = null;
+//        e = testDB.session.get(Employee.class, empID);
+//        if (e != null) {
+//            e.setPermission(p);
+//            testDB.session.flush();
+//            testDB.session.getTransaction().commit(); // Save everything.
+//        }
+//        testDB.closeSession();
+//    }
+
+    public static void setAddress(int userID, String mail, boolean isWorker){
         if (isWorker)
             return;
         testDB.openSession();
@@ -169,6 +271,7 @@ public class UserControl {
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
     }
+
 
 
     public static LinkedList<User> getAllnUser(){

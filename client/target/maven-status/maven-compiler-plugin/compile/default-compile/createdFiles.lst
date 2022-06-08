@@ -22,6 +22,7 @@ il\client\CatalogController.class
 il\client\controls\OrderControl.class
 il\client\DetailedOrderController.class
 il\client\PeopleListController.class
+il\client\ClientCustomItem.class
 il\client\CustomProductController$ItemCellFactory.class
 il\client\MainPageController.class
 il\client\PopWindowCustomProduct.class

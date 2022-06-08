@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -88,6 +89,7 @@ public class OrdersHistoryController {
         fxmlLoader.setLocation(getClass().getResource("DetailedOrder.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 625 , 285);
         DetailedOrderController controller = fxmlLoader.getController();
+        scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setTitle("Detailed Order");
         stage.setScene(scene);

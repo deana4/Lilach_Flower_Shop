@@ -30,7 +30,6 @@ public class AddToCartController{
 
     protected MainPageController main_page_holder;
 
-
     @FXML
     private Label no_items_label;
 
@@ -61,9 +60,42 @@ public class AddToCartController{
     @FXML
     private TableColumn<CartItem, MFXButton> remove_btn_col;
 
+
+
+
+
+    @FXML
+    private MFXLegacyTableView<ClientCustomItem> cart_CustomTable;
+
+    @FXML
+    private TableColumn<ClientCustomItem, MFXButton> amount_change_btn_Custom;
+
+    @FXML
+    private TableColumn<ClientCustomItem, Integer> table_Column_amount_Custom;
+
+    @FXML
+    private TableColumn<ClientCustomItem, MFXButton> remove_btn_col_Custom;
+
+    @FXML
+    private TableColumn<ClientCustomItem, Integer> table_Column_id_Custom;
+
+    @FXML
+    private TableColumn<ClientCustomItem, String> table_Column_name_Custom;
+
+    @FXML
+    private TableColumn<ClientCustomItem, String> table_Column_price_Custom;
+
+
+
+
+
     private double total_sum = 0;
+    private double total_sum_custom = 0;
 
     ObservableList<CartItem> items = FXCollections.observableArrayList();
+
+    ObservableList<ClientCustomItem> customItems = FXCollections.observableArrayList();
+
 
     private static AddToCartController CartInstance = null;
 
@@ -87,32 +119,56 @@ public class AddToCartController{
         CartInstance = this;
         this.TableInitializeFields();
         cart_table.setItems(items);
+        cart_CustomTable.setItems(customItems);
         setTotalSum();
     }
 
     public void TableInitializeFields(){
-        cart_table.setFixedCellSize(40);
-        table_Column_name.setCellValueFactory(new PropertyValueFactory<CartItem,String>("item_name"));
-        table_Column_price.setCellValueFactory(new PropertyValueFactory<CartItem,String>("item_price"));
-        table_Column_amount.setCellValueFactory(new PropertyValueFactory<CartItem,Integer>("item_amount"));
-        table_Column_id.setCellValueFactory(new PropertyValueFactory<CartItem,Integer>("item_id"));
-        amount_change_btn_col.setCellValueFactory(new PropertyValueFactory<CartItem,MFXButton>("amountChangeBtn"));
-        remove_btn_col.setCellValueFactory(new PropertyValueFactory<CartItem,MFXButton>("removeBtn"));
+        {
+            cart_table.setFixedCellSize(40);
+            table_Column_name.setCellValueFactory(new PropertyValueFactory<CartItem,String>("item_name"));
+            table_Column_price.setCellValueFactory(new PropertyValueFactory<CartItem,String>("item_price"));
+            table_Column_amount.setCellValueFactory(new PropertyValueFactory<CartItem,Integer>("item_amount"));
+            table_Column_id.setCellValueFactory(new PropertyValueFactory<CartItem,Integer>("item_id"));
+            amount_change_btn_col.setCellValueFactory(new PropertyValueFactory<CartItem,MFXButton>("amountChangeBtn"));
+            remove_btn_col.setCellValueFactory(new PropertyValueFactory<CartItem,MFXButton>("removeBtn"));
+        }
+
+        {
+            this.cart_CustomTable.setFixedCellSize(40);
+            table_Column_name_Custom.setCellValueFactory(new PropertyValueFactory<ClientCustomItem,String>("type"));
+            table_Column_price_Custom.setCellValueFactory(new PropertyValueFactory<ClientCustomItem,String>("price"));
+            table_Column_amount_Custom.setCellValueFactory(new PropertyValueFactory<ClientCustomItem,Integer>("amount"));
+            table_Column_id_Custom.setCellValueFactory(new PropertyValueFactory<ClientCustomItem,Integer>("id"));
+            amount_change_btn_Custom.setCellValueFactory(new PropertyValueFactory<ClientCustomItem,MFXButton>("amountChangeBtn"));
+            remove_btn_col_Custom.setCellValueFactory(new PropertyValueFactory<ClientCustomItem,MFXButton>("removeBtn"));
+        }
+    }
+
+    public void addItemToCustomTable(ClientCustomItem item, int amount){
+        ClientCustomItem item_to_add = new ClientCustomItem(item);
+        this.customItems.addAll(item_to_add);
     }
 
     public void setTotalSum(){
         total_sum = 0.0;
-        System.out.println("items size AddToCartControoler "+items.size());
-        if(items.size() == 0){
+        total_sum_custom = 0.0;
+        System.out.println("items size AddToCartController in CART CONTROLLER"+items.size() + customItems.size());
+        if(items.size() == 0 && customItems.size() ==0){
             total_sum = 0.0;
             sum_field.setText(String.valueOf(total_sum));
             return;
         }
         for(int i=0; i<items.size(); i++){
             total_sum = total_sum + (items.get(i).getItem_price() * items.get(i).getItem_amount());
-            System.out.println("total sum in AddToCartController "+ total_sum);
         }
-        sum_field.setText(String.valueOf(total_sum));
+
+        for(int i=0; i<customItems.size(); i++){
+            total_sum_custom = total_sum_custom + (Double.valueOf(customItems.get(i).getPrice()) * customItems.get(i).getAmount());
+        }
+        System.out.println("total sum in AddToCartController "+ (total_sum + total_sum_custom));
+
+        sum_field.setText(String.valueOf(total_sum +total_sum_custom));
     }
 
     public void setChanges(){
@@ -121,8 +177,20 @@ public class AddToCartController{
         for(int i=0; i<items.size(); i++){
             total_sum = total_sum + (items.get(i).getItem_price() * items.get(i).getItem_amount());
         }
-        this.sum_field.setText(Double.toString(total_sum));
+        this.sum_field.setText(Double.toString(total_sum+total_sum_custom));
     }
+
+    public void setChangesCustom(){
+        total_sum_custom = 0.0;
+        cart_CustomTable.setItems(this.customItems);
+        for(int i=0; i<customItems.size(); i++){
+            total_sum_custom = total_sum_custom + (Double.valueOf(customItems.get(i).getPrice()) * Double.valueOf(customItems.get(i).getAmount()));
+        }
+        System.out.println(total_sum_custom);
+        double sum = total_sum+total_sum_custom;
+        this.sum_field.setText(Double.toString(sum));
+    }
+
     public void addItemToTable(String name, double price, int id, int amount){
         CartItem item = new CartItem(name,price,amount,id);
         this.items.addAll(item);
@@ -131,14 +199,7 @@ public class AddToCartController{
         CartItem item_to_add = new CartItem(item.getItem_name(), item.getItem_price() ,amount,item.getItem_id());
         this.items.addAll(item_to_add);
     }
-    public void setItemAmount(CartItem itemToChange, int amount){
-        for(CartItem item:items){
-            if(item.getItem_id() == itemToChange.getItem_id()){
-                item.setItem_amount(amount);
-            }
-        }
-        setTotalSum();
-    }
+
 
     public void removeItemFromTable(int id) throws IOException {
         double price_of_product=0.0;
@@ -151,15 +212,24 @@ public class AddToCartController{
                 break;
             }
         }
-//        for(CartItem item: items){
-//            if(item.getItem_id() == id){
-//                price_of_product = item.getItem_price() * item.getItem_amount();
-//                this.items.remove(item);
-//                System.out.println("Removed Item:" + item.getItem_name());
-//            }
-//        }
         this.total_sum = total_sum - price_of_product;
-        this.sum_field.setText(Double.toString(total_sum));
+        this.sum_field.setText(Double.toString(total_sum+total_sum_custom));
+        MainPageController.getInstance().LoadCartPage();
+    }
+
+    public void removeItemFromCustomTable(int id) throws IOException {
+        double price_of_product=0.0;
+        for(int i=0; i<this.customItems.size(); i++){
+            if(customItems.get(i).getCustomId() == id){
+                price_of_product = Double.valueOf(customItems.get(i).getPrice()) * Double.valueOf(customItems.get(i).getAmount());
+                System.out.println("Removed Item:" + customItems.get(i).getType() + " "+ price_of_product);
+                this.customItems.remove(customItems.get(i));
+                System.out.println("Removed Item");
+                break;
+            }
+        }
+        this.total_sum_custom = total_sum_custom - price_of_product;
+        this.sum_field.setText(Double.toString(total_sum+total_sum_custom));
         MainPageController.getInstance().LoadCartPage();
     }
 
@@ -175,16 +245,17 @@ public class AddToCartController{
 
     @FXML
     void OrderBTNClicked(MouseEvent event) throws IOException {
-        if(items.size()!=0) {
+        if(items.size()!=0 || customItems.size() != 0) {
             OrderController order_controller = (OrderController) MainPageController.getInstance().getController_map().get("Order");
-            if(UserClient.getInstance().getPlan()==3 && total_sum>50) { //yearly membership
-                order_controller.setSum_label(Double.toString(total_sum * 0.9));
+            if(UserClient.getInstance().getPlan()==3 && (total_sum+total_sum_custom)>50) { //yearly membership
+                order_controller.setSum_label(Double.toString(((total_sum+total_sum_custom) * 0.9) - UserClient.getInstance().getCredit()));
             }
             else{
-                order_controller.setSum_label(Double.toString(total_sum));
+                order_controller.setSum_label(Double.toString((total_sum+total_sum_custom)- UserClient.getInstance().getCredit()));
             }
             MainPageController.getInstance().LoadOrderPage();
             OrderController.getInstance().setCart(this.items);
+            OrderController.getInstance().setCustomCart(this.customItems);
             this.no_items_label.setVisible(false);
         } else{
             this.no_items_label.setVisible(true);
@@ -242,5 +313,13 @@ public class AddToCartController{
 
     public void setNo_items_labelTrue() {
         this.no_items_label.setVisible(true);
+    }
+
+    public ObservableList<ClientCustomItem> getCustomItems() {
+        return customItems;
+    }
+
+    public void setCustomItems(ObservableList<ClientCustomItem> customItems) {
+        this.customItems = customItems;
     }
 }

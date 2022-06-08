@@ -56,20 +56,25 @@ public class OrderClient {
     }
 
     public OrderClient(Order order){
-        this.this_id = order.getId();
-        this.orderDate = order.getDateOrder();
-        this.orderTime = order.getTimeOrder();
-        this.sum = order.getSum();
-        this.orderReceiveTime = order.getTimeReceive();
-        this.orderReceiveDate = order.getDateReceive();
-        this.greeting = order.getGreeting();
-        this.nameReceiver = order.getNameReceives();
-        this.phoneReceiver = order.getPhoneReceives();
-        this.Address = order.getAddress();
-        //this.nameOrdering = order.getUser().getName();
-        for(int i=0; i<order.getProducts().size(); i++){
-            this.order_items.add(new CartItem(order.getProducts().get(i)));
+        if(order == null){
+            System.out.println("Order Entity is NULL - ORDERCLIENT OBJECT");
+        }else{
+            this.this_id = order.getId();
+            this.orderDate = order.getDateOrder();
+            this.orderTime = order.getTimeOrder();
+            this.sum = order.getSum();
+            this.orderReceiveTime = order.getTimeReceive();
+            this.orderReceiveDate = order.getDateReceive();
+            this.greeting = order.getGreeting();
+            this.nameReceiver = order.getNameReceives();
+            this.phoneReceiver = order.getPhoneReceives();
+            this.Address = order.getAddress();
+            //this.nameOrdering = order.getUser().getName();
+            for(int i=0; i<order.getProducts().size(); i++){
+                this.order_items.add(new CartItem(order.getProducts().get(i)));
+            }
         }
+
       //  this.storeChoosen = order.getStore().getAddress();
       //  this.isDelivery = order.isDelivery();
     }

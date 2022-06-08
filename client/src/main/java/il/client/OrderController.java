@@ -177,7 +177,8 @@ public class OrderController {
     @FXML
     public MFXComboBox<String> store_chooser;
 
-    private ObservableList<CartItem> cart = FXCollections.observableArrayList();;
+    private ObservableList<CartItem> cart = FXCollections.observableArrayList();
+    private ObservableList<ClientCustomItem> customCart = FXCollections.observableArrayList();
 
     private static OrderController OrderInstance = null;
 
@@ -818,6 +819,13 @@ public class OrderController {
             CartProduct cart_product = new CartProduct(product, cart.get(i).getItem_amount());
             full_order.addProduct(cart_product);
         }
+        for(int i=0; i<customCart.size(); i++){
+            for(int j =0; j<customCart.get(i).getCustomItems().size(); j++){
+                Product product = new Product(customCart.get(i).getType(), customCart.get(i).getCustomItems().get(j).getProduct_price(), false, 0.0, null, null);
+                CartProduct cart_product = new CartProduct(product, 1);
+                full_order.addProduct(cart_product);
+            }
+        }
         if(store_chooser.getSelectedItem().equals("Haifa"))
             OrderControl.newOrder(full_order, 1, UserClient.getInstance().getId());
         if(store_chooser.getSelectedItem().equals("Tel Aviv"))
@@ -849,6 +857,14 @@ public class OrderController {
     public ObservableList<CartItem> getCart() { return cart; }
 
     public void setCart(ObservableList<CartItem> cart) { this.cart = cart; }
+
+    public ObservableList<ClientCustomItem> getCustomCart() {
+        return customCart;
+    }
+
+    public void setCustomCart(ObservableList<ClientCustomItem> customCart) {
+        this.customCart = customCart;
+    }
 
 //end gets and sets
     /*end gets and sets*/

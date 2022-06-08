@@ -16,6 +16,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 public class RegisterController extends ParentClass{
@@ -56,6 +57,7 @@ public class RegisterController extends ParentClass{
     public MFXComboBox<String> store_choose;
 
     private MainPageController main_controller;
+
 
     @FXML
     void initialize(){
@@ -150,13 +152,14 @@ public class RegisterController extends ParentClass{
 //            String[] registerDetails = {name, username, pass, id, credit_card, plan,store};
 
             //need to add store here
-
+            List<Store> storeList = new LinkedList<Store>();
+            storeList.add(MainPageController.getInstance().getStore(store_choose.getValue()));
             if(plan.equals("Specific Store Member"))
-              RegisterControl.register(name, username, pass, id ,credit_card, 1);
+              RegisterControl.register(name, username, pass, id ,credit_card, 1,storeList);
             if(plan.equals("Store Wide Member"))
-                RegisterControl.register(name, username, pass, id ,credit_card, 2);
+                RegisterControl.register(name, username, pass, id ,credit_card, 2,MainPageController.getAllStores());
             if(plan.equals("Yearly Member"))
-                RegisterControl.register(name, username, pass, id ,credit_card, 3);
+                RegisterControl.register(name, username, pass, id ,credit_card, 3,MainPageController.getAllStores());
 
         }
         else{

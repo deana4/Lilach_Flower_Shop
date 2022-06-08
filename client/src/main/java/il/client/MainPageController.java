@@ -371,6 +371,15 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         return noDuplicateColors;
     }
 
+    public Store getStore(String store){
+        for(int i=0;i<this.allStores.size(); i++){
+            if(allStores.get(i).getAddress() == store){
+                return allStores.get(i);
+            }
+        }
+        return null;
+    }
+
     public void setRoot_map(HashMap<String, Parent> root_map) {
         this.root_map = root_map;
     }
@@ -405,13 +414,16 @@ public class MainPageController extends ParentClass {     //This is a singleton 
 
     /*-------------------------------------- Special Functions --------------------------------------*/
     public void UpdateMainController() throws IOException { //check permissions
+
         if(this.isLogin()){
+            if(!UserClient.getInstance().isWorker()) {
+                this.mycart_btn.setVisible(true);
+            }
             this.login_btn.setVisible(false);
             this.register_btn.setVisible(false);
             this.user_wellcome.setVisible(true);
             this.user_wellcome.setText("Welcome, " + this.LoginName /* Get Last Login Name */);
             this.myacc_btn.setVisible(true);
-            this.mycart_btn.setVisible(true);
             this.Logout_btn.setVisible(true);
             LoadHomePage();
         }else{
@@ -428,7 +440,7 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         LoginRefresh();
         AddToCartRefresh();
         RegisterRefresh();
-        //CatalogRefresh();
+        CatalogRefresh();
         OrderRefresh();
         HomeRefresh();
         System.out.println("REFRESHING SYSTEM FINISHED");

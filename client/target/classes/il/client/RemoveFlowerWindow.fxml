@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="285.0" prefWidth="625.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.RemoveFlowerWindowController">
+<AnchorPane prefHeight="285.0" prefWidth="625.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.RemoveFlowerWindowController">
    <children>
       <AnchorPane layoutX="26.0" layoutY="17.0" prefHeight="251.0" prefWidth="573.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
@@ -17,7 +17,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Label text="Are you sure you want to delete?" textFill="#37bf2b">
+                        <Label text="Are you sure you want to delete?" textFill="#610359">
                            <font>
                               <Font size="32.0" />
                            </font>

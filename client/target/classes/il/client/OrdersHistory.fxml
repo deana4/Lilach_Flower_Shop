@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="646.0" prefWidth="976.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.OrdersHistoryController">
+<AnchorPane prefHeight="646.0" prefWidth="976.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.OrdersHistoryController">
    <children>
       <MFXLegacyTableView fx:id="orders_table" layoutX="20.0" layoutY="153.0" prefHeight="451.0" prefWidth="937.0" styleClass="table-row-cell" stylesheets="@CSSfiles/MenubarCSS.css">
          <columns>
@@ -21,7 +21,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </MFXLegacyTableView>
-      <Label layoutX="404.0" layoutY="70.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="My Orders">
+      <Label layoutX="369.0" layoutY="67.0" prefHeight="46.0" prefWidth="238.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="My Orders">
          <font>
             <Font size="36.0" />
          </font>

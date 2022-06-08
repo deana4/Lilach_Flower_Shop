@@ -157,6 +157,7 @@ public class SimpleServer extends AbstractServer {
 
 
                 if (result.equals("")) {
+                    sendMessage.setRegisterStatus(true);
                     RegisterControl.register(newUser, stores);
                 } else {
                     sendMessage.setRegisterStatus(false);

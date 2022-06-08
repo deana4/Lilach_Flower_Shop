@@ -129,14 +129,14 @@ public class ReportControl {
         this.sum = sum;
     }
 
-    private void addOneProducts(String key){
+    private void addOneProducts(String key, int amount){
         if(products.containsKey(key))
-            products.put(key, products.get(key)+1);
-        products.put(key, 1);
+            products.put(key, products.get(key)+amount);
+        products.put(key, amount);
     }
     private void addOneComplain(String key){
         if(complain_date.containsKey(key))
-            complain_date.put(key, complain_date.get(key)+1);
+            complain_date.put(key, complain_date.get(key));
         complain_date.put(key, 1);
     }
 
@@ -144,7 +144,7 @@ public class ReportControl {
         for(Order o: orders){
             if(o.getStatus()!=1){
                 for(CartProduct p : o.getProducts())
-                    addOneProducts(p.getName());
+                    addOneProducts(p.getName(), p.getAmount());
             }
         }
     }

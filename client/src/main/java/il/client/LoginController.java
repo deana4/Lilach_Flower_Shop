@@ -81,7 +81,6 @@ public class LoginController extends ParentClass{
                     complains = event.getComplainList();
                     storeIDWork = event.getStoreId();
                     password = event.getPassword();
-                    ReportControl report = new ReportControl(orders, complains, "2022/05/09", "2022/06/09", -1);
                     UserClient.getInstance().setWorker(true);
                     UserClient.getInstance().setUserName(username);
                     UserClient.getInstance().setId(event.getId());

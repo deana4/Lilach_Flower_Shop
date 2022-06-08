@@ -192,12 +192,7 @@ public class OrderController {
     @FXML
     void initialize() throws IOException {
         OrderInstance = this;
-        if(MainPageController.allStores!=null){
-            for(int i=0; i<MainPageController.allStores.size(); i++){
-                OrderController order_controller = (OrderController) MainPageController.getInstance().getControllerByKey("Order");
-                order_controller.store_chooser.getItems().add(MainPageController.allStores.get(i).getAddress());
-            }
-        }
+
 
         for(int i=10; i<=20; i++){
             this.time_choose.getItems().add(Integer.toString(i) + ":00");
@@ -841,6 +836,12 @@ public class OrderController {
             OrderControl.newOrder(full_order, 3, UserClient.getInstance().getId());
         MainPageController.getInstance().AddToCartRefresh();
         MainPageController.getInstance().OrderRefresh();
+        if(MainPageController.allStores!=null){
+            for(int i=0; i<MainPageController.allStores.size(); i++){
+                OrderController order_controller = (OrderController) MainPageController.getInstance().getControllerByKey("Order");
+                order_controller.store_chooser.getItems().add(MainPageController.allStores.get(i).getAddress());
+            }
+        }
     }
 
     /* gets and sets*/

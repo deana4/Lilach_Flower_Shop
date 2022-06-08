@@ -63,9 +63,14 @@ public class UserControl {
         testDB.openSession();
         User user = testDB.session.get(User.class, userID);
         testDB.closeSession();
-        changeUserAccountStatus(userID ,accountStatus);
+
         if (user == null)
             return "Error: User not found";
+        if(user.getAccountStatus()==0)
+            accountStatus=1;
+        else
+            accountStatus=0;
+        changeUserAccountStatus(userID ,accountStatus);
         for (User u : users) {
             if (u.getCreditCard().equals(user.getCreditCard())) {
                 changeUserAccountStatus(u.getId(), accountStatus);

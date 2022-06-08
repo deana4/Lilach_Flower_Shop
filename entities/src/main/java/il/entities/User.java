@@ -111,6 +111,11 @@ public class User implements Serializable {
         this.login = login;
     }
 
+    
+    //3-year member
+    //2-store wiil member
+    //1-specific store member
+    
     public int getId() {
         return id;
     }

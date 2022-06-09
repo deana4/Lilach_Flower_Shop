@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="646.0" prefWidth="976.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ProductsReportController">
+   <children>
+      <MFXLegacyTableView fx:id="store1_table" layoutX="20.0" layoutY="134.0" prefHeight="208.0" prefWidth="937.0" styleClass="table-row-cell" stylesheets="@CSSfiles/MenubarCSS.css">
+         <columns>
+            <TableColumn fx:id="name_store1_col" prefWidth="65.0" text="Product Name" />
+            <TableColumn fx:id="amount_store1_col" prefWidth="169.0" text="Amount" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </MFXLegacyTableView>
+      <Label layoutX="369.0" layoutY="22.0" prefHeight="46.0" prefWidth="238.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Products Report">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <MFXLegacyTableView fx:id="store2_table" layoutX="20.0" layoutY="412.0" prefHeight="208.0" prefWidth="937.0" styleClass="table-row-cell" stylesheets="@CSSfiles/MenubarCSS.css">
+         <columns>
+            <TableColumn fx:id="name_store2_col" prefWidth="65.0" text="Product Name" />
+            <TableColumn fx:id="amount_store2_col" prefWidth="169.0" text="Amount" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </MFXLegacyTableView>
+      <MFXComboBox fx:id="store1_chooser" floatMode="BORDER" layoutX="20.0" layoutY="79.0" onAction="#Store1Chooser" text="Store" />
+      <MFXComboBox fx:id="store2_chooser" floatMode="BORDER" layoutX="20.0" layoutY="364.0" onAction="#Store2Chooser" text="Store" />
+      <MFXDatePicker fx:id="start_date_store2" floatMode="BORDER" layoutX="269.0" layoutY="362.0" promptText="start date" />
+      <MFXDatePicker fx:id="end_date_store2" floatMode="BORDER" layoutX="548.0" layoutY="362.0" promptText="end date" />
+      <MFXDatePicker fx:id="start_date_store1" floatMode="BORDER" layoutX="269.0" layoutY="77.0" promptText="start date" />
+      <MFXDatePicker fx:id="end_date_store1" floatMode="BORDER" layoutX="530.0" layoutY="77.0" promptText="end date" />
+      <MFXButton fx:id="store" layoutX="773.0" layoutY="81.0" onAction="#store1ApplyClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" textFill="#979797">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="store2" layoutX="786.0" layoutY="362.0" onAction="#store2ApplyClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" textFill="#979797">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </MFXButton>
+   </children>
+</AnchorPane>

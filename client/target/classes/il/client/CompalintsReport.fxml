@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="646.0" prefWidth="976.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ComplaintsReportController">
+   <children>
+      <Label layoutX="326.0" layoutY="14.0" prefHeight="46.0" prefWidth="324.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Complaints Report">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <MFXComboBox fx:id="store1_chooser" floatMode="BORDER" layoutX="20.0" layoutY="62.0" onAction="#Store1Chooser" text="Store" />
+      <MFXComboBox fx:id="store2_chooser" floatMode="BORDER" layoutX="20.0" layoutY="364.0" onAction="#Store2Chooser" text="Store" />
+      <MFXDatePicker fx:id="start_date_store1" layoutX="20.0" layoutY="107.0" promptText="start date" />
+      <MFXDatePicker fx:id="end_date_store1" layoutX="20.0" layoutY="157.0" promptText="end date" />
+      <MFXDatePicker fx:id="start_date_store2" layoutX="20.0" layoutY="409.0" promptText="start date" />
+      <MFXDatePicker fx:id="end_date_store2" layoutX="20.0" layoutY="457.0" promptText="end date" />
+      <BarChart fx:id="store1_diagram" layoutX="241.0" layoutY="62.0" prefHeight="284.0" prefWidth="699.0">
+        <xAxis>
+          <CategoryAxis fx:id="yAxis" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" fx:id="xAxis" />
+        </yAxis>
+      </BarChart>
+      <BarChart fx:id="store2_diagram" layoutX="238.0" layoutY="346.0" prefHeight="284.0" prefWidth="699.0">
+         <xAxis>
+            <CategoryAxis fx:id="yAxis" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" fx:id="xAxis2" />
+         </yAxis>
+      </BarChart>
+      <MFXButton fx:id="store" layoutX="20.0" layoutY="204.0" onAction="#store1ApplyClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" textFill="#979797">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="store2" layoutX="20.0" layoutY="507.0" onAction="#store2ApplyClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" textFill="#979797">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </MFXButton>
+   </children>
+</AnchorPane>

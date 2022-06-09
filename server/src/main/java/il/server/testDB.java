@@ -14,14 +14,28 @@ import java.util.List;
 public class testDB {
     public static Session session;
 
-    private static SessionFactory getSessionFactory() throws HibernateException {
+    private static SessionFactory getSessionFactory(boolean init) throws HibernateException {
         Configuration configuration = new Configuration();
         // Add ALL of your entities here. You can also try adding a whole package.
+
+        configuration.configure();
+        configuration.setProperty("hibernate.connection.url", AppServer.databaseName);
+        configuration.setProperty("hibernate.connection.password", AppServer.databasePass);
+        if(init)
+            configuration.setProperty("hibernate.hbm2ddl.auto", "create");
+        else
+            configuration.setProperty("hibernate.hbm2ddl.auto", "update");
+        configuration.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
+        configuration.setProperty("hibernate.show-sql", "true");
+        configuration.setProperty("hibernate.connection.username", "root");
+        configuration.setProperty("hibernate.connection.timezone", "UTC");
+        configuration.setProperty("hibernate.connection.serverTimezone", "UTC");
+        configuration.setProperty("spring.jpa.hibernate.ddl-auto", "create");
         configuration.addAnnotatedClass(Product.class).addAnnotatedClass(User.class).addAnnotatedClass(Complain.class).addAnnotatedClass(Order.class)
                 .addAnnotatedClass(Employee.class).addAnnotatedClass(Store.class).addAnnotatedClass(SystemAdmin.class)
                 .addAnnotatedClass(StoreEmployee.class).addAnnotatedClass(NetworkManger.class).addAnnotatedClass(CustomerService.class)
                 .addAnnotatedClass(BranchManager.class).addAnnotatedClass(CartProduct.class);
-        ;
+
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties())
                 .build();
@@ -244,7 +258,7 @@ public class testDB {
     public static void openSession(){
         try {
             System.out.println("open session to mySQL");
-            SessionFactory sessionFactory = getSessionFactory();
+            SessionFactory sessionFactory = getSessionFactory(false);
             session = sessionFactory.openSession();
             session.beginTransaction();
         } catch (Exception exception) {
@@ -258,7 +272,10 @@ public class testDB {
 
     public static void initMySQL(){
         try {
-            openSession();
+            System.out.println("open session to mySQL");
+            SessionFactory sessionFactory = getSessionFactory(true);
+            session = sessionFactory.openSession();
+            session.beginTransaction();
             generateItems();
             session.getTransaction().commit(); // Save everything.
             closeSession();

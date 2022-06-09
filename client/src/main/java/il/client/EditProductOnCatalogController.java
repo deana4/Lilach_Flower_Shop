@@ -233,9 +233,9 @@ public class EditProductOnCatalogController {
         correctness = detailChecker.CheckPriceValues(this.PriceText.getText(),"price");
         System.out.println(this.PriceText.getText()+ "EditProduct");
         if(correctness == 1){
-            this.PriceText.clear();
             this.PriceText.setPromptText("Changed!");
             CatalogControl.setPrice(PVController.getId(), Double.parseDouble(this.PriceText.getText()));
+            this.PriceText.clear();
 
         }else if(correctness == 0){
             PriceText.setPromptText("Error");

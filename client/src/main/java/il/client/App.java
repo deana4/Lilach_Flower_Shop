@@ -22,7 +22,7 @@ public class App extends Application {
     private SimpleClient client = null;
 
     public static String ip = "127.0.0.1";
-    public static int port = 3009;
+    public static int port = 3000;
 
     public static Stage AppStage;
     @Override
@@ -30,6 +30,7 @@ public class App extends Application {
 
         try{
             System.out.println("----Run Lilach----\nip: " + ip + ", port: "+port);
+
             client = SimpleClient.getClient();
             client.openConnection();
             AppStage = stage;

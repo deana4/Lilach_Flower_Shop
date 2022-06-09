@@ -1,12 +1,14 @@
 package il.client;
 
 import il.client.controls.OrderControl;
+import il.client.events.OrderEvent;
 import il.entities.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -192,6 +196,7 @@ public class OrderController {
     @FXML
     void initialize() throws IOException {
         OrderInstance = this;
+        EventBus.getDefault().register(this);
         for(int i=10; i<=20; i++){
             this.time_choose.getItems().add(Integer.toString(i) + ":00");
             this.time_choose.getItems().add(Integer.toString(i) + ":30");
@@ -817,6 +822,7 @@ public class OrderController {
         this.order_pane4.setVisible(true);
         //get from server the order number of the order we just created!!!!
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDateTime now = LocalDateTime.now();
         String[] date_time = dtf.format(now).split(" ");
         String address="";
@@ -830,7 +836,7 @@ public class OrderController {
         if(!this.elseOrderChecker.isSelected()) {this.reciver_name_field.setText(""); this.reciver_phone_field.setText("");}
         Store chosen_store = UserClient.getInstance().getStoreByAddress(this.store_chooser.getSelectedItem());
 
-        String date_good_format = dtf.format(this.date_picker.getValue());
+        String date_good_format = dtf2.format(this.date_picker.getValue());
 
         Order full_order = new Order(UserClient.getInstance().fromUserClientToUser(), chosen_store, date_good_format, this.time_choose.getSelectedItem(), date_time[0],date_time[1], Double.parseDouble(this.sum_label.getText()), this.greeting_field.getText(),this.reciver_name_field.getText(), this.reciver_phone_field.getText()+this.reciver_phone_field.getText(),address,false);
         for(int i=0; i<cart.size(); i++)
@@ -846,16 +852,41 @@ public class OrderController {
                 full_order.addProduct(cart_product);
             }
         }
-        if(store_chooser.getSelectedItem().equals("Haifa"))
-            OrderControl.newOrder(full_order, 1, UserClient.getInstance().getId());
-        if(store_chooser.getSelectedItem().equals("Tel Aviv"))
-            OrderControl.newOrder(full_order, 2, UserClient.getInstance().getId());
-        if(store_chooser.getSelectedItem().equals("Jerusalem"))
-            OrderControl.newOrder(full_order, 3, UserClient.getInstance().getId());
 
-        UserClient.getInstance().addOrder(full_order);
-        MainPageController.getInstance().AddToCartRefresh();
-        MainPageController.getInstance().MyAccountRefresh();
+        String pickStore = store_chooser.getSelectedItem();
+
+        for(Store s: MainPageController.allStores){
+            if(s.getAddress().equals(pickStore))
+                OrderControl.newOrder(full_order, s.getId(), UserClient.getInstance().getId());
+        }
+//
+//        if(store_chooser.getSelectedItem().equals("Haifa"))
+//            OrderControl.newOrder(full_order, 1, UserClient.getInstance().getId());
+//        if(store_chooser.getSelectedItem().equals("Tel Aviv"))
+//            OrderControl.newOrder(full_order, 2, UserClient.getInstance().getId());
+//        if(store_chooser.getSelectedItem().equals("Jerusalem"))
+//            OrderControl.newOrder(full_order, 3, UserClient.getInstance().getId());
+//        if(store_chooser.getSelectedItem().equals("Tel"))
+//            OrderControl.newOrder(full_order, 3, UserClient.getInstance().getId());
+//        if(store_chooser.getSelectedItem().equals("Jerusalem"))
+//            OrderControl.newOrder(full_order, 3, UserClient.getInstance().getId());
+//        if(store_chooser.getSelectedItem().equals("Jerusalem"))
+//            OrderControl.newOrder(full_order, 3, UserClient.getInstance().getId());
+
+
+    }
+
+    @Subscribe
+    public void compliteNewOrder(OrderEvent event){
+        Platform.runLater(()-> {
+            UserClient.getInstance().addOrder(event.getOrder());
+            try {
+                MainPageController.getInstance().AddToCartRefresh();
+                MainPageController.getInstance().MyAccountRefresh();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     /* gets and sets*/

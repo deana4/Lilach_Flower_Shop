@@ -1,7 +1,9 @@
 package il.client;
 
+import il.client.events.OrderEvent;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.io.IOException;
 
@@ -57,29 +60,33 @@ public class OrdersHistoryController {
         orders_table.setItems(UserClient.getInstance().getOrderList());
     }
 //
+
+
     public void TableInitializeFields() {
-        orders_table.setFixedCellSize(40);
-        id_col.setCellValueFactory(new PropertyValueFactory<OrderClient, Integer>("this_id"));
-        date_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("orderDate"));
-        time_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("orderTime"));
-        phone_receiver_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("phoneReceiver"));
-        name_receiver_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("nameReceiver"));
+            orders_table.setFixedCellSize(40);
+            id_col.setCellValueFactory(new PropertyValueFactory<OrderClient, Integer>("this_id"));
+            date_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("orderDate"));
+            time_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("orderTime"));
+            phone_receiver_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("phoneReceiver"));
+            name_receiver_col.setCellValueFactory(new PropertyValueFactory<OrderClient, String>("nameReceiver"));
 //        complaint_col.setCellValueFactory(new PropertyValueFactory<OrderClient, MFXButton>("complaint"));
 //        cancel_col.setCellValueFactory(new PropertyValueFactory<OrderClient, MFXButton>("cancel"));
 
-        orders_table.setRowFactory(s->{
-            TableRow<OrderClient> row = new TableRow<OrderClient>();
-            row.setOnMouseClicked(mouseEvent -> {
-                        System.out.println(row.getItem());
-                        try {
-                            if(row.getItem() != null){detailedOrderScreen(row);}
-                        } catch (IOException e) {
-                            e.printStackTrace();
+            orders_table.setRowFactory(s -> {
+                TableRow<OrderClient> row = new TableRow<OrderClient>();
+                row.setOnMouseClicked(mouseEvent -> {
+                            System.out.println(row.getItem());
+                            try {
+                                if (row.getItem() != null) {
+                                    detailedOrderScreen(row);
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
-            );
-            return row;
-        });
+                );
+                return row;
+            });
     }
     public void detailedOrderScreen(TableRow<OrderClient> row) throws IOException {
         OrderClient order = UserClient.getInstance().getOrderById(row.getItem().getThis_id());

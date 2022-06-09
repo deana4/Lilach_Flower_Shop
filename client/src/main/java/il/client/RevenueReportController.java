@@ -1,7 +1,9 @@
 package il.client;
 
 import il.client.DiffClasses.ComplaintClient;
+import il.client.controls.OrderControl;
 import il.client.controls.ReportControl;
+import il.entities.Store;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
@@ -56,25 +58,28 @@ public class RevenueReportController {
             this.store1_chooser.setVisible(false);
             int store_id = UserClient.getInstance().getStoreId();
             String store="";
-            if(store_id == 1) {store="Haifa";}
-            if(store_id == 2) {store="Tel Aviv";}
-            if(store_id == 3) {store="Jerusalem";}
+//            if(store_id == 1) {store="Haifa";}
+//            if(store_id == 2) {store="Tel Aviv";}
+//            if(store_id == 3) {store="Jerusalem";}
             System.out.println(store);
             this.store1_chooser.setValue(store);
             this.store1_chooser.setDisable(true);
         }
-
-
         this.sum_store1_text.setEditable(false);
         this.sum_store2_text.setEditable(false);
+
         this.store1_chooser.getItems().add("All");
-        this.store1_chooser.getItems().add("Haifa");
-        this.store1_chooser.getItems().add("Tel Aviv");
-        this.store1_chooser.getItems().add("Jerusalem");
-        this.store2_chooser.getItems().add("All");
-        this.store2_chooser.getItems().add("Haifa");
-        this.store2_chooser.getItems().add("Tel Aviv");
-        this.store2_chooser.getItems().add("Jerusalem");
+
+        for(Store s: MainPageController.allStores){
+            this.store1_chooser.getItems().add(s.getAddress());
+        }
+//        this.store1_chooser.getItems().add("Haifa");
+//        this.store1_chooser.getItems().add("Tel Aviv");
+//        this.store1_chooser.getItems().add("Jerusalem");
+//        this.store2_chooser.getItems().add("All");
+//        this.store2_chooser.getItems().add("Haifa");
+//        this.store2_chooser.getItems().add("Tel Aviv");
+//        this.store2_chooser.getItems().add("Jerusalem");
     }
 
     @FXML
@@ -100,9 +105,10 @@ public class RevenueReportController {
         String end_store1 = formatter.format(endDate);
         String store = this.store1_chooser.getValue();
         int store_id=-2;
-        if(store.equals("Haifa")) {store_id=1;}
-        if(store.equals("Tel Aviv")) {store_id=2;}
-        if(store.equals("Jerusalem")) {store_id=3;}
+        for(Store s: MainPageController.allStores){
+            if(s.getAddress().equals(store))
+                store_id = s.getId();
+        }
         if(store.equals("All")) {store_id=-1;}
         System.out.println(store_id);
         ReportControl report = new ReportControl(UserClient.getInstance().getOrdersEntity(), UserClient.getInstance().getComplaintsEntity(), start_store1, end_store1, store_id);

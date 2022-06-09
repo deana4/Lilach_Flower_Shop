@@ -25,6 +25,7 @@ public class OrderControl {
         testDB.openSession();
         Order a = testDB.session.get(Order.class, id);
         a.setStatus(1);
+        a.setCanceled(true);
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
@@ -58,7 +59,7 @@ public class OrderControl {
 
 
 
-    public static void newOrder(Order order, int storeID, int userID) throws IOException {
+    public static Order newOrder(Order order, int storeID, int userID) throws IOException {
         testDB.openSession();
         Store store = testDB.session.get(Store.class, storeID);
         User user = testDB.session.get(User.class, userID);
@@ -78,6 +79,7 @@ public class OrderControl {
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
+        return order;
     }
 
     public static LinkedList<Order> getAllOrder(LinkedList<Order> orders){

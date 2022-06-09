@@ -1,6 +1,7 @@
 il\client\CancelOrderController.class
 il\client\CartAdderCustomController.class
 il\client\ProductsReportController.class
+il\client\events\OrderEvent.class
 il\client\RemoveFlowerWindowController.class
 il\client\ProductView.class
 il\client\controls\UserControl.class

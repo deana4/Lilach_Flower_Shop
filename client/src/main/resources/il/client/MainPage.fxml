@@ -18,7 +18,7 @@
 
 <AnchorPane fx:id="rootPane" prefHeight="800.0" prefWidth="1300.0" styleClass="MainBorder" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.MainPageController">
    <children>
-      <MFXTextField fx:id="user_wellcome" allowEdit="false" floatMode="BORDER" layoutX="220.0" layoutY="29.0" prefHeight="15.0" prefWidth="172.0" selectable="false" styleClass="smallHeader" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
+      <MFXTextField fx:id="user_wellcome" alignment="CENTER" allowEdit="false" floatMode="DISABLED" layoutX="180.0" layoutY="29.0" prefHeight="38.0" prefWidth="240.0" selectable="false" styleClass="smallHeader" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
          <textFill>
             <Color red="0.5526315569877625" green="0.5526315569877625" blue="0.5526315569877625" opacity="0.8700000047683716" />
          </textFill>
@@ -61,6 +61,7 @@
                <children>
                   <MFXButton fx:id="login_btn" buttonType="RAISED" contentDisplay="CENTER" onAction="#LoginBTNClicked" prefHeight="30.0" prefWidth="80.0" rippleAnimateShadow="true" rippleColor="#ffdcdc" rippleRadius="60.0" rippleRadiusMultiplier="60.0" styleClass="nav-buttons" stylesheets="@CSSfiles/Buttons.css" text="Login" textFill="#808080" />
                   <MFXButton fx:id="register_btn" buttonType="RAISED" contentDisplay="CENTER" onAction="#RegisterBTNClicked" prefHeight="30.0" prefWidth="80.0" rippleAnimateShadow="true" rippleColor="#ffdcdc" rippleRadius="60.0" rippleRadiusMultiplier="60.0" styleClass="nav-buttons" stylesheets="@CSSfiles/Buttons.css" text="Register" textFill="#808080" />
+                  <Label text="           " />
                   <MFXButton fx:id="Logout_btn" buttonType="RAISED" contentDisplay="CENTER" onAction="#LogoutBTNClicked" prefHeight="30.0" prefWidth="80.0" rippleAnimateShadow="true" rippleColor="#ffdcdc" rippleRadius="60.0" rippleRadiusMultiplier="60.0" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="LogOut!" textAlignment="CENTER" textFill="#808080" visible="false" />
                </children>
             </HBox>

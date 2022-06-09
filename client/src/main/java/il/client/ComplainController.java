@@ -44,6 +44,8 @@ public class ComplainController {
     @FXML
     private MFXButton sendBTN;
 
+    private OrderClient orderClient;
+
     private MainPageController main_page_holder;
 
     private MyAccountController my_account_page_holder;
@@ -66,6 +68,7 @@ public class ComplainController {
             this.complain_textarea.setPromptText("You can add more words here");
             this.stage = stage;
             this.order_number_field.setText(Integer.toString(order.getThis_id()));
+            orderClient = order;
         }
     }
 
@@ -87,7 +90,6 @@ public class ComplainController {
         MyAccountController.getInstance().ComplainRefresh();
 //        MyAccountController.getInstance().LoadOrdersHistoryPage();
         this.stage.close();
-
     }
 
     @FXML

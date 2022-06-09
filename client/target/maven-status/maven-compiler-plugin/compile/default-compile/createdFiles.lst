@@ -16,6 +16,7 @@ il\client\controls\CatalogControl.class
 il\client\controls\ComplainConrtol.class
 il\client\controls\LogInControl.class
 il\client\controls\RegisterControl.class
+il\client\AlreadyCanceledOrder.class
 il\client\EditProductOnCatalogController.class
 module-info.class
 il\client\ocsf\AdaptableClient.class

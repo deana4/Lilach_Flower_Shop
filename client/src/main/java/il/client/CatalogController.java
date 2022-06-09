@@ -88,58 +88,44 @@ public class CatalogController extends ParentClass{
     @Subscribe
     public void setFlowerlist(CatalogItemsEvent event) throws IOException {
         Platform.runLater(()->{
-                    flowerlist = event.getItems();
-                    MainPageController.allStores = event.getStores();
-                    for(int i=0; i<MainPageController.allStores.size(); i++){
-                         RegisterController reg_controller = (RegisterController) MainPageController.getInstance().getControllerByKey("Register");
-                         reg_controller.store_choose.getItems().add(MainPageController.allStores.get(i).getAddress());
-                         OrderController order_controller = (OrderController) MainPageController.getInstance().getControllerByKey("Order");
-                         order_controller.store_chooser.getItems().add(MainPageController.allStores.get(i).getAddress());
-                 }
+                flowerlist = event.getItems();
+                MainPageController.allStores = event.getStores();
+//                for(int i=0; i<MainPageController.allStores.size(); i++){
+//                    RegisterController reg_controller = (RegisterController) MainPageController.getInstance().getControllerByKey("Register");
+//                    OrderController order_controller = (OrderController) MainPageController.getInstance().getControllerByKey("Order");
+//                     if(reg_controller.store_choose.getItems().size() < 3){
+//                         reg_controller.store_choose.getItems().add(MainPageController.allStores.get(i).getAddress());
+//                     }
+//                     if(order_controller.store_chooser.getItems().size() < 3){
+//                         order_controller.store_chooser.getItems().add(MainPageController.allStores.get(i).getAddress());
+//                     }
+//            }
 
-                    int col = 0;
-                    int row = 0;
+                int col = 0;
+                int row = 0;
 
-                    URL path = getClass().getResource("ProductView.fxml");
+                URL path = getClass().getResource("ProductView.fxml");
 
-                    sortBySale(); //sorting the catalog items for making the items on sale - first
+                sortBySale(); //sorting the catalog items for making the items on sale - first
 
-                    for(int i=0; i<flowerlist.size();i++){
-                        my_fxml_loader = new FXMLLoader();
-                        my_fxml_loader.setLocation(path);//change secondary.fxml to the fxml file from dean and liran
-                        Node node = null;
-                        try {
-                            node = my_fxml_loader.load();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        //     flowersFXML.add(node);
-                        ProductView controller = my_fxml_loader.getController();
-                        controller.setCat_controller(this);
-                        try {
-                            controller.setData(flowerlist.get(i));
-                            productsControllers.put(i,controller);   //idiots
-                            MainPageController.getInstance().addColorToSystem(flowerlist.get(i).getColor());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        if(col==3){
-                            col=0;
-                            row++;
-                        }
-
-                        GridPane.setConstraints(node,col++,row);
-                        gridPane.getChildren().addAll(node);
-
-                        gridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-                        gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                        gridPane.setMaxWidth(Region.USE_COMPUTED_SIZE);
-                        gridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-                        gridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                        gridPane.setMaxHeight(Region.USE_COMPUTED_SIZE);
-
-                        GridPane.setMargin(node, new Insets(10));
+                for(int i=0; i<flowerlist.size();i++){
+                    my_fxml_loader = new FXMLLoader();
+                    my_fxml_loader.setLocation(path);//change secondary.fxml to the fxml file from dean and liran
+                    Node node = null;
+                    try {
+                        node = my_fxml_loader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //     flowersFXML.add(node);
+                    ProductView controller = my_fxml_loader.getController();
+                    controller.setCat_controller(this);
+                    try {
+                        controller.setData(flowerlist.get(i));
+                        productsControllers.put(i,controller);   //idiots
+                        MainPageController.getInstance().addColorToSystem(flowerlist.get(i).getColor());
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
 
                     if(col==3){
@@ -147,38 +133,40 @@ public class CatalogController extends ParentClass{
                         row++;
                     }
 
-                    try {
-                        if(UserClient.getInstance().getPriority() == 2){
-                            Parent custom_add_product = LoadCustomProduct();
-                            gridPane.getChildren().addAll(custom_add_product);
-                            GridPane.setConstraints(custom_add_product,col,row);
-                            GridPane.setMargin(custom_add_product , new Insets(10));
-                        }else if(UserClient.getInstance().getPriority() > 2 && UserClient.getInstance().getPriority() != 4){
-                            Parent root_add_product = LoadAddProduct();
-                            gridPane.getChildren().addAll(root_add_product);
-                            GridPane.setConstraints(root_add_product,col,row);
-                            GridPane.setMargin(root_add_product , new Insets(10));
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    GridPane.setConstraints(node,col++,row);
+                    gridPane.getChildren().addAll(node);
 
-//                    try {
-//                        Parent root_add_product = LoadAddProduct();
-//                        GridPane.setConstraints(root_add_product,0,row);
-//                        gridPane.getChildren().addAll(root_add_product);
-//                        GridPane.setMargin(root_add_product , new Insets(10));
-//
-//                        Parent custom_add_product = LoadCustomProduct();
-//                        GridPane.setConstraints(custom_add_product,1,row);
-//                        gridPane.getChildren().addAll(custom_add_product);
-//                        GridPane.setMargin(custom_add_product , new Insets(10));
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-                    scrollPane.setContent(this.gridPane);
+                    gridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
+                    gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                    gridPane.setMaxWidth(Region.USE_COMPUTED_SIZE);
+                    gridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
+                    gridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                    gridPane.setMaxHeight(Region.USE_COMPUTED_SIZE);
+
+                    GridPane.setMargin(node, new Insets(10));
                 }
-                );
+                if(col==3){
+                    col=0;
+                    row++;
+                }
+
+                try {
+                    if(UserClient.getInstance().getPriority() == 2){
+                        Parent custom_add_product = LoadCustomProduct();
+                        gridPane.getChildren().addAll(custom_add_product);
+                        GridPane.setConstraints(custom_add_product,col,row);
+                        GridPane.setMargin(custom_add_product , new Insets(10));
+                    }else if(UserClient.getInstance().getPriority() > 2 && UserClient.getInstance().getPriority() != 4){
+                        Parent root_add_product = LoadAddProduct();
+                        gridPane.getChildren().addAll(root_add_product);
+                        GridPane.setConstraints(root_add_product,col,row);
+                        GridPane.setMargin(root_add_product , new Insets(10));
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                scrollPane.setContent(this.gridPane);
+        });
 
     }
 

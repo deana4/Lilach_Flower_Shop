@@ -253,10 +253,17 @@ public class AddToCartController{
             else{
                 order_controller.setSum_label(Double.toString((total_sum+total_sum_custom)- UserClient.getInstance().getCredit()));
             }
-            MainPageController.getInstance().LoadOrderPage();
             OrderController.getInstance().setCart(this.items);
             OrderController.getInstance().setCustomCart(this.customItems);
+
+            for(int i=0;i<MainPageController.allStores.size(); i++){
+                if(!(order_controller.store_chooser.getItems().contains(MainPageController.allStores.get(i).getAddress()))){
+                    order_controller.store_chooser.getItems().add(MainPageController.allStores.get(i).getAddress());
+                }
+            }
+
             this.no_items_label.setVisible(false);
+            MainPageController.getInstance().LoadOrderPage();
         } else{
             this.no_items_label.setVisible(true);
         }

@@ -23,6 +23,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.LocalDate;
 
 public class PeopleListController {
 
@@ -103,7 +104,7 @@ public class PeopleListController {
             row.setOnMouseClicked(mouseEvent -> {
                         System.out.println("in PeopleListController "+row.getItem());
                         try {
-                            initPersonDetails(row);
+                            if(row.getItem() != null){initPersonDetails(row);}
                         } catch (IOException | ParseException e) {
                             e.printStackTrace();
                         }
@@ -123,7 +124,7 @@ public class PeopleListController {
             row.setOnMouseClicked(mouseEvent -> {
                         System.out.println("in PeopleListController "+row.getItem());
                         try {
-                            initWorkerDetails(row);
+                            if(row.getItem() != null){initWorkerDetails(row);}
                         } catch (IOException | ParseException e) {
                             e.printStackTrace();
                         }
@@ -140,7 +141,7 @@ public class PeopleListController {
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("SystemManager.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 437 , 473);
+        Scene scene = new Scene(fxmlLoader.load(), 500  , 534);
         SystemManagerController controller = fxmlLoader.getController();
         stage.initStyle(StageStyle.TRANSPARENT);
         scene.setFill(Color.TRANSPARENT);
@@ -166,7 +167,7 @@ public class PeopleListController {
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("SystemManager.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 437 , 473);
+        Scene scene = new Scene(fxmlLoader.load(), 500 , 534);
         SystemManagerController controller = fxmlLoader.getController();
         stage.initStyle(StageStyle.TRANSPARENT);
         scene.setFill(Color.TRANSPARENT);
@@ -252,3 +253,4 @@ public class PeopleListController {
     /*end gets and sets*/
 
 }
+

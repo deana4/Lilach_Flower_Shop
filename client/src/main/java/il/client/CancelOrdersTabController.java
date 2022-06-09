@@ -75,7 +75,13 @@ public class CancelOrdersTabController {
             row.setOnMouseClicked(mouseEvent -> {
                         System.out.println(row.getItem());
                         try {
-                            cancelOrderScreen(row);
+                            if(row.getItem() != null){
+                                if(row.getItem().isCanceled()){
+                                    alreadyCancelOrderScreen();
+                                }else if(!row.getItem().isCanceled()){
+                                    cancelOrderScreen(row);
+                                }
+                            }
                         } catch (IOException | ParseException e) {
                             e.printStackTrace();
                         }
@@ -90,7 +96,7 @@ public class CancelOrdersTabController {
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("CancelOrder.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 632 , 483);
+        Scene scene = new Scene(fxmlLoader.load(), 647 , 500);
         CancelOrderController controller = fxmlLoader.getController();
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -98,6 +104,21 @@ public class CancelOrdersTabController {
         stage.setScene(scene);
         stage.show();
         controller.initialize(order,stage);
+    }
+
+    public void alreadyCancelOrderScreen() throws IOException, ParseException {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("AlreadyCanceledOrder.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 647 , 500);
+        AlreadyCanceledOrder controller = fxmlLoader.getController();
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setTitle("Cancel Order");
+        stage.setScene(scene);
+        stage.show();
+        controller.initialize(stage);
     }
 
     public void RemoveOrderById(int id){

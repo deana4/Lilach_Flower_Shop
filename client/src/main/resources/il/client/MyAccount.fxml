@@ -19,6 +19,7 @@
   -->
 
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import io.github.palexdev.materialfx.font.MFXFontIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -53,6 +54,14 @@
             </padding>
             <VBox fx:id="navBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" styleClass="navbar" />
         </MFXScrollPane>
+      <MFXTextField fx:id="creditTextField" allowEdit="false" floatMode="BORDER" floatingText="My Credit" floatingTextGap="100.0" graphicTextGap="100.0" prefHeight="29.0" prefWidth="213.0" promptText="User Credit" styleClass="creditUser" stylesheets="@CSSfiles/Backgrounds.css">
+         <textFill>
+            <Color red="0.13333334028720856" blue="1.0" opacity="0.8700000047683716" />
+         </textFill>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </MFXTextField>
     </VBox>
    <StackPane fx:id="contentPane" layoutX="262.0" layoutY="2.0" prefHeight="646.0" prefWidth="976.0" />
 </AnchorPane>

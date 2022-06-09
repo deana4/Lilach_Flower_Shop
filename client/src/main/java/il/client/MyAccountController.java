@@ -3,6 +3,7 @@ package il.client;
 import io.github.palexdev.materialfx.controls.MFXIconWrapper;
 import io.github.palexdev.materialfx.controls.MFXRectangleToggleNode;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.utils.others.loader.MFXLoader;
 import io.github.palexdev.materialfx.utils.others.loader.MFXLoaderBean;
 import javafx.fxml.FXML;
@@ -38,6 +39,9 @@ public class MyAccountController{
     @FXML
     private MFXScrollPane scrollPane;
 
+    @FXML
+    private MFXTextField creditTextField;
+
     private MainPageController main_page_holder;
 
     private HashMap<String, Parent> root_map = new HashMap<String, Parent>();  //Hashmap of roots by names
@@ -56,6 +60,7 @@ public class MyAccountController{
 
     @FXML
     void initialize() throws IOException {
+        creditTextField.setText(String.valueOf(UserClient.getInstance().getCredit()));
         initializeLoader();
         initFunction();
 
@@ -301,6 +306,10 @@ public class MyAccountController{
 
     public void setMain_page_holder(MainPageController main_page_holder) {
         this.main_page_holder = main_page_holder;
+    }
+
+    public void setCreditTextField(Double credit) {
+        this.creditTextField.setText(String.valueOf(credit));
     }
 
     /*end sets ang gets*/

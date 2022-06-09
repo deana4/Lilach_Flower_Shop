@@ -10,9 +10,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="cancel_order_anchorpane1" prefHeight="483.0" prefWidth="632.0" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CancelOrderController">
+<AnchorPane fx:id="cancel_order_anchorpane1" prefHeight="500.0" prefWidth="647.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.CancelOrderController">
    <children>
-      <AnchorPane fx:id="cancel_order_anchorpane2" layoutX="7.0" layoutY="7.0" prefHeight="469.0" prefWidth="613.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css">
+      <AnchorPane fx:id="cancel_order_anchorpane2" layoutX="17.0" layoutY="16.0" prefHeight="469.0" prefWidth="613.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
             <Label layoutX="117.0" layoutY="73.0" prefHeight="46.0" prefWidth="379.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Canceling Order Number">
                <font>
@@ -52,17 +52,7 @@
                   </HBox>
                </children>
             </VBox>
-            <AnchorPane fx:id="cancel_order_anchorpane3" layoutX="14.0" layoutY="14.0" prefHeight="347.0" prefWidth="553.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
-               <children>
-                  <Label layoutX="102.0" layoutY="184.0" text="We recive your cancelation" textFill="#4e9e1c">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                  </Label>
-                  <MFXButton fx:id="closeBTN" layoutX="316.0" layoutY="271.0" onAction="#CloseBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Close" textFill="#979797" />
-               </children>
-            </AnchorPane>
-            <MFXButton alignment="TOP_LEFT" contentDisplay="CENTER" depthLevel="LEVEL0" ellipsisString="" layoutX="563.0" layoutY="29.0" onAction="#closeWindow" prefHeight="21.0" prefWidth="10.0" rippleAnimateBackground="false" rippleColor="RED" text=" " textAlignment="CENTER">
+            <MFXButton alignment="TOP_LEFT" contentDisplay="CENTER" depthLevel="LEVEL0" ellipsisString="" layoutX="568.0" layoutY="14.0" onAction="#closeWindow" prefHeight="21.0" prefWidth="10.0" rippleAnimateBackground="false" rippleColor="RED" text=" " textAlignment="CENTER">
                <graphic>
                   <MFXFontIcon fx:id="closeIcon" description="mfx-x-circle" size="15.0" styleClass="close-icon">
                      <color>
@@ -71,6 +61,16 @@
                   </MFXFontIcon>
                </graphic>
             </MFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="cancel_order_anchorpane3" layoutX="48.0" layoutY="68.0" prefHeight="347.0" prefWidth="553.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
+         <children>
+            <Label layoutX="42.0" layoutY="106.0" text="We recive your cancelation" textFill="#4e9e1c">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <MFXButton fx:id="closeBTN" layoutX="241.0" layoutY="211.0" onAction="#CloseBTNClicked" prefHeight="30.0" prefWidth="70.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Close" textFill="#979797" />
          </children>
       </AnchorPane>
    </children>

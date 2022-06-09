@@ -185,6 +185,7 @@ public class SystemManagerController {
         int correctness;
         if(toggleWorker.isSelected()) {
             correctness = checker.permissionCheck(this.permissionsText.getText(), "worker");
+
         } else{
             correctness = checker.permissionCheck(this.permissionsText.getText(), "user");
         }

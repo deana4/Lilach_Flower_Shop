@@ -71,6 +71,8 @@ public class PeopleListController {
 
     private MyAccountController my_account_page_holder;
 
+    private boolean isWorker=false;
+
 
     @FXML
     private MFXButton go_back_userBTN;
@@ -147,7 +149,7 @@ public class PeopleListController {
         scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Change Person Details");
         stage.setScene(scene);
-        controller.initialize(stage);
+        controller.initialize(stage,isWorker);
         controller.setCreditCardText(row.getItem().getCreditCard());
         controller.setMailText(row.getItem().getMail());
         controller.setPhoneText(row.getItem().getPhone());
@@ -173,7 +175,7 @@ public class PeopleListController {
         scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Change Person Details");
         stage.setScene(scene);
-        controller.initialize(stage);
+        controller.initialize(stage,isWorker);
         controller.setWorker(true);
         controller.setPasswordText(row.getItem().getPassword());
         controller.setUsernameText(row.getItem().getUsername());
@@ -208,7 +210,7 @@ public class PeopleListController {
         for(int i=0; i<UserClient.getInstance().getEmployees().size(); i++){
             allEmployees.add(UserClient.getInstance().getEmployees().get(i));
         }
-
+        isWorker = true;
         employee_table.setItems(allEmployees);
 
     }
@@ -224,6 +226,7 @@ public class PeopleListController {
         for(int i=0; i< UserClient.getInstance().getAllusers().size(); i++){
             allClients.add(UserClient.getInstance().getAllusers().get(i));
         }
+        isWorker = false;
         people_table.setItems(allClients);
     }
 

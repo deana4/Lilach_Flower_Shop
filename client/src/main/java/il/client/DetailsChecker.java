@@ -120,15 +120,15 @@ public class DetailsChecker {
     }
 
     public int permissionCheck (String permission, String userOrWorker){
-        if(userOrWorker=="user") {
-            if (permission != "1" || permission != "2" || permission != "3") {
+        if(userOrWorker.equals("user")) {
+            if (!permission.equals("1") && !permission.equals("2") && !permission.equals("3")) {
                 return 0;
             }
             else{
                 return 1;
             }
-        } else if(userOrWorker=="worker"){
-            if (permission != "1" || permission != "2" || permission != "3" || permission!="4" || permission!="5") {
+        } else if(userOrWorker.equals("worker")){
+            if (!permission.equals("1") && !permission.equals("2") && !permission.equals("3") && !permission.equals("4") && !permission.equals("5")) {
                 return 0;
             }
             else{

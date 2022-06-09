@@ -109,7 +109,8 @@ public class CancelOrderController {
         OrderControl.cancelOrder(Integer.parseInt(this.order_num_filed.getText()),refund);
 
         System.out.println(Integer.parseInt(this.order_num_filed.getText()));
-        UserClient.getInstance().removeOrderById(Integer.parseInt(this.order_num_filed.getText()));
+//        UserClient.getInstance().removeOrderById(Integer.parseInt(this.order_num_filed.getText()));
+        UserClient.getInstance().cancelOrderById(Integer.parseInt(this.order_num_filed.getText()));
         UserClient.getInstance().addCredit(refund);
         MyAccountController.getInstance().setCreditTextField(UserClient.getInstance().getCredit());
         this.stage.close();

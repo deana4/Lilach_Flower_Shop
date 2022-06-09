@@ -195,6 +195,7 @@ public class OrderController {
 
     @FXML
     void initialize() throws IOException {
+        this.updateCartBTN.setVisible(false);
         OrderInstance = this;
         EventBus.getDefault().register(this);
         for(int i=10; i<=20; i++){
@@ -210,11 +211,11 @@ public class OrderController {
         this.reciver_phone_choose.getItems().add("053");
         this.reciver_phone_choose.getItems().add("054");
 
-//        if(UserClient.getInstance().getPlan() == 1){ //specific store membership
-//            String store_name = UserClient.getInstance().getStoresOfStore().get(0).getAddress();
-//            this.store_chooser.setValue(store_name);
-//            this.store_chooser.setDisable(true);
-//        }
+        if(!(UserClient.getInstance().isWorker()) && UserClient.getInstance().getPlan() == 1){ //specific store membership
+            String store_name = UserClient.getInstance().getStoresOfStore().get(0).getAddress();
+            this.store_chooser.setValue(store_name);
+            this.store_chooser.setDisable(true);
+        }
 
 //        List<String> stores = new LinkedList<String>();
 //        stores.add("Haifa");
@@ -927,7 +928,23 @@ public class OrderController {
         this.customCart = customCart;
     }
 
-//end gets and sets
+    public boolean getDeliveryChecker() {
+        return deliveryChecker.isSelected();
+    }
+
+    public void setDeliveryChecker(MFXToggleButton deliveryChecker) {
+        this.deliveryChecker = deliveryChecker;
+    }
+
+    public double getExtra_for_delivery() {
+        return extra_for_delivery;
+    }
+
+    public void setExtra_for_delivery(double extra_for_delivery) {
+        this.extra_for_delivery = extra_for_delivery;
+    }
+
+    //end gets and sets
     /*end gets and sets*/
 
 

@@ -376,6 +376,14 @@ public class UserClient {
         return null;
     }
 
+    public void cancelOrderById(int id){
+        for(int i=0; i<orderList.size(); i++){
+            if(orderList.get(i).getThis_id() == id){
+                orderList.get(i).setCanceled(true);
+            }
+        }
+    }
+
     public String getUserName() {
         return userName;
     }

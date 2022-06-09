@@ -262,6 +262,12 @@ public class AddToCartController{
                 }
             }
 
+            if(UserClient.getInstance().getPlan() == 1){
+                String store = UserClient.getInstance().getStoresOfStore().get(0).getAddress();
+                order_controller.store_chooser.getItems().clear();
+                order_controller.store_chooser.getItems().add(store);
+            }
+
             this.no_items_label.setVisible(false);
             MainPageController.getInstance().LoadOrderPage();
         } else{
@@ -277,6 +283,7 @@ public class AddToCartController{
         OrderController controller = fxmlLoader.getController();
         controller.setCart_controller(this);
         controller.setSum_label(this.sum_field.getText());
+
     }
 
 

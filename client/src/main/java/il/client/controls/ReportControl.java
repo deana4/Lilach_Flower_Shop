@@ -168,10 +168,29 @@ public class ReportControl {
     }
 
 
+    public String fixDate(String date){
+        try{
+            if(getDay(date)<31)
+                return date;
+            String[] a = date.split("/", 3);
+            String newDate = a[2]+"/"+a[1]+"/"+a[0];
+            return newDate;
+        }
+        catch (Exception e){
+
+        }
+        return date;
+    }
+
+
 
 
     public ReportControl(LinkedList<Order> orders, LinkedList<Complain> complains, String begin, String end, int storeID) {
         this.orders = orders;
+        for(Order o: orders)
+            o.setDateOrder(fixDate(o.getDateOrder()));
+        for(Complain c:complains)
+            c.setDate_complain(fixDate(c.getDate_complain()));
         this.complains= complains;
         this.orders = OrdercutByDate(begin, end, storeID);
         this.complains = cutComplainByDate(begin, end, storeID);

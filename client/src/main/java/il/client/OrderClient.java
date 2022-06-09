@@ -67,10 +67,22 @@ public class OrderClient {
             this.orderReceiveTime = order.getTimeReceive();
             this.orderReceiveDate = order.getDateReceive();
             this.greeting = order.getGreeting();
-            this.nameReceiver = order.getNameReceives();
-            this.phoneReceiver = order.getPhoneReceives();
-            this.Address = order.getAddress();
-            //this.nameOrdering = order.getUser().getName();
+            try{
+                if(order.getNameReceives().equals(""))
+                    this.nameReceiver = order.getUser().getName();
+                else
+                    this.nameReceiver = order.getNameReceives();
+                if(order.getPhoneReceives().equals(""))
+                    this.phoneReceiver = order.getUser().getPhone();
+                else
+                    this.phoneReceiver = order.getPhoneReceives();
+                this.Address = order.getAddress();
+                this.nameOrdering = order.getUser().getName();
+            }
+            catch (Exception e){
+
+            }
+
             for(int i=0; i<order.getProducts().size(); i++){
                 this.order_items.add(new CartItem(order.getProducts().get(i)));
             }

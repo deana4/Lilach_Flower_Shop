@@ -84,6 +84,8 @@ public class MyAccountController{
         if(UserClient.getInstance().isWorker() && UserClient.getInstance().getPlan()==5){
         loader.addView(MFXLoaderBean.of("System Admin Panel", loadURL("PeopleList.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-users", "System Admin Panel")).setDefaultRoot(true).get());
         loader.addView(MFXLoaderBean.of("Revenue Report", loadURL("RevenueReport.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-file", "Revenue Report")).setDefaultRoot(true).get());
+            loader.addView(MFXLoaderBean.of("Products Report", loadURL("ProductsReport.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-file", "Products Report")).get());
+            loader.addView(MFXLoaderBean.of("Complaints Report", loadURL("CompalintsReport.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-file", "Complaints Report")).get());
         }
 
         if(UserClient.getInstance().isWorker() && UserClient.getInstance().getPlan()==3){

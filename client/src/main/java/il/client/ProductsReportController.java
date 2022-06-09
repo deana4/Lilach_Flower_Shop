@@ -72,8 +72,12 @@ public class ProductsReportController {
 
     }
 
+    private List<Product> products = new LinkedList<Product>();
+
     @FXML
     void initialize(){
+        CatalogController controller = (CatalogController) MainPageController.getInstance().getController_map().get("Catalog");
+        products = controller.getFlowerlist();
         if(UserClient.getInstance().getPriority() == 3){
             this.store2_chooser.setVisible(false);
             this.start_date_store2.setVisible(false);
@@ -128,8 +132,8 @@ public class ProductsReportController {
         }
         System.out.println(store_id);
         ReportControl report = new ReportControl(UserClient.getInstance().getOrdersEntity(), UserClient.getInstance().getComplaintsEntity(), start_store1, end_store1, store_id);
-        CatalogController controller = (CatalogController) MainPageController.getInstance().getController_map().get("Catalog");
-        List<Product> products = controller.getFlowerlist();
+//        CatalogController controller = (CatalogController) MainPageController.getInstance().getController_map().get("Catalog");
+//        List<Product> products = controller.getFlowerlist();
         List<String> products_name = new LinkedList<String>();
         for (int i = 0; i < products.size(); i++) {
             products_name.add(products.get(i).getName());

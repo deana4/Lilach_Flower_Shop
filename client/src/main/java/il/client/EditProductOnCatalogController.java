@@ -144,6 +144,7 @@ public class EditProductOnCatalogController {
     @FXML
     void closeWindow(ActionEvent event) throws IOException {
         MainPageController.getInstance().CatalogRefresh();
+        MainPageController.getInstance().LoadCatalogPage();
         this.stage.close();
     }
 
@@ -249,7 +250,12 @@ public class EditProductOnCatalogController {
         this.typeText.setPromptText("Changed!");
     }
 
-
+    @FXML
+    void editFinishClicked(ActionEvent event) throws IOException {
+        MainPageController.getInstance().CatalogRefresh();
+        MainPageController.getInstance().LoadCatalogPage();
+        this.stage.close();
+    }
 
     /*gets and sets*/
 

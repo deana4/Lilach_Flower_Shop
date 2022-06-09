@@ -66,7 +66,9 @@ public class CatalogController extends ParentClass{
     private MainPageController main_page_holder;
 
 //    private LinkedList<ProductView> flowersFXML;
-    private HashMap<Integer,ProductView> productsControllers;
+    private HashMap<Integer,ProductView> productsControllers = new HashMap<Integer,ProductView>();
+    private HashMap<Integer,Node> nodesControllers = new HashMap<Integer,Node>();
+    private HashMap<Integer,Integer> indexToID = new HashMap<Integer,Integer>();
 
     public static List<Product> getFlowerlist() {
         return flowerlist;
@@ -90,16 +92,6 @@ public class CatalogController extends ParentClass{
         Platform.runLater(()->{
                 flowerlist = event.getItems();
                 MainPageController.allStores = event.getStores();
-//                for(int i=0; i<MainPageController.allStores.size(); i++){
-//                    RegisterController reg_controller = (RegisterController) MainPageController.getInstance().getControllerByKey("Register");
-//                    OrderController order_controller = (OrderController) MainPageController.getInstance().getControllerByKey("Order");
-//                     if(reg_controller.store_choose.getItems().size() < 3){
-//                         reg_controller.store_choose.getItems().add(MainPageController.allStores.get(i).getAddress());
-//                     }
-//                     if(order_controller.store_chooser.getItems().size() < 3){
-//                         order_controller.store_chooser.getItems().add(MainPageController.allStores.get(i).getAddress());
-//                     }
-//            }
 
                 int col = 0;
                 int row = 0;
@@ -123,6 +115,8 @@ public class CatalogController extends ParentClass{
                     try {
                         controller.setData(flowerlist.get(i));
                         productsControllers.put(i,controller);   //idiots
+                        nodesControllers.put(flowerlist.get(i).getId(),node);
+                        indexToID.put(i,flowerlist.get(i).getId());
                         MainPageController.getInstance().addColorToSystem(flowerlist.get(i).getColor());
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -171,6 +165,7 @@ public class CatalogController extends ParentClass{
     }
 
 
+
     @FXML  // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException, ClassNotFoundException, InterruptedException {
         catalogInstance = this;
@@ -178,7 +173,6 @@ public class CatalogController extends ParentClass{
         CatalogControl.getItemsList();
         this.productsControllers = new HashMap<>();
     }
-
 
     public void sortBySale(){
         List<Product> sortedListBySale = new LinkedList<Product>();

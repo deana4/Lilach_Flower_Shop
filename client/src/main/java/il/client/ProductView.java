@@ -314,6 +314,7 @@ public class ProductView extends ParentClass{
     public void RemoveFlowerFromCatalog(int id) throws IOException {
         CatalogControl.delteItem(id);
         MainPageController.getInstance().CatalogRefresh();
+        MainPageController.getInstance().LoadCatalogPage();
     }
 
     /* Settes and Getters*/

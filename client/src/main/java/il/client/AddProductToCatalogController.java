@@ -24,7 +24,6 @@ public class AddProductToCatalogController{
 
     @FXML
     void initialize(){
-        System.out.println("Im here");
     }
     @FXML
     void AddFlowerToCatalog(ActionEvent event) throws IOException {

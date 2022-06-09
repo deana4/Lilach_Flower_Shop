@@ -21,6 +21,8 @@
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import io.github.palexdev.materialfx.font.MFXFontIcon?>
+<?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -29,14 +31,14 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="646.0" prefWidth="1240.0" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.MyAccountController">
-    <VBox layoutY="1.0" prefHeight="646.0" prefWidth="251.0" styleClass="sideBar" stylesheets="@CSSfiles/Backgrounds.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="1.0">
+<AnchorPane fx:id="rootPane" prefHeight="646.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.MyAccountController">
+    <VBox alignment="CENTER" layoutY="1.0" prefHeight="646.0" prefWidth="251.0" styleClass="sideBar" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="1.0">
         <padding>
             <Insets bottom="10.0" left="10.0" top="60.0" />
         </padding>
-        <Label graphicTextGap="15.0" prefWidth="204.0" styleClass="HeadersNoBackground" stylesheets="@CSSfiles/Backgrounds.css" text="My Account">
+        <Label graphicTextGap="15.0" prefHeight="46.0" prefWidth="228.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="My Account">
             <graphic>
-                <MFXFontIcon description="mfx-user" size="52.0">
+                <MFXFontIcon description="mfx-user" size="40.0">
                <color>
                   <Color red="1.0" green="1.0" blue="1.0" />
                </color></MFXFontIcon>
@@ -45,14 +47,14 @@
             <Font name="Calibri" size="29.0" />
          </font>
         </Label>
-        <MFXScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="440.0" prefWidth="236.0" VBox.vgrow="ALWAYS">
+        <MFXScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="440.0" prefWidth="236.0" stylesheets="@CSSfiles/MenubarCSS.css" VBox.vgrow="ALWAYS">
             <VBox.margin>
                 <Insets bottom="10.0" left="5.0" top="15.0" />
             </VBox.margin>
             <padding>
                 <Insets right="10.0" />
             </padding>
-            <VBox fx:id="navBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" styleClass="navbar" />
+            <VBox fx:id="navBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" styleClass="sidebar" stylesheets="@CSSfiles/MenubarCSS.css" />
         </MFXScrollPane>
       <MFXTextField fx:id="creditTextField" allowEdit="false" floatMode="BORDER" floatingText="My Credit" floatingTextGap="100.0" graphicTextGap="100.0" prefHeight="29.0" prefWidth="213.0" promptText="User Credit" styleClass="creditUser" stylesheets="@CSSfiles/Backgrounds.css">
          <textFill>
@@ -64,4 +66,12 @@
       </MFXTextField>
     </VBox>
    <StackPane fx:id="contentPane" layoutX="262.0" layoutY="2.0" prefHeight="646.0" prefWidth="976.0" />
+   <stylesheets>
+      <URL value="@CSSfiles/Backgrounds.css" />
+      <URL value="@CSSfiles/MenubarCSS.css" />
+   </stylesheets>
+   <styleClass>
+      <String fx:value="rootPane" />
+      <String fx:value="AnchorStyle" />
+   </styleClass>
 </AnchorPane>

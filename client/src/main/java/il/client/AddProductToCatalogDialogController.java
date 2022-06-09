@@ -164,7 +164,13 @@ public class AddProductToCatalogDialogController {
     }
 
     public void addFlowerToTheServer() throws IOException {
-        Product product = new Product(this.nameText.getText(), Double.valueOf(this.PriceText.getText()), saleToggle.isSelected(), Double.valueOf(this.discountPercentText.getText()), this.typeText.getText(), this.colorText.getText());
+        double discountPercentage = 0;
+        if(!this.saleToggle.isSelected()){
+            discountPercentage = 0.0;
+        }else if(this.saleToggle.isSelected()){
+            discountPercentage = Double.valueOf(this.discountPercentText.getText());
+        }
+        Product product = new Product(this.nameText.getText(), Double.valueOf(this.PriceText.getText()), saleToggle.isSelected(),discountPercentage , this.typeText.getText(), this.colorText.getText());
         CatalogControl.addItem(product,this.ImageURL.getText());
         MainPageController.getInstance().addColorToSystem(this.colorText.getText());
     }

@@ -110,3 +110,12 @@
     -fx-opacity: 1.0;
 }
 
+
+.refreshFeed {
+    -mfx-color: #2196f3;
+    -fx-opacity: 0.5;
+}
+
+.refreshFeed:hover {
+    -fx-opacity: 1.0;
+}

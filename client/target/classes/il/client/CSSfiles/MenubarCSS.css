@@ -1,4 +1,26 @@
 
+* {
+    -mfx-blue: #2196f3;
+    -mfx-charcoal: #445055;
+    -mfx-green: #4caf50;
+    -mfx-onyx: #353935;
+    -mfx-orange: #ff9800;
+    -mfx-purple: #7a0ed9;
+    -mfx-red: #EF6E6B;
+    -mfx-yellow: #FFEA00;
+
+
+    -mfx-text-he: rgba(0, 0, 0, 0.87); /* High Emphasis */
+    -mfx-text-me: rgba(0, 0, 0, 0.60); /* Medium Emphasis*/
+    -mfx-text-disabled: rgba(0, 0, 0, 0.38); /* Disabled */
+
+    -common-gradient: linear-gradient(to right bottom, #c4008b, #d00085, #dc007f, #e60b79, #ef1872, #f5276b, #fa3564, #fe415e, #ff5158, #ff5f52, #ff6c4e, #ff794b);
+    -secondary-gradient: linear-gradient(to right bottom, #1ec400, #00bd3a, #00b654, #00ae67, #00a574, #00a280, #009e8a, #009a91, #009b9d, #009ba8, #009bb2, #009abb);
+}
+
+
+
+
 .table-cell {
     -fx-text-fill: BLACK;
     -fx-alignment: CENTER;
@@ -13,11 +35,74 @@
 }
 
 
-/*.table-cell:hover{*/
-/*    -fx-text-fill: #979797;*/
-/*    -fx-background-color: #979797;*/
+.rootPane .sidebar {
+
+    -fx-background-color:linear-gradient(to bottom right, lightpink,lightblue);
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    /*-fx-alignment: center;*/
+    -fx-border-color: linear-gradient(to bottom right, lightpink, lightblue,lightpink,lightblue);
+}
+/*    -fx-background-color: -mfx-purple;*/
+/*    -fx-background-insets: -1 -5 -1 -1;*/
+/*    -fx-background-radius: 0 20 20 0;*/
 /*}*/
 
-/*.modena{*/
-/*    -fx-text-fill: BLACK;*/
+/*.rootPane .sidebar .header {*/
+/*    -fx-font-family: 'Visby Round CF Heavy';*/
+/*    -fx-font-size: 24;*/
+/*    -fx-text-fill: white;*/
 /*}*/
+
+/*.rootPane .sidebar .header .mfx-font-icon {*/
+/*    -mfx-color: white;*/
+/*}*/
+
+.rootPane .sidebar .mfx-scroll-pane {
+    -fx-background-color: transparent;
+
+    -track-color: rgba(255, 255, 255, 0.3);
+    -thumb-color: white;
+    -thumb-hover-color: white;
+}
+
+.rootPane .sidebar .menu-label {
+    -fx-font-family: 'Visby Round CF Bold';
+    -fx-font-size: 14;
+    -fx-text-fill: white;
+}
+
+.rootPane .sidebar .navbar .mfx-rectangle-toggle-node {
+    -fx-background-color: white;
+    -fx-background-radius: 0;
+    -fx-border-color: white;
+    -fx-border-radius: 0;
+    -fx-pref-height: 40;
+
+    -fx-font-family: 'Visby Round CF Demi Bold';
+    -fx-font-size: 13;
+    -fx-text-fill: white;
+}
+
+.rootPane .sidebar .navbar .mfx-rectangle-toggle-node .mfx-ripple-generator {
+    -mfx-paused: true;
+}
+
+.rootPane .sidebar .navbar .mfx-rectangle-toggle-node .mfx-icon-wrapper .mfx-font-icon {
+    -mfx-color: white;
+}
+
+.rootPane .sidebar .navbar .mfx-rectangle-toggle-node:selected {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-text-fill: #601cbe;
+}
+
+.rootPane .sidebar .navbar .mfx-rectangle-toggle-node:selected .selection-rectangle {
+    -fx-stroke: white;
+    -fx-fill: #601cbe;
+}
+
+.rootPane .sidebar .navbar .mfx-rectangle-toggle-node:selected .mfx-icon-wrapper .mfx-font-icon {
+    -mfx-color: #601cbe;
+}

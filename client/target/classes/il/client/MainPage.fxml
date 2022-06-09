@@ -75,6 +75,11 @@
             <Insets right="10.0" />
          </padding>
          <children>
+            <MFXFontIcon fx:id="refreshFeed" description="mfx-circle" size="15.0" styleClass="refreshFeed">
+               <color>
+                  <Color red="0.026681287214159966" green="0.7270650863647461" blue="0.9605262875556946" />
+               </color>
+            </MFXFontIcon>
             <MFXFontIcon fx:id="alwaysOnTopIcon" description="mfx-circle" size="15.0">
                <styleClass>
                   <String fx:value="always-on-top-icon" />

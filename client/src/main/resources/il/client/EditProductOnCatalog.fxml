@@ -70,6 +70,7 @@
                   </VBox>
                </children>
             </HBox>
+            <MFXButton fx:id="editFinish" layoutX="568.0" layoutY="296.0" onAction="#editFinishClicked" styleClass="mybutton" stylesheets="@CSSfiles/Buttons.css" text="Finish Edit" />
          </children>
       </AnchorPane>
    </children>

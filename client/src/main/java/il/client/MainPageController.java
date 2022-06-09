@@ -107,6 +107,9 @@ public class MainPageController extends ParentClass {
     @FXML
     private MFXFontIcon alwaysOnTopIcon;
 
+    @FXML
+    private MFXFontIcon refreshFeed;
+
     private Scene scence;
 
     private ObservableList<String> colors = FXCollections.observableArrayList(); //colors in the system
@@ -120,6 +123,8 @@ public class MainPageController extends ParentClass {
     public static List<Store> allStores = null;
 
     private static MainPageController instance = null;
+
+
 
     public static MainPageController getInstance(){
         if(instance == null){
@@ -163,6 +168,14 @@ public class MainPageController extends ParentClass {
                 }
         );
 //        closeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> Platform.exit());
+            refreshFeed.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                        try {
+                            MainPageController.getInstance().Refresh(true);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+            );
         minimizeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> ((Stage) this.main_first_load_pane.getScene().getWindow()).setIconified(true));
         alwaysOnTopIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             boolean newVal = !stage.isAlwaysOnTop();
@@ -328,13 +341,15 @@ public class MainPageController extends ParentClass {
         }
         LogInControl.logout(UserClient.getInstance().getId());
         UserClient.getInstance().resetUserClient();
-        MainPageController.getInstance().Refresh();
-        LoadHomePage();
+        MainPageController.getInstance().Refresh(true);
+
+//
+//        LoadHomePage();
     }
 
     @FXML
     void Refresh(MouseEvent event) throws IOException {
-        Refresh();
+        Refresh(false);
     }
 
     /* -------------------------------------- Setters and Getters -------------------------------------- */
@@ -447,6 +462,7 @@ public class MainPageController extends ParentClass {
             this.user_wellcome.setText("Welcome, " + this.LoginName /* Get Last Login Name */);
             this.myacc_btn.setVisible(true);
             this.Logout_btn.setVisible(true);
+            HomeRefresh();
             LoadHomePage();
         }else{
             return;
@@ -454,23 +470,34 @@ public class MainPageController extends ParentClass {
         return;
     }
     /*  ---------------------------------------  Screen Loaders  --------------------------------------- */
-    public void Refresh() throws IOException {
+    public void Refresh(boolean completely) throws IOException {
         System.out.println("REFRESHING SYSTEM START");
 //        Parent root;
 //        URL var;
 //        FXMLLoader fxmlLoader;
-
-//        LoginRefresh();
-//        AddToCartRefresh();
-//        RegisterRefresh();
-//        OrderRefresh();
-//        HomeRefresh();
-//        MyAccountRefresh();
-//        CatalogRefresh();
-        MainPageRefresh();
-
+        Runtime.getRuntime().gc();
+        if(completely){
+            //MainPageRefresh();
+            //refreshCompletely();
+            System.out.println("Refreshing System Completely");
+            refreshCompletely();
+        }else if(!completely){
+            System.out.println("Refreshing System Main Pages");
+            LoginRefresh();
+            AddToCartRefresh();
+            RegisterRefresh();
+            OrderRefresh();
+            HomeRefresh();
+            MyAccountRefresh();
+            CatalogRefresh();
+        }
         System.out.println("REFRESHING SYSTEM FINISHED");
-        LoadHomePage();
+//        LoadHomePage();
+    }
+
+
+    public void refreshCompletely() throws IOException {
+        App.refreshSystemCompletely(true);
     }
     public void LoginRefresh() throws IOException {
         Parent root;

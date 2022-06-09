@@ -65,6 +65,7 @@ public class LoginController extends ParentClass{
     @Subscribe
     public void compliteLogin(LoginEvent event){
         Platform.runLater(()->{
+            UserClient.getInstance().resetUserClient();
             correctLogin = event.isLoginStatus();
             if(correctLogin){
                  //get this data from the server by sending the User Entity to this function
@@ -99,9 +100,12 @@ public class LoginController extends ParentClass{
                         }//system admin
                     }
                     System.out.println("LoginController getPriority "+UserClient.getInstance().getPriority()+ "plan "+UserClient.getInstance().getPlan());
-                    UserClient.getInstance().setPriority(permission);
+//                    UserClient.getInstance().setPriority(permission);
                     UserClient.getInstance().setPassword(password);
+                    UserClient.getInstance().setStoreId(storeIDWork);
                     UserClient.getInstance().setStoresOfStore(event.getStoreList());
+                    UserClient.getInstance().setComplaintsEntity(complains);
+                    UserClient.getInstance().setOrdersEntity(orders);
                 }
                 else{
                     user = event.getUser();
@@ -230,5 +234,6 @@ public class LoginController extends ParentClass{
         this.main_page_holder = main_page_holder;
     }
     /*END*/
+
 
 }

@@ -51,8 +51,8 @@ public class EditAccountDetailsController {
         this.usernameText.setPromptText(UserClient.getInstance().getUserName());
         this.passwordText.setPromptText(UserClient.getInstance().getPassword());
         this.creditCardText.setPromptText(UserClient.getInstance().getCreditCard());
-//        this.phoneText.setPromptText(UserClient.getInstance().getPhone());
-//        this.mailText.setPromptText(UserClient.getInstance().getMail()); //ido needs to put default there
+        this.phoneText.setPromptText(UserClient.getInstance().getPhone());
+        this.mailText.setPromptText(UserClient.getInstance().getMail()); //ido needs to put default there
     }
 
     @FXML

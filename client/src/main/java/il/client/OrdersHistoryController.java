@@ -72,7 +72,7 @@ public class OrdersHistoryController {
             row.setOnMouseClicked(mouseEvent -> {
                         System.out.println(row.getItem());
                         try {
-                            detailedOrderScreen(row);
+                            if(row.getItem() != null){detailedOrderScreen(row);}
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

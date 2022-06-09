@@ -1,5 +1,6 @@
 il\client\CancelOrderController.class
 il\client\CartAdderCustomController.class
+il\client\ProductsReportController.class
 il\client\RemoveFlowerWindowController.class
 il\client\ProductView.class
 il\client\controls\UserControl.class
@@ -15,6 +16,7 @@ il\client\controls\CatalogControl.class
 il\client\controls\ComplainConrtol.class
 il\client\controls\LogInControl.class
 il\client\controls\RegisterControl.class
+il\client\AlreadyCanceledOrder.class
 il\client\EditProductOnCatalogController.class
 module-info.class
 il\client\ocsf\AdaptableClient.class
@@ -36,10 +38,12 @@ il\client\OrdersHistoryController.class
 il\client\events\LoginEvent.class
 il\client\CartItem.class
 il\client\OrderController.class
+il\client\RevenueReportController.class
 il\client\ComplainHandlerController.class
 il\client\CancelOrdersTabController.class
 il\client\ocsf\ObservableClient.class
 il\client\EditAccountDetailsController.class
+il\client\ComplaintsReportController.class
 il\client\RegisterController.class
 il\client\controls\ReportControl.class
 il\client\SystemManagerController.class
@@ -49,6 +53,7 @@ il\client\SimpleClient.class
 il\client\DetailsChecker.class
 il\client\ComplaintTabController.class
 il\client\OrderClient.class
+il\client\ProductsReportClient.class
 il\client\LoginController.class
 il\client\HomeController.class
 il\client\Priority.class

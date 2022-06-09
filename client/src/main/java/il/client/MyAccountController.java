@@ -3,6 +3,7 @@ package il.client;
 import io.github.palexdev.materialfx.controls.MFXIconWrapper;
 import io.github.palexdev.materialfx.controls.MFXRectangleToggleNode;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.utils.others.loader.MFXLoader;
 import io.github.palexdev.materialfx.utils.others.loader.MFXLoaderBean;
 import javafx.fxml.FXML;
@@ -38,6 +39,9 @@ public class MyAccountController{
     @FXML
     private MFXScrollPane scrollPane;
 
+    @FXML
+    private MFXTextField creditTextField;
+
     private MainPageController main_page_holder;
 
     private HashMap<String, Parent> root_map = new HashMap<String, Parent>();  //Hashmap of roots by names
@@ -56,6 +60,7 @@ public class MyAccountController{
 
     @FXML
     void initialize() throws IOException {
+        creditTextField.setText(String.valueOf(UserClient.getInstance().getCredit()));
         initializeLoader();
         initFunction();
 
@@ -78,11 +83,20 @@ public class MyAccountController{
 
         if(UserClient.getInstance().isWorker() && UserClient.getInstance().getPlan()==5){
         loader.addView(MFXLoaderBean.of("System Admin Panel", loadURL("PeopleList.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-users", "System Admin Panel")).setDefaultRoot(true).get());
+        loader.addView(MFXLoaderBean.of("Revenue Report", loadURL("RevenueReport.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-file", "Revenue Report")).setDefaultRoot(true).get());
         }
 
         if(UserClient.getInstance().isWorker() && UserClient.getInstance().getPlan()==3){
-            loader.addView(MFXLoaderBean.of("BlankPage", loadURL("BlankPage.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-users", "System Admin Panel")).setDefaultRoot(true).get());
+        loader.addView(MFXLoaderBean.of("Revenue Report", loadURL("RevenueReport.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-file", "Revenue Report")).setDefaultRoot(true).get());
+        loader.addView(MFXLoaderBean.of("Products Report", loadURL("ProductsReport.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-file", "Products Report")).get());
+            loader.addView(MFXLoaderBean.of("Complaints Report", loadURL("CompalintsReport.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-file", "Complaints Report")).get());
         }
+
+        if(UserClient.getInstance().isWorker() && UserClient.getInstance().getPlan()==4){
+        loader.addView(MFXLoaderBean.of("Revenue Report", loadURL("RevenueReport.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-file", "Revenue Report")).setDefaultRoot(true).get());
+        loader.addView(MFXLoaderBean.of("Products Report", loadURL("ProductsReport.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-file", "Products Report")).get());
+        loader.addView(MFXLoaderBean.of("Complaints Report", loadURL("CompalintsReport.fxml")).setBeanToNodeMapper(() -> createToggle("mfx-file", "Complaints Report")).get());
+        }//
 
         loader.setOnLoadedAction(beans -> {
             List<ToggleButton> nodes = beans.stream()
@@ -292,6 +306,10 @@ public class MyAccountController{
 
     public void setMain_page_holder(MainPageController main_page_holder) {
         this.main_page_holder = main_page_holder;
+    }
+
+    public void setCreditTextField(Double credit) {
+        this.creditTextField.setText(String.valueOf(credit));
     }
 
     /*end sets ang gets*/

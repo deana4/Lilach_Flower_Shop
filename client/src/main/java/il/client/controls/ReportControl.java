@@ -163,7 +163,8 @@ public class ReportControl {
     public int getcountProduct(String product){
         if(!products.containsKey(product))
             return 0;
-        return complain_date.get(product);
+      // return complain_date.get(product);
+        return products.get(product); //liran changed
     }
 
 

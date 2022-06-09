@@ -61,7 +61,7 @@ public class ComplaintTabController {
             row.setOnMouseClicked(mouseEvent -> {
                         System.out.println(row.getItem());
                         try {
-                            HandelComplaintScreen(row);
+                            if(row.getItem() != null){HandelComplaintScreen(row);}
                         } catch (IOException | ParseException e) {
                             e.printStackTrace();
                         }

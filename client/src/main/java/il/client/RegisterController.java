@@ -60,13 +60,18 @@ public class RegisterController extends ParentClass{
 
 
     @FXML
-    void initialize(){
+    void initialize() throws IOException, ClassNotFoundException, InterruptedException {
         { //initialize combobox
             EventBus.getDefault().register(this);
             this.plan_chooser.getItems().add("Specific Store Member");
             this.plan_chooser.getItems().add("Store Wide Member");
             this.plan_chooser.getItems().add("Yearly Member");
             //init stores in catalog
+        }
+        for(int i=0; i<MainPageController.allStores.size(); i++) {
+            if (store_choose.getItems().size() < 3) {
+                store_choose.getItems().add(MainPageController.allStores.get(i).getAddress());
+            }
         }
     }
 
@@ -161,6 +166,8 @@ public class RegisterController extends ParentClass{
             if(plan.equals("Yearly Member"))
                 RegisterControl.register(name, username, pass, id ,credit_card, 3,MainPageController.getAllStores());
 
+            MainPageController.getInstance().RegisterRefresh();
+            MainPageController.getInstance().LoadHomePage();
         }
         else{
             this.errorWarning.setVisible(true);

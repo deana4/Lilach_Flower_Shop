@@ -119,8 +119,11 @@ public class testDB {
         session.save(e);
         store3.addEmployee(e);
 
-        CustomerService j = new CustomerService("Shira Tzadok", "shira123456" , "123456789");
+        CustomerService j = new CustomerService("Shir Tzadok", "shir123456" , "123456789");
         session.save(j);
+
+        NetworkManger i = new NetworkManger("Alla Wakbar", "alla123", "123456789");
+        session.save(i);
 
 
         User u1 = new User("ido7746", "123456789", "1234567812345678", 1, "ido", "123456789");
@@ -151,35 +154,35 @@ public class testDB {
         store3.addUser(u2);
         store3.addUser(u3);
 
-        Order o = new Order(u1, store, "orde1", "asas","asas","1212", 100.0,"121212", "21212","", "");
-        session.save(o);
-        o.addProduct(new CartProduct(products.get(0), 1));
-        o.addProduct(new CartProduct(products.get(1), 4));
-        o.addProduct(new CartProduct(products.get(4), 2));
-        for(CartProduct p : o.getProducts())
-            session.save(p);
-
-        o = new Order(u2, store2, "order2", "asas","asas","1212", 100.0,"121212", "21212","", "");
-        session.save(o);
-        o.addProduct(new CartProduct(products.get(5), 1));
-        o.addProduct(new CartProduct(products.get(3), 1));
-        o.addProduct(new CartProduct(products.get(1), 3));
-        for(CartProduct p : o.getProducts())
-            session.save(p);
-        o.getProducts().get(1).incAmount();
-        o.getProducts().get(0).decAmount();
-
-
-        o = new Order(u6, store3, "order3", "asas","asas","1212", 100.0,"121212", "21212","", "");
-        session.save(o);
-        o.addProduct(new CartProduct(products.get(5), 4));
-        o.addProduct(new CartProduct(products.get(3), 4));
-        o.addProduct(new CartProduct(products.get(1), 3));
-        for(CartProduct p : o.getProducts())
-            session.save(p);
-        o.getProducts().get(1).decAmount();
-        o.getProducts().get(0).decAmount();
-        o.getProducts().get(0).decAmount();
+//        Order o = new Order(u1, store, "orde1", "asas","asas","1212", 100.0,"121212", "21212","", "");
+//        session.save(o);
+//        o.addProduct(new CartProduct(products.get(0), 1));
+//        o.addProduct(new CartProduct(products.get(1), 4));
+//        o.addProduct(new CartProduct(products.get(4), 2));
+//        for(CartProduct p : o.getProducts())
+//            session.save(p);
+//
+//        o = new Order(u2, store2, "order2", "asas","asas","1212", 100.0,"121212", "21212","", "");
+//        session.save(o);
+//        o.addProduct(new CartProduct(products.get(5), 1));
+//        o.addProduct(new CartProduct(products.get(3), 1));
+//        o.addProduct(new CartProduct(products.get(1), 3));
+//        for(CartProduct p : o.getProducts())
+//            session.save(p);
+//        o.getProducts().get(1).incAmount();
+//        o.getProducts().get(0).decAmount();
+//
+//
+//        o = new Order(u6, store3, "order3", "asas","asas","1212", 100.0,"121212", "21212","", "");
+//        session.save(o);
+//        o.addProduct(new CartProduct(products.get(5), 4));
+//        o.addProduct(new CartProduct(products.get(3), 4));
+//        o.addProduct(new CartProduct(products.get(1), 3));
+//        for(CartProduct p : o.getProducts())
+//            session.save(p);
+//        o.getProducts().get(1).decAmount();
+//        o.getProducts().get(0).decAmount();
+//        o.getProducts().get(0).decAmount();
 
 //        Complain c1 = new Complain("complaint test", "14/07/2022","12:00");
 //        Complain c2 = new Complain("complaint test", "15/07/2022","12:00");

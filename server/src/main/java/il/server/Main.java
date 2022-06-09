@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 
 
-public class AppServer
+public class Main
 {
     private static SimpleServer server;
 

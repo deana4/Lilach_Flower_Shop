@@ -1,4 +1,5 @@
 il\server\CatalogControl.class
+il\server\Main.class
 il\server\RegisterControl.class
 il\server\TestControl.class
 il\server\ocsf\ConnectionToClient.class
@@ -18,5 +19,4 @@ il\server\ocsf\AbstractServer.class
 il\server\ocsf\OriginatorMessage.class
 il\server\LoginControl.class
 il\server\UserControl.class
-il\server\AppServer.class
 il\server\ocsf\AdaptableServer.class

@@ -19,8 +19,8 @@ public class testDB {
         // Add ALL of your entities here. You can also try adding a whole package.
 
         configuration.configure();
-        configuration.setProperty("hibernate.connection.url", AppServer.databaseName);
-        configuration.setProperty("hibernate.connection.password", AppServer.databasePass);
+        configuration.setProperty("hibernate.connection.url", Main.databaseName);
+        configuration.setProperty("hibernate.connection.password", Main.databasePass);
         if(init)
             configuration.setProperty("hibernate.hbm2ddl.auto", "create");
         else

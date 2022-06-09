@@ -34,6 +34,7 @@ il\client\ocsf\ObservableSWRClient.class
 il\client\ocsf\AbstractClient.class
 il\client\AddCustomProductToCatalogController.class
 il\client\AddProductToCatalogController.class
+il\client\Main.class
 il\client\UserClient.class
 il\client\OrdersHistoryController.class
 il\client\events\LoginEvent.class

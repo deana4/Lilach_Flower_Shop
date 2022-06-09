@@ -71,8 +71,18 @@ public class SystemManagerController {
 
     private int person_id;
 
+    private boolean worker = false;
+
     @FXML
-    void initialize(Stage stage){
+    void initialize(Stage stage, boolean worker){
+        this.worker = worker;
+//        this.mailText.setVisible(false);
+//        this.mailBtn.setVisible(false);
+//        this.creditCardText.setVisible(false);
+//        this.creditcardBtn.setVisible(false);
+//        this.PhoneText.setVisible(false);
+//        this.phoneBtn.setVisible(false);
+//        this.freezeBtn.setVisible(false);
 //        this.usernameText.setPromptText(UserClient.getInstance().getUserName());
 //        this.passwordText.setPromptText(UserClient.getInstance().getPassword());
 //        this.creditCardText.setPromptText(UserClient.getInstance().getCreditCard());
@@ -89,8 +99,8 @@ public class SystemManagerController {
 //            this.addressText.setText("");
 //            this.addressBtn.setDisable(true);
 //        }
-
-        if(isWorker){
+        System.out.println("Sytem Manager "+this.worker);
+        if(this.worker){
             initWorker();
         }
         else{
@@ -183,11 +193,13 @@ public class SystemManagerController {
     @FXML
     void permissionsBtnClicked(ActionEvent event) throws IOException {
         int correctness;
-        if(toggleWorker.isSelected()) {
+        if(isWorker) {
             correctness = checker.permissionCheck(this.permissionsText.getText(), "worker");
+            System.out.println(correctness+ this.permissionsText.getText());
 
         } else{
             correctness = checker.permissionCheck(this.permissionsText.getText(), "user");
+            System.out.println(correctness + " "+this.permissionsText.getText());
         }
         if(correctness == 0){
             this.permissionsText.clear();
@@ -225,6 +237,13 @@ public class SystemManagerController {
         this.passwordBtn.setDisable(false);
         this.permissionsText.setDisable(false);
         this.permissionsBtn.setDisable(false);
+        this.mailText.setVisible(false);
+        this.mailBtn.setVisible(false);
+        this.creditCardText.setVisible(false);
+        this.creditcardBtn.setVisible(false);
+        this.PhoneText.setVisible(false);
+        this.phoneBtn.setVisible(false);
+        this.freezeBtn.setVisible(false);
     }
 
     public void initClient() {
@@ -253,6 +272,13 @@ public class SystemManagerController {
         this.passwordBtn.setDisable(false);
         this.permissionsText.setDisable(false);
         this.permissionsBtn.setDisable(false);
+        this.mailText.setVisible(true);
+        this.mailBtn.setVisible(true);
+        this.creditCardText.setVisible(true);
+        this.creditcardBtn.setVisible(true);
+        this.PhoneText.setVisible(true);
+        this.phoneBtn.setVisible(true);
+        this.freezeBtn.setVisible(true);
     }
 
 

@@ -10,19 +10,24 @@
 
 <AnchorPane prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.HomeController">
    <children>
-      <MFXProgressSpinner id="determinateSpinner" fx:id="determinateSpinner" layoutX="595.0" layoutY="298.0" progress="0.0" radius="24.0" stylesheets="@CSSfiles/css/Progress.css">
-         <color2>
-            <Color red="0.7880299687385559" green="0.26059940457344055" blue="0.8157894611358643" />
-         </color2></MFXProgressSpinner>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="455.0" layoutY="235.0" prefHeight="57.0" prefWidth="331.0" text="Welcom To Lilach Store">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
       <ImageView fitHeight="646.0" fitWidth="1240.0" layoutX="297.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@ClientImages/border.png" />
          </image>
       </ImageView>
+      <MFXProgressSpinner id="determinateSpinner" fx:id="determinateSpinner" layoutX="595.0" layoutY="298.0" progress="0.0" radius="24.0" stylesheets="@CSSfiles/css/Progress.css">
+         <color2>
+            <Color red="0.7880299687385559" green="0.26059940457344055" blue="0.8157894611358643" />
+         </color2></MFXProgressSpinner>
+      <Label fx:id="guestUserText" alignment="CENTER" contentDisplay="CENTER" layoutX="199.0" layoutY="241.0" prefHeight="57.0" prefWidth="893.0" text="Dear Guest, You can watch our products on the catalog section. Enjoy!">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="lilachEntrance1" alignment="CENTER" contentDisplay="CENTER" layoutX="455.0" layoutY="194.0" prefHeight="57.0" prefWidth="331.0" text="Welcom To Lilach Store">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

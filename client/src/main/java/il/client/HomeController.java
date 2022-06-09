@@ -11,6 +11,7 @@ import javafx.animation.Animation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -26,6 +27,12 @@ public class HomeController {
     private MFXProgressSpinner determinateSpinner;
 
     private static HomeController instance = null;
+
+    @FXML
+    private Label guestUserText;
+
+    @FXML
+    private Label lilachEntrance1;
 
     public static HomeController getInstance(){
         if(instance == null){
@@ -62,7 +69,13 @@ public class HomeController {
         if(this.determinateSpinner.getProgress()==100){
             this.determinateSpinner.setVisible(false);
         }
-
+        if(UserClient.getInstance().getPriority() == 1){
+            this.guestUserText.setText("Dear Guest, You can watch our products on the catalog section. Enjoy!");
+        }else if(UserClient.getInstance().getPriority() == 2){
+            this.guestUserText.setText("Hello, " + UserClient.getInstance().getName() +". Good to see you again.");
+        }else if(UserClient.getInstance().getPriority() > 2){
+            this.guestUserText.setText("Hello " + UserClient.getInstance().getUserName() +", Have a good day.");
+        }
     }
 
     private void createAndPlayAnimation(ProgressIndicator indicator) {

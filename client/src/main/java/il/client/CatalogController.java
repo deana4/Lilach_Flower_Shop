@@ -159,12 +159,7 @@ public class CatalogController extends ParentClass{
                 scrollPane.setContent(this.gridPane);
         });
 
-
-
     }
-
-
-
 
     @FXML  // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException, ClassNotFoundException, InterruptedException {
@@ -173,7 +168,6 @@ public class CatalogController extends ParentClass{
         CatalogControl.getItemsList();
         this.productsControllers = new HashMap<>();
     }
-
 
     public void sortBySale(){
         List<Product> sortedListBySale = new LinkedList<Product>();
@@ -191,6 +185,9 @@ public class CatalogController extends ParentClass{
         }
         this.setFlowerlist(sortedListBySale);
     }
+
+
+
 
     public void setAnchorpang2Visibale(){
         this.catalog_anchorpane2.setVisible(true);
@@ -301,7 +298,6 @@ public class CatalogController extends ParentClass{
         root = fxmlLoader.load();
         return root;
     }
-
 
 
 }

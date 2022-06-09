@@ -117,6 +117,10 @@ public class ComplainHandlerController {
             this.hours_field.setText(Long.toString(24-difference_In_Hours));
             this.minutes_field.setText(Long.toString(60-difference_In_Minutes));
         }
+        if(difference_In_Minutes!=0){
+            this.hours_field.setText(Long.toString(23-difference_In_Hours));
+            this.minutes_field.setText(Long.toString(60-difference_In_Minutes));
+        }
         else{
             this.hours_field.setText("-");
             this.minutes_field.setText("-");
@@ -152,16 +156,25 @@ public class ComplainHandlerController {
 
     @FXML
     void SubmitBTNClicked(ActionEvent event) throws IOException {
-        this.complain_handler_ancorpane3.setVisible(true);
-        this.complain_handler_ancorpane2.setVisible(false);
-        //send complaint handle to server
-        double refund = 0.0;
-        if(this.refund_chooser.isSelected()){
-            refund = Double.valueOf(this.refund_filed.getText());
+        int flag = 1;
+        if(this.answe_textarea.getText().equals("")||this.answe_textarea.getText().equals("Enter your answer")){
+            this.answe_textarea.clear();
+            this.answe_textarea.setPromptText("Enter your answer");
+            flag=0;
         }
+        //send complaint handle to server
+        if(flag!=0) {
+            double refund = 0.0;
+            if (this.refund_chooser.isSelected()) {
+                refund = Double.valueOf(this.refund_filed.getText());
+            }
 
-        ComplainConrtol.complainAnswer(this.answe_textarea.getText(), refund, Integer.parseInt(this.compalin_id_textarea.getText()));
-        UserClient.getInstance().removeComplaintById(Integer.parseInt(this.compalin_id_textarea.getText()));
+            ComplainConrtol.complainAnswer(this.answe_textarea.getText(), refund, Integer.parseInt(this.compalin_id_textarea.getText()));
+            UserClient.getInstance().removeComplaintById(Integer.parseInt(this.compalin_id_textarea.getText()));
+            this.complain_handler_ancorpane3.setVisible(true);
+            this.complain_handler_ancorpane2.setVisible(false);
+        }
+        flag=1;
     }
 
     @FXML

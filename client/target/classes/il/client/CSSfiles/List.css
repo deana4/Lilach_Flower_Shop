@@ -22,11 +22,11 @@
 }
 
 #ListBar .virtual-flow .mfx-list-cell .data-label {
-    -fx-text-fill: white;
+    -fx-text-fill: #979797;
 }
 
 #ListBar .virtual-flow .mfx-list-cell .user-icon {
-    -mfx-color: white;
+    -mfx-color: #979797;
 }
 
 #ListBar .virtual-flow .mfx-list-cell:hover,

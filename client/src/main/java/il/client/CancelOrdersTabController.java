@@ -92,18 +92,35 @@ public class CancelOrdersTabController {
     }
     public void cancelOrderScreen(TableRow<OrderClient> row) throws IOException, ParseException {
         OrderClient order = UserClient.getInstance().getOrderById(row.getItem().getThis_id());
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("CancelOrder.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 647 , 500);
-        CancelOrderController controller = fxmlLoader.getController();
-        scene.setFill(Color.TRANSPARENT);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setTitle("Cancel Order");
-        stage.setScene(scene);
-        stage.show();
-        controller.initialize(order,stage);
+
+        if(order.isCanceled()){
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("AlreadyCanceledOrder.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 647 , 500);
+            scene.setFill(Color.TRANSPARENT);
+            AlreadyCanceledOrder controller = fxmlLoader.getController();
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setTitle("Already Canceled Order");
+            stage.setScene(scene);
+            stage.show();
+            controller.initialize(stage);
+        }
+        else {
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("CancelOrder.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 647, 500);
+            CancelOrderController controller = fxmlLoader.getController();
+            scene.setFill(Color.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setTitle("Cancel Order");
+            stage.setScene(scene);
+            stage.show();
+            controller.initialize(order, stage);
+        }
     }
 
     public void alreadyCancelOrderScreen() throws IOException, ParseException {

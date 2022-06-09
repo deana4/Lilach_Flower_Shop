@@ -50,6 +50,7 @@
 	-fx-opacity: 1.0;
 }
 
+
 .rootPane .always-on-top-icon {
 	-mfx-color: -mfx-purple;
 	-fx-opacity: 0.5;
@@ -59,9 +60,20 @@
 	-fx-opacity: 1.0;
 }
 
-.rootPane .always-on-top-icon:always-on-top {
+
+
+
+
+.rootPane .refreshFeed {
+	-mfx-color: -mfx-blue;
+	-fx-opacity: 0.5;
+}
+
+.rootPane .refreshFeed:hover {
 	-fx-opacity: 1.0;
 }
+
+
 
 /**************************************************
  * Sidebar
@@ -97,7 +109,7 @@
 }
 
 .rootPane .sidebar .navbar .mfx-rectangle-toggle-node {
-	-fx-background-color: transparent;
+	-fx-background-color: white;
 	-fx-background-radius: 0;
 	-fx-border-color: transparent;
 	-fx-border-radius: 0;

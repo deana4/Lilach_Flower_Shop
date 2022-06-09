@@ -72,6 +72,7 @@ public class RevenueReportController {
 
         for(Store s: MainPageController.allStores){
             this.store1_chooser.getItems().add(s.getAddress());
+            this.store2_chooser.getItems().add(s.getAddress());
         }
 //        this.store1_chooser.getItems().add("Haifa");
 //        this.store1_chooser.getItems().add("Tel Aviv");

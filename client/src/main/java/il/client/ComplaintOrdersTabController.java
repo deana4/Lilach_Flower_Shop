@@ -85,6 +85,7 @@ public class ComplaintOrdersTabController {
     }
     public void compalintOrderScreen(TableRow<OrderClient> row) throws IOException, ParseException {
         OrderClient order = UserClient.getInstance().getOrderById(row.getItem().getThis_id());
+
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader();

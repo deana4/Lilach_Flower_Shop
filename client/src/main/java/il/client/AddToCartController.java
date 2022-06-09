@@ -214,7 +214,7 @@ public class AddToCartController{
         }
         this.total_sum = total_sum - price_of_product;
         this.sum_field.setText(Double.toString(total_sum+total_sum_custom));
-        MainPageController.getInstance().LoadCartPage();
+     //   MainPageController.getInstance().LoadCartPage();
     }
 
     public void removeItemFromCustomTable(int id) throws IOException {

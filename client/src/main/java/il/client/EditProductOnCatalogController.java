@@ -217,6 +217,30 @@ public class EditProductOnCatalogController {
         CatalogControl.updateImage(this.ImageURL.getText(), PVController.getId());
         this.ImageURL.clear();
         this.ImageURL.setPromptText("Changed!");
+
+//        FileChooser fc = new FileChooser();
+//        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File", listFiles));
+//        File f = fc.showOpenDialog(null);
+//
+//        if(f != null){
+//            this.ImageURL.setText(f.getAbsolutePath());
+//        }
+//
+//        File file;
+//        file = new File(this.ImageURL.getText());
+//        byte[] bFile = new byte[(int) file.length()];
+//        try{
+//            FileInputStream fileInputStream = new FileInputStream(file);
+//            fileInputStream.read(bFile);
+//            fileInputStream.close();
+//            Image img = new Image(new ByteArrayInputStream(bFile));
+//            productImage.setImage(img);
+//        }
+//        catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//        CatalogController.getInstance().setImageById(PVController.getId(),bFile);
     }
 
     @FXML

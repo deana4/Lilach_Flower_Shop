@@ -59,7 +59,7 @@ public class ComplaintsReportController {
 
     @FXML
     void initialize(){
-        if(UserClient.getInstance().getPriority() == 3){
+        if(UserClient.getInstance().getPriority() == 5){
             this.store2_chooser.setVisible(false);
             this.start_date_store2.setVisible(false);
             this.end_date_store2.setVisible(false);

@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="compain_ancorepane1" prefHeight="613.0" prefWidth="671.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ComplainController">
+<AnchorPane fx:id="compain_ancorepane1" prefHeight="613.0" prefWidth="671.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.ComplainController">
    <children>
       <AnchorPane fx:id="complain_ancorpane2" layoutX="18.0" layoutY="22.0" prefHeight="569.0" prefWidth="635.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css">
          <children>
@@ -41,7 +41,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <TextArea fx:id="complain_textarea" prefHeight="224.0" prefWidth="256.0" styleClass="restTF" wrapText="true">
+                  <TextArea fx:id="complain_textarea" onMouseClicked="#ComplaintTextAreaClicked" prefHeight="224.0" prefWidth="256.0" styleClass="restTF" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor></TextArea>

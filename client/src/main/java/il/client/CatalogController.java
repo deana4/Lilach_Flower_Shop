@@ -134,6 +134,7 @@ public class CatalogController extends ParentClass{
                     gridPane.setMaxHeight(Region.USE_COMPUTED_SIZE);
 
                     GridPane.setMargin(node, new Insets(10));
+
                 }
                 if(col==3){
                     col=0;
@@ -158,7 +159,11 @@ public class CatalogController extends ParentClass{
                 scrollPane.setContent(this.gridPane);
         });
 
+
+
     }
+
+
 
 
     @FXML  // This method is called by the FXMLLoader when initialization is complete
@@ -186,9 +191,6 @@ public class CatalogController extends ParentClass{
         }
         this.setFlowerlist(sortedListBySale);
     }
-
-
-
 
     public void setAnchorpang2Visibale(){
         this.catalog_anchorpane2.setVisible(true);
@@ -299,6 +301,7 @@ public class CatalogController extends ParentClass{
         root = fxmlLoader.load();
         return root;
     }
+
 
 
 }

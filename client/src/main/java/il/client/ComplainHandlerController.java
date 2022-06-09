@@ -2,6 +2,7 @@ package il.client;
 
 import il.client.DiffClasses.ComplaintClient;
 import il.client.controls.ComplainConrtol;
+import il.entities.Complain;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class ComplainHandlerController {
 

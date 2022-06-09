@@ -323,16 +323,22 @@ public class OrderController {
         if(counter_details_clicks%2==1){
             this.my_name_field.setText(UserClient.getInstance().getName());
             this.my_credit_card_field.setText(UserClient.getInstance().getCreditCard());
-            if(UserClient.getInstance().getPhone()!="" && UserClient.getInstance().getPhone()!="Default" && UserClient.getInstance().getPhone()!=null) {
-                int third_digit = parseInt(String.valueOf(UserClient.getInstance().getPhone().charAt(2)));
-                switch (third_digit) {
-                    case 0: { this.my_phone_choose.setValue("050");break; }
-                    case 2: { this.my_phone_choose.setValue("052");break; }
-                    case 3: { this.my_phone_choose.setValue("053");break; }
-                    case 4: { this.my_phone_choose.setValue("054");break; }
+            try{
+                if(UserClient.getInstance().getPhone()!="" && UserClient.getInstance().getPhone()!="Default" && UserClient.getInstance().getPhone()!=null) {
+                    int third_digit = parseInt(String.valueOf(UserClient.getInstance().getPhone().charAt(2)));
+                    switch (third_digit) {
+                        case 0: { this.my_phone_choose.setValue("050");break; }
+                        case 2: { this.my_phone_choose.setValue("052");break; }
+                        case 3: { this.my_phone_choose.setValue("053");break; }
+                        case 4: { this.my_phone_choose.setValue("054");break; }
+                    }
+                    this.my_phone_field.setText(UserClient.getInstance().getPhone().substring(3));
                 }
-                this.my_phone_field.setText(UserClient.getInstance().getPhone().substring(3));
             }
+            catch (Exception e){
+
+            }
+
             System.out.println("OrderController "+this.my_mail_field.getText());
             if(UserClient.getInstance().getMail()!=null && UserClient.getInstance().getMail()!="" && UserClient.getInstance().getMail()!="Defualt"){
                 this.my_mail_field.setText(UserClient.getInstance().getMail());

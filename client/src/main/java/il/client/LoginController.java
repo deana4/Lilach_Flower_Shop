@@ -87,7 +87,10 @@ public class LoginController extends ParentClass{
                     UserClient.getInstance().setId(event.getId());
                     switch(permission){
                         case 1: {UserClient.getInstance().setPriority(3); UserClient.getInstance().setPlan(permission); break;} //worker
-                        case 2: {UserClient.getInstance().setPriority(4); UserClient.getInstance().setPlan(permission); break;} //service worker
+                        case 2: {UserClient.getInstance().setPriority(4);
+                            UserClient.getInstance().setPlan(permission);
+                            UserClient.getInstance().setComplaintList(event.getComplainList());
+                            break;} //service worker
                         case 3: {UserClient.getInstance().setPriority(5); UserClient.getInstance().setPlan(permission); break;} //store manager
                         case 4: {UserClient.getInstance().setPriority(6); UserClient.getInstance().setPlan(permission); break;} //network manager
                         case 5:

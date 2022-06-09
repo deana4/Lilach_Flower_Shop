@@ -66,9 +66,7 @@ public class CatalogController extends ParentClass{
     private MainPageController main_page_holder;
 
 //    private LinkedList<ProductView> flowersFXML;
-    private HashMap<Integer,ProductView> productsControllers = new HashMap<Integer,ProductView>();
-    private HashMap<Integer,Node> nodesControllers = new HashMap<Integer,Node>();
-    private HashMap<Integer,Integer> indexToID = new HashMap<Integer,Integer>();
+    private HashMap<Integer,ProductView> productsControllers;
 
     public static List<Product> getFlowerlist() {
         return flowerlist;
@@ -115,8 +113,6 @@ public class CatalogController extends ParentClass{
                     try {
                         controller.setData(flowerlist.get(i));
                         productsControllers.put(i,controller);   //idiots
-                        nodesControllers.put(flowerlist.get(i).getId(),node);
-                        indexToID.put(i,flowerlist.get(i).getId());
                         MainPageController.getInstance().addColorToSystem(flowerlist.get(i).getColor());
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -138,6 +134,7 @@ public class CatalogController extends ParentClass{
                     gridPane.setMaxHeight(Region.USE_COMPUTED_SIZE);
 
                     GridPane.setMargin(node, new Insets(10));
+
                 }
                 if(col==3){
                     col=0;
@@ -163,8 +160,6 @@ public class CatalogController extends ParentClass{
         });
 
     }
-
-
 
     @FXML  // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException, ClassNotFoundException, InterruptedException {

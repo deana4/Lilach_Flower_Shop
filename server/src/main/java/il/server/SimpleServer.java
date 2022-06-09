@@ -81,6 +81,12 @@ public class SimpleServer extends AbstractServer {
         return listItems;
     }
 
+    public void sendItemsToAll(){
+        Message sendMessage = new Message("item catalog list");
+        sendMessage.setListItem(getAllItems(Product.class));
+        sendToAllClients(sendMessage);
+    }
+
 
     @Override
     protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
@@ -166,21 +172,27 @@ public class SimpleServer extends AbstractServer {
 
                 if (message.getMessage().equals("setNameItem")) {
                     CatalogControl.setName(message.getIdItem(), message.getNameProduct());
+                    sendItemsToAll();
                 }
                 if (message.getMessage().equals("setSaleItem")) {
                     CatalogControl.setSale(message.getIdItem(), message.isSale(), message.getDiscountPer());
+                    sendItemsToAll();
                 }
                 if (message.getMessage().equals("setPriceItem")) {
                     CatalogControl.setPrice(message.getIdItem(), message.getNewPrice());
+                    sendItemsToAll();
                 }
                 if (message.getMessage().equals("setTypeItem")) {
                     CatalogControl.setType(message.getIdItem(), message.getType());
+                    sendItemsToAll();
                 }
                 if (message.getMessage().equals("setColorItem")) {
                     CatalogControl.setColor(message.getIdItem(), message.getColor());
+                    sendItemsToAll();
                 }
                 if (message.getMessage().equals("deleteItem")) {
                     CatalogControl.deleteItem(message.getIdItem());
+                    sendItemsToAll();
                 }
                 if (message.getMessage().equals("cancelOrder")) {
     //                OrderControl.cancelOrder(message.getOrderID(),message.getTimeCancel(), message.getDateCancel());

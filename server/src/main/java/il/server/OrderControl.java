@@ -31,6 +31,17 @@ public class OrderControl {
         testDB.closeSession();
     }
 
+    public static void sendNewOrder(Order o){
+        try{
+            String title = "New order from Lilach Store";
+            String text = "Hey!, \n we receive you order number " + o.getId() + ",\n to "+o.getAddress()+".\n";
+            SendEmail.sendTo(o.getUser().getMail(),title,text);
+        }
+        catch (Exception e){
+
+        }
+    }
+
 
     public static void deliverdOrder(int orderId)  {
         testDB.openSession();
@@ -79,6 +90,7 @@ public class OrderControl {
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
+        sendNewOrder(order);
         return order;
     }
 

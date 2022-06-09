@@ -57,6 +57,9 @@ public class OrdersHistoryController {
 //        for(int i=0; i< items.size(); i++){
 //            System.out.println(items.get(i));
 //        } printing the orders
+        if(orders_table.getItems().size()!=0){
+            this.orders_table.getItems().clear();
+        } //?????????
         orders_table.setItems(UserClient.getInstance().getOrderList());
     }
 //

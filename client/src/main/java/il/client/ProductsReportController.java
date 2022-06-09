@@ -78,7 +78,7 @@ public class ProductsReportController {
     void initialize(){
         CatalogController controller = (CatalogController) MainPageController.getInstance().getController_map().get("Catalog");
         products = controller.getFlowerlist();
-        if(UserClient.getInstance().getPriority() == 3){
+        if(UserClient.getInstance().getPriority() == 5){
             this.store2_chooser.setVisible(false);
             this.start_date_store2.setVisible(false);
             this.end_date_store2.setVisible(false);

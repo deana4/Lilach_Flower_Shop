@@ -819,7 +819,8 @@ public class OrderController {
         }
         if(!this.elseOrderChecker.isSelected()) {this.reciver_name_field.setText(""); this.reciver_phone_field.setText("");}
         Store chosen_store = UserClient.getInstance().getStoreByAddress(this.store_chooser.getSelectedItem());
-        Order full_order = new Order(UserClient.getInstance().fromUserClientToUser(), chosen_store, this.date_picker.getText(), this.time_choose.getSelectedItem(), date_time[0],date_time[1], Double.parseDouble(this.sum_label.getText()), this.greeting_field.getText(),this.reciver_name_field.getText(), this.reciver_phone_field.getText()+this.reciver_phone_field.getText(),address);
+        String date_good_format = dtf.format(this.date_picker.getValue());
+        Order full_order = new Order(UserClient.getInstance().fromUserClientToUser(), chosen_store, date_good_format, this.time_choose.getSelectedItem(), date_time[0],date_time[1], Double.parseDouble(this.sum_label.getText()), this.greeting_field.getText(),this.reciver_name_field.getText(), this.reciver_phone_field.getText()+this.reciver_phone_field.getText(),address);
         for(int i=0; i<cart.size(); i++)
         {
             Product product = new Product(cart.get(i).getItem_name(), cart.get(i).getItem_price(), false, 0.0, null, null);

@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="order_first_pane" prefHeight="646.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.OrderController">
+<AnchorPane fx:id="order_first_pane" prefHeight="646.0" prefWidth="1240.0" styleClass="background-color" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.OrderController">
     <children>
         <AnchorPane fx:id="order_pane2" prefHeight="646.0" prefWidth="1240.0" />
         <AnchorPane fx:id="order_pane3" prefHeight="646.0" prefWidth="1240.0">
@@ -245,7 +245,7 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-            <Label layoutX="522.0" layoutY="20.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Order at Lilach">
+            <Label layoutX="378.0" layoutY="22.0" prefHeight="46.0" prefWidth="410.0" styleClass="Headers" stylesheets="@CSSfiles/Backgrounds.css" text="Order at Lilach">
                <font>
                   <Font size="34.0" />
                </font>

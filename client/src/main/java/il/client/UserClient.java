@@ -32,9 +32,13 @@ public class UserClient {
     private boolean isLogin = false;
     private boolean isWorker = false;
 
+    private int storeId;
+
     private ObservableList<ComplaintClient> complaintList  = FXCollections.observableArrayList();
     private ObservableList<OrderClient> orderList = FXCollections.observableArrayList();
     private List<Store> storesOfStore;
+    private LinkedList<Complain> complaintsEntity;
+    private LinkedList<Order> ordersEntity;
 
     private User UserServer = null;
 
@@ -291,6 +295,14 @@ public class UserClient {
 
     public LinkedList<User> getAllusers() { return allusers; }
 
+    public int getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(int storeId) {
+        this.storeId = storeId;
+    }
+
     public void setAllusers(LinkedList<User> allusers) {
         this.allusers = allusers;
         System.out.println("setAllusers in UserClient");
@@ -382,6 +394,14 @@ public class UserClient {
     public void setStores(LinkedList<Integer> stores) {
         this.stores = stores;
     }
+
+    public LinkedList<Complain> getComplaintsEntity() { return complaintsEntity; }
+
+    public void setComplaintsEntity(LinkedList<Complain> complaintsEntity) { this.complaintsEntity = complaintsEntity; }
+
+    public LinkedList<Order> getOrdersEntity() { return ordersEntity; }
+
+    public void setOrdersEntity(LinkedList<Order> ordersEntity) { this.ordersEntity = ordersEntity; }
 
     @Override
     public String toString() {

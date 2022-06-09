@@ -321,4 +321,6 @@ public class CatalogController extends ParentClass{
         root = fxmlLoader.load();
         return root;
     }
+
+
 }

@@ -102,7 +102,10 @@ public class LoginController extends ParentClass{
                     System.out.println("LoginController getPriority "+UserClient.getInstance().getPriority()+ "plan "+UserClient.getInstance().getPlan());
                     UserClient.getInstance().setPriority(permission);
                     UserClient.getInstance().setPassword(password);
+                    UserClient.getInstance().setStoreId(storeIDWork);
                     UserClient.getInstance().setStoresOfStore(event.getStoreList());
+                    UserClient.getInstance().setComplaintsEntity(complains);
+                    UserClient.getInstance().setOrdersEntity(orders);
                 }
                 else{
                     user = event.getUser();

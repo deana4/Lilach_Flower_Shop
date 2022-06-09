@@ -7,14 +7,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="646.0" prefWidth="976.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PeopleListController">
+<AnchorPane prefHeight="646.0" prefWidth="976.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PeopleListController">
    <children>
-      <AnchorPane fx:id="anchorpane_chooser" prefHeight="646.0" prefWidth="986.0">
+      <AnchorPane fx:id="anchorpane_chooser" prefHeight="656.0" prefWidth="986.0">
          <children>
-            <HBox alignment="CENTER" layoutX="273.0" layoutY="273.0" prefHeight="100.0" prefWidth="496.0" spacing="40.0">
+            <VBox alignment="CENTER" layoutX="357.0" layoutY="166.0" prefHeight="272.0" prefWidth="263.0" spacing="10.0">
                <children>
                   <MFXButton fx:id="userBTN" onAction="#UserBTNClicked" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="Users" textFill="#979797">
                      <font>
@@ -27,10 +27,10 @@
                      </font>
                   </MFXButton>
                </children>
-            </HBox>
+            </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorpane_clients" prefHeight="646.0" prefWidth="976.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
+      <AnchorPane fx:id="anchorpane_clients" prefHeight="656.0" prefWidth="986.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
          <children>
             <MFXLegacyTableView fx:id="people_table" layoutX="184.0" layoutY="154.0" prefHeight="453.0" prefWidth="609.0" styleClass="table-row-cell" stylesheets="@CSSfiles/MenubarCSS.css">
                <columns>
@@ -47,10 +47,10 @@
                </font>
             </Label>
             <MFXToggleButton fx:id="toggleWorker" disable="true" layoutX="429.0" layoutY="105.0" onMouseClicked="#workerToggleClicked" text="Is worker?" />
-            <MFXButton fx:id="go_back_userBTN" layoutX="50.0" layoutY="595.0" onAction="#GoBackUserClicked" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="go back" textFill="#979797" />
+            <MFXButton fx:id="go_back_userBTN" layoutX="64.0" layoutY="582.0" onAction="#GoBackUserClicked" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="go back" textFill="#515151" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorpane_employees" layoutX="10.0" layoutY="10.0" prefHeight="646.0" prefWidth="976.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
+      <AnchorPane fx:id="anchorpane_employees" prefHeight="656.0" prefWidth="986.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
          <children>
             <MFXLegacyTableView fx:id="employee_table" layoutX="184.0" layoutY="154.0" prefHeight="453.0" prefWidth="609.0" styleClass="table-row-cell" stylesheets="@CSSfiles/MenubarCSS.css">
                <columns>

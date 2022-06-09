@@ -17,6 +17,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public class App extends Application {
     private SimpleClient client = null;
@@ -25,10 +26,22 @@ public class App extends Application {
     public static int port = 3000;
 
     public static Stage AppStage;
+
+    public static void generateAddres(){
+        System.out.println("----Lilach GUI----");
+        Scanner myObj = new Scanner(System.in);
+        String init;
+        System.out.println("Server IP: ");
+        ip = myObj.nextLine();
+        System.out.println("Server port: ");
+        port = myObj.nextInt();
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
 
         try{
+            generateAddres();
             System.out.println("----Run Lilach----\nip: " + ip + ", port: "+port);
 
             client = SimpleClient.getClient();

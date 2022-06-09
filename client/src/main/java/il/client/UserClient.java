@@ -85,6 +85,7 @@ public class UserClient {
         this.phone = user.getPhone();
         this.mail = user.getMail();
         this.plan = user.getPriority();
+        this.credit = user.getCredit();
     }
 
     public User fromUserClientToUser(){
@@ -291,6 +292,10 @@ public class UserClient {
 
     public LinkedList<User> getAllusers() { return allusers; }
 
+    public void addCredit(double refund){
+        this.credit = this.credit + refund;
+    }
+
     public void setAllusers(LinkedList<User> allusers) {
         this.allusers = allusers;
         System.out.println("setAllusers in UserClient");
@@ -383,6 +388,13 @@ public class UserClient {
         this.stores = stores;
     }
 
+    public void addOrder(Order order){
+        this.orderList.add(new OrderClient(order));
+    }
+
+    public void resertLists(){
+        this.orderList.clear();
+    }
     @Override
     public String toString() {
         return "UserClient{" +

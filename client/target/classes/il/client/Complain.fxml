@@ -80,25 +80,29 @@
                   </MFXFontIcon>
                </graphic>
             </MFXButton>
-            <AnchorPane fx:id="complain_ancorpane3" layoutX="-10.0" prefHeight="398.0" prefWidth="643.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="complain_ancorpane3" layoutX="14.0" layoutY="108.0" prefHeight="398.0" prefWidth="643.0" styleClass="Dialog" stylesheets="@CSSfiles/Backgrounds.css" visible="false">
+         <children>
+            <VBox alignment="CENTER" layoutX="92.0" layoutY="72.0" prefHeight="258.0" prefWidth="443.0" spacing="20.0">
                <children>
-                  <Label layoutX="26.0" layoutY="108.0" prefHeight="141.0" prefWidth="591.0" text="We are sorry!" textFill="#46c913">
+                  <Label alignment="CENTER" prefHeight="65.0" prefWidth="379.0" text="We are sorry!" textFill="#46c913">
                      <font>
-                        <Font size="96.0" />
+                        <Font size="56.0" />
                      </font>
                   </Label>
-                  <Label layoutX="130.0" layoutY="249.0" prefHeight="17.0" prefWidth="414.0" text="We will handle your complain in 24 hours" textFill="#1e8a66">
+                  <Label alignment="CENTER" prefHeight="55.0" prefWidth="414.0" text="We will handle your complain in 24 hours" textFill="#1e8a66">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <MFXButton fx:id="closeComplainBTN" layoutX="308.0" layoutY="311.0" onAction="#CloseComplainBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Close" textFill="#979797">
+                  <MFXButton fx:id="closeComplainBTN" onAction="#CloseComplainBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Close" textFill="#979797">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </MFXButton>
                </children>
-            </AnchorPane>
+            </VBox>
          </children>
       </AnchorPane>
    </children>

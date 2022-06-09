@@ -74,7 +74,7 @@ public class ComplaintOrdersTabController {
             row.setOnMouseClicked(mouseEvent -> {
                         System.out.println(row.getItem());
                         try {
-                            compalintOrderScreen(row);
+                            if(row.getItem() != null){compalintOrderScreen(row);}
                         } catch (IOException | ParseException e) {
                             e.printStackTrace();
                         }

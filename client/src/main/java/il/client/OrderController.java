@@ -169,7 +169,7 @@ public class OrderController {
 
     private boolean isGreeting;
 
-    private double extra_for_delivery=30.0;
+    private double extra_for_delivery= 30.0;
 
     @FXML
     private Label error_label;
@@ -204,11 +204,31 @@ public class OrderController {
         this.reciver_phone_choose.getItems().add("052");
         this.reciver_phone_choose.getItems().add("053");
         this.reciver_phone_choose.getItems().add("054");
-        if(UserClient.getInstance().getPlan() == 1){ //specific store membership
-            String store_name = UserClient.getInstance().getStoresOfStore().get(0).getAddress();
-            this.store_chooser.setValue(store_name);
-            this.store_chooser.setDisable(true);
-        }
+
+//        if(UserClient.getInstance().getPlan() == 1){ //specific store membership
+//            String store_name = UserClient.getInstance().getStoresOfStore().get(0).getAddress();
+//            this.store_chooser.setValue(store_name);
+//            this.store_chooser.setDisable(true);
+//        }
+
+//        List<String> stores = new LinkedList<String>();
+//        stores.add("Haifa");
+//        stores.add("Tel Aviv");
+//        stores.add("Jerusalem");
+//
+//        if(UserClient.getInstance().getPlan() == 1){
+//            if(!store_chooser.getItems().contains(UserClient.getInstance().getStoresOfStore().get(0).getAddress())){
+//                this.store_chooser.getItems().add(UserClient.getInstance().getStoresOfStore().get(0).getAddress());
+//            }
+//        }else if(UserClient.getInstance().getPlan()>1){
+//            for(int i=0; i<3; i++) {
+//                if(!store_chooser.getItems().contains(stores.get(i))){
+//                    this.store_chooser.getItems().add(stores.get(i));
+//                }
+//            }
+//        }
+
+
         //init stores in catalog
 
         //if the user registered to spesific store he can only order from this store!!!!!!!!!!!!!!!!!
@@ -218,7 +238,7 @@ public class OrderController {
 //        }
 
         this.greeting_field.setWrapText(true);
-        this.sum_label.setText("0.00"); //change acoording to the cart
+        this.sum_label.setText("0.0"); //change acoording to the cart
         //this.cart_controller.LoadCart();
 
         //bring the user details (name, credit card, mail-if exist, phone-if exist, address-if exist, plan, discount-if exist) as a field
@@ -332,9 +352,6 @@ public class OrderController {
     void deliveryClicked(MouseEvent event) {
         counter_delivery_clicks++;
         if(counter_delivery_clicks % 2 == 1){
-
-
-
             double new_sum=Double.parseDouble(this.sum_label.getText())+extra_for_delivery;
             this.sum_label.setText(String.valueOf(new_sum));
             isDelivery=true;
@@ -812,7 +829,10 @@ public class OrderController {
         }
         if(!this.elseOrderChecker.isSelected()) {this.reciver_name_field.setText(""); this.reciver_phone_field.setText("");}
         Store chosen_store = UserClient.getInstance().getStoreByAddress(this.store_chooser.getSelectedItem());
-        Order full_order = new Order(UserClient.getInstance().fromUserClientToUser(), chosen_store, this.date_picker.getText(), this.time_choose.getSelectedItem(), date_time[0],date_time[1], Double.parseDouble(this.sum_label.getText()), this.greeting_field.getText(),this.reciver_name_field.getText(), this.reciver_phone_field.getText()+this.reciver_phone_field.getText(),address);
+
+        String date_good_format = dtf.format(this.date_picker.getValue());
+
+        Order full_order = new Order(UserClient.getInstance().fromUserClientToUser(), chosen_store, date_good_format, this.time_choose.getSelectedItem(), date_time[0],date_time[1], Double.parseDouble(this.sum_label.getText()), this.greeting_field.getText(),this.reciver_name_field.getText(), this.reciver_phone_field.getText()+this.reciver_phone_field.getText(),address,false);
         for(int i=0; i<cart.size(); i++)
         {
             Product product = new Product(cart.get(i).getItem_name(), cart.get(i).getItem_price(), false, 0.0, null, null);
@@ -832,6 +852,10 @@ public class OrderController {
             OrderControl.newOrder(full_order, 2, UserClient.getInstance().getId());
         if(store_chooser.getSelectedItem().equals("Jerusalem"))
             OrderControl.newOrder(full_order, 3, UserClient.getInstance().getId());
+
+        UserClient.getInstance().addOrder(full_order);
+        MainPageController.getInstance().AddToCartRefresh();
+        MainPageController.getInstance().MyAccountRefresh();
     }
 
     /* gets and sets*/

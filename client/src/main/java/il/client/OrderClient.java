@@ -24,6 +24,7 @@ public class OrderClient {
     private double sum;
     private boolean isDelivery;
     private String nameOrdering;
+    private boolean isCanceled = false;
 
     @FXML
     private MFXButton complaint;
@@ -244,6 +245,14 @@ public class OrderClient {
     }
 
     /* end gets and sets*/
+
+    public boolean isCanceled() {
+        return isCanceled;
+    }
+
+    public void setCanceled(boolean canceled) {
+        isCanceled = canceled;
+    }
 
     @Override
     public String toString() {

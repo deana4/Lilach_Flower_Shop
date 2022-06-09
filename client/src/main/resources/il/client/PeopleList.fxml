@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="646.0" prefWidth="976.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PeopleListController">
+<AnchorPane prefHeight="656.0" prefWidth="976.0" style="-fx-background-color: transparent;" styleClass="AnchorStyle" stylesheets="@CSSfiles/Backgrounds.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.client.PeopleListController">
    <children>
       <AnchorPane fx:id="anchorpane_chooser" prefHeight="656.0" prefWidth="986.0">
          <children>
@@ -67,7 +67,7 @@
                </font>
             </Label>
             <MFXToggleButton fx:id="toggleWorker1" disable="true" layoutX="429.0" layoutY="105.0" onMouseClicked="#workerToggleClicked" selected="true" styleClass="mfx-toggle-button" stylesheets="@CSSfiles/css/ChecksRadiosToggles.css" text="Is worker?" />
-            <MFXButton fx:id="go_back_workerBTN" layoutX="54.0" layoutY="595.0" onAction="#GoBackWorkerClicked" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="go back" textFill="#979797" />
+            <MFXButton fx:id="go_back_workerBTN" layoutX="85.0" layoutY="582.0" onAction="#GoBackWorkerClicked" styleClass="logout-btn" stylesheets="@CSSfiles/Buttons.css" text="go back" textFill="#979797" />
          </children>
       </AnchorPane>
    </children>

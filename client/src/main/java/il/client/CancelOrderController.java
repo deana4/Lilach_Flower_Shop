@@ -2,6 +2,8 @@ package il.client;
 
 import il.client.controls.OrderControl;
 import il.entities.Order;
+import il.client.controls.OrderControl;
+import il.entities.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.ObservableList;
@@ -14,6 +16,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class CancelOrderController {
@@ -78,10 +84,11 @@ public class CancelOrderController {
 
     @FXML
     void YesBTNClicked(ActionEvent event) throws IOException {
-//        orderControl.cancelOrder(orderID);
+        OrderControl.cancelOrder(this.this_order.getThis_id(),this.refund); //doesnt deleting
         this.cancel_order_anchorpane2.setVisible(false);
         this.cancel_order_anchorpane3.setVisible(true);
-
+        System.out.println(UserClient.getInstance().getCredit());
+//        this.stage.close();
     }
 
     @FXML
@@ -90,7 +97,8 @@ public class CancelOrderController {
         ObservableList<OrderClient> order_list = UserClient.getInstance().getOrderList();
         for(int i=0; i<order_list.size(); i++){
             if(Integer.parseInt(this.order_num_filed.getText()) == order_list.get(i).getThis_id()){
-                order_list.remove(i);
+//                order_list.remove(i);
+                order_list.get(i).setCanceled(true);
                 break;
             }
         }
@@ -100,8 +108,11 @@ public class CancelOrderController {
 
         OrderControl.cancelOrder(Integer.parseInt(this.order_num_filed.getText()),refund);
 
+        System.out.println(Integer.parseInt(this.order_num_filed.getText()));
         UserClient.getInstance().removeOrderById(Integer.parseInt(this.order_num_filed.getText()));
-
+        UserClient.getInstance().addCredit(refund);
+        MyAccountController.getInstance().setCreditTextField(UserClient.getInstance().getCredit());
+        this.stage.close();
       //  CancelOrdersTabController.getInstance().RemoveOrderById(Integer.parseInt(this.order_num_filed.getText()));
     }
 
@@ -112,6 +123,13 @@ public class CancelOrderController {
         double order_sum = order.getSum();
         System.out.println("CancelOrderController "+order_sum);
 
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+//        LocalDate receiveDate = LocalDate.parse(order.getOrderReceiveDate());
+//        LocalTime receiveTime = LocalTime.parse(order.getOrderReceiveTime());
+
+//        String dateAndTimeOrderReceiver = formatter.format(receiveDate) + formatter.format(receiveTime);
+//        System.out.println(dateAndTimeOrderReceiver);
+//        LocalDateTime dateTime = LocalDateTime.of(receiveDate,receiveTime);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         String order_receiver_date = order.getOrderReceiveDate();
         String order_receiver_time = order.getOrderReceiveTime();
@@ -123,7 +141,8 @@ public class CancelOrderController {
 
         Date cancelOrder = new Date();
 
-        long difference_In_Time =  dtOrderReceiver.getTime() - cancelOrder.getTime();
+        long difference_In_Time =  cancelOrder.getTime() - dtOrderReceiver.getTime();
+        System.out.println(difference_In_Time);
         long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
         long difference_In_Hours = (difference_In_Time / (1000 * 60 * 60)) % 24;
         long difference_In_Days = (difference_In_Time / (1000 * 60 * 60 * 24)) % 365;

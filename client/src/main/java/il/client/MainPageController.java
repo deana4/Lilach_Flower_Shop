@@ -1,6 +1,7 @@
 package il.client;
 
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import il.client.controls.LogInControl;
 import il.entities.Store;
+import il.entities.User;
 import io.github.palexdev.materialfx.font.MFXFontIcon;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -19,14 +21,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.json.JSONException;
 
-public class MainPageController extends ParentClass {     //This is a singleton Class which provides the system abilities of changing screens, refresh the system etc.
+import javax.swing.*;
 
+public class MainPageController extends ParentClass {
+//    private RepaintManager rm;     //This is a singleton Class which provides the system abilities of changing screens, refresh the system etc.
+//    private Dimension dim;
 
     public class MyThread extends Thread{
 
@@ -34,8 +40,8 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         public void run(){
             System.out.println("running in thread");
             try {
-                initButtons();
                 initFunction();
+                initButtons();
                 MainPageController.getInstance().login_btn.setDisable(false);
                 MainPageController.getInstance().register_btn.setDisable(false);
                 MainPageController.getInstance().home_button.setDisable(false);
@@ -101,6 +107,8 @@ public class MainPageController extends ParentClass {     //This is a singleton 
     @FXML
     private MFXFontIcon alwaysOnTopIcon;
 
+    private Scene scence;
+
     private ObservableList<String> colors = FXCollections.observableArrayList(); //colors in the system
 
     private HashMap<String, Parent> root_map = new HashMap<String, Parent>();  //Hashmap of roots by names
@@ -109,7 +117,7 @@ public class MainPageController extends ParentClass {     //This is a singleton 
 
     private UserClient user;
 
-    public static List<Store> allStores;
+    public static List<Store> allStores = null;
 
     private static MainPageController instance = null;
 
@@ -124,15 +132,22 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         user = UserClient.getInstance();
     }
 
+    void MainPageRefresh() throws IOException {
+        java.lang.System.gc();//  % garbage-collect
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MainPage.fxml"));
+        Parent mainLayout = fxmlLoader.load();
+        Scene scene = new Scene(mainLayout, 1300, 800);
+        this.stage.setScene(scene);
+    }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException, ClassNotFoundException, InterruptedException, JSONException {
 //        initFunction();
+        this.stage = App.getAppStage();
         MyThread thread = new MyThread();
         thread.start();
-        LoadFirstPage();
         System.out.println("This code is outside of the thread");
-
+        LoadFirstPage();
     }
 
 
@@ -174,11 +189,25 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         FXMLLoader fxmlLoader;
         {
             fxmlLoader = new FXMLLoader();
+            var = getClass().getResource("Catalog.fxml");
+            fxmlLoader.setLocation(var);
+            root = fxmlLoader.load();
+            CatalogController controller = fxmlLoader.getController();
+            root_map.remove("Catalog");
+            root_map.put("Catalog",root);
+            controller_map.remove("Catalog");
+            controller_map.put("Catalog",controller);
+            ((CatalogController)controller_map.get("Catalog")).setMain_page_holder(this);
+        }
+        {
+            fxmlLoader = new FXMLLoader();
             var = getClass().getResource("AddToCart.fxml");
             fxmlLoader.setLocation(var);
             root = fxmlLoader.load();
             AddToCartController controller = fxmlLoader.getController();
+            root_map.remove("Cart");
             root_map.put("Cart",root);
+            controller_map.remove("Cart");
             controller_map.put("Cart",controller);
             ((AddToCartController)controller_map.get("Cart")).setMain_page_holder(this);
         }
@@ -188,30 +217,13 @@ public class MainPageController extends ParentClass {     //This is a singleton 
             fxmlLoader.setLocation(var);
             root = fxmlLoader.load();
             LoginController controller = fxmlLoader.getController();
+            root_map.remove("Login");
             root_map.put("Login",root);
+            controller_map.remove("Login");
             controller_map.put("Login",controller);
             ((LoginController)controller_map.get("Login")).setMain_page_holder(this);
         }
-        {
-            fxmlLoader = new FXMLLoader();
-            var = getClass().getResource("Catalog.fxml");
-            fxmlLoader.setLocation(var);
-            root = fxmlLoader.load();
-            CatalogController controller = fxmlLoader.getController();
-            root_map.put("Catalog",root);
-            controller_map.put("Catalog",controller);
-            ((CatalogController)controller_map.get("Catalog")).setMain_page_holder(this);
-        }
-        {
-            fxmlLoader = new FXMLLoader();
-            var = getClass().getResource("Order.fxml");
-            fxmlLoader.setLocation(var);
-            root = fxmlLoader.load();
-            OrderController controller = fxmlLoader.getController();
-            root_map.put("Order",root);
-            controller_map.put("Order",controller);
-            ((OrderController)controller_map.get("Order")).setMain_page_holder(this);
-        }
+
         {
             fxmlLoader = new FXMLLoader();
             var = getClass().getResource("Home.fxml");
@@ -226,13 +238,17 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         }
         {
             fxmlLoader = new FXMLLoader();
-            var = getClass().getResource("Register.fxml");
+            var = getClass().getResource("Order.fxml");
             fxmlLoader.setLocation(var);
             root = fxmlLoader.load();
-            RegisterController controller = fxmlLoader.getController();
-            root_map.put("Register",root);
-            controller_map.put("Register",controller);
-            ((RegisterController)controller_map.get("Register")).setMain_controller(this);
+            OrderController controller = fxmlLoader.getController();
+            if(!root_map.containsKey("Order")){
+                root_map.put("Order",root);
+            }
+            if(!controller_map.containsKey("Order")) {
+                controller_map.put("Order", controller);
+            }
+            ((OrderController)controller_map.get("Order")).setMain_page_holder(this);
         }
 
     }
@@ -361,7 +377,7 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         }
     }
 
-    public ObservableList<String> getColors(){
+    public ObservableList<String> getColors(){ ///check this loop!!!!!!!!!!!!!!!!!!!!!
         ObservableList<String> noDuplicateColors = FXCollections.observableArrayList();
         for(String color: colors){
             if(!noDuplicateColors.contains(color)){
@@ -369,6 +385,13 @@ public class MainPageController extends ParentClass {     //This is a singleton 
             }
         }
         return noDuplicateColors;
+    }
+
+    public Scene getScence() {
+        return scence;
+    }
+    public void setScene(Scene scene){
+        this.scence=scene;
     }
 
     public Store getStore(String store){
@@ -414,7 +437,6 @@ public class MainPageController extends ParentClass {     //This is a singleton 
 
     /*-------------------------------------- Special Functions --------------------------------------*/
     public void UpdateMainController() throws IOException { //check permissions
-
         if(this.isLogin()){
             if(!UserClient.getInstance().isWorker()) {
                 this.mycart_btn.setVisible(true);
@@ -434,15 +456,19 @@ public class MainPageController extends ParentClass {     //This is a singleton 
     /*  ---------------------------------------  Screen Loaders  --------------------------------------- */
     public void Refresh() throws IOException {
         System.out.println("REFRESHING SYSTEM START");
-        Parent root;
-        URL var;
-        FXMLLoader fxmlLoader;
-        LoginRefresh();
-        AddToCartRefresh();
-        RegisterRefresh();
-        CatalogRefresh();
-        OrderRefresh();
-        HomeRefresh();
+//        Parent root;
+//        URL var;
+//        FXMLLoader fxmlLoader;
+
+//        LoginRefresh();
+//        AddToCartRefresh();
+//        RegisterRefresh();
+//        OrderRefresh();
+//        HomeRefresh();
+//        MyAccountRefresh();
+//        CatalogRefresh();
+        MainPageRefresh();
+
         System.out.println("REFRESHING SYSTEM FINISHED");
         LoadHomePage();
     }
@@ -460,6 +486,21 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         controller_map.remove("Login");
         controller_map.put("Login",controller);
         ((LoginController)controller_map.get("Login")).setMain_page_holder(this);
+    }
+    public void MyAccountRefresh() throws IOException {
+        Parent root;
+        URL var;
+        FXMLLoader fxmlLoader;
+        fxmlLoader = new FXMLLoader();
+        var = getClass().getResource("MyAccount.fxml");
+        fxmlLoader.setLocation(var);
+        root = fxmlLoader.load();
+        MyAccountController controller = fxmlLoader.getController();
+        root_map.remove("MyAccount");
+        root_map.put("MyAccount",root);
+        controller_map.remove("MyAccount");
+        controller_map.put("MyAccount",controller);
+        ((MyAccountController)controller_map.get("MyAccount")).setMain_page_holder(this);
     }
     public void AddToCartRefresh() throws IOException {
         Parent root;
@@ -513,6 +554,7 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         controller_map.put("Order",controller);
         ((OrderController)controller_map.get("Order")).setMain_page_holder(this);
     }
+
     public void HomeRefresh() throws IOException {
         Parent root;
         URL var;
@@ -537,11 +579,27 @@ public class MainPageController extends ParentClass {     //This is a singleton 
         ((AddToCartController)controller_map.get("Cart")).setMain_page_holder(this);
         this.main_first_load_pane.getChildren().addAll(root_map.get("Cart"));
     }
+
     public void LoadRegisterPage() throws IOException {
+        FXMLLoader fxmlLoader;
+        URL var;
+        Parent root;
+        fxmlLoader = new FXMLLoader();
+        var = getClass().getResource("Register.fxml");
+        fxmlLoader.setLocation(var);
+        root = fxmlLoader.load();
+        RegisterController controller = fxmlLoader.getController();
+        if(!root_map.containsKey("Register")){
+            root_map.put("Register",root);
+        }
+        if(!controller_map.containsKey("Register")){
+            controller_map.put("Register",controller);
+        }
         this.main_first_load_pane.getChildren().clear();
         ((RegisterController)controller_map.get("Register")).setMain_controller(this);
-        this.main_first_load_pane.getChildren().addAll(root_map.get("Register"));
+        this.main_first_load_pane.getChildren().addAll(root);
     }
+
     public void LoadOrderPage() throws IOException {
         this.main_first_load_pane.getChildren().clear();
         ((OrderController)controller_map.get("Order")).setMain_page_holder(this);

@@ -72,13 +72,31 @@
 .rest{
     -fx-background-color: linear-gradient(to bottom right, lightpink,lightblue);
     /*-fx-alignment: center;*/
+    -fx-text-fill: #979797;
     -fx-border-color: linear-gradient(to bottom right, lightpink, lightblue,lightpink,lightblue);
+}
+
+.creditUser{
+    -fx-background-color: linear-gradient(to bottom right, lightpink,lightblue);
+    /*-fx-alignment: center;*/
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+    -fx-border-color: linear-gradient(to bottom right, lightpink, lightblue,lightpink,lightblue);
+}
+.creditUser .floating-text {
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
 }
 
 .restTF{
     /*-fx-background-color: linear-gradient(to bottom right, lightpink,lightblue);*/
     /*-fx-alignment: center;*/
+    -fx-text-fill: #979797;
+    -fx-prompt-text-fill: #979797;
     -fx-border-color: linear-gradient(to bottom right, lightpink, lightblue,lightpink,lightblue);
+}
+.restTF .floating-text {
+    -fx-text-fill: #979797;
 }
 
 .HeadersNoBackground{

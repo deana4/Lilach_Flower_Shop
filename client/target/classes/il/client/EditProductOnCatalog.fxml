@@ -35,9 +35,9 @@
                <children>
                   <MFXTextField fx:id="ImageURL" allowEdit="false" floatMode="BORDER" floatingText="Image URL" prefHeight="38.0" prefWidth="304.0" promptText="Image URL" styleClass="restTF" stylesheets="@CSSfiles/css/TextFields.css" />
                   <MFXButton fx:id="fileBtn" onAction="#getFile" text="Bring File" />
-                  <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="451.0" spacing="10.0">
+                  <HBox alignment="CENTER" prefHeight="71.0" prefWidth="451.0" spacing="10.0">
                      <children>
-                        <ImageView fx:id="productImage" fitHeight="128.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="productImage" fitHeight="128.0" fitWidth="242.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                   <MFXButton fx:id="image_apply_btn" onAction="#ImageBTNClicked" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Apply" />

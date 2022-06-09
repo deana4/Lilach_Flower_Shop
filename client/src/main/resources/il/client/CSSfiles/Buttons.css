@@ -21,6 +21,7 @@
     -fx-background-color: transparent;
     -fx-border-radius: 60px;
     -fx-background-radius: 5em;
+    -fx-text-fill: #979797;
 }
 .nav-buttons:hover{
     -fx-background-color: linear-gradient(to bottom right, lightpink, lightblue);

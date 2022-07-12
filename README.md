@@ -6,7 +6,7 @@ Database - MySQL.
 Main Features:
 * User Interface and permission levels.
 * Permissions Management.
-* Online Database refreshment.
+* Online GUI refreshment.
 * Products & Users modifying abillity.
 
 # How to run the Application?

@@ -65,9 +65,7 @@ public class OrderControl {
         testDB.session.flush();
         testDB.session.getTransaction().commit(); // Save everything.
         testDB.closeSession();
-
     }
-
 
 
     public static Order newOrder(Order order, int storeID, int userID) throws IOException {
@@ -117,4 +115,6 @@ public class OrderControl {
         }
         return c;
     }
+
+
 }

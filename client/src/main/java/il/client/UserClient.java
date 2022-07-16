@@ -1,6 +1,8 @@
 package il.client;
 
+import com.mysql.cj.xdevapi.Client;
 import il.client.DiffClasses.ComplaintClient;
+import il.client.controls.OrderControl;
 import il.entities.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -152,7 +154,9 @@ public class UserClient {
 
     public void setOrderList(List<Order> orders){
         for(int i=0; i<orders.size(); i++){
-            orderList.add(new OrderClient(orders.get(i)));
+            if(!orders.get(i).isCanceled()){
+                orderList.add(new OrderClient(orders.get(i)));
+            }
         }
     }
 

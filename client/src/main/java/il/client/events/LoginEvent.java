@@ -136,6 +136,11 @@ public class LoginEvent {
     }
 
     public LinkedList<Order> getOrderList() {
+        for(int i = 0;i<orderList.size();i++){
+            if(orderList.get(i).isCanceled()){
+                orderList.remove(i);
+            }
+        }
         return orderList;
     }
 

@@ -12,5 +12,5 @@ Main Features:
 # How to run the Application?
 1. Clean & Install with Maven saved configuration called 'Lilach CI'.
 2. Run the 'Server' configuration.
-3. Change the name and password of the file for the Database's details you're using (MySQL).
+3. Change the details according to the instruction.
 4. Run the 'Client' configuration.

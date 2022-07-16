@@ -210,6 +210,18 @@ public class UserClient {
         this.credit = credit;
     }
 
+    public boolean reduceCredit(double credit){
+        if(this.credit - credit < 0){
+            return false;
+        }
+        this.credit = this.credit - credit;
+        return true;
+    }
+
+    public void addCredit(double refund){
+        this.credit = this.credit + refund;
+    }
+
     public void setPosition(String position) {
         this.position = position;
     }
@@ -295,10 +307,6 @@ public class UserClient {
     public void setEmployees(LinkedList<Employee> employees) { this.employees = employees; }
 
     public LinkedList<User> getAllusers() { return allusers; }
-
-    public void addCredit(double refund){
-        this.credit = this.credit + refund;
-    }
 
     public int getStoreId() {
         return storeId;
@@ -417,6 +425,11 @@ public class UserClient {
     public void setOrdersEntity(LinkedList<Order> ordersEntity) { this.ordersEntity = ordersEntity; }
 
     public void addOrder(Order order){
+        for(int i = 0 ;i <this.orderList.size(); i++){
+            if(this.orderList.get(i).getThis_id() == order.getId()){
+                return;
+            }
+        }
         this.orderList.add(new OrderClient(order));
     }
 

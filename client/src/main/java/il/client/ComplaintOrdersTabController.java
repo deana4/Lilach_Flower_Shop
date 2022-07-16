@@ -55,10 +55,12 @@ public class ComplaintOrdersTabController {
         instance = this;
         TableInitializeFields();
         items = UserClient.getInstance().getOrderList();
-//        for(int i=0; i< items.size(); i++){
-//            System.out.println(items.get(i));
-//        } printing the orders
-        complaint_order_table.setItems(UserClient.getInstance().getOrderList());
+        for(int i =0; i<items.size();i++){
+            if(items.get(i).isCanceled()){
+                items.remove(i);
+            }
+        }
+        complaint_order_table.setItems(items);
     }
     //
     public void TableInitializeFields() {

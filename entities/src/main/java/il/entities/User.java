@@ -259,6 +259,14 @@ public class User implements Serializable {
         complain.setUser(this);
     }
 
+    public void removeOrderByID(int orderID){
+        for(Order order : listOrders){
+            if(order.getId() == orderID){
+                this.listOrders.remove(order);
+            }
+        }
+    }
+
     public void removeComplain(Complain complain){
         listComplains.remove(complain);
     }

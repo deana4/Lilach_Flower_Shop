@@ -61,9 +61,8 @@ public class MyAccountController{
     @FXML
     void initialize() throws IOException {
         creditTextField.setText(String.valueOf(UserClient.getInstance().getCredit()));
-        initializeLoader();
         initFunction();
-
+        initializeLoader();
     }
 
     private void initializeLoader() {

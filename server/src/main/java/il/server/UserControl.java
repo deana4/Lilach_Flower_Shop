@@ -57,6 +57,23 @@ public class UserControl {
         testDB.closeSession();
     }
 
+    public static void setCredit(int userID , double credit) {
+        testDB.openSession();
+        User user = testDB.session.get(User.class, userID);
+        user.setCredit(credit);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
+    public static void removeOrder(int userID, int orderID){
+        User user = testDB.session.get(User.class, userID);
+        user.removeOrderByID(orderID);
+        testDB.session.flush();
+        testDB.session.getTransaction().commit(); // Save everything.
+        testDB.closeSession();
+    }
+
     public static String setAccountStatus (int userID, int accountStatus, boolean isWorker, LinkedList<User> users) {
         if (isWorker)
             return "Error: You send employee instead user";

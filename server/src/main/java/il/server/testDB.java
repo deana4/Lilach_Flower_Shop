@@ -25,13 +25,13 @@ public class testDB {
             configuration.setProperty("hibernate.hbm2ddl.auto", "create");
         else
             configuration.setProperty("hibernate.hbm2ddl.auto", "update");
-        configuration.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
-        configuration.setProperty("hibernate.show-sql", "true");
-        configuration.setProperty("hibernate.connection.username", "root");
-        configuration.setProperty("hibernate.connection.timezone", "UTC");
-        configuration.setProperty("hibernate.connection.serverTimezone", "UTC");
-        configuration.setProperty("spring.jpa.hibernate.ddl-auto", "create");
-        configuration.addAnnotatedClass(Product.class).addAnnotatedClass(User.class).addAnnotatedClass(Complain.class).addAnnotatedClass(Order.class)
+            configuration.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
+            configuration.setProperty("hibernate.show-sql", "true");
+            configuration.setProperty("hibernate.connection.username", "root");
+            configuration.setProperty("hibernate.connection.timezone", "UTC");
+            configuration.setProperty("hibernate.connection.serverTimezone", "UTC");
+            configuration.setProperty("spring.jpa.hibernate.ddl-auto", "create");
+            configuration.addAnnotatedClass(Product.class).addAnnotatedClass(User.class).addAnnotatedClass(Complain.class).addAnnotatedClass(Order.class)
                 .addAnnotatedClass(Employee.class).addAnnotatedClass(Store.class).addAnnotatedClass(SystemAdmin.class)
                 .addAnnotatedClass(StoreEmployee.class).addAnnotatedClass(NetworkManger.class).addAnnotatedClass(CustomerService.class)
                 .addAnnotatedClass(BranchManager.class).addAnnotatedClass(CartProduct.class);

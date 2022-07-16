@@ -78,16 +78,9 @@ public class Message implements Serializable {
 
     String address;
 
-
-
     User user;
 
-
-
     Employee employee;
-
-
-
 
     int permision;
 

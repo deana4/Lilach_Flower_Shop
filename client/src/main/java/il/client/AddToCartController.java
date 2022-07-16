@@ -251,7 +251,7 @@ public class AddToCartController{
                 order_controller.setSum_label(Double.toString(((total_sum+total_sum_custom) * 0.9) - UserClient.getInstance().getCredit()));
             }
             else{
-                order_controller.setSum_label(Double.toString((total_sum+total_sum_custom)- UserClient.getInstance().getCredit()));
+                order_controller.setSum_label(Double.toString((total_sum+total_sum_custom)));
             }
             OrderController.getInstance().setCart(this.items);
             OrderController.getInstance().setCustomCart(this.customItems);

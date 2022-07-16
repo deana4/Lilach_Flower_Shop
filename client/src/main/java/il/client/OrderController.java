@@ -1,6 +1,7 @@
 package il.client;
 
 import il.client.controls.OrderControl;
+import il.client.controls.UserControl;
 import il.client.events.OrderEvent;
 import il.entities.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -217,34 +218,8 @@ public class OrderController {
             this.store_chooser.setDisable(true);
         }
 
-//        List<String> stores = new LinkedList<String>();
-//        stores.add("Haifa");
-//        stores.add("Tel Aviv");
-//        stores.add("Jerusalem");
-//
-//        if(UserClient.getInstance().getPlan() == 1){
-//            if(!store_chooser.getItems().contains(UserClient.getInstance().getStoresOfStore().get(0).getAddress())){
-//                this.store_chooser.getItems().add(UserClient.getInstance().getStoresOfStore().get(0).getAddress());
-//            }
-//        }else if(UserClient.getInstance().getPlan()>1){
-//            for(int i=0; i<3; i++) {
-//                if(!store_chooser.getItems().contains(stores.get(i))){
-//                    this.store_chooser.getItems().add(stores.get(i));
-//                }
-//            }
-//        }
-
-
-        //init stores in catalog
-
-        //if the user registered to spesific store he can only order from this store!!!!!!!!!!!!!!!!!
-//        if(user.getplan()=="Store"){
-//            this.store_chooser.setValue(user.getStore());
-//            this.store_chooser.setDisable(true);
-//        }
-
         this.greeting_field.setWrapText(true);
-        this.sum_label.setText("0.0"); //change acoording to the cart
+        this.sum_label.setText("0.0"); //change according to the cart
         //this.cart_controller.LoadCart();
 
         //bring the user details (name, credit card, mail-if exist, phone-if exist, address-if exist, plan, discount-if exist) as a field
@@ -271,34 +246,20 @@ public class OrderController {
                 counter--;
                // return;
             }
-//            else {
-//                System.out.println("because of else we accept");
-//                correctOrder();
-//            }
         }
         if(isGreeting){
             int counter_greeting = checkGreeting();
             if(counter_greeting!=1){
                 this.error_label.setVisible(true);
                 counter--;
-                //return;
             }
-//            else {
-//                System.out.println("because of greeting we accept");
-//                correctOrder();
-//            }
         }
         if(isDelivery){
             int counter_delivery = checkDelivery();
             if(counter_delivery!=5){
                 this.error_label.setVisible(true);
                 counter--;
-                //return;
             }
-//            else {
-//                System.out.println("because of delivery we accept");
-//                correctOrder();
-//            }
         }
         if(counter_general!=8 || counter!=0){
             this.error_label.setVisible(true);
@@ -863,29 +824,22 @@ public class OrderController {
         String pickStore = store_chooser.getSelectedItem();
 
         for(Store s: MainPageController.allStores){
-            if(s.getAddress().equals(pickStore))
+            if(s.getAddress().equals(pickStore)) {
                 OrderControl.newOrder(full_order, s.getId(), UserClient.getInstance().getId());
+            }
         }
-//
-//        if(store_chooser.getSelectedItem().equals("Haifa"))
-//            OrderControl.newOrder(full_order, 1, UserClient.getInstance().getId());
-//        if(store_chooser.getSelectedItem().equals("Tel Aviv"))
-//            OrderControl.newOrder(full_order, 2, UserClient.getInstance().getId());
-//        if(store_chooser.getSelectedItem().equals("Jerusalem"))
-//            OrderControl.newOrder(full_order, 3, UserClient.getInstance().getId());
-//        if(store_chooser.getSelectedItem().equals("Tel"))
-//            OrderControl.newOrder(full_order, 3, UserClient.getInstance().getId());
-//        if(store_chooser.getSelectedItem().equals("Jerusalem"))
-//            OrderControl.newOrder(full_order, 3, UserClient.getInstance().getId());
-//        if(store_chooser.getSelectedItem().equals("Jerusalem"))
-//            OrderControl.newOrder(full_order, 3, UserClient.getInstance().getId());
 
-
+        if(UserClient.getInstance().reduceCredit(full_order.getSum())){
+            UserControl.setCredit(UserClient.getInstance().getId(),UserClient.getInstance().getCredit());
+        }else{
+            System.out.println("In Order Controller - Paying with VISA | Credit didn't charged.");
+        }
     }
 
     @Subscribe
-    public void compliteNewOrder(OrderEvent event){
+    public void completeNewOrder(OrderEvent event){
         Platform.runLater(()-> {
+            System.out.println("Im Subscribing complete in OrderController");
             UserClient.getInstance().addOrder(event.getOrder());
             try {
                 MainPageController.getInstance().AddToCartRefresh();

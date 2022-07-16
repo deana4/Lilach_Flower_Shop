@@ -1,6 +1,7 @@
 package il.client;
 
 import il.client.controls.OrderControl;
+import il.client.controls.UserControl;
 import il.entities.Order;
 import il.client.controls.OrderControl;
 import il.entities.User;
@@ -85,9 +86,12 @@ public class CancelOrderController {
     @FXML
     void YesBTNClicked(ActionEvent event) throws IOException {
         OrderControl.cancelOrder(this.this_order.getThis_id(),this.refund); //doesnt deleting
+        UserClient.getInstance().removeOrderById(this.this_order.getThis_id());
+        UserControl.removeOrderByID(UserClient.getInstance().getId(),this.this_order.getThis_id());
         this.cancel_order_anchorpane2.setVisible(false);
         this.cancel_order_anchorpane3.setVisible(true);
         System.out.println(UserClient.getInstance().getCredit());
+        MainPageController.getInstance().MyAccountRefresh();
 //        this.stage.close();
     }
 
@@ -112,6 +116,7 @@ public class CancelOrderController {
 //        UserClient.getInstance().removeOrderById(Integer.parseInt(this.order_num_filed.getText()));
         UserClient.getInstance().cancelOrderById(Integer.parseInt(this.order_num_filed.getText()));
         UserClient.getInstance().addCredit(refund);
+        UserControl.setCredit(UserClient.getInstance().getId(),refund);
         MyAccountController.getInstance().setCreditTextField(UserClient.getInstance().getCredit());
         this.stage.close();
       //  CancelOrdersTabController.getInstance().RemoveOrderById(Integer.parseInt(this.order_num_filed.getText()));

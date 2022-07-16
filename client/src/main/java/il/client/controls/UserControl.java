@@ -1,6 +1,7 @@
 package il.client.controls;
 
 import il.client.SimpleClient;
+import il.client.UserClient;
 import il.entities.Message;
 
 import java.io.IOException;
@@ -87,6 +88,22 @@ public class UserControl {
         message.setAccountStatus(freeze);
         message.setWorker(isWorker);
         message.setUserID(userID);
+        SimpleClient.getClient().sendToServer(message);
+    }
+
+    public static void setCredit(int userID, double credit) throws IOException {
+        Message message = new Message("setInfo");
+        message.setSetinfo("setAccountCredit");
+        message.setUserID(userID);
+        message.setCreadit(credit);
+        SimpleClient.getClient().sendToServer(message);
+    }
+
+    public static void removeOrderByID(int userID, int orderID) throws IOException {
+        Message message = new Message("setInfo");
+        message.setSetinfo("removeOrder");
+        message.setUserID(userID);
+        message.setOrderID(orderID);
         SimpleClient.getClient().sendToServer(message);
     }
 }

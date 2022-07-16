@@ -60,7 +60,13 @@ public class OrdersHistoryController {
         if(orders_table.getItems().size()!=0){
             this.orders_table.getItems().clear();
         } //?????????
-        orders_table.setItems(UserClient.getInstance().getOrderList());
+        for(int i =0; i<items.size();i++){
+            if(items.get(i).isCanceled()){
+                items.remove(i);
+            }
+        }
+        orders_table.setItems(items);
+        System.out.println("Printing in OrderHistoryController" + items);
     }
 //
 

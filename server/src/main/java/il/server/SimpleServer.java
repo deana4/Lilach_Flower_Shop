@@ -230,8 +230,12 @@ public class SimpleServer extends AbstractServer {
                             UserControl.setAddress(message.getUserID(), message.getAddress(), message.isWorker());
                         if (message.getSetinfo().equals("setPermission"))
                             UserControl.setPermission(message.getUserID(), message.getPermision(), message.isWorker());
+                        if (message.getSetinfo().equals("setAccountCredit"))
+                            UserControl.setCredit(message.getUserID(), message.getCreadit());
                         if (message.getSetinfo().equals("setAccountStatus"))
                             result = UserControl.setAccountStatus(message.getUserID(), message.getAccountStatus(), message.isWorker(), getAllItems(User.class));
+                        if (message.getSetinfo().equals("removeOrder"))
+                            UserControl.removeOrder(message.getUserID(), message.getOrderID());
 
                         sendMessage.setUodateResult(result);
                         sendMessage.setListEmploeeys(getAllItems(Employee.class));

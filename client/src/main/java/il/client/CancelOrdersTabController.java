@@ -56,10 +56,11 @@ public class CancelOrdersTabController {
         instance = this;
         TableInitializeFields();
         items = UserClient.getInstance().getOrderList();
-//        for(int i=0; i< items.size(); i++){
-//            System.out.println(items.get(i));
-//        } printing the orders
-        cancel_orders_table.setItems(UserClient.getInstance().getOrderList());
+        for(int i=0; i< items.size(); i++){
+            if(items.get(i).isCanceled())
+                items.remove(i);
+        }
+        cancel_orders_table.setItems(items);
     }
     //
     public void TableInitializeFields() {

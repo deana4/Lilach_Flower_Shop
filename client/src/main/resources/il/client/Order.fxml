@@ -234,7 +234,7 @@
                 </MFXTextField>
                 <VBox alignment="CENTER" layoutX="1060.0" layoutY="397.0" prefHeight="200.0" prefWidth="147.0">
                     <children>
-                        <Label fx:id="sum_label" alignment="CENTER" prefHeight="21.0" prefWidth="43.0" text="sum" />
+                        <Label fx:id="sum_label" alignment="CENTER" prefHeight="21.0" prefWidth="73.0" text="sum" />
                         <MFXButton fx:id="payBTN" onMouseClicked="#PayBTNClicked" prefHeight="38.0" prefWidth="81.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Pay" textFill="#979797" />
                         <MFXButton fx:id="updateCartBTN" onAction="#UpdateCartBTNClicked" prefHeight="35.0" prefWidth="182.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Update my Cart" textFill="#979797" />
                         <MFXButton fx:id="cancelBTN" onMouseClicked="#CancelBTNClicked" prefHeight="35.0" prefWidth="123.0" styleClass="simple-btn" stylesheets="@CSSfiles/Buttons.css" text="Cancel" textFill="#979797" />

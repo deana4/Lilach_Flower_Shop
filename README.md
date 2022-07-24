@@ -10,7 +10,7 @@ Main Features:
 * Products & Users modifying abillity.
 
 # How to run the Application?
-1. Clean & Install with Maven saved configuration called 'Lilach CI'.
+1. ```Clean``` & Install with Maven saved configuration called 'Lilach CI'.
 2. Run the 'Server' configuration.
 3. Change the details according to the instruction.
 4. Run the 'Client' configuration.
